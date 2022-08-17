@@ -1,5 +1,7 @@
-// import './scss/main.scss';
+// import './scss/main.scss'; // TODO: Выяснить, почему не работает mini-css-extract plugin
 
-import './ts/classes/sound.ts';
+// TODO: Линтер не пропускает импорт без разрешения файла, а webpak не дает вставлять разрешение .ts
+
+import './ts/controllers/sound.ts';
 
 console.log('Hello, Perfect ear!');
