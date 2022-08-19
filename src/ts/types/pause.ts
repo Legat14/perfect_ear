@@ -1,0 +1,1 @@
+export type Pause = 'pause';
