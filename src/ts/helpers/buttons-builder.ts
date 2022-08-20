@@ -1,6 +1,6 @@
 import NodeBuilder from './node-builder';
 
-class ButtonsBuilder extends NodeBuilder {
+class ButtonsBuilder extends NodeBuilder<HTMLButtonElement> {
   constructor({
     parentNode,
     className = '',
