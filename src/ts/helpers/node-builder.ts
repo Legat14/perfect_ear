@@ -29,7 +29,7 @@ class NodeBuilder<NodeType extends HTMLElement = HTMLElement> {
     this.node = element as NodeType;
   }
 
-  public destroy(): void {
+  public remove(): void {
     this.node.remove();
   }
 }
