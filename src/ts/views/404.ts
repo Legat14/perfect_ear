@@ -1,17 +1,17 @@
 import NodeBuilder from '../helpers/node-builder';
 
-class IntervalGameView extends NodeBuilder {
+class PageNotFound extends NodeBuilder {
   constructor() {
-    super({ parentNode: null, className: 'interval-game-field' });
+    super({ parentNode: null, className: '404' });
 
     const intervalGameH2 = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: 'This is the interval game field',
+      content: '404 - Nothing is found',
     });
 
     console.log(intervalGameH2);
   }
 }
 
-export default IntervalGameView;
+export default PageNotFound;

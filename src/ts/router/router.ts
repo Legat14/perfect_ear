@@ -1,4 +1,4 @@
-import NodeBuilder from '../helpers/node-builder';
+import PageNotFound from '../views/404';
 
 class Router {
   private readonly root: HTMLElement | null;
@@ -10,7 +10,7 @@ class Router {
   constructor(root: HTMLElement, entries: Iterable<readonly [string, HTMLElement]>) {
     this.root = root;
     this.routes = new Map(entries);
-    this.notFound = new NodeBuilder({ parentNode: null }).node;
+    this.notFound = new PageNotFound().node;
   }
 
   add(path: string, page: HTMLElement): void {
@@ -32,12 +32,15 @@ class Router {
     if (this.root) {
       this.root.innerHTML = '';
       this.root.append(route);
+      console.log('The route: ', route);
     }
   }
 
   init(initial: string): void {
     if (!window.location.hash) window.location.hash = `#${initial}`;
-    window.onhashchange = () => this.render();
+    window.onhashchange = () => {
+      this.render();
+    };
     this.render();
   }
 }
