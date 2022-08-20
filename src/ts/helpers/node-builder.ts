@@ -32,6 +32,10 @@ class NodeBuilder<NodeType extends HTMLElement = HTMLElement> {
   public remove(): void {
     this.node.remove();
   }
+
+  public clear(): void {
+    this.node.innerHTML = '';
+  }
 }
 
 export default NodeBuilder;
