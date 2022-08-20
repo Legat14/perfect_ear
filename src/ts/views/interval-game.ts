@@ -1,3 +1,4 @@
+import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
 
 class IntervalGameView extends NodeBuilder {
@@ -11,6 +12,16 @@ class IntervalGameView extends NodeBuilder {
     });
 
     console.log(intervalGameH2);
+
+    const backToMainBtn = new ButtonBuilder({
+      parentNode: this.node,
+      className: 'interval-game__back-to-main-btn',
+      content: 'Вернуться в главное меню',
+    });
+
+    backToMainBtn.node.addEventListener('click', (): void => {
+      window.location.hash = '#';
+    });
   }
 }
 

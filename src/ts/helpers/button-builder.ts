@@ -1,6 +1,6 @@
 import NodeBuilder from './node-builder';
 
-class ButtonsBuilder extends NodeBuilder<HTMLButtonElement> {
+class ButtonBuilder extends NodeBuilder<HTMLButtonElement> {
   constructor({
     parentNode,
     className = '',
@@ -20,4 +20,4 @@ class ButtonsBuilder extends NodeBuilder<HTMLButtonElement> {
   }
 }
 
-export default ButtonsBuilder;
+export default ButtonBuilder;
