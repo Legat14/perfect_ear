@@ -1,4 +1,6 @@
-enum PitchNotations {
+export type Pause = 'pause';
+
+export enum PitchNotations {
   'A0' = 0,
   'A#0',
   'Ax0',
@@ -256,5 +258,3 @@ enum PitchNotations {
   'Cb8',
   'C8',
 }
-
-export default PitchNotations;

@@ -6,7 +6,7 @@ import {
   Subdivision,
   Seconds,
 } from 'tone/build/esm/core/type/Units';
-import { Pause } from '../types/pause';
+import { Pause } from '../types/note-types';
 
 interface ISound {
   voice?: Partial<Tone.SamplerOptions>;

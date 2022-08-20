@@ -1,5 +1,5 @@
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
-import Notations from '../types/pitchNotations';
+import { PitchNotations as Notations } from '../types/note-types';
 
 class RandomGenerator {
   static generateRandomNumber(min: number, max: number): number {
