@@ -1,5 +1,148 @@
-@import "./general/reser";
+@import "./general/reset";
+
+@import "./general/font";
+
+html {
+  font-family: PFDinDisplayPro;
+  box-sizing: border-box;
+  font-size: 16px;
+  background: url(./src/public/assets/img/background.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 body {
-  background-color: aqua;
+  width: 100%;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+header {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+h1 {
+  color: #555;
+  font-size: 48px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 30px 0px;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  float: left;
+}
+
+.animation {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: animation;
+  animation-name: animation;
+}
+
+.keyboard {
+  margin: 0 auto;
+
+  .row {
+    height: 12em;
+    width: 24em;
+    margin: 2em auto 5em;
+    padding: 1.5em;
+    position: relative;
+    border: 1px solid #160801;
+    border-radius: 1em;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url(images/wood.jpg);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5) inset, 0 1px rgba(212, 152, 125, 0.2) inset, 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  button {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    float: left;
+  }
+}
+
+button {
+  &[white="true"] {
+    height: 16em;
+    width: 4em;
+    font-size: 12px;
+    padding-top: 150px;
+    z-index: 1;
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-radius: 0 0 5px 5px;
+    box-shadow: (-1px) 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 5px #ccc inset, 0 0 3px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #eee 0%, #fff 100%);
+
+    &:active {
+      border-top: 1px solid #777;
+      border-left: 1px solid #999;
+      border-bottom: 1px solid #999;
+      box-shadow: 2px 0 3px rgba(0, 0, 0, 0.1) inset, (-5px) 5px 20px rgba(0, 0, 0, 0.2) inset, 0 0 3px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
+    }
+  }
+
+  &[black="true"] {
+    height: 8em;
+    padding-top: 60px;
+    color: #666;
+    font-size: 12px;
+    width: 2em;
+    margin: 0 0 0 -1em;
+    z-index: 2;
+    border: 1px solid #000;
+    border-radius: 0 0 3px 3px;
+    box-shadow: (-1px) -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #222 0%, #555 100%);
+
+    &:active {
+      box-shadow: (-1px) -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -2px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 1px 2px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(to right, #444 0%, #222 100%);
+    }
+  }
+}
+
+.keyboard .row button {
+  &:first-child {
+    border-radius: 5px 0 5px 5px;
+  }
+
+  &:last-child {
+    border-radius: 0 5px 5px 5px;
+  }
+}
+
+.input {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textarea {
+  height: 100px;
+  width: 24em;
+}
+
+footer p {
+  text-align: center;
+}
+
+#KeyW, #KeyE, #KeyT, #KeyY, #KeyU {
+  margin: 0 0 0 -1em;
 }
