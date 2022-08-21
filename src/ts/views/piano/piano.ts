@@ -1,5 +1,5 @@
-import enLang from './enkeys.ts';
-import ruLang from './rukeys.ts';
+import enLang from './enkeys.js';
+import ruLang from './rukeys.js';
 
 const header = document.createElement('header');
 header.classList.add('animation');
@@ -14,7 +14,7 @@ header.appendChild(h1);
 h1.textContent = 'Music Pitch';
 const p = document.createElement('p');
 footer.appendChild(p);
-p.textContent = '<p>@ 2022 Copyright. All rights reserved1</p><audio id="KeyQ" src="http://carolinegabriel.com/demo/js-keyboard/sounds/040.wav"></audio>';
+p.textContent = '@ 2022 Copyright. All rights reserved';
 const input = document.createElement('section');
 input.classList.add('input', 'animation');
 main.appendChild(input);
