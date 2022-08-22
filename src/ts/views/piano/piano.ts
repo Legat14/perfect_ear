@@ -12,6 +12,8 @@ class Piano extends NodeBuilder {
       tagName: 'div',
       className: 'piano',
     });
+
+    this.createKeys();
   }
 
   public createKeys(): void {

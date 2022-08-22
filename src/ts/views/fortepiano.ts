@@ -1,5 +1,6 @@
 import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
+import Piano from './piano/piano';
 
 class FortepianoView extends NodeBuilder {
   constructor() {
@@ -19,6 +20,9 @@ class FortepianoView extends NodeBuilder {
 
     // Эти логи добавлены, чтобы линтер не ругался, что переменные не используются
     console.log(fortepianoH2);
+
+    const piano = new Piano(this.node);
+    console.log(piano);
 
     backToMainBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#';
