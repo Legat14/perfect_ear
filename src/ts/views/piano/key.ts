@@ -13,7 +13,7 @@ class Key extends ButtonBuilder {
       attributes: { black: note.includes('#') },
     });
     this.note = note;
-    this.node.onclick = () => this.onPlayNote(this.note);
+    this.node.onmousedown = () => this.onPlayNote(this.note);
   }
 }
 
