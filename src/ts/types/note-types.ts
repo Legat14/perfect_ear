@@ -260,9 +260,6 @@ export enum PitchNotations {
 }
 
 export enum PianoNotations {
-  'A0' = 'A0',
-  'A#0' = 'A#0',
-  'B0' = 'B0',
   'C1' = 'C1',
   'C#1' = 'C#1',
   'D1' = 'D1',
@@ -308,5 +305,8 @@ export enum PianoNotations {
   'F#4' = 'F#4',
   'G4' = 'G4',
   'G#4' = 'G#4',
-  'A5' = 'A5',
+  'A4' = 'A4',
+  'A#4' = 'A#4',
+  'B4' = 'B4',
+  'C5' = 'C5',
 }
