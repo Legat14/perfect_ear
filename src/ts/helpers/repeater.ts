@@ -1,14 +1,14 @@
 import { Callback } from '../types/common';
 
 class Repeater {
-  static repeate<T>(
+  static repeat<T>(
     callback: Callback<T>,
-    data: T[],
     iterations: number,
+    ...data: T[]
   ) {
     if (!iterations) return;
     callback(...data);
-    Repeater.repeate(callback, data, iterations - 1);
+    Repeater.repeat(callback, iterations - 1, ...data);
   }
 }
 
