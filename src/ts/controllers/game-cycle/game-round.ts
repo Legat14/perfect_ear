@@ -70,23 +70,27 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
 
   public startGameCycle(question: QuizType) {
     this.view.renderGame(question.game.gameName);
-    Repeater.repeat(this.createNewQuestion, this.rounds, question);
+    this.createNewQuestion(this.rounds, question);
   }
 
-  public createNewQuestion(question: QuizType) {
+  public createNewQuestion(rounds: number, question: QuizType) {
     const quiz = new this.GameQuizConstructor(question, this.round);
 
     this.view.renderQuiz(quiz.view.node);
 
     quiz.onSkip = () => {
       this.gameIndicators.increaseFinesCounter();
-      this.createNewQuestion(question);
+      this.createNewQuestion(rounds, question);
     };
 
     quiz.onAnswer = (answer: boolean) => {
-      this.round += 1;
       if (answer) this.gameIndicators.increaseRightAnswersCounter();
     };
+
+    quiz.onNext = () => {
+      quiz.view.remove();
+      this.createNewQuestion(rounds - 1, question);
+    }
 
     quiz.onFinish = () => this.gameIndicators.finishGame();
   }
