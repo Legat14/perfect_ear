@@ -1,10 +1,16 @@
+import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
 import GameQuizView from '../../views/game-cycle-view/game-quiz-view';
 import { IQuestion } from '../../types/game-types';
+import { PIANO_SOUND } from '../../constants/constants';
+import { Pause } from '../../types/note-types';
+import Sound from '../sound';
 
 abstract class AbstractGameQuiz {
   public question: IQuestion;
 
   public view: GameQuizView;
+
+  public sound: Sound;
 
   public onAnswer!: (answer: boolean) => void;
 
@@ -12,16 +18,21 @@ abstract class AbstractGameQuiz {
 
   public onNext!: () => void;
 
-  public onQuit!: () => void;
-
   public onFinish!: () => void;
 
-  constructor(question: IQuestion, round: number) {
+  constructor(question: IQuestion, round: number, sound = new Sound(PIANO_SOUND)) {
     this.question = question;
 
-    this.view = new GameQuizView(question, round);
+    this.sound = sound;
 
-    this.view.onRepeat = () => this.repeatSound;
+    this.view = new GameQuizView(
+      question,
+      round,
+      sound,
+      () => this.playSequence(question.sequence),
+    );
+
+    this.view.onRepeat = () => this.playSequence(question.sequence);
     this.view.onSkip = () => this.skip();
 
     this.view.onAnswer = (index) => this.answer(index === question.value);
@@ -38,7 +49,9 @@ abstract class AbstractGameQuiz {
     this.onSkip();
   }
 
-  public repeatSound(): void {}
+  private playSequence(sequence?: [Pause | Frequency | Frequency[], Subdivision][]): void {
+    return sequence && this.sound.playSequence(sequence);
+  }
 }
 
 export default AbstractGameQuiz;

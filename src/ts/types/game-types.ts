@@ -32,7 +32,7 @@ export interface IQuestion {
   condition: string;
   answers: readonly string[];
   descriptions?: readonly string[];
-  sequence?: readonly [Pause | Frequency | Frequency[], Subdivision][];
+  sequence?: [Pause | Frequency | Frequency[], Subdivision][];
   value: keyof IQuestion['answers'];
 }
 

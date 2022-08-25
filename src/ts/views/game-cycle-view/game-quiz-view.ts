@@ -2,6 +2,7 @@ import { PIANO_SOUND } from '../../constants/constants';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Callback } from '../../types/common';
 import { IQuestion } from '../../types/game-types';
 import Piano from '../piano/piano';
 import AnswerSound from './game-answer-sound';
@@ -30,13 +31,10 @@ class GameQuizView extends NodeBuilder {
 
   answers: HTMLElement[];
 
-  constructor(question: IQuestion, round: number) {
+  constructor(question: IQuestion, round: number, sound: Sound, callback: Callback<undefined>) {
     super({ parentNode: null, className: 'quiz' });
 
-    const sound = new Sound(PIANO_SOUND);
-    this.sound = sound;
-
-    const piano = new Piano(this.node, this.sound);
+    const piano = new Piano(this.node, sound);
     this.piano = piano;
 
     const condition = new NodeBuilder({
@@ -74,7 +72,7 @@ class GameQuizView extends NodeBuilder {
       className: 'quiz-answers__repeat',
       content: 'REPEAT',
     });
-    repeatControl.node.onclick = () => this.playSequence();
+    repeatControl.node.onclick = () => this.onRepeat();
 
     const nextControl = new GameQuizNextButton(footer);
     this.nextControl = nextControl;
@@ -82,6 +80,8 @@ class GameQuizView extends NodeBuilder {
     this.nextControl.onSkip = () => this.onSkip();
     this.nextControl.onNext = () => this.onNext();
     this.nextControl.onDone = () => this.onDone();
+
+    callback();
   }
 
   public react(answer: boolean, desciptions: IQuestion['descriptions']) {
