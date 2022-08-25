@@ -1,4 +1,3 @@
-import { PIANO_SOUND } from '../../constants/constants';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -10,8 +9,6 @@ import GameQuizNextButton from './game-quiz-next-button';
 
 class GameQuizView extends NodeBuilder {
   public readonly condition: NodeBuilder<HTMLElement>;
-
-  private readonly sound: Sound;
 
   public piano: Piano;
 
@@ -25,11 +22,11 @@ class GameQuizView extends NodeBuilder {
 
   public onDone!: () => void;
 
-  questionIndicator: NodeBuilder<HTMLElement>;
+  public questionIndicator: NodeBuilder<HTMLElement>;
 
-  nextControl: GameQuizNextButton;
+  public nextControl: GameQuizNextButton;
 
-  answers: HTMLElement[];
+  public answers: HTMLElement[];
 
   constructor(question: IQuestion, round: number, sound: Sound, callback: Callback<undefined>) {
     super({ parentNode: null, className: 'quiz' });
@@ -89,6 +86,8 @@ class GameQuizView extends NodeBuilder {
       this.answers[index].innerHTML = desciption;
     });
 
+    this.nextControl.setNext();
+
     return answer ? this.acceptAnswer() : this.rejectAnswer();
   }
 
@@ -99,8 +98,6 @@ class GameQuizView extends NodeBuilder {
   private rejectAnswer() {
     AnswerSound.fail();
   }
-
-  private playSequence() {}
 }
 
 export default GameQuizView;
