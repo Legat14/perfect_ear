@@ -1,4 +1,6 @@
-import { IGameResult, IQuestion, SequenceDirection } from '../../types/game-types';
+import {
+  IGameResult, IQuestion, IRound, SequenceDirection,
+} from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
 import AbstractGameQuiz from './abstract-game-quiz';
 import GameIndicators from './game-indicators';
@@ -22,6 +24,8 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
 
   private readonly gameIndicators: GameIndicators;
 
+  private readonly terms: IRound['terms'];
+
   private round: number;
 
   public onQuit!: () => void;
@@ -36,6 +40,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
     score: number,
     rounds: number,
     bonus: number,
+    terms: IRound['terms'],
     question: QuizType,
     GameQuizConstructor: GameQuizConstructor<QuizType>,
   ) {
@@ -44,6 +49,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
     this.direction = direction;
     this.score = score;
     this.rounds = rounds;
+    this.terms = terms;
 
     this.GameQuizConstructor = GameQuizConstructor;
 
@@ -54,7 +60,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
     });
     this.round = 0;
 
-    this.view = new GameRoundView(parentNode);
+    this.view = new GameRoundView(parentNode, terms);
 
     this.view.onGameStart = () => this.startGameCycle(question);
     this.view.onGameBack = () => this.back();
@@ -68,7 +74,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
   }
 
   public startGameCycle(question: QuizType) {
-    this.view.renderGame(question.game.gameName);
+    this.view.renderGame(question.round.quizName, question.round.game.gameName);
     this.createNewQuestion(this.rounds, question);
   }
 

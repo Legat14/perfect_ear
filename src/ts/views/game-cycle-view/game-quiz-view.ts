@@ -2,7 +2,7 @@ import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Callback } from '../../types/common';
-import { IQuestion } from '../../types/game-types';
+import { IQuestion, IRound } from '../../types/game-types';
 import Piano from '../piano/piano';
 import AnswerSound from './game-answer-sound';
 import GameQuizNextButton from './game-quiz-next-button';
@@ -40,13 +40,13 @@ class GameQuizView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'h2',
       className: 'quiz-question',
-      content: question.condition,
+      content: question.round.condition,
     });
     this.condition = condition;
 
     const answers = new NodeBuilder({ parentNode: this.node, className: 'quiz-answers' }).node;
 
-    this.answers = question.answers.map((answer, index) => {
+    this.answers = question.round.answers.map((answer, index) => {
       const button = new ButtonBuilder({
         parentNode: answers,
         className: 'quiz-answers__answer',
@@ -62,7 +62,7 @@ class GameQuizView extends NodeBuilder {
     const questionIndicator = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-controls__question-indicator',
-      content: `${round} / ${question.rounds}`,
+      content: `${round} / ${question.round.rounds}`,
     });
     this.questionIndicator = questionIndicator;
 
@@ -90,9 +90,9 @@ class GameQuizView extends NodeBuilder {
    * @todo Add staff view.
    */
 
-  public react(answer: boolean, descriptions: IQuestion['descriptions'], done: boolean): void {
-    descriptions?.forEach((description, index) => {
-      this.answers[index].innerHTML = description;
+  public react(answer: boolean, terms: IRound['terms'], done: boolean): void {
+    terms?.forEach((term, index) => {
+      this.answers[index].innerHTML = term;
       this.answers[index].className += `${index === this.value ? 'quiz-answers__answer_key' : 'quiz-answers__answer_answered'}`;
     });
 

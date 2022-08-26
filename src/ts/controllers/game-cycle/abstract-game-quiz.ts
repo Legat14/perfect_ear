@@ -37,7 +37,7 @@ abstract class AbstractGameQuiz {
 
     this.view.onAnswer = (index) => this.answer(
       index === question.value,
-      round === question.rounds,
+      round === question.round.rounds,
     );
     this.view.onNext = () => this.onNext();
     this.view.onDone = () => this.onFinish();
@@ -45,7 +45,7 @@ abstract class AbstractGameQuiz {
 
   private answer(answer: boolean, done: boolean): void {
     this.onAnswer(answer);
-    this.view.react(answer, this.question.descriptions, done);
+    this.view.react(answer, this.question.round.terms, done);
   }
 
   private skip(): void {

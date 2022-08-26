@@ -1,6 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IGameResult, IQuestion } from '../../types/game-types';
+import { IGameResult, IRound } from '../../types/game-types';
 
 class GameRoundEndScreen extends NodeBuilder {
   public onQuit!: () => void;
@@ -19,7 +19,7 @@ class GameRoundEndScreen extends NodeBuilder {
       rightAnswersCountToRoundCount,
       averageTimeHR,
     }: IGameResult,
-    nextGame?: IQuestion['quizName'],
+    nextGame?: IRound['quizName'],
   ) {
     super({
       parentNode,

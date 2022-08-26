@@ -1,6 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IGameResult, IQuestion } from '../../types/game-types';
+import { IGameResult, IQuizGame, IRound } from '../../types/game-types';
 import GameRoundEndScreen from './round-end-screen';
 import GameRoundStartScreen from './round-start-screen';
 
@@ -25,7 +25,7 @@ class GameRoundView extends NodeBuilder {
     this.startScreen = new GameRoundStartScreen(this.node);
   }
 
-  public renderGame(gameName: string) {
+  public renderGame(quizName: IRound['quizName'], gameName: IQuizGame['gameName']) {
     this.clear();
 
     const header = new NodeBuilder({ parentNode: this.node, tagName: 'header' }).node;
@@ -42,7 +42,7 @@ class GameRoundView extends NodeBuilder {
     this.gameNode.append(quiz);
   }
 
-  public renderEndScreen(result: IGameResult, nextGameName?: IQuestion['quizName']) {
+  public renderEndScreen(result: IGameResult, nextGameName?: IRound['quizName']) {
     this.clear();
     this.endScreen = new GameRoundEndScreen(this.node, result, nextGameName);
   }
