@@ -1,4 +1,5 @@
 import IExerciseResult from '../types/exercise-result';
+import IUserProfileType from '../types/user-profile-type';
 
 class UserProfile {
   private dayScore: number;
@@ -29,17 +30,7 @@ class UserProfile {
     totalExercises,
     intervalGameScore,
     exercisesResult,
-  }: {
-    dayScore: number,
-    dayTime: number,
-    dayExercises: number,
-    currentDay: Date,
-    totalScore: number,
-    totalTime: number,
-    totalExercises: number,
-    intervalGameScore: number,
-    exercisesResult: Array<IExerciseResult>,
-  }) {
+  }: IUserProfileType) {
     this.dayScore = dayScore;
     this.dayTime = dayTime;
     this.dayExercises = dayExercises;
@@ -119,11 +110,7 @@ class UserProfile {
     this.intervalGameScore = value;
   }
 
-  public addExercisesResult(newExerciseResult: IExerciseResult) { // TODO: Заменить этот
-    // метод на тот,
-    // который будет сравнивать входящие значения с уже присутствующими в
-    // объекте. Добавлять несуществующие и обновлять результаты, если они
-    // улучшились
+  public addExercisesResult(newExerciseResult: IExerciseResult) {
     let pastResultIndex = 0;
     const pastExerciseResult = this.exercisesResult.find((item, index) => {
       pastResultIndex = index;
