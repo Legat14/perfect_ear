@@ -4,14 +4,14 @@ class HeaderView extends NodeBuilder {
   constructor(parentNode: HTMLElement) {
     super({ parentNode, className: 'header' });
 
-    const headerH2 = new NodeBuilder({
+    const headerH1 = new NodeBuilder({
       parentNode: this.node,
-      tagName: 'h2',
-      className: 'header__h2',
+      tagName: 'h1',
+      className: 'header__h1',
       content: 'Perfect ear',
     });
 
-    console.log(headerH2);
+    console.log(headerH1);
   }
 }
 
