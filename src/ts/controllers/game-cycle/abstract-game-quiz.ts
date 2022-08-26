@@ -35,14 +35,17 @@ abstract class AbstractGameQuiz {
     this.view.onRepeat = () => this.playSequence(question.sequence);
     this.view.onSkip = () => this.skip();
 
-    this.view.onAnswer = (index) => this.answer(index === question.value);
+    this.view.onAnswer = (index) => this.answer(
+      index === question.value,
+      round === question.rounds,
+    );
     this.view.onNext = () => this.onNext();
     this.view.onDone = () => this.onFinish();
   }
 
-  private answer(answer: boolean): void {
+  private answer(answer: boolean, done: boolean): void {
     this.onAnswer(answer);
-    this.view.react(answer, this.question.descriptions);
+    this.view.react(answer, this.question.descriptions, done);
   }
 
   private skip(): void {

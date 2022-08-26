@@ -10,6 +10,8 @@ import GameQuizNextButton from './game-quiz-next-button';
 class GameQuizView extends NodeBuilder {
   public readonly condition: NodeBuilder<HTMLElement>;
 
+  private readonly value: IQuestion['value'];
+
   public piano: Piano;
 
   public onAnswer!: (index: number) => void;
@@ -28,7 +30,7 @@ class GameQuizView extends NodeBuilder {
 
   public answers: HTMLElement[];
 
-  constructor(question: IQuestion, round: number, sound: Sound, callback: Callback<undefined>) {
+  constructor(question: IQuestion, round: number, sound: Sound, callback: Callback<void>) {
     super({ parentNode: null, className: 'quiz' });
 
     const piano = new Piano(this.node, sound);
@@ -79,23 +81,30 @@ class GameQuizView extends NodeBuilder {
     this.nextControl.onDone = () => this.onDone();
 
     callback();
+
+    this.value = question.value;
   }
 
-  public react(answer: boolean, desciptions: IQuestion['descriptions']) {
-    desciptions?.forEach((desciption, index) => {
-      this.answers[index].innerHTML = desciption;
+  /**
+   * @todo Add piano view.
+   * @todo Add staff view.
+   */
+
+  public react(answer: boolean, descriptions: IQuestion['descriptions'], done: boolean): void {
+    descriptions?.forEach((description, index) => {
+      this.answers[index].innerHTML = description;
+      this.answers[index].className += `${index === this.value ? 'quiz-answers__answer_key' : 'quiz-answers__answer_answered'}`;
     });
 
-    this.nextControl.setNext();
-
-    return answer ? this.acceptAnswer() : this.rejectAnswer();
+    if (done) this.nextControl.setDone(); else this.nextControl.setNext();
+    if (answer) this.acceptAnswer(); else this.rejectAnswer();
   }
 
-  private acceptAnswer() {
+  private acceptAnswer(): void {
     AnswerSound.ok();
   }
 
-  private rejectAnswer() {
+  private rejectAnswer(): void {
     AnswerSound.fail();
   }
 }
