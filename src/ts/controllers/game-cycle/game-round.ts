@@ -1,4 +1,3 @@
-import Repeater from '../../helpers/repeater';
 import { IGameResult, IQuestion, SequenceDirection } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
 import AbstractGameQuiz from './abstract-game-quiz';
@@ -80,6 +79,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
 
     quiz.onSkip = () => {
       this.gameIndicators.increaseFinesCounter();
+      quiz.view.remove();
       this.createNewQuestion(rounds, question);
     };
 
@@ -90,7 +90,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
     quiz.onNext = () => {
       quiz.view.remove();
       this.createNewQuestion(rounds - 1, question);
-    }
+    };
 
     quiz.onFinish = () => this.gameIndicators.finishGame();
   }

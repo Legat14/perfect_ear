@@ -1,7 +1,7 @@
 class AnswerSound {
-  static ok() {}
+  static accept() {}
 
-  static fail() {}
+  static reject() {}
 }
 
 export default AnswerSound;

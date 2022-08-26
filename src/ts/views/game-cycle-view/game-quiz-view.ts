@@ -101,11 +101,11 @@ class GameQuizView extends NodeBuilder {
   }
 
   private acceptAnswer(): void {
-    AnswerSound.ok();
+    AnswerSound.accept();
   }
 
   private rejectAnswer(): void {
-    AnswerSound.fail();
+    AnswerSound.reject();
   }
 }
 
