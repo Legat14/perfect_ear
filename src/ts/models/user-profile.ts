@@ -28,19 +28,14 @@ class UserProfile {
     totalScore,
     totalTime,
     totalExercises,
+    currentDate,
     intervalGameScore,
     exercisesResult,
   }: IUserProfileType) {
-    const date = new Date(Date.now());
-    const currentDay = date.getDate();
-    const currentYear = date.getFullYear();
-    this.currentDate = {
-      day: currentDay,
-      year: currentYear,
-    };
     this.dayScore = dayScore;
     this.dayTime = dayTime;
     this.dayExercises = dayExercises;
+    this.currentDate = currentDate;
     this.totalScore = totalScore;
     this.totalTime = totalTime;
     this.totalExercises = totalExercises;
@@ -96,8 +91,8 @@ class UserProfile {
     this.dayExercises = value;
   }
 
-  public setCurrentDay(value: Date) {
-    this.currentDay = value;
+  public setCurrentDate(value: IDate) {
+    this.currentDate = value;
   }
 
   public setTotalScore(value: number) {
@@ -114,6 +109,10 @@ class UserProfile {
 
   public setIntervalGameScore(value: number) {
     this.intervalGameScore = value;
+  }
+
+  public clearExercisesResult() {
+    this.exercisesResult = [];
   }
 
   public addExercisesResult(newExerciseResult: IExerciseResult) {

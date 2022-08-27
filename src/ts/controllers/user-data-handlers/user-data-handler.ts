@@ -1,4 +1,5 @@
 import UserProfile from '../../models/user-profile';
+import IDate from '../../types/date';
 import IGameResult from '../../types/game-results';
 import IUserProfileType from '../../types/user-profile-type';
 
@@ -14,7 +15,7 @@ class UserDataHandler {
         dayScore: guestUserData.dayScore,
         dayTime: guestUserData.dayTime,
         dayExercises: guestUserData.dayExercises,
-        currentDay: guestUserData.currentDay,
+        currentDate: guestUserData.currentDate,
         totalScore: guestUserData.totalScore,
         totalTime: guestUserData.totalTime,
         totalExercises: guestUserData.totalExercises,
@@ -26,7 +27,7 @@ class UserDataHandler {
         dayScore: 0,
         dayTime: 0,
         dayExercises: 0,
-        currentDay: new Date(),
+        currentDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
         totalExercises: 0,
@@ -55,7 +56,7 @@ class UserDataHandler {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
       dayExercises: this.userProfile.getDayExercises(),
-      currentDay: this.userProfile.getCurrentDay(),
+      currentDate: this.userProfile.getCurrentDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
       totalExercises: this.userProfile.getTotalExercises(),
@@ -79,24 +80,34 @@ class UserDataHandler {
     });
   }
 
-  clearLocalStorageData() {
-    this.userProfile = new UserProfile({
-      dayScore: 0,
-      dayTime: 0,
-      dayExercises: 0,
-      currentDate: {
-        day: 0,
-        year: 0,
-      },
-      totalScore: 0,
-      totalTime: 0,
-      totalExercises: 0,
-      intervalGameScore: 0,
-      exercisesResult: [],
-    });
+  private getCurrentDate(): IDate {
+    const date = new Date(Date.now());
+    const currentDay = date.getDate();
+    const currentYear = date.getFullYear();
+    const currentDate = {
+      day: currentDay,
+      year: currentYear,
+    };
+    return currentDate;
   }
 
-  decomposeGameResult(gameResult: IGameResult) {
+  clearDayScore(): void {
+    this.userProfile.setDayScore(0);
+    this.userProfile.setDayTime(0);
+    this.userProfile.setDayExercises(0);
+    this.userProfile.setCurrentDate(this.userProfile.getCurrentDate());
+  }
+
+  clearUserProfileData(): void {
+    this.clearDayScore();
+    this.userProfile.setTotalScore(0);
+    this.userProfile.setTotalTime(0);
+    this.userProfile.setTotalExercises(0);
+    this.userProfile.setIntervalGameScore(0);
+    this.userProfile.clearExercisesResult();
+  }
+
+  decomposeGameResult(gameResult: IGameResult): void {
     this.userProfile.increaseDayScore(gameResult.gameScore);
     this.userProfile.increaseDayTime(gameResult.gameTime);
     this.userProfile.increaseDayExercises(1);
@@ -114,11 +125,18 @@ class UserDataHandler {
     this.userProfile.addExercisesResult(newExerciseResult);
     console.log('User Profile after game end: ', this.userProfile);
   }
+
+  setDayCheckInterval(): void {
+    setInterval(() => {
+      const currentDate = this.getCurrentDate();
+      console.log('currentDate: ', currentDate);
+    }, 10000);
+  }
 }
 
 const userDataHandler = new UserDataHandler();
 // расскоментировать для обнуления профиля в LocalStorage
-// userDataHandler.clearLocalStorageData();
+// userDataHandler.clearUserProfileData();
 
 export default userDataHandler;
 
