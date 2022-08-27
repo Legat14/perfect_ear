@@ -37,7 +37,8 @@ class UserDataHandler {
     }
     this.addPageCloseEvent();
     this.addGameEndEvent();
-    const tempResult = {}; // Эта переменная добавлена для проверки
+    this.setDayCheckInterval();
+    const tempResult = {}; // Эта переменная добавлена для проверки TODO: потом удалить
     Object.assign(tempResult, this.userProfile);
     console.log(tempResult);
   }
@@ -91,14 +92,14 @@ class UserDataHandler {
     return currentDate;
   }
 
-  clearDayScore(): void {
+  private clearDayScore(): void {
     this.userProfile.setDayScore(0);
     this.userProfile.setDayTime(0);
     this.userProfile.setDayExercises(0);
     this.userProfile.setCurrentDate(this.userProfile.getCurrentDate());
   }
 
-  clearUserProfileData(): void {
+  private clearUserProfileData(): void {
     this.clearDayScore();
     this.userProfile.setTotalScore(0);
     this.userProfile.setTotalTime(0);
@@ -107,7 +108,7 @@ class UserDataHandler {
     this.userProfile.clearExercisesResult();
   }
 
-  decomposeGameResult(gameResult: IGameResult): void {
+  private decomposeGameResult(gameResult: IGameResult): void {
     this.userProfile.increaseDayScore(gameResult.gameScore);
     this.userProfile.increaseDayTime(gameResult.gameTime);
     this.userProfile.increaseDayExercises(1);
@@ -126,11 +127,17 @@ class UserDataHandler {
     console.log('User Profile after game end: ', this.userProfile);
   }
 
-  setDayCheckInterval(): void {
+  private setDayCheckInterval(): void {
     setInterval(() => {
       const currentDate = this.getCurrentDate();
+      const userProfileDate = this.userProfile.getCurrentDate();
       console.log('currentDate: ', currentDate);
-    }, 10000);
+      console.log('userProfileDate: ', userProfileDate);
+      if (currentDate.day !== userProfileDate.day || currentDate.year !== userProfileDate.year) {
+        this.clearDayScore();
+        console.log('reset day progress');
+      }
+    }, 60000);
   }
 }
 
