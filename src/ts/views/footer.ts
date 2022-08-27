@@ -7,7 +7,8 @@ class FooterView extends NodeBuilder {
     const footerH2 = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: 'This is the footer',
+      content: '@ 2022. All rights reserved ',
+      className: 'footer__h2',
     });
 
     console.log(footerH2);
