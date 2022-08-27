@@ -13,7 +13,7 @@ export interface IUserProfileType {
   totalExercises: number,
   intervalGameScore: number,
   exercisesResult: Array<IExerciseResult>,
-};
+}
 
 export interface IExerciseResult {
   exercise: string,
@@ -30,4 +30,10 @@ export interface IGameResult {
   gameTime: number,
   gameTimeHR: string,
   averageTimeHR: string,
+}
+
+export interface IUserDayStatisticCounters {
+  exercisesCounter: HTMLElement,
+  scoreCounter: HTMLElement,
+  timeCounter: HTMLElement,
 }
