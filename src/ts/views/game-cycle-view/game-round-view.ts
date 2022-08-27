@@ -23,6 +23,7 @@ class GameRoundView extends NodeBuilder {
 
   public renderStartScreen(terms: IRound['terms']): void {
     this.startScreen = new GameRoundStartScreen(this.node, terms);
+    this.startScreen.onQuizStart = () => this.onGameStart();
   }
 
   public renderGame(quizName: IRound['quizName'], gameName: IQuizGame['gameName']): void {
