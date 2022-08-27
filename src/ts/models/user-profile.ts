@@ -1,3 +1,4 @@
+import IDate from '../types/date';
 import IExerciseResult from '../types/exercise-result';
 import IUserProfileType from '../types/user-profile-type';
 
@@ -8,7 +9,7 @@ class UserProfile {
 
   private dayExercises: number;
 
-  private currentDay: Date;
+  private currentDate: IDate;
 
   private totalScore: number;
 
@@ -24,17 +25,22 @@ class UserProfile {
     dayScore,
     dayTime,
     dayExercises,
-    currentDay,
     totalScore,
     totalTime,
     totalExercises,
     intervalGameScore,
     exercisesResult,
   }: IUserProfileType) {
+    const date = new Date(Date.now());
+    const currentDay = date.getDate();
+    const currentYear = date.getFullYear();
+    this.currentDate = {
+      day: currentDay,
+      year: currentYear,
+    };
     this.dayScore = dayScore;
     this.dayTime = dayTime;
     this.dayExercises = dayExercises;
-    this.currentDay = currentDay;
     this.totalScore = totalScore;
     this.totalTime = totalTime;
     this.totalExercises = totalExercises;
@@ -54,8 +60,8 @@ class UserProfile {
     return this.dayExercises;
   }
 
-  public getCurrentDay(): Date {
-    return this.currentDay;
+  public getCurrentDate(): IDate {
+    return this.currentDate;
   }
 
   public getTotalScore(): number {
