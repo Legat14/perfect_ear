@@ -68,8 +68,8 @@ class GameQuizView extends NodeBuilder {
 
     const repeatControl = new ButtonBuilder({
       parentNode: footer,
-      className: 'quiz-answers__repeat',
-      content: 'REPEAT',
+      className: 'quiz-answers__music-repeat',
+      content: 'повторить',
     });
     repeatControl.node.onclick = () => this.onRepeat();
 

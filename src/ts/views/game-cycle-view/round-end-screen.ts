@@ -27,8 +27,8 @@ class GameRoundEndScreen extends NodeBuilder {
       content: `
                 <p class="indicators__indicator-title">Очки: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
                 <p class="indicators__indicator-title">Бонус за время: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
-                <p class="indicators__indicator-title">Пропущенных вопросов: <span class="indicators__indicator-score"> - ${finesScore}</span></p>
-                <p class="indicators__indicator-title"><span class="indicators__indicator-score">${gameScore}</span></p>
+                <p class="indicators__indicator-title">Штраф за пропуски <span class="indicators__indicator-score"> - ${finesScore}</span></p>
+                <p class="indicators__indicator-title">Итого:<span class="indicators__indicator-score">${gameScore}</span></p>
                 <p class="indicators__indicator-title indicators__indicator-title_labeled">Верных ответов
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${rightAnswersCountToRoundCount}</span>
                 </p>

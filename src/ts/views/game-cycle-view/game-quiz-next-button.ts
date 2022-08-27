@@ -14,19 +14,19 @@ class GameQuizNextButton extends ButtonBuilder {
 
   public setDefault(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_skip';
-    this.node.textContent = 'SKIP';
+    this.node.textContent = 'пропустить';
     this.node.onclick = () => this.onSkip();
   }
 
   public setNext(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_next';
-    this.node.textContent = 'NEXT';
+    this.node.textContent = 'далее';
     this.node.onclick = () => this.onNext();
   }
 
   public setDone(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_next';
-    this.node.textContent = 'DONE';
+    this.node.textContent = 'готово';
     this.node.onclick = () => this.onDone();
   }
 }
