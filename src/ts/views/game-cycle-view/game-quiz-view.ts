@@ -62,7 +62,7 @@ class GameQuizView extends NodeBuilder {
     const questionIndicator = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-controls__question-indicator',
-      content: `${round} / ${question.round.rounds}`,
+      content: `${round + 1} / ${question.round.rounds}`,
     });
     this.questionIndicator = questionIndicator;
 

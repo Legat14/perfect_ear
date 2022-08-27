@@ -1,30 +1,25 @@
 import {
-  IGameResult, IQuestion, IRound, SequenceDirection,
+  IGameResult, IRound,
 } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
+import Sound from '../sound';
 import AbstractGameQuiz from './abstract-game-quiz';
 import GameIndicators from './game-indicators';
 
-type GameQuizConstructor<QuizType> = new (question: QuizType, round: number) => AbstractGameQuiz;
+type GameQuizConstructor = new (quiz: IRound, round: number, sound: Sound) => AbstractGameQuiz;
 
-class GameRound<QuizType extends IQuestion = IQuestion> {
-  private readonly gameId: string;
-
-  private readonly gameName: string;
-
-  private readonly direction: SequenceDirection;
-
-  private readonly score: number;
-
+class GameRound<QuizType extends IRound = IRound> {
   private readonly rounds: number;
 
-  private readonly GameQuizConstructor: GameQuizConstructor<QuizType>;
+  private readonly terms: readonly string[];
+
+  private readonly sound: Sound;
+
+  private readonly GameQuizConstructor: GameQuizConstructor;
 
   private readonly view: GameRoundView;
 
   private readonly gameIndicators: GameIndicators;
-
-  private readonly terms: IRound['terms'];
 
   private round: number;
 
@@ -34,38 +29,30 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
 
   constructor(
     parentNode: HTMLElement,
-    gameId: string,
-    gameName: string,
-    direction: SequenceDirection,
-    score: number,
-    rounds: number,
-    bonus: number,
-    terms: IRound['terms'],
-    question: QuizType,
-    GameQuizConstructor: GameQuizConstructor<QuizType>,
+    quiz: QuizType,
+    GameQuizConstructor: GameQuizConstructor,
+    sound: Sound,
   ) {
-    this.gameId = gameId;
-    this.gameName = gameName;
-    this.direction = direction;
-    this.score = score;
-    this.rounds = rounds;
-    this.terms = terms;
+    this.rounds = quiz.rounds;
+    this.terms = quiz.terms;
+
+    this.sound = sound;
 
     this.GameQuizConstructor = GameQuizConstructor;
 
     this.gameIndicators = new GameIndicators({
-      scoreForRightAnswer: score,
-      roundsCount: rounds,
-      bonusTime: bonus,
+      scoreForRightAnswer: quiz.score,
+      roundsCount: quiz.rounds,
+      bonusTime: quiz.bonus,
     });
     this.round = 0;
 
-    this.view = new GameRoundView(parentNode, terms);
+    this.view = new GameRoundView(parentNode, quiz.terms);
 
-    this.view.onGameStart = () => this.startGameCycle(question);
+    this.view.onGameStart = () => this.startGameCycle(quiz);
     this.view.onGameBack = () => this.back();
 
-    this.view.node.addEventListener('ongameend', (({ detail }: CustomEvent) => this.finishGameCycle(detail)) as EventListener);
+    document.addEventListener('ongameend', (({ detail }: CustomEvent) => this.finishGameCycle(detail)) as EventListener);
   }
 
   private back() {
@@ -73,13 +60,13 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
     this.onQuit();
   }
 
-  public startGameCycle(question: QuizType) {
-    this.view.renderGame(question.round.quizName, question.round.game.gameName);
-    this.createNewQuestion(this.rounds, question);
+  public startGameCycle(quiz: QuizType) {
+    this.view.renderGame(quiz.quizName, quiz.game.gameName);
+    this.createNewQuestion(this.rounds, quiz);
   }
 
   public createNewQuestion(rounds: number, question: QuizType) {
-    const quiz = new this.GameQuizConstructor(question, this.round);
+    const quiz = new this.GameQuizConstructor(question, this.round, this.sound);
 
     this.view.renderQuiz(quiz.view.node);
 
@@ -95,6 +82,7 @@ class GameRound<QuizType extends IQuestion = IQuestion> {
 
     quiz.onNext = () => {
       quiz.view.remove();
+      this.round += 1;
       this.createNewQuestion(rounds - 1, question);
     };
 

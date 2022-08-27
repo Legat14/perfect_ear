@@ -1,11 +1,12 @@
 import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
 import GameQuizView from '../../views/game-cycle-view/game-quiz-view';
-import { IQuestion } from '../../types/game-types';
-import { PIANO_SOUND } from '../../constants/constants';
+import { IQuestion, IRound } from '../../types/game-types';
 import { Pause } from '../../types/note-types';
 import Sound from '../sound';
 
 abstract class AbstractGameQuiz {
+  public quiz: IRound;
+
   public question: IQuestion;
 
   public view: GameQuizView;
@@ -20,31 +21,37 @@ abstract class AbstractGameQuiz {
 
   public onFinish!: () => void;
 
-  constructor(question: IQuestion, round: number, sound = new Sound(PIANO_SOUND)) {
-    this.question = question;
+  private answered: boolean;
+
+  constructor(quiz: IRound, round: number, sound: Sound) {
+    this.quiz = quiz;
+    this.question = this.generateQuestion(quiz);
+    this.answered = false;
 
     this.sound = sound;
 
     this.view = new GameQuizView(
-      question,
+      this.question,
       round,
       sound,
-      () => this.playSequence(question.sequence),
+      () => this.playSequence(this.question.sequence),
     );
 
-    this.view.onRepeat = () => this.playSequence(question.sequence);
+    this.view.onRepeat = () => this.playSequence(this.question.sequence);
     this.view.onSkip = () => this.skip();
 
     this.view.onAnswer = (index) => this.answer(
-      index === question.value,
-      round === question.round.rounds,
+      index === this.question.value,
+      round === quiz.rounds - 1,
     );
     this.view.onNext = () => this.onNext();
     this.view.onDone = () => this.onFinish();
   }
 
+  abstract generateQuestion(quiz: IRound): IQuestion;
+
   private answer(answer: boolean, done: boolean): void {
-    this.onAnswer(answer);
+    this.answered = this.answered ? this.answered : (this.onAnswer(answer), true);
     this.view.react(answer, this.question.round.terms, done);
   }
 
@@ -53,7 +60,7 @@ abstract class AbstractGameQuiz {
   }
 
   private playSequence(sequence?: [Pause | Frequency | Frequency[], Subdivision][]): void {
-    return sequence && this.sound.playSequence(sequence);
+    return sequence ? this.sound.playSequence(sequence) : sequence;
   }
 }
 
