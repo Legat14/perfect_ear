@@ -27,6 +27,8 @@ class GameRound<QuizType extends IRound = IRound> {
 
   public onFinish!: () => void;
 
+  public onRepeat!: () => void;
+
   constructor(
     parentNode: HTMLElement,
     quiz: QuizType,
@@ -50,14 +52,24 @@ class GameRound<QuizType extends IRound = IRound> {
     this.view = new GameRoundView(parentNode, quiz.terms);
 
     this.view.onGameStart = () => this.startGameCycle(quiz);
-    this.view.onGameBack = () => this.back();
+    this.view.onGameBack = () => this.quit();
+    this.view.onGameRepeat = () => this.repeat();
 
     document.addEventListener('ongameend', (({ detail }: CustomEvent) => this.finishGameCycle(detail)) as EventListener);
   }
 
-  private back() {
+  private quit() {
+    window.location.hash = '#';
+    /**
+     * @todo Back to games list.
+     */
     this.view.remove();
     this.onQuit();
+  }
+
+  private repeat() {
+    this.view.remove();
+    this.onRepeat();
   }
 
   public startGameCycle(quiz: QuizType) {

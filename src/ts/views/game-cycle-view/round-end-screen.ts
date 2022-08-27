@@ -44,6 +44,7 @@ class GameRoundEndScreen extends NodeBuilder {
     const quitControl = new ButtonBuilder({
       parentNode: header,
       className: 'quiz-end-screen__quit-btn',
+      content: '×',
     });
     quitControl.node.onclick = () => this.onQuit();
 
@@ -61,7 +62,7 @@ class GameRoundEndScreen extends NodeBuilder {
       className: 'quiz-end-screen__continue continue',
       content: `${nextGame ? `<span>продолжить</span><span continue__game-title>${nextGame}</span>` : 'меню'}`,
     });
-    continueControl.node.onclick = () => this.onContinue();
+    continueControl.node.onclick = nextGame ? () => this.onContinue() : () => this.onQuit();
   }
 }
 
