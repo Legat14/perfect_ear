@@ -1,6 +1,6 @@
 interface IExerciseResult {
   exercise: string,
-  result: number,
+  score: number,
 }
 
 export default IExerciseResult;

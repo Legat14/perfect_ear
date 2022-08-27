@@ -117,10 +117,10 @@ class UserProfile {
       return item.exercise === newExerciseResult.exercise;
     });
     if (pastExerciseResult) {
-      if (newExerciseResult.result > pastExerciseResult.result) {
+      if (newExerciseResult.score > pastExerciseResult.score) {
         console.log(`New best score at ${newExerciseResult.exercise}!`); // TODO: Передать сведения
         // о новом лучшем результате на экран победителя
-        this.exercisesResult[pastResultIndex].result = newExerciseResult.result;
+        this.exercisesResult[pastResultIndex].score = newExerciseResult.score;
       }
     } else {
       this.exercisesResult.push(newExerciseResult);
