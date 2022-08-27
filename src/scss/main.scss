@@ -20,13 +20,13 @@ body {
   width: 100%;
   max-width: 1350px;
   margin: 0 auto;
-  padding: 0 10px;
+  height: 100vh;
 }
 
 .header {
   -webkit-animation-delay: 0.3s;
   animation-delay: 0.3s;
-  padding: 50px 0px;
+  padding: 50px 0px 30px;
 }
 
 h1 {
@@ -34,7 +34,6 @@ h1 {
   font-size: 48px;
   letter-spacing: 2px;
   text-align: center;
-  padding: 30px 0px;
 }
 
 button {
@@ -54,11 +53,10 @@ button {
   animation-name: animation;
 }
 
-.keyboard {
-  margin: 0 auto;
+.piano {
+  margin: 30px 0px 0px;
   height: 12em;
-  width: 24em;
-  margin: 2em auto 5em;
+  width: auto;
   padding: 1.5em;
   position: relative;
   border: 1px solid #160801;
@@ -78,7 +76,7 @@ button {
 button {
   &[black="false"] {
     height: 16em;
-    width: 4em;
+    width: 40px;
     font-size: 12px;
     padding-top: 150px;
     z-index: 1;
@@ -98,11 +96,11 @@ button {
   }
 
   &[black="true"] {
-    height: 8em;
+    height: 110px;
     padding-top: 60px;
     color: #666;
     font-size: 12px;
-    width: 2em;
+    width: 25px;
     margin: 0 0 0 -1em;
     z-index: 2;
     border: 1px solid #000;
@@ -117,7 +115,7 @@ button {
   }
 }
 
-.keyboard button {
+.piano button {
   &:first-child {
     border-radius: 5px 0 5px 5px;
   }
@@ -143,4 +141,85 @@ footer p {
 
 #KeyW, #KeyE, #KeyT, #KeyY, #KeyU {
   margin: 0 0 0 -1em;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.main-menu button {
+  padding: 16px 20px 15px;
+  line-height: 14px;
+  margin: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px #f1f1f1;
+  background: #fff;
+  border: 3px solid #f1f1f1;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  box-sizing: border-box;
+  min-width: 200px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  padding: 50px 0px;
+  width: 1350px;
+  text-align: center;
+}
+
+.interval-game__back-to-main-btn, .fortepiano-field__back-to-main-btn {
+  line-height: 1;
+  margin: 0px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px #f1f1f1;
+  background: #fff;
+  border: 3px solid #f1f1f1;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 20px;
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  padding-bottom: 4px;
+}
+
+.fortepiano-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button:nth-child(3),
+button:nth-child(5),
+button:nth-child(8),
+button:nth-child(10),
+button:nth-child(12),
+button:nth-child(15),
+button:nth-child(17),
+button:nth-child(20),
+button:nth-child(22),
+button:nth-child(24),
+button:nth-child(27),
+button:nth-child(29),
+button:nth-child(32),
+button:nth-child(34),
+button:nth-child(36),
+button:nth-child(39),
+button:nth-child(41),
+button:nth-child(44),
+button:nth-child(46),
+button:nth-child(48),
+button:nth-child(51),
+button:nth-child(53),
+button:nth-child(56),
+button:nth-child(58),
+button:nth-child(60) {
+  margin-left: -13px;
 }
