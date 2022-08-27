@@ -1,6 +1,4 @@
-import IDate from '../types/date';
-import IExerciseResult from '../types/exercise-result';
-import IUserProfileType from '../types/user-profile-type';
+import { IDate, IExerciseResult, IUserProfileType } from '../types/data-types';
 
 class UserProfile {
   private dayScore: number;

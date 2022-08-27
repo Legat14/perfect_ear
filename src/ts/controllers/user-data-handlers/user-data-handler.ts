@@ -1,7 +1,5 @@
 import UserProfile from '../../models/user-profile';
-import IDate from '../../types/date';
-import IGameResult from '../../types/game-results';
-import IUserProfileType from '../../types/user-profile-type';
+import { IDate, IGameResult, IUserProfileType } from '../../types/data-types';
 
 class UserDataHandler {
   userProfile: UserProfile;
