@@ -1,10 +1,11 @@
+import IDate from './date';
 import IExerciseResult from './exercise-result';
 
 type IUserProfileType = {
   dayScore: number,
   dayTime: number,
   dayExercises: number,
-  currentDay: Date,
+  currentDate: IDate,
   totalScore: number,
   totalTime: number,
   totalExercises: number,

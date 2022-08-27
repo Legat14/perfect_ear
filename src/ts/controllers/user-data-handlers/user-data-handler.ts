@@ -84,7 +84,10 @@ class UserDataHandler {
       dayScore: 0,
       dayTime: 0,
       dayExercises: 0,
-      currentDay: new Date(),
+      currentDate: {
+        day: 0,
+        year: 0,
+      },
       totalScore: 0,
       totalTime: 0,
       totalExercises: 0,
