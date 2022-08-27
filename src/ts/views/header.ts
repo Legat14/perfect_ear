@@ -8,7 +8,7 @@ class HeaderView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'h1',
       className: 'header__h1',
-      content: 'Perfect ear',
+      content: 'Perfect Ear',
     });
 
     console.log(headerH1);
