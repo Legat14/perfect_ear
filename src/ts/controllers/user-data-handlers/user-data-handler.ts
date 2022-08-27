@@ -1,4 +1,5 @@
 import UserProfile from '../../models/user-profile';
+import IGameResult from '../../types/game-results';
 import IUserProfileType from '../../types/user-profile-type';
 
 class UserDataHandler {
@@ -34,6 +35,7 @@ class UserDataHandler {
       });
     }
     this.addPageCloseEvent();
+    this.addGameEndEvent();
     const tempResult = {}; // Эта переменная добавлена для проверки
     Object.assign(tempResult, this.userProfile);
     console.log(tempResult);
@@ -69,6 +71,14 @@ class UserDataHandler {
     });
   }
 
+  private addGameEndEvent(): void {
+    document.addEventListener('ongameend', (event: CustomEvent | Event): void => {
+      const gameResult = (event as CustomEvent).detail;
+      this.decomposeGameResult(gameResult);
+      console.log('Game Result: ', gameResult);
+    });
+  }
+
   clearLocalStorageData() {
     this.userProfile = new UserProfile({
       dayScore: 0,
@@ -82,16 +92,61 @@ class UserDataHandler {
       exercisesResult: [],
     });
   }
+
+  decomposeGameResult(gameResult: IGameResult) {
+    this.userProfile.increaseDayScore(gameResult.gameScore);
+    this.userProfile.increaseDayTime(gameResult.gameTime);
+    this.userProfile.increaseDayExercises(1);
+    this.userProfile.increaseTotalScore(gameResult.gameScore);
+    this.userProfile.increaseTotalTime(gameResult.gameTime);
+    this.userProfile.increaseTotalExercises(1);
+    console.log('Game type: ', gameResult.gameName.slice(0, gameResult.gameName.length - 3));
+    if (gameResult.gameName.slice(0, gameResult.gameName.length - 3) === 'IntervalGame') {
+      this.userProfile.increaseIntervalGameScore(gameResult.gameScore);
+    } // TODO: добавлять варианты для других игр
+    const newExerciseResult = {
+      exercise: gameResult.gameName,
+      score: gameResult.gameScore,
+    };
+    this.userProfile.addExercisesResult(newExerciseResult);
+    console.log('User Profile after game end: ', this.userProfile);
+  }
 }
 
 const userDataHandler = new UserDataHandler();
-userDataHandler.userProfile.increaseDayExercises(3);
-userDataHandler.userProfile.increaseDayExercises(2);
-userDataHandler.userProfile.increaseDayScore(450);
-userDataHandler.userProfile.increaseDayTime(40000);
-userDataHandler.userProfile.increaseTotalScore(1000);
-userDataHandler.userProfile.increaseTotalExercises(5);
-userDataHandler.userProfile.increaseTotalTime(50000);
-userDataHandler.clearLocalStorageData();
+// расскоментировать для обнуления профиля в LocalStorage
+// userDataHandler.clearLocalStorageData();
 
-console.log(userDataHandler);
+export default userDataHandler;
+
+// Для проверки скопировать приведенный ниже код в index.ts
+
+// import userDataHandler from './ts/controllers/user-data-handlers/user-data-handler';
+// import GameIndicators from './ts/controllers/game-cycle/game-indicators';
+
+// const gameIndicators = new GameIndicators({
+//   gameName: 'IntervalGame-01',
+//   scoreForRightAnswer: 300,
+//   roundsCount: 10,
+//   bonusTime: 10000,
+// });
+
+// const stopGame = (): void => {
+//   console.log('Timer is set');
+//   setTimeout((): void => {
+//     console.log('Timer is stoped');
+//     gameIndicators.finishGame();
+//   }, 2000);
+// };
+
+// stopGame();
+
+// gameIndicators.increaseRightAnswersCounter();
+// gameIndicators.increaseRightAnswersCounter();
+// gameIndicators.increaseRightAnswersCounter();
+// gameIndicators.increaseRightAnswersCounter();
+// gameIndicators.increaseRightAnswersCounter();
+// gameIndicators.increaseFinesCounter();
+// gameIndicators.increaseFinesCounter();
+
+// console.log(userDataHandler);

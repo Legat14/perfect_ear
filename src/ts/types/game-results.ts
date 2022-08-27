@@ -1,4 +1,5 @@
 interface IGameResult {
+  gameName: string,
   gameScore: number,
   rightAnswersScore: number,
   timeBonusScore: number,

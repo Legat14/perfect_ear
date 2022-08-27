@@ -8,14 +8,16 @@
 // });
 
 // const gameIndicators = new GameIndicators({
+//   gameName: 'IntervalGame-01',
 //   scoreForRightAnswer: 300,
 //   roundsCount: 10,
 //   bonusTime: 10000,
 // });
 
 // const stopGame = (): void => {
+//   console.log('Timer is set');
 //   setTimeout((): void => {
-//     console.log('Timer is set');
+//   console.log('Timer is stoped');
 //     gameIndicators.finishGame();
 //   }, 11000);
 // };
@@ -33,6 +35,8 @@
 import IGameResult from '../../types/game-results';
 
 class GameIndicators {
+  private gameName: string;
+
   private gameScore = 0;
 
   private rightAnswersScore = 0;
@@ -64,14 +68,17 @@ class GameIndicators {
   private bonusTime: number;
 
   constructor({
+    gameName,
     scoreForRightAnswer,
     roundsCount,
     bonusTime,
   }: {
+    gameName: string,
     scoreForRightAnswer: number,
     roundsCount: number,
     bonusTime: number,
   }) {
+    this.gameName = gameName;
     this.scoreForRightAnswer = scoreForRightAnswer;
     this.roundsCount = roundsCount;
     this.bonusTime = bonusTime;
@@ -151,6 +158,7 @@ class GameIndicators {
     const gameTimeHR = this.getTimeHumanReadableStr(this.gameTime);
     const averageTimeHR = this.getTimeHumanReadableStr(this.averageTime);
     const result = {
+      gameName: this.gameName,
       gameScore: this.gameScore,
       rightAnswersScore: this.rightAnswersScore,
       timeBonusScore: this.timeBonusScore,
