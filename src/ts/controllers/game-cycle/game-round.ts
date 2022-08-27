@@ -1,6 +1,5 @@
-import {
-  IGameResult, IRound,
-} from '../../types/game-types';
+import IGameResult from '../../types/game-results';
+import { IRound } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
 import Sound from '../sound';
 import AbstractGameQuiz from './abstract-game-quiz';
@@ -43,6 +42,7 @@ class GameRound<QuizType extends IRound = IRound> {
     this.GameQuizConstructor = GameQuizConstructor;
 
     this.gameIndicators = new GameIndicators({
+      gameName: quiz.quizId,
       scoreForRightAnswer: quiz.score,
       roundsCount: quiz.rounds,
       bonusTime: quiz.bonus,

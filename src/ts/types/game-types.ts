@@ -1,21 +1,11 @@
 import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
 import { Pause } from './note-types';
 
-export interface IGameResult {
-  gameScore: number,
-  rightAnswersScore: number,
-  timeBonusScore: number,
-  finesScore: number,
-  rightAnswersCountToRoundCount: string,
-  gameTime: number,
-  gameTimeHR: string,
-  averageTimeHR: string,
-}
-
 export enum SequenceDirection {
   Ascending = 'ascending',
   Descending = 'descending',
   Harmonic = 'harmonic',
+  Melodic = 'melodic',
   Any = 'any direction',
 }
 
@@ -74,6 +64,7 @@ export interface IRound {
   answers: readonly string[];
   terms: readonly string[];
 }
+
 export interface IQuestion {
   round: IRound;
   sequence?: [Pause | Frequency | Frequency[], Subdivision][];

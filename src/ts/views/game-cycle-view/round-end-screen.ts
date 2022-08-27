@@ -1,6 +1,7 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IGameResult, IRound } from '../../types/game-types';
+import IGameResult from '../../types/game-results';
+import { IRound } from '../../types/game-types';
 
 class GameRoundEndScreen extends NodeBuilder {
   public onQuit!: () => void;
