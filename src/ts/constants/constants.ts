@@ -33,7 +33,7 @@ export const PIANO_SOUND = {
     baseUrl: 'https://tonejs.github.io/audio/salamander/',
   },
   volume: 0,
-  tactDuration: 250,
+  tactDuration: 80,
 };
 
 export const GUITAR_SOUND = {};
