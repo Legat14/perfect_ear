@@ -1,6 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import IGameResult from '../../types/game-results';
+import { IGameResult } from '../../types/data-types';
 import { IQuizGame, IRound } from '../../types/game-types';
 import GameRoundEndScreen from './round-end-screen';
 import GameRoundStartScreen from './round-start-screen';
