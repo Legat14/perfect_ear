@@ -2,6 +2,8 @@ import NodeBuilder from '../helpers/node-builder';
 import { IUserDayStatisticCounters } from '../types/data-types';
 
 class UserDayStatisticView extends NodeBuilder {
+  userDayStatisticCounters: IUserDayStatisticCounters;
+
   constructor(parentNode: HTMLElement) {
     super({ parentNode, className: 'main-menu__user-day-statistic' });
 
@@ -78,7 +80,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__time-counter-title',
     });
 
-    const userDayStatisticCounters: IUserDayStatisticCounters = {
+    this.userDayStatisticCounters = {
       exercisesCounter: exercisesCounterNumber.node,
       scoreCounter: scoreCounterNumber.node,
       timeCounter: timeCounterNumber.node,
@@ -92,7 +94,7 @@ class UserDayStatisticView extends NodeBuilder {
     console.log(timeCounterNumber);
     console.log(timeCounterTitle);
     console.log(timeCounterTitle);
-    console.log(userDayStatisticCounters);
+    console.log(this.userDayStatisticCounters);
   }
 }
 

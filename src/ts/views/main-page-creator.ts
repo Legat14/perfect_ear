@@ -10,3 +10,5 @@ const footer = new FooterView(document.body);
 console.log(header);
 console.log(viewsController);
 console.log(footer);
+
+export default viewsController;

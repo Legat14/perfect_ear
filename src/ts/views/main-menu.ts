@@ -3,10 +3,12 @@ import NodeBuilder from '../helpers/node-builder';
 import UserDayStatisticView from './user-day-statistic';
 
 class MainMenuView extends NodeBuilder<HTMLElement> {
+  userDayStatistic: UserDayStatisticView;
+
   constructor() {
     super({ parentNode: null, className: 'main-menu' });
 
-    const userDayStatistic = new UserDayStatisticView(this.node);
+    this.userDayStatistic = new UserDayStatisticView(this.node);
 
     const intervalGameBtn = new ButtonBuilder({
       parentNode: this.node,
@@ -19,9 +21,6 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
       className: 'main-menu__fortepiano-btn',
       content: 'Фортепиано',
     });
-
-    // Эти логи добавлены, чтобы линтер не ругался, что переменные не используются
-    console.log(userDayStatistic);
 
     // TODO: Добавить к действиям кнопок, например, запуск игры
     intervalGameBtn.node.addEventListener('click', (): void => {

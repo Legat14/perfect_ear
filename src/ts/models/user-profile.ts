@@ -7,7 +7,7 @@ class UserProfile {
 
   private dayExercises: number;
 
-  private currentDate: IDate;
+  private profileDate: IDate;
 
   private totalScore: number;
 
@@ -26,14 +26,14 @@ class UserProfile {
     totalScore,
     totalTime,
     totalExercises,
-    currentDate,
+    profileDate,
     intervalGameScore,
     exercisesResult,
   }: IUserProfileType) {
     this.dayScore = dayScore;
     this.dayTime = dayTime;
     this.dayExercises = dayExercises;
-    this.currentDate = currentDate;
+    this.profileDate = profileDate;
     this.totalScore = totalScore;
     this.totalTime = totalTime;
     this.totalExercises = totalExercises;
@@ -53,8 +53,8 @@ class UserProfile {
     return this.dayExercises;
   }
 
-  public getCurrentDate(): IDate {
-    return this.currentDate;
+  public getProfileDate(): IDate {
+    return this.profileDate;
   }
 
   public getTotalScore(): number {
@@ -89,8 +89,8 @@ class UserProfile {
     this.dayExercises = value;
   }
 
-  public setCurrentDate(value: IDate) {
-    this.currentDate = value;
+  public setProfileDate(value: IDate) {
+    this.profileDate = value;
   }
 
   public setTotalScore(value: number) {

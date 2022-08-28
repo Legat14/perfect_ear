@@ -13,7 +13,7 @@ class UserDataHandler {
         dayScore: guestUserData.dayScore,
         dayTime: guestUserData.dayTime,
         dayExercises: guestUserData.dayExercises,
-        currentDate: guestUserData.currentDate,
+        profileDate: guestUserData.profileDate,
         totalScore: guestUserData.totalScore,
         totalTime: guestUserData.totalTime,
         totalExercises: guestUserData.totalExercises,
@@ -25,7 +25,7 @@ class UserDataHandler {
         dayScore: 0,
         dayTime: 0,
         dayExercises: 0,
-        currentDate: this.getCurrentDate(),
+        profileDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
         totalExercises: 0,
@@ -36,9 +36,6 @@ class UserDataHandler {
     this.addPageCloseEvent();
     this.addGameEndEvent();
     this.setDayCheckInterval();
-    const tempResult = {}; // Эта переменная добавлена для проверки TODO: потом удалить
-    Object.assign(tempResult, this.userProfile);
-    console.log(tempResult);
   }
 
   private getDataFromLocalStorage(): IUserProfileType {
@@ -55,7 +52,7 @@ class UserDataHandler {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
       dayExercises: this.userProfile.getDayExercises(),
-      currentDate: this.userProfile.getCurrentDate(),
+      profileDate: this.userProfile.getProfileDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
       totalExercises: this.userProfile.getTotalExercises(),
@@ -90,14 +87,14 @@ class UserDataHandler {
     return currentDate;
   }
 
-  private clearDayScore(): void {
+  public clearDayScore(): void {
     this.userProfile.setDayScore(0);
     this.userProfile.setDayTime(0);
     this.userProfile.setDayExercises(0);
-    this.userProfile.setCurrentDate(this.userProfile.getCurrentDate());
+    this.userProfile.setProfileDate(this.getCurrentDate());
   }
 
-  private clearUserProfileData(): void {
+  public clearUserProfileData(): void {
     this.clearDayScore();
     this.userProfile.setTotalScore(0);
     this.userProfile.setTotalTime(0);
@@ -128,9 +125,7 @@ class UserDataHandler {
   private setDayCheckInterval(): void {
     setInterval(() => {
       const currentDate = this.getCurrentDate();
-      const userProfileDate = this.userProfile.getCurrentDate();
-      console.log('currentDate: ', currentDate);
-      console.log('userProfileDate: ', userProfileDate);
+      const userProfileDate = this.userProfile.getProfileDate();
       if (currentDate.day !== userProfileDate.day || currentDate.year !== userProfileDate.year) {
         this.clearDayScore();
         console.log('reset day progress');
@@ -149,6 +144,9 @@ export default userDataHandler;
 
 // import userDataHandler from './ts/controllers/user-data-handlers/user-data-handler';
 // import GameIndicators from './ts/controllers/game-cycle/game-indicators';
+// import UserDayStatisticHandler from
+// './ts/controllers/user-data-handlers/user-day-statistic-handler';
+// import viewsController from './ts/views/main-page-creator';
 
 // const gameIndicators = new GameIndicators({
 //   gameName: 'IntervalGame-01',
@@ -157,11 +155,17 @@ export default userDataHandler;
 //   bonusTime: 10000,
 // });
 
+// const userDayStatisticHandler = new UserDayStatisticHandler(
+//   userDataHandler.userProfile,
+//   viewsController.mainMenu.userDayStatistic.userDayStatisticCounters,
+// );
+
 // const stopGame = (): void => {
 //   console.log('Timer is set');
 //   setTimeout((): void => {
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
+//     userDayStatisticHandler.refrashCounters();
 //   }, 2000);
 // };
 
@@ -176,3 +180,4 @@ export default userDataHandler;
 // gameIndicators.increaseFinesCounter();
 
 // console.log(userDataHandler);
+// console.log(userDayStatisticHandler);

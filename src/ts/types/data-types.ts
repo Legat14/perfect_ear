@@ -7,7 +7,7 @@ export interface IUserProfileType {
   dayScore: number,
   dayTime: number,
   dayExercises: number,
-  currentDate: IDate,
+  profileDate: IDate,
   totalScore: number,
   totalTime: number,
   totalExercises: number,

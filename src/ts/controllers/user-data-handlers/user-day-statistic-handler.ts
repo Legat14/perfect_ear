@@ -13,8 +13,9 @@ class UserDayStatisticHandler {
   constructor(userProfile: UserProfile, userDayStatisticCounters: IUserDayStatisticCounters) {
     this.userProfile = userProfile;
     this.exercisesCounter = userDayStatisticCounters.exercisesCounter;
-    this.scoreCounter =  userDayStatisticCounters.scoreCounter;
+    this.scoreCounter = userDayStatisticCounters.scoreCounter;
     this.timeCounter = userDayStatisticCounters.timeCounter;
+    this.refrashCounters();
   }
 
   private refrashExercisesCounter() {
@@ -23,5 +24,17 @@ class UserDayStatisticHandler {
 
   private refrashScoreCounter() {
     this.scoreCounter.innerHTML = this.userProfile.getDayScore().toString();
-  } // Добавить еще один обновитель и еще один - общий
+  }
+
+  private refrashTimeCounter() {
+    this.timeCounter.innerHTML = this.userProfile.getDayTime().toString();
+  }
+
+  public refrashCounters() {
+    this.refrashExercisesCounter();
+    this.refrashScoreCounter();
+    this.refrashTimeCounter();
+  }
 }
+
+export default UserDayStatisticHandler;
