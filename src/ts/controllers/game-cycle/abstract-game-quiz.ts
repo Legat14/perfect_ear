@@ -51,7 +51,9 @@ abstract class AbstractGameQuiz {
   abstract generateQuestion(quiz: IRound): IQuestion;
 
   private answer(answer: boolean, done: boolean): void {
-    this.answered = this.answered ? this.answered : (this.onAnswer(answer), true);
+    this.answered = this.answered
+      ? this.answered
+      : (this.onAnswer(answer), true);
     this.view.react(answer, this.question.round.terms, done);
   }
 
@@ -59,8 +61,21 @@ abstract class AbstractGameQuiz {
     this.onSkip();
   }
 
-  private playSequence(sequence?: [Pause | Frequency | Frequency[], Subdivision][]): void {
-    return sequence ? this.sound.playSequence(sequence) : sequence;
+  private playSequence(
+    sequence?: [Pause | Frequency | Frequency[], Subdivision][],
+  ): void {
+    if (!sequence) return;
+    const delay = new Date().getTime() + 100;
+
+    this.sound.playSequence(sequence).then((sec) => {
+      this.view.repeatControl.disabled = true;
+      this.view.nextControl.node.disabled = true;
+
+      setTimeout(() => {
+        this.view.repeatControl.disabled = false;
+        this.view.nextControl.node.disabled = false;
+      }, 1000 * sec + delay - new Date().getTime());
+    });
   }
 }
 

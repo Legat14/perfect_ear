@@ -24,7 +24,11 @@ class GameQuizView extends NodeBuilder {
 
   public onDone!: () => void;
 
+  public onStart!: () => void;
+
   public questionIndicator: NodeBuilder<HTMLElement>;
+
+  public repeatControl: HTMLButtonElement;
 
   public nextControl: GameQuizNextButton;
 
@@ -71,7 +75,9 @@ class GameQuizView extends NodeBuilder {
       className: 'quiz-answers__music-repeat',
       content: 'повторить',
     });
-    repeatControl.node.onclick = () => this.onRepeat();
+    this.repeatControl = repeatControl.node;
+
+    this.repeatControl.onclick = () => this.onRepeat();
 
     const nextControl = new GameQuizNextButton(footer);
     this.nextControl = nextControl;
@@ -80,9 +86,9 @@ class GameQuizView extends NodeBuilder {
     this.nextControl.onNext = () => this.onNext();
     this.nextControl.onDone = () => this.onDone();
 
-    callback();
-
     this.value = question.value;
+
+    callback();
   }
 
   /**
