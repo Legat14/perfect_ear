@@ -30,7 +30,7 @@ export const PIANO_SOUND = {
       C8: 'C8.mp3',
     },
     release: 1,
-    baseUrl: 'https://tonejs.github.io/audio/salamander/',
+    baseUrl: './../../assets/audio/salamander/',
   },
   volume: 0,
   tactDuration: 80,
