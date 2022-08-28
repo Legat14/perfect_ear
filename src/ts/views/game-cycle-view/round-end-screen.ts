@@ -1,6 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import IGameResult from '../../types/game-results';
+import { IGameResult } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 
 class GameRoundEndScreen extends NodeBuilder {

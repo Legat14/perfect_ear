@@ -1,9 +1,12 @@
 import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
+import RegistrationForm from './registration-form';
 import UserDayStatisticView from './user-day-statistic';
 
 class MainMenuView extends NodeBuilder<HTMLElement> {
   userDayStatistic: UserDayStatisticView;
+
+  registrationForm: RegistrationForm;
 
   constructor() {
     super({ parentNode: null, className: 'main-menu' });
@@ -30,6 +33,10 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
     fortepianoBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#fortepiano';
     });
+
+    // Добавлено для проверки работоспособности
+    // TODO: позже перенести на окно выбора способа входа
+    this.registrationForm = new RegistrationForm(this.node);
   }
 }
 

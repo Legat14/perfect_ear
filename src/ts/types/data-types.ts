@@ -37,3 +37,10 @@ export interface IUserDayStatisticCounters {
   scoreCounter: HTMLElement,
   timeCounter: HTMLElement,
 }
+
+export interface IUserRegInputs {
+  nameInput: HTMLElement,
+  passInput: HTMLElement,
+  repeatPassInput: HTMLElement,
+  regSubmiteBtn: HTMLElement,
+}
