@@ -8,6 +8,8 @@ import MainMenuView from '../views/main-menu';
 import WrapperView from '../views/wrapper';
 
 class ViewsController extends NodeBuilder {
+  mainMenu: MainMenuView;
+
   wrapper: WrapperView | undefined;
 
   header: HeaderView | undefined;
@@ -19,12 +21,12 @@ class ViewsController extends NodeBuilder {
   constructor(parentNode: HTMLElement) {
     super({ parentNode, className: 'field' });
 
-    const mainMenu = new MainMenuView();
+    this.mainMenu = new MainMenuView();
     const intervalGame = new IntervalGameView();
     const fortepiano = new FortepianoView();
 
     this.router = new Router(this.node, [
-      ['', mainMenu.node],
+      ['', this.mainMenu.node],
       ['interval-game', intervalGame.node],
       ['fortepiano', fortepiano.node],
     ]);

@@ -1,7 +1,5 @@
 import UserProfile from '../../models/user-profile';
-import IDate from '../../types/date';
-import IGameResult from '../../types/game-results';
-import IUserProfileType from '../../types/user-profile-type';
+import { IDate, IGameResult, IUserProfileType } from '../../types/data-types';
 
 class UserDataHandler {
   userProfile: UserProfile;
@@ -15,7 +13,7 @@ class UserDataHandler {
         dayScore: guestUserData.dayScore,
         dayTime: guestUserData.dayTime,
         dayExercises: guestUserData.dayExercises,
-        currentDate: guestUserData.currentDate,
+        profileDate: guestUserData.profileDate,
         totalScore: guestUserData.totalScore,
         totalTime: guestUserData.totalTime,
         totalExercises: guestUserData.totalExercises,
@@ -27,7 +25,7 @@ class UserDataHandler {
         dayScore: 0,
         dayTime: 0,
         dayExercises: 0,
-        currentDate: this.getCurrentDate(),
+        profileDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
         totalExercises: 0,
@@ -38,9 +36,6 @@ class UserDataHandler {
     this.addPageCloseEvent();
     this.addGameEndEvent();
     this.setDayCheckInterval();
-    const tempResult = {}; // Эта переменная добавлена для проверки TODO: потом удалить
-    Object.assign(tempResult, this.userProfile);
-    console.log(tempResult);
   }
 
   private getDataFromLocalStorage(): IUserProfileType {
@@ -57,7 +52,7 @@ class UserDataHandler {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
       dayExercises: this.userProfile.getDayExercises(),
-      currentDate: this.userProfile.getCurrentDate(),
+      profileDate: this.userProfile.getProfileDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
       totalExercises: this.userProfile.getTotalExercises(),
@@ -92,14 +87,14 @@ class UserDataHandler {
     return currentDate;
   }
 
-  private clearDayScore(): void {
+  public clearDayScore(): void {
     this.userProfile.setDayScore(0);
     this.userProfile.setDayTime(0);
     this.userProfile.setDayExercises(0);
-    this.userProfile.setCurrentDate(this.userProfile.getCurrentDate());
+    this.userProfile.setProfileDate(this.getCurrentDate());
   }
 
-  private clearUserProfileData(): void {
+  public clearUserProfileData(): void {
     this.clearDayScore();
     this.userProfile.setTotalScore(0);
     this.userProfile.setTotalTime(0);
@@ -130,9 +125,7 @@ class UserDataHandler {
   private setDayCheckInterval(): void {
     setInterval(() => {
       const currentDate = this.getCurrentDate();
-      const userProfileDate = this.userProfile.getCurrentDate();
-      console.log('currentDate: ', currentDate);
-      console.log('userProfileDate: ', userProfileDate);
+      const userProfileDate = this.userProfile.getProfileDate();
       if (currentDate.day !== userProfileDate.day || currentDate.year !== userProfileDate.year) {
         this.clearDayScore();
         console.log('reset day progress');
@@ -141,16 +134,12 @@ class UserDataHandler {
   }
 }
 
-const userDataHandler = new UserDataHandler();
-// расскоментировать для обнуления профиля в LocalStorage
-// userDataHandler.clearUserProfileData();
-
-export default userDataHandler;
+export default UserDataHandler;
 
 // Для проверки скопировать приведенный ниже код в index.ts
 
-// import userDataHandler from './ts/controllers/user-data-handlers/user-data-handler';
 // import GameIndicators from './ts/controllers/game-cycle/game-indicators';
+// import appLoader from './ts/controllers/app-loader';
 
 // const gameIndicators = new GameIndicators({
 //   gameName: 'IntervalGame-01',
@@ -164,6 +153,7 @@ export default userDataHandler;
 //   setTimeout((): void => {
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
+//     appLoader.userDayStatisticHandler.refrashCounters();
 //   }, 2000);
 // };
 
@@ -176,5 +166,3 @@ export default userDataHandler;
 // gameIndicators.increaseRightAnswersCounter();
 // gameIndicators.increaseFinesCounter();
 // gameIndicators.increaseFinesCounter();
-
-// console.log(userDataHandler);

@@ -32,7 +32,7 @@
 // gameIndicators.increaseFinesCounter();
 // gameIndicators.increaseFinesCounter();
 
-import IGameResult from '../../types/game-results';
+import { IGameResult } from '../../types/data-types';
 
 class GameIndicators {
   private gameName: string;
