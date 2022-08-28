@@ -134,19 +134,12 @@ class UserDataHandler {
   }
 }
 
-const userDataHandler = new UserDataHandler();
-// расскоментировать для обнуления профиля в LocalStorage
-// userDataHandler.clearUserProfileData();
-
-export default userDataHandler;
+export default UserDataHandler;
 
 // Для проверки скопировать приведенный ниже код в index.ts
 
-// import userDataHandler from './ts/controllers/user-data-handlers/user-data-handler';
 // import GameIndicators from './ts/controllers/game-cycle/game-indicators';
-// import UserDayStatisticHandler from
-// './ts/controllers/user-data-handlers/user-day-statistic-handler';
-// import viewsController from './ts/views/main-page-creator';
+// import appLoader from './ts/controllers/app-loader';
 
 // const gameIndicators = new GameIndicators({
 //   gameName: 'IntervalGame-01',
@@ -155,17 +148,12 @@ export default userDataHandler;
 //   bonusTime: 10000,
 // });
 
-// const userDayStatisticHandler = new UserDayStatisticHandler(
-//   userDataHandler.userProfile,
-//   viewsController.mainMenu.userDayStatistic.userDayStatisticCounters,
-// );
-
 // const stopGame = (): void => {
 //   console.log('Timer is set');
 //   setTimeout((): void => {
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
-//     userDayStatisticHandler.refrashCounters();
+//     appLoader.userDayStatisticHandler.refrashCounters();
 //   }, 2000);
 // };
 
@@ -178,6 +166,3 @@ export default userDataHandler;
 // gameIndicators.increaseRightAnswersCounter();
 // gameIndicators.increaseFinesCounter();
 // gameIndicators.increaseFinesCounter();
-
-// console.log(userDataHandler);
-// console.log(userDayStatisticHandler);
