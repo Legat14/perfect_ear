@@ -1,0 +1,34 @@
+import ButtonBuilder from '../../helpers/button-builder';
+
+class GameQuizNextButton extends ButtonBuilder {
+  public onSkip!: () => void;
+
+  public onNext!: () => void;
+
+  public onDone!: () => void;
+
+  constructor(parentNode: HTMLElement) {
+    super({ parentNode });
+    this.setDefault();
+  }
+
+  public setDefault(): void {
+    this.node.className = 'quiz-controls__button quiz-controls__button_skip';
+    this.node.textContent = 'пропустить';
+    this.node.onclick = () => this.onSkip();
+  }
+
+  public setNext(): void {
+    this.node.className = 'quiz-controls__button quiz-controls__button_next';
+    this.node.textContent = 'далее';
+    this.node.onclick = () => this.onNext();
+  }
+
+  public setDone(): void {
+    this.node.className = 'quiz-controls__button quiz-controls__button_next';
+    this.node.textContent = 'готово';
+    this.node.onclick = () => this.onDone();
+  }
+}
+
+export default GameQuizNextButton;

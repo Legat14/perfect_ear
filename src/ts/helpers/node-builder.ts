@@ -33,6 +33,10 @@ class NodeBuilder<NodeType extends HTMLElement = HTMLElement> {
     this.node.remove();
   }
 
+  public append(element: HTMLElement): void {
+    this.node.append(element);
+  }
+
   public clear(): void {
     this.node.innerHTML = '';
   }
