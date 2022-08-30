@@ -1,6 +1,5 @@
 import { PIANO_SOUND } from '../constants/constants';
 import Sound from '../controllers/sound';
-import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
 import { SequenceDirection } from '../types/game-types';
 import IntervalComparisonView from './game-categories/interval/games/interval-comparison';
@@ -10,12 +9,6 @@ class IntervalGameView extends NodeBuilder {
 
   constructor() {
     super({ parentNode: null, className: 'interval-game-field' });
-
-    const backToMainBtn = new ButtonBuilder({
-      parentNode: this.node,
-      className: 'interval-game__back-to-main-btn',
-      content: '←',
-    });
 
     const sound = new Sound(PIANO_SOUND);
 
@@ -56,9 +49,9 @@ class IntervalGameView extends NodeBuilder {
       sound,
     );
 
-    backToMainBtn.node.addEventListener('click', (): void => {
+    this.game.onQuit = (): void => {
       window.location.hash = '#';
-    });
+    };
   }
 }
 
