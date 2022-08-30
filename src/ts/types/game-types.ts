@@ -9,6 +9,16 @@ export enum SequenceDirection {
   Any = 'any direction',
 }
 
+export enum Intervals {
+  'унисон' = 0,
+  'малая секунда',
+  'большая секунда',
+  'малая терция',
+  'большая терция',
+  'чистая кварта',
+  'чистая квинта',
+}
+
 /**
  * @example
  * const Intervals: IGameCategory = {
@@ -69,4 +79,19 @@ export interface IQuestion<T> {
   round: T;
   sequence?: [Pause | Frequency | Frequency[], Subdivision][];
   value: keyof IRound['answers'];
+}
+
+export interface IIntervalRound extends IRound {
+  game: IQuizGame;
+  quizId: string,
+  quizName: string,
+  quizStartDescription: string[];
+  direction: SequenceDirection,
+  score: number,
+  rounds: number,
+  bonus: number,
+  condition: string;
+  answers: readonly string[];
+  terms: readonly string[];
+  intervals: Extract<Intervals, number>[];
 }
