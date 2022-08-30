@@ -8,18 +8,16 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
   constructor() {
     super({ parentNode: null, className: 'main-menu' });
 
-    this.userDayStatistic = new UserDayStatisticView(this.node);
-
     const intervalGameBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'main-menu__interval-game-btn',
-      content: 'Угадай интервал',
+      content: '<img src="assets/img/interval.png" alt="Угадай интервал"> Угадай интервал',
     });
 
     const fortepianoBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'main-menu__fortepiano-btn',
-      content: 'Фортепиано',
+      content: '<img src="assets/img/piano.png" alt="Фортепиано"> Фортепиано',
     });
 
     // TODO: Добавить к действиям кнопок, например, запуск игры
@@ -30,6 +28,7 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
     fortepianoBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#fortepiano';
     });
+    this.userDayStatistic = new UserDayStatisticView(this.node);
   }
 }
 
