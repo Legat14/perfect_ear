@@ -65,8 +65,8 @@ export interface IRound {
   terms: readonly string[];
 }
 
-export interface IQuestion {
-  round: IRound;
+export interface IQuestion<T> {
+  round: T;
   sequence?: [Pause | Frequency | Frequency[], Subdivision][];
   value: keyof IRound['answers'];
 }

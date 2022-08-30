@@ -4,10 +4,10 @@ import { IQuestion, IRound } from '../../types/game-types';
 import { Pause } from '../../types/note-types';
 import Sound from '../sound';
 
-abstract class AbstractGameQuiz {
-  public quiz: IRound;
+abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
+  public quiz: QuizType;
 
-  public question: IQuestion;
+  public question: IQuestion<QuizType>;
 
   public view: GameQuizView;
 
@@ -23,7 +23,7 @@ abstract class AbstractGameQuiz {
 
   private answered: boolean;
 
-  constructor(quiz: IRound, round: number, sound: Sound) {
+  constructor(quiz: QuizType, round: number, sound: Sound) {
     this.quiz = quiz;
     this.question = this.generateQuestion(quiz);
     this.answered = false;
@@ -48,7 +48,7 @@ abstract class AbstractGameQuiz {
     this.view.onDone = () => this.onFinish();
   }
 
-  abstract generateQuestion(quiz: IRound): IQuestion;
+  abstract generateQuestion(quiz: QuizType): IQuestion<QuizType>;
 
   private answer(answer: boolean, done: boolean): void {
     this.answered = this.answered
