@@ -12,7 +12,7 @@ viewsController.init();
 const footer = new FooterView(document.body);
 
 guest.node.addEventListener('click', (): void => {
-  // Здесь должна быть функция по добавлению класса closemodal в константу modalwindow
+  modalwindow.remove();
 });
 
 console.log(header);
