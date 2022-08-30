@@ -1,4 +1,4 @@
-import IGameResult from '../../types/game-results';
+import { IGameResult } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
 import Sound from '../sound';
