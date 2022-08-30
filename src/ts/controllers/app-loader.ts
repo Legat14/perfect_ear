@@ -18,6 +18,6 @@ class AppLoader {
   }
 }
 
-const appLoader = new AppLoader();
+// const appLoader = new AppLoader();
 
-export default appLoader;
+export default AppLoader;

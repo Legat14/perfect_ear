@@ -1,3 +1,4 @@
+import AppLoader from '../controllers/app-loader';
 import ViewsController from '../controllers/viewsController';
 import FooterView from './footer';
 import HeaderView from './header';
@@ -12,7 +13,8 @@ viewsController.init();
 const footer = new FooterView(document.body);
 
 guest.node.addEventListener('click', (): void => {
-  // Здесь должна быть функция по добавлению класса closemodal в константу modalwindow
+  const appLoader = new AppLoader();
+  modalwindow.remove();
 });
 
 console.log(header);
