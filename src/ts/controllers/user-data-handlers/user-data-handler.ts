@@ -4,10 +4,13 @@ import { IDate, IGameResult, IUserProfileType } from '../../types/data-types';
 class UserDataHandler {
   userProfile: UserProfile;
 
+  perfectEarGuestUser: string | null;
+
   constructor() { // TODO: после добавления сервера,
     // добавить метод получения данных и получать данные
     // в зависимости от него
     const guestUserData = this.getDataFromLocalStorage();
+    this.perfectEarGuestUser = this.getGuestUserEnterFromSessionStorage();
     if (guestUserData) {
       this.userProfile = new UserProfile({
         dayScore: guestUserData.dayScore,
@@ -33,6 +36,7 @@ class UserDataHandler {
         exercisesResult: [],
       });
     }
+    this.saveDataToLocalStorage();
     this.addPageCloseEvent();
     this.addGameEndEvent();
     this.setDayCheckInterval();
@@ -45,6 +49,11 @@ class UserDataHandler {
       guestUserData = JSON.parse(guestUserDataJSON);
     }
     return guestUserData;
+  }
+
+  private getGuestUserEnterFromSessionStorage(): string | null {
+    const guestUserEnterJSON = sessionStorage.getItem('perfectEarGuestUser');
+    return guestUserEnterJSON;
   }
 
   private saveDataToLocalStorage(): void {
@@ -60,6 +69,10 @@ class UserDataHandler {
       exercisesResult: this.userProfile.getExercisesResult(),
     };
     localStorage.setItem('guestUserData', JSON.stringify(guestUserData));
+  }
+
+  private seveGuestUserEnterToSessionStorage(): void {
+    sessionStorage.setItem('perfectEarGuestUser', 'true');
   }
 
   private addPageCloseEvent(): void {
