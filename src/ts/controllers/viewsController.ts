@@ -3,14 +3,13 @@ import Router from '../router/router';
 import FooterView from '../views/footer';
 import FortepianoView from '../views/fortepiano';
 import HeaderView from '../views/header';
-import IntervalGameView from '../views/interval-game';
+import EarTrainingView from '../views/ear-training-page';
+import RhythmTrainingView from '../views/rhythm-training-page';
 import MainMenuView from '../views/main-menu';
-import WrapperView from '../views/wrapper';
+// import TheoryPageView from '../views/theory-page';
 
 class ViewsController extends NodeBuilder {
   mainMenu: MainMenuView;
-
-  wrapper: WrapperView | undefined;
 
   header: HeaderView | undefined;
 
@@ -22,13 +21,17 @@ class ViewsController extends NodeBuilder {
     super({ parentNode, className: 'field' });
 
     this.mainMenu = new MainMenuView();
-    const intervalGame = new IntervalGameView();
+    const earTraining = new EarTrainingView();
+    const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView();
+    // const theory = new TheoryPageView();
 
     this.router = new Router(this.node, [
       ['', this.mainMenu.node],
-      ['interval-game', intervalGame.node],
-      ['fortepiano', fortepiano.node],
+      ['/ear-training', earTraining.node],
+      ['/rhythm-training', rhythmTraining.node],
+      ['/fortepiano', fortepiano.node],
+      // ['/theory', theory.node],
     ]);
   }
 
