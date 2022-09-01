@@ -37,3 +37,13 @@ export interface IUserDayStatisticCounters {
   scoreCounter: HTMLElement,
   timeCounter: HTMLElement,
 }
+
+export interface IUserStatisticCounters {
+  dayExercisesCounter: HTMLElement,
+  dayScoreCounter: HTMLElement,
+  dayTimeCounter: HTMLElement,
+  totalExercisesCounter: HTMLElement,
+  totalScoreCounter: HTMLElement,
+  totalTimeCounter: HTMLElement,
+  totalIntervalGameScoreCount: HTMLElement,
+}
