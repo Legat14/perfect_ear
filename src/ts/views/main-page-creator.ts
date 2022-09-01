@@ -1,24 +1,32 @@
 import ViewsController from '../controllers/viewsController';
 import FooterView from './footer';
 import HeaderView from './header';
-import Guest from './modal/guest';
-import Modal from './modal/modal';
 
-const header = new HeaderView(document.body);
-const modalwindow = new Modal(document.body);
-const guest = new Guest(modalwindow.node);
-const viewsController = new ViewsController(document.body);
-viewsController.init();
-const footer = new FooterView(document.body);
+class MainPageCreator {
+  header: HeaderView;
 
-guest.node.addEventListener('click', (): void => {
-  // Здесь должна быть функция по добавлению класса closemodal в константу modalwindow
-});
+  // modalwindow: Modal;
 
-console.log(header);
-console.log(modalwindow);
-console.log(guest);
-console.log(viewsController);
-console.log(footer);
+  // guest: Guest;
 
-export default viewsController;
+  viewsController: ViewsController;
+
+  footer: FooterView;
+
+  onAuth!: () => void;
+
+  constructor() {
+    this.header = new HeaderView(document.body);
+    // this.modalwindow = new Modal(document.body);
+    // this.guest = new Guest(this.modalwindow.node);
+    this.viewsController = new ViewsController(document.body);
+    this.footer = new FooterView(document.body);
+
+    // this.guest.node.addEventListener('click', (): void => {
+    //   this.modalwindow.remove();
+    //  this.onAuth();
+    // });
+  }
+}
+
+export default MainPageCreator;

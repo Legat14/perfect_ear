@@ -3,32 +3,54 @@ import NodeBuilder from '../helpers/node-builder';
 import UserDayStatisticView from './user-day-statistic';
 
 class MainMenuView extends NodeBuilder<HTMLElement> {
-  userDayStatistic: UserDayStatisticView;
+  public userDayStatistic: UserDayStatisticView;
 
   constructor() {
     super({ parentNode: null, className: 'main-menu' });
 
-    const intervalGameBtn = new ButtonBuilder({
+    new ButtonBuilder({
       parentNode: this.node,
-      className: 'main-menu__interval-game-btn',
-      content: '<img src="assets/img/interval.png" alt="Угадай интервал"> Угадай интервал',
-    });
+      className: 'main-menu__games-btn button',
+      content:
+        '<img src="assets/img/interval.png" alt="Тренировка Слуха">Тренировка слуха',
+    }).node.onclick = () => {
+      window.location.hash = '#/ear-training';
+    };
 
-    const fortepianoBtn = new ButtonBuilder({
+    new ButtonBuilder({
       parentNode: this.node,
-      className: 'main-menu__fortepiano-btn',
-      content: '<img src="assets/img/piano.png" alt="Фортепиано"> Фортепиано',
-    });
+      className: 'main-menu__games-btn button',
+      content:
+        '<img src="assets/img/rhythm.png" alt="Тренировка Ритма">Тренировка ритма',
+    }).node.onclick = () => {
+      window.location.hash = '#/rhythm-training';
+    };
 
-    // TODO: Добавить к действиям кнопок, например, запуск игры
-    intervalGameBtn.node.addEventListener('click', (): void => {
-      window.location.hash = '#interval-game';
-    });
+    new ButtonBuilder({
+      parentNode: this.node,
+      className: 'main-menu__fortepiano-btn button',
+      content: '<img src="assets/img/piano.png" alt="Фортепиано">Фортепиано',
+    }).node.onclick = () => {
+      window.location.hash = '#/fortepiano';
+    };
 
-    fortepianoBtn.node.addEventListener('click', (): void => {
-      window.location.hash = '#fortepiano';
-    });
     this.userDayStatistic = new UserDayStatisticView(this.node);
+
+    new ButtonBuilder({
+      parentNode: this.node,
+      className: 'main-menu__theory-btn button',
+      content: '<img src="assets/img/theory.png" alt="Теория">Теория',
+    }).node.onclick = () => {
+      window.location.hash = '#/theory';
+    };
+
+    new ButtonBuilder({
+      parentNode: this.node,
+      className: 'main-menu__user-setting-btn button',
+      content: '<img src="assets/img/user-settings.png" alt="Настройки пользователя">Настройки пользователя',
+    }).node.onclick = () => {
+      window.location.hash = '#/user-settings';
+    };
   }
 }
 

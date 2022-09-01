@@ -197,7 +197,7 @@ footer p {
   text-align: center;
 }
 
-.interval-game__back-to-main-btn, .fortepiano-field__back-to-main-btn {
+.field__back-btn {
   line-height: 1;
   margin: 0px;
   text-transform: uppercase;
@@ -341,7 +341,36 @@ progress::-webkit-progress-value {
   min-width: 230px;
   transition: 1s;
 }
-
+.page404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page404__back-to-main-btn {
+  padding: 16px 20px 15px;
+  line-height: 14px;
+  margin: 0px 0px 100px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px #f1f1f1;
+  background: #fff;
+  border: 3px solid #f1f1f1;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  box-sizing: border-box;
+  min-width: 230px;
+  transition: 1s;
+}
+.page404__back-to-main-btn:hover {
+  background: #00afae;
+  color: #fff;
+  box-shadow: 0 0 20px #999;
+  border-color: #00afae;
+}
+.page404 img {
+  height: 220px;
+}
 button:nth-child(3),
 button:nth-child(5),
 button:nth-child(8),

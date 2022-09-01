@@ -10,7 +10,7 @@ class FortepianoView extends NodeBuilder {
 
     const backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
-      className: 'fortepiano-field__back-to-main-btn',
+      className: 'field__back-btn',
       content: '←',
     });
 
