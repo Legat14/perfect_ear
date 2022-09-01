@@ -46,8 +46,16 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
 
     new ButtonBuilder({
       parentNode: this.node,
+      className: 'main-menu__user-stats-btn button',
+      content: '<img src="assets/img/user-settings.png" alt="Статистика">Статистика',
+    }).node.onclick = () => {
+      window.location.hash = '#/user-stats';
+    };
+
+    new ButtonBuilder({
+      parentNode: this.node,
       className: 'main-menu__user-setting-btn button',
-      content: '<img src="assets/img/user-settings.png" alt="Настройки пользователя">Настройки пользователя',
+      content: '<img src="assets/img/user-settings.png" alt="Настройки">Настройки',
     }).node.onclick = () => {
       window.location.hash = '#/user-settings';
     };
