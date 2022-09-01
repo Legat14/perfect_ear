@@ -1,13 +1,16 @@
 import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
 
-class IntervalGameView extends NodeBuilder {
+/**
+ * @tofo Theory page.
+ */
+class TheoryPageView extends NodeBuilder {
   constructor() {
-    super({ parentNode: null, className: 'interval-game-field' });
+    super({ parentNode: null, className: 'theory-list' });
 
     const backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
-      className: 'interval-game__back-to-main-btn',
+      className: 'field__back-btn',
       content: '←',
     });
 
@@ -17,4 +20,4 @@ class IntervalGameView extends NodeBuilder {
   }
 }
 
-export default IntervalGameView;
+export default TheoryPageView;

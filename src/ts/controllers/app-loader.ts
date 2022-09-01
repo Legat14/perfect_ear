@@ -1,4 +1,4 @@
-import viewsController from '../views/main-page-creator';
+import MainPageCreator from '../views/main-page-creator';
 import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
 
@@ -7,13 +7,22 @@ class AppLoader {
 
   userDayStatisticHandler: UserDayStatisticHandler;
 
+  view: MainPageCreator;
+
   constructor() {
     this.userDataHandler = new UserDataHandler();
     // расскоментировать для обнуления профиля в LocalStorage
     // userDataHandler.clearUserProfileData();
+    this.view = new MainPageCreator();
+    /**
+     * @todo Сделать событие загрузки данных или показывать модалку, пока его не произойдет.
+     */
+    this.view.onAuth = () => this.view.viewsController.init();
+    const { mainMenu } = this.view.viewsController;
+
     this.userDayStatisticHandler = new UserDayStatisticHandler(
       this.userDataHandler.userProfile,
-      viewsController.mainMenu.userDayStatistic.userDayStatisticCounters,
+      mainMenu.userDayStatistic.userDayStatisticCounters,
     );
   }
 }
