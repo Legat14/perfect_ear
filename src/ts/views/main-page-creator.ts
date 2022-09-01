@@ -1,15 +1,13 @@
 import ViewsController from '../controllers/viewsController';
 import FooterView from './footer';
 import HeaderView from './header';
-import Guest from './modal/guest';
-import Modal from './modal/modal';
 
 class MainPageCreator {
   header: HeaderView;
 
-  modalwindow: Modal;
+  // modalwindow: Modal;
 
-  guest: Guest;
+  // guest: Guest;
 
   viewsController: ViewsController;
 
@@ -19,15 +17,15 @@ class MainPageCreator {
 
   constructor() {
     this.header = new HeaderView(document.body);
-    this.modalwindow = new Modal(document.body);
-    this.guest = new Guest(this.modalwindow.node);
+    // this.modalwindow = new Modal(document.body);
+    // this.guest = new Guest(this.modalwindow.node);
     this.viewsController = new ViewsController(document.body);
     this.footer = new FooterView(document.body);
 
-    this.guest.node.addEventListener('click', (): void => {
-      this.modalwindow.remove();
-      this.onAuth();
-    });
+    // this.guest.node.addEventListener('click', (): void => {
+    //   this.modalwindow.remove();
+    //  this.onAuth();
+    // });
   }
 }
 
