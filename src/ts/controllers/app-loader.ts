@@ -5,46 +5,40 @@ import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
 
 class AppLoader {
-  userDataHandler: UserDataHandler | null;
+  private userDataHandler: UserDataHandler;
 
-  userDayStatisticHandler: UserDayStatisticHandler | null;
+  private userDayStatisticHandler!: UserDayStatisticHandler;
 
-  view: MainPageCreator;
+  private view: MainPageCreator;
 
-  modalWindow: Modal | null;
-
-  guestEnterHandler: GuestEnterHandler;
+  private guestEnterHandler: GuestEnterHandler;
 
   constructor() {
     this.view = new MainPageCreator();
-    const { mainMenu } = this.view.viewsController;
+
     this.guestEnterHandler = new GuestEnterHandler();
-    this.userDataHandler = null;
-    this.userDayStatisticHandler = null;
-    this.modalWindow = null;
+    this.userDataHandler = new UserDataHandler();
+    // расскоментировать для обнуления профиля в LocalStorage
+    // this.userDataHandler.clearUserProfileData();
+
     if (this.guestEnterHandler.perfectEarGuestUser) {
-      this.userDataHandler = new UserDataHandler();
-      // расскоментировать для обнуления профиля в LocalStorage
-      // userDataHandler.clearUserProfileData();
-      this.view.viewsController.init(); // TODO: Вынести повторяющуюся часть в отдельный метод
-      this.userDayStatisticHandler = new UserDayStatisticHandler(
-        (this.userDataHandler as UserDataHandler).userProfile,
-        mainMenu.userDayStatistic.userDayStatisticCounters,
-      );
+      this.init();
     } else {
-      this.modalWindow = new Modal(document.body);
-      this.modalWindow.onAuth = () => {
-        this.userDataHandler = new UserDataHandler();
-        // расскоментировать для обнуления профиля в LocalStorage
-        // userDataHandler.clearUserProfileData();
-        this.view.viewsController.init();
-        this.userDayStatisticHandler = new UserDayStatisticHandler(
-          (this.userDataHandler as UserDataHandler).userProfile,
-          mainMenu.userDayStatistic.userDayStatisticCounters,
-        );
+      new Modal(document.body).onAuth = () => {
+        this.init();
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
     }
+  }
+
+  private init() {
+    this.view.viewsController.init();
+
+    const { mainMenu } = this.view.viewsController;
+    this.userDayStatisticHandler = new UserDayStatisticHandler(
+      this.userDataHandler.userProfile,
+      mainMenu.userDayStatistic.userDayStatisticCounters,
+    );
   }
 }
 
