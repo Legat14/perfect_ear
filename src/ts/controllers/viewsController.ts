@@ -53,6 +53,7 @@ class ViewsController extends NodeBuilder {
       gamesLoader,
       'intervals',
       'interval-comparison',
+      'Сравнение интервалов',
       IntervalComparison,
       IntervalComparisonView,
     ).then(() => {

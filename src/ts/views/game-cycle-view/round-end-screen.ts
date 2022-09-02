@@ -44,7 +44,7 @@ class GameRoundEndScreen extends NodeBuilder {
 
     const quitControl = new ButtonBuilder({
       parentNode: header,
-      className: 'quiz-end-screen__quit-btn',
+      className: 'field__back-btn field__back-btn_x',
       content: '×',
     });
     quitControl.node.onclick = () => this.onQuit();

@@ -2,6 +2,7 @@ import { PIANO_SOUND } from '../../constants/constants';
 import {
   CategoryId,
   GameId,
+  GameName,
   IRound,
   RoundType,
 } from '../../types/game-types';
@@ -30,12 +31,13 @@ class GameRoundsController {
     loader: GamesLoader,
     categoryId: CategoryId,
     gameId: GameId,
+    gameName: GameName,
     Constructor: GameQuizConstructor<RoundType>,
     ViewConstructor: GameQuizViewConstructor<RoundType>,
   ) {
     return loader.loadRounds(categoryId, gameId).then((games) => {
       this.games = games || [];
-      this.view = new GameRoundsPageView(null, this.games);
+      this.view = new GameRoundsPageView(null, this.games, gameName);
       this.sound = new Sound(PIANO_SOUND);
 
       this.games.forEach((game: RoundType) => {
