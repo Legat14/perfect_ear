@@ -17,6 +17,8 @@ import GamesLoader from './game-cycle/games-loader';
 class ViewsController extends NodeBuilder {
   mainMenu: MainMenuView;
 
+  userStats: UserStatsView;
+
   header: HeaderView | undefined;
 
   footer: FooterView | undefined;
@@ -30,7 +32,7 @@ class ViewsController extends NodeBuilder {
     const earTraining = new EarTrainingView();
     const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView();
-    const userStats = new UserStatsView();
+    this.userStats = new UserStatsView();
     const userSettings = new UserSettingsView();
     // const theory = new TheoryPageView();
 
@@ -39,7 +41,7 @@ class ViewsController extends NodeBuilder {
       ['/ear-training', earTraining.node],
       ['/rhythm-training', rhythmTraining.node],
       ['/fortepiano', fortepiano.node],
-      ['/user-stats', userStats.node],
+      ['/user-stats', this.userStats.node],
       ['/user-settings', userSettings.node],
       // ['/theory', theory.node],
     ]);

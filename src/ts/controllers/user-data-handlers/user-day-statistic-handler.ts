@@ -18,22 +18,22 @@ class UserDayStatisticHandler {
     this.refrashCounters();
   }
 
-  private refrashExercisesCounter() {
+  private refreshExercisesCounter() {
     this.exercisesCounter.innerHTML = this.userProfile.getDayExercises().toString();
   }
 
-  private refrashScoreCounter() {
+  private refreshScoreCounter() {
     this.scoreCounter.innerHTML = this.userProfile.getDayScore().toString();
   }
 
-  private refrashTimeCounter() {
+  private refreshTimeCounter() {
     this.timeCounter.innerHTML = this.userProfile.getDayTime().toString();
   }
 
   public refrashCounters() {
-    this.refrashExercisesCounter();
-    this.refrashScoreCounter();
-    this.refrashTimeCounter();
+    this.refreshExercisesCounter();
+    this.refreshScoreCounter();
+    this.refreshTimeCounter();
   }
 }
 

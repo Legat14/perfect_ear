@@ -3,11 +3,14 @@ import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
 import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
+import UserStatisticHandler from './user-data-handlers/user-statistic-handler';
 
 class AppLoader {
   private userDataHandler: UserDataHandler;
 
-  private userDayStatisticHandler!: UserDayStatisticHandler;
+  public userStatisticHandler!: UserStatisticHandler;
+
+  public userDayStatisticHandler!: UserDayStatisticHandler;
 
   private view: MainPageCreator;
 
@@ -21,6 +24,20 @@ class AppLoader {
     // расскоментировать для обнуления профиля в LocalStorage
     // this.userDataHandler.clearUserProfileData();
 
+    const { userStats } = this.view.viewsController;
+
+    this.userStatisticHandler = new UserStatisticHandler(
+      this.userDataHandler.userProfile,
+      userStats.statisticCounters,
+    );
+
+    const { mainMenu } = this.view.viewsController;
+
+    this.userDayStatisticHandler = new UserDayStatisticHandler(
+      this.userDataHandler.userProfile,
+      mainMenu.userDayStatistic.userDayStatisticCounters,
+    );
+
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
     } else {
@@ -33,12 +50,6 @@ class AppLoader {
 
   private init() {
     this.view.viewsController.init();
-
-    const { mainMenu } = this.view.viewsController;
-    this.userDayStatisticHandler = new UserDayStatisticHandler(
-      this.userDataHandler.userProfile,
-      mainMenu.userDayStatistic.userDayStatisticCounters,
-    );
   }
 }
 
