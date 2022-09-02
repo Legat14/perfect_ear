@@ -28,6 +28,7 @@ class UserStatisticHandler {
     this.totalTimeCounter = userDayStatisticCounters.totalTimeCounter;
     this.totalIntervalGameScoreCount = userDayStatisticCounters.totalIntervalGameScoreCount;
     this.refrashCounters();
+    this.addRefreshEvent();
   }
 
   private refreshDayExercisesCounter() {
@@ -66,6 +67,10 @@ class UserStatisticHandler {
     this.refreshtoTalScoreCounter();
     this.refreshTotalTimeCounter();
     this.refreshTotalIntervalGameScoreCount();
+  }
+
+  addRefreshEvent() {
+    document.addEventListener('ongameend', () => this.refrashCounters());
   }
 }
 
