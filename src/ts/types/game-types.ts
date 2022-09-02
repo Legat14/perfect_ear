@@ -16,7 +16,15 @@ export enum Intervals {
   'малая терция',
   'большая терция',
   'чистая кварта',
+  'тритон',
   'чистая квинта',
+}
+
+export type CategoryName = IGameCategory['categoryName'];
+export type CategoryId = IGameCategory['categoryId'];
+
+export interface IGamesData {
+  categories: Record<CategoryId, IGameCategory>
 }
 
 /**
@@ -24,11 +32,16 @@ export enum Intervals {
  * const Intervals: IGameCategory = {
  *   categoryId: 'intervals',
  *   categoryName: 'intervals',
+ *   games: {},
  * };
  */
-export interface IGameCategory {
+export type GameName = IQuizGame['gameName'];
+export type GameId = IQuizGame['gameId'];
+
+export interface IGameCategory<T = RoundType > {
   categoryId: string;
   categoryName: string;
+  games?: Record<GameId, IQuizGame<T>>
 }
 
 /**
@@ -37,12 +50,14 @@ export interface IGameCategory {
  *   category: Intervals,
  *   gameId: 'intervals0',
  *   gameName: 'Interval Comparison',
+ *   quizes: [],
  * };
  */
-export interface IQuizGame {
-  category: IGameCategory;
+export interface IQuizGame<T = RoundType > {
+  category?: IGameCategory<T>;
   gameId: string;
   gameName: string;
+  quizes?: T[];
 }
 
 /**
@@ -61,12 +76,15 @@ export interface IQuizGame {
  *   terms: ['minor second', 'major second'],
  * };
  */
+export type RoundType = IRound & IIntervalRound;
+
+export type QuizId = IRound['quizId'];
 export interface IRound {
   game: IQuizGame;
   quizId: string,
   quizName: string,
   quizStartDescription: string[];
-  direction: SequenceDirection,
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
@@ -75,7 +93,7 @@ export interface IRound {
   terms: readonly string[];
 }
 
-export interface IQuestion<T> {
+export interface IQuestion<T extends IRound> {
   round: T;
   sequence?: [Pause | Frequency | Frequency[], Subdivision][];
   value: keyof IRound['answers'];
@@ -86,7 +104,7 @@ export interface IIntervalRound extends IRound {
   quizId: string,
   quizName: string,
   quizStartDescription: string[];
-  direction: SequenceDirection,
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
