@@ -24,6 +24,12 @@ class RandomGenerator {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
   }
+
+  static getRandomFromArray<T>(array: T[], count: number): T[] {
+    const { length } = array;
+    const index = RandomGenerator.generateRandomNumber(0, length - count);
+    return array.slice(index, index + count);
+  }
 }
 
 export default RandomGenerator;
