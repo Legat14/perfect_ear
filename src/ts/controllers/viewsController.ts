@@ -7,6 +7,7 @@ import EarTrainingView from '../views/ear-training-page';
 import RhythmTrainingView from '../views/rhythm-training-page';
 import MainMenuView from '../views/main-menu';
 import UserSettingsView from '../views/user-settings';
+import UserStatsView from '../views/user-stats';
 import IntervalComparisonView from '../views/games/interval/interval-comparison';
 import GameRoundsController from './game-cycle/game-rounds';
 import IntervalComparison from './games/interval/interval-comparison';
@@ -29,7 +30,8 @@ class ViewsController extends NodeBuilder {
     const earTraining = new EarTrainingView();
     const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView();
-    const userConfig = new UserSettingsView();
+    const userStats = new UserStatsView();
+    const userSettings = new UserSettingsView();
     // const theory = new TheoryPageView();
 
     this.router = new Router(this.node, [
@@ -37,7 +39,8 @@ class ViewsController extends NodeBuilder {
       ['/ear-training', earTraining.node],
       ['/rhythm-training', rhythmTraining.node],
       ['/fortepiano', fortepiano.node],
-      ['/user-settings', userConfig.node],
+      ['/user-stats', userStats.node],
+      ['/user-settings', userSettings.node],
       // ['/theory', theory.node],
     ]);
 

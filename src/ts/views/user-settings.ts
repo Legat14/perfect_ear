@@ -1,17 +1,30 @@
+import ButtonBuilder from '../helpers/button-builder';
 import NodeBuilder from '../helpers/node-builder';
 
 class UserSettingsView extends NodeBuilder {
+  backToMainBtn: ButtonBuilder;
+
+  userSettingsHeader: NodeBuilder;
+
   constructor() {
     super({ parentNode: null, className: 'user-settings' });
 
-    const userSettingsH2 = new NodeBuilder({
+    this.backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
-      tagName: 'p',
-      content: 'This is a user configs',
-      className: 'user-settings__p',
+      className: 'field__back-btn',
+      content: '←',
     });
 
-    console.log(userSettingsH2);
+    this.backToMainBtn.node.addEventListener('click', (): void => {
+      window.location.hash = '#';
+    });
+
+    this.userSettingsHeader = new NodeBuilder({
+      parentNode: this.node,
+      tagName: 'h2',
+      content: 'Настройки',
+      className: 'user-settings__header',
+    });
   }
 }
 
