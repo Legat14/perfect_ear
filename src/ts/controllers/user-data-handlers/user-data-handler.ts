@@ -154,6 +154,7 @@ export default UserDataHandler;
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
 //     appLoader.userDayStatisticHandler.refrashCounters();
+//     appLoader.userStatisticHandler.refrashCounters();
 //   }, 2000);
 // };
 

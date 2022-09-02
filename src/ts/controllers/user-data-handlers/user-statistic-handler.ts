@@ -9,9 +9,13 @@ class UserStatisticHandler {
   private dayScoreCounter: HTMLElement;
 
   private dayTimeCounter: HTMLElement;
+
   private totalExercisesCounter: HTMLElement;
+
   private totalScoreCounter: HTMLElement;
+
   private totalTimeCounter: HTMLElement;
+
   private totalIntervalGameScoreCount: HTMLElement;
 
   constructor(userProfile: UserProfile, userDayStatisticCounters: IUserStatisticCounters) {
