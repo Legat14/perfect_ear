@@ -16,6 +16,7 @@ class UserDayStatisticHandler {
     this.scoreCounter = userDayStatisticCounters.scoreCounter;
     this.timeCounter = userDayStatisticCounters.timeCounter;
     this.refrashCounters();
+    this.addRefreshEvent();
   }
 
   private refreshExercisesCounter() {
@@ -34,6 +35,10 @@ class UserDayStatisticHandler {
     this.refreshExercisesCounter();
     this.refreshScoreCounter();
     this.refreshTimeCounter();
+  }
+
+  addRefreshEvent() {
+    document.addEventListener('ongameend', () => this.refrashCounters());
   }
 }
 
