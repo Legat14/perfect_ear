@@ -132,8 +132,8 @@
                 "большая терция"
               ],
               "intervals":[
-                2,
-                3
+                3,
+                4
               ]
             },
             {
@@ -164,8 +164,8 @@
                 "большая терция"
               ],
               "intervals":[
-                2,
-                3
+                3,
+                4
               ]
             },
             {
@@ -196,6 +196,38 @@
                 "большая терция"
               ],
               "intervals":[
+                3,
+                4
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-6",
+              "quizName":"Большая секунда и малая терция",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"melodic",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "большая секунда",
+                "малая терция"
+              ],
+              "intervals":[
                 2,
                 3
               ]
@@ -209,7 +241,7 @@
                 "gameId":"interval-comparison",
                 "gameName":"Сравнение интервалов"
               },
-              "quizId":"interval-comp-6",
+              "quizId":"interval-comp-7",
               "quizName":"Чистые кварта и квинта",
               "quizStartDescription":[
                 ""
@@ -228,8 +260,8 @@
                 "чистая квинта"
               ],
               "intervals":[
-                4,
-                5
+                5,
+                7
               ]
             },
             {
@@ -241,7 +273,7 @@
                 "gameId":"interval-comparison",
                 "gameName":"Сравнение интервалов"
               },
-              "quizId":"interval-comp-7",
+              "quizId":"interval-comp-8",
               "quizName":"Чистые кварта и квинта",
               "quizStartDescription":[
                 ""
@@ -260,8 +292,8 @@
                 "чистая квинта"
               ],
               "intervals":[
-                4,
-                5
+                5,
+                7
               ]
             },
             {
@@ -273,7 +305,7 @@
                 "gameId":"interval-comparison",
                 "gameName":"Сравнение интервалов"
               },
-              "quizId":"interval-comp-8",
+              "quizId":"interval-comp-9",
               "quizName":"Чистые кварта и квинта",
               "quizStartDescription":[
                 ""
@@ -292,8 +324,232 @@
                 "чистая квинта"
               ],
               "intervals":[
+                5,
+                7
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-10",
+              "quizName":"Кварта и тритон",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"melodic",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "чистая кварта",
+                "тритон"
+              ],
+              "intervals":[
+                5,
+                6
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-11",
+              "quizName":"Квинта и тритон",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"melodic",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "тритон",
+                "чистая квинта"
+              ],
+              "intervals":[
+                6,
+                7
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-12",
+              "quizName":"Кварта, квинта и тритон",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"melodic",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "чистая кварта",
+                "тритон",
+                "чистая квинта"
+              ],
+              "intervals":[
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-13",
+              "quizName":"Все пройденные интервалы",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"ascending",
+              "score":150,
+              "rounds":15,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "малая секунда",
+                "большая секунда",
+                "малая терция",
+                "большая терция",
+                "чистая кварта",
+                "тритон",
+                "чистая квинта"
+              ],
+              "intervals":[
+                1,
+                2,
+                3,
                 4,
-                5
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-14",
+              "quizName":"Все пройденные интервалы",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"descending",
+              "score":150,
+              "rounds":15,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "малая секунда",
+                "большая секунда",
+                "малая терция",
+                "большая терция",
+                "чистая кварта",
+                "тритон",
+                "чистая квинта"
+              ],
+              "intervals":[
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"intervals",
+                  "categoryName":"Intervals"
+                },
+                "gameId":"interval-comparison",
+                "gameName":"Сравнение интервалов"
+              },
+              "quizId":"interval-comp-15",
+              "quizName":"Все пройденные интервалы",
+              "quizStartDescription":[
+                ""
+              ],
+              "direction":"harmonic",
+              "score":150,
+              "rounds":15,
+              "bonus":60000,
+              "condition":"Выберите больший интервал",
+              "answers":[
+                "первый",
+                "второй"
+              ],
+              "terms":[
+                "малая секунда",
+                "большая секунда",
+                "малая терция",
+                "большая терция",
+                "чистая кварта",
+                "тритон",
+                "чистая квинта"
+              ],
+              "intervals":[
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
               ]
             }
           ]
