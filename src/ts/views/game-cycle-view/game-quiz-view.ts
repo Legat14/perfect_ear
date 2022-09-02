@@ -7,10 +7,10 @@ import Piano from '../piano/piano';
 import AnswerSound from './game-answer-sound';
 import GameQuizNextButton from './game-quiz-next-button';
 
-class GameQuizView extends NodeBuilder {
+class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
   public readonly condition: NodeBuilder<HTMLElement>;
 
-  private readonly value: IQuestion['value'];
+  private readonly value: IQuestion<QuizType>['value'];
 
   public piano: Piano;
 
@@ -24,13 +24,22 @@ class GameQuizView extends NodeBuilder {
 
   public onDone!: () => void;
 
+  public onStart!: () => void;
+
   public questionIndicator: NodeBuilder<HTMLElement>;
+
+  public repeatControl: HTMLButtonElement;
 
   public nextControl: GameQuizNextButton;
 
   public answers: HTMLElement[];
 
-  constructor(question: IQuestion, round: number, sound: Sound, callback: Callback<void>) {
+  constructor(
+    question: IQuestion<QuizType>,
+    round: number,
+    sound: Sound,
+    callback: Callback<void>,
+  ) {
     super({ parentNode: null, className: 'quiz' });
 
     const piano = new Piano(this.node, sound);
@@ -44,7 +53,10 @@ class GameQuizView extends NodeBuilder {
     });
     this.condition = condition;
 
-    const answers = new NodeBuilder({ parentNode: this.node, className: 'quiz-answers' }).node;
+    const answers = new NodeBuilder({
+      parentNode: this.node,
+      className: 'quiz-answers',
+    }).node;
 
     this.answers = question.round.answers.map((answer, index) => {
       const button = new ButtonBuilder({
@@ -57,7 +69,10 @@ class GameQuizView extends NodeBuilder {
       return button.node;
     });
 
-    const footer = new NodeBuilder({ parentNode: this.node, className: 'quiz-controls' }).node;
+    const footer = new NodeBuilder({
+      parentNode: this.node,
+      className: 'quiz-controls',
+    }).node;
 
     const questionIndicator = new NodeBuilder({
       parentNode: this.node,
@@ -71,7 +86,9 @@ class GameQuizView extends NodeBuilder {
       className: 'quiz-answers__music-repeat',
       content: 'повторить',
     });
-    repeatControl.node.onclick = () => this.onRepeat();
+    this.repeatControl = repeatControl.node;
+
+    this.repeatControl.onclick = () => this.onRepeat();
 
     const nextControl = new GameQuizNextButton(footer);
     this.nextControl = nextControl;
@@ -80,9 +97,9 @@ class GameQuizView extends NodeBuilder {
     this.nextControl.onNext = () => this.onNext();
     this.nextControl.onDone = () => this.onDone();
 
-    callback();
-
     this.value = question.value;
+
+    callback();
   }
 
   /**
@@ -93,11 +110,17 @@ class GameQuizView extends NodeBuilder {
   public react(answer: boolean, terms: IRound['terms'], done: boolean): void {
     terms?.forEach((term, index) => {
       this.answers[index].innerHTML = term;
-      this.answers[index].className += `${index === this.value ? 'quiz-answers__answer_key' : 'quiz-answers__answer_answered'}`;
+      this.answers[index].className += ` ${
+        index === this.value
+          ? 'quiz-answers__answer_correct'
+          : 'quiz-answers__answer_wrong'
+      }`;
     });
 
-    if (done) this.nextControl.setDone(); else this.nextControl.setNext();
-    if (answer) this.acceptAnswer(); else this.rejectAnswer();
+    if (done) this.nextControl.setDone();
+    else this.nextControl.setNext();
+    if (answer) this.acceptAnswer();
+    else this.rejectAnswer();
   }
 
   private acceptAnswer(): void {

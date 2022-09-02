@@ -17,6 +17,19 @@ class RandomGenerator {
 
     return <Note>Notations[randomKey];
   }
+
+  static randomizeArray<T>(array: T[]): T[] {
+    return array
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+  }
+
+  static getRandomFromArray<T>(array: T[], count: number): T[] {
+    const { length } = array;
+    const index = RandomGenerator.generateRandomNumber(0, length - count);
+    return array.slice(index, index + count);
+  }
 }
 
 export default RandomGenerator;

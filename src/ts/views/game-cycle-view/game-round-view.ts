@@ -26,6 +26,7 @@ class GameRoundView extends NodeBuilder {
 
   public renderStartScreen(terms: IRound['terms']): void {
     this.startScreen = new GameRoundStartScreen(this.node, terms);
+    this.startScreen.onQuit = () => this.onGameBack();
     this.startScreen.onQuizStart = () => this.onGameStart();
   }
 
@@ -41,7 +42,7 @@ class GameRoundView extends NodeBuilder {
 
     const backButton = new ButtonBuilder({
       parentNode: header,
-      className: 'quiz-header__back-to-main-btn',
+      className: 'field__back-btn',
       content: '←',
     }).node;
     backButton.onclick = () => this.onGameBack();

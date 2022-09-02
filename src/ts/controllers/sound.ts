@@ -19,11 +19,13 @@ interface ISound {
 
   playNote: (note: [Frequency, Subdivision]) => void;
   playSequence?: (notes: [Pause | Frequency | Frequency[], Subdivision][]) => void;
-  muteNotes?: (notes: Frequency[] | Frequency) => void;
+  muteNotes?: () => void;
 }
 
 class Sound implements ISound {
   public tactDuration: BPM;
+
+  public voice: Partial<Tone.SamplerOptions>;
 
   public sampler: Tone.Sampler;
 
@@ -37,8 +39,9 @@ class Sound implements ISound {
     tactDuration: BPM;
   }) {
     this.tactDuration = tactDuration;
+    this.voice = voice;
 
-    const sampler = new Tone.Sampler(voice);
+    const sampler = new Tone.Sampler(voice).toDestination();
     sampler.volume.value = volume;
 
     this.sampler = sampler;
@@ -57,27 +60,35 @@ class Sound implements ISound {
   }
 
   public playNote(note: [Frequency, Subdivision]): void {
-    this.sampler.triggerAttackRelease(...note).toDestination();
+    this.sampler.triggerAttackRelease(...note);
   }
 
-  public playSequence(notes: [Pause | Frequency | Frequency[], Subdivision][]): void {
+  public playSequence(notes: [Pause | Frequency | Frequency[], Subdivision][]): Promise<number> {
     Tone.Transport.bpm.value = this.tactDuration;
-
-    notes.reduce(
-      (
-        time: Seconds,
-        [freq, sub]: [Pause | Frequency | Frequency[], Subdivision],
-      ) => {
-        this.sampler
-          .triggerAttackRelease(freq === 'pause' ? sub : freq, sub, time)
-          .toDestination();
-        return time + Tone.Time(sub).toSeconds();
-      },
-      Tone.now(),
-    );
-
-    Tone.Transport.start();
+    /**
+     * @todo Add preloader
+     */
+    return Tone.loaded()
+      .then(() => notes.reduce(
+        (
+          time: Seconds,
+          [freq, sub]: [Pause | Frequency | Frequency[], Subdivision],
+        ) => {
+          /**
+           * this.sampler.triggerAttack(freq === 'pause' ? sub : freq, time);
+           * this.sampler.triggerRelease(freq === 'pause'
+           *   ? sub : freq, time + Tone.Time(sub).toSeconds());
+           */
+          this.sampler.triggerAttackRelease(freq === 'pause' ? sub : freq, sub, time);
+          return time + Tone.Time(sub).toSeconds();
+        },
+        Tone.now(),
+      ) - Tone.now());
   }
+
+  /**
+   * @todo Add muteNotes();
+   */
 }
 
 export default Sound;

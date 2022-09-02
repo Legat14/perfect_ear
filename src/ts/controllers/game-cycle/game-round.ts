@@ -6,7 +6,8 @@ import Sound from '../sound';
 import AbstractGameQuiz from './abstract-game-quiz';
 import GameIndicators from './game-indicators';
 
-type GameQuizConstructor = new (quiz: IRound, round: number, sound: Sound) => AbstractGameQuiz;
+export type GameQuizConstructor<QuizType extends IRound = IRound> =
+  new (quiz: QuizType, round: number, sound: Sound) => AbstractGameQuiz<QuizType>;
 
 class GameRound<QuizType extends IRound = IRound> {
   private readonly rounds: number;
@@ -15,7 +16,7 @@ class GameRound<QuizType extends IRound = IRound> {
 
   private readonly sound: Sound;
 
-  private readonly GameQuizConstructor: GameQuizConstructor;
+  private readonly GameQuizConstructor: GameQuizConstructor<QuizType>;
 
   private readonly view: GameRoundView;
 
@@ -32,7 +33,7 @@ class GameRound<QuizType extends IRound = IRound> {
   constructor(
     parentNode: HTMLElement,
     quiz: QuizType,
-    GameQuizConstructor: GameQuizConstructor,
+    GameQuizConstructor: GameQuizConstructor<QuizType>,
     sound: Sound,
   ) {
     this.rounds = quiz.rounds;
@@ -60,9 +61,9 @@ class GameRound<QuizType extends IRound = IRound> {
   }
 
   private quit() {
-    window.location.hash = '#';
     /**
      * @todo Back to games list.
+     * window.location.hash = window.location.hash.split('/').slice(0, -1).join('/');
      */
     this.view.remove();
     this.onQuit();

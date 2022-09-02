@@ -7,11 +7,26 @@ class GameRoundStartScreen extends NodeBuilder {
 
   public onQuizStart!: () => void;
 
+  public onQuit!: () => void;
+
   constructor(parentNode: HTMLElement, terms: IRound['terms']) {
     super({
       parentNode,
       className: 'quiz__quiz-start-screen',
     });
+
+    const header = new NodeBuilder({
+      parentNode: this.node,
+      tagName: 'header',
+      className: 'quiz-header',
+    }).node;
+
+    const backButton = new ButtonBuilder({
+      parentNode: header,
+      className: 'field__back-btn',
+      content: '←',
+    }).node;
+    backButton.onclick = () => this.onQuit();
 
     const termsContaner = new NodeBuilder({ parentNode: this.node, className: 'quiz-terms' }).node;
 
