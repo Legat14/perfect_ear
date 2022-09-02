@@ -22,7 +22,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"ascending",
+              "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -54,7 +54,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"descending",
+              "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -86,7 +86,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"harmonic",
+              "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -118,7 +118,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"ascending",
+              "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -150,7 +150,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"descending",
+              "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -182,7 +182,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"harmonic",
+              "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -214,7 +214,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"melodic",
+              "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -246,7 +246,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"ascending",
+              "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -278,7 +278,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"descending",
+              "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -310,7 +310,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"harmonic",
+              "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -342,7 +342,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"melodic",
+              "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -374,7 +374,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"melodic",
+              "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -406,7 +406,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"melodic",
+              "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
@@ -440,7 +440,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"ascending",
+              "direction":"восходящее",
               "score":150,
               "rounds":15,
               "bonus":60000,
@@ -482,7 +482,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"descending",
+              "direction":"нисходящее",
               "score":150,
               "rounds":15,
               "bonus":60000,
@@ -524,7 +524,7 @@
               "quizStartDescription":[
                 ""
               ],
-              "direction":"harmonic",
+              "direction":"гармоническое",
               "score":150,
               "rounds":15,
               "bonus":60000,

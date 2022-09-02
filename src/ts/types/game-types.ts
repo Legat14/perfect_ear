@@ -2,11 +2,11 @@ import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
 import { Pause } from './note-types';
 
 export enum SequenceDirection {
-  Ascending = 'ascending',
-  Descending = 'descending',
-  Harmonic = 'harmonic',
-  Melodic = 'melodic',
-  Any = 'any direction',
+  Ascending = 'восходящее',
+  Descending = 'нисходящее',
+  Harmonic = 'гармоническое',
+  Melodic = 'мелодическое',
+  Any = 'любое направление',
 }
 
 export enum Intervals {
