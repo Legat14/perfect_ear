@@ -7,6 +7,10 @@ import EarTrainingView from '../views/ear-training-page';
 import RhythmTrainingView from '../views/rhythm-training-page';
 import MainMenuView from '../views/main-menu';
 import UserSettingsView from '../views/user-settings';
+import IntervalComparisonView from '../views/games/interval/interval-comparison';
+import GameRoundsController from './game-cycle/game-rounds';
+import IntervalComparison from './games/interval/interval-comparison';
+import GamesLoader from './game-cycle/games-loader';
 // import TheoryPageView from '../views/theory-page';
 
 class ViewsController extends NodeBuilder {
@@ -36,6 +40,21 @@ class ViewsController extends NodeBuilder {
       ['/user-settings', userConfig.node],
       // ['/theory', theory.node],
     ]);
+
+    /**
+     * @todo Вынести это куда-то.
+     */
+    const gamesLoader = new GamesLoader('../../../data/rounds.json');
+    const intervalCompPage = new GameRoundsController();
+    intervalCompPage.load(
+      gamesLoader,
+      'intervals',
+      'interval-comparison',
+      IntervalComparison,
+      IntervalComparisonView,
+    ).then(() => {
+      this.router.add('/ear-training/interval-comparison', intervalCompPage.view.node);
+    });
   }
 
   init() {
