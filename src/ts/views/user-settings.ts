@@ -17,19 +17,19 @@ class UserSettingsView extends NodeBuilder {
 
   dayGoalExercisesHeader: NodeBuilder;
 
-  dayGoalExercisesInput: NodeBuilder;
+  dayGoalExercisesInput: NodeBuilder<HTMLInputElement>;
 
   dayGoalScoreDiv: NodeBuilder;
 
   dayGoalScoreHeader: NodeBuilder;
 
-  dayGoalScoreInput: NodeBuilder;
+  dayGoalScoreInput: NodeBuilder<HTMLInputElement>;
 
   dayGoalTimeDiv: NodeBuilder;
 
   dayGoalTimeHeader: NodeBuilder;
 
-  dayGoalTimeInput: NodeBuilder;
+  dayGoalTimeInput: NodeBuilder<HTMLInputElement>;
 
   dayGoalsInputs: IDayGoalsInputs;
 
@@ -81,7 +81,7 @@ class UserSettingsView extends NodeBuilder {
       content: 'Упражнений в день',
     });
 
-    this.dayGoalExercisesInput = new NodeBuilder({
+    this.dayGoalExercisesInput = new NodeBuilder<HTMLInputElement>({
       parentNode: this.dayGoalExercisesDiv.node,
       tagName: 'input',
       className: 'user-settings__stat-input',
@@ -106,7 +106,7 @@ class UserSettingsView extends NodeBuilder {
       content: 'Очков в день',
     });
 
-    this.dayGoalScoreInput = new NodeBuilder({
+    this.dayGoalScoreInput = new NodeBuilder<HTMLInputElement>({
       parentNode: this.dayGoalScoreDiv.node,
       tagName: 'input',
       className: 'user-settings__stat-input',
@@ -131,7 +131,7 @@ class UserSettingsView extends NodeBuilder {
       content: 'Минут в день',
     });
 
-    this.dayGoalTimeInput = new NodeBuilder({
+    this.dayGoalTimeInput = new NodeBuilder<HTMLInputElement>({
       parentNode: this.dayGoalTimeDiv.node,
       tagName: 'input',
       className: 'user-settings__stat-input',

@@ -33,7 +33,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__exercises-counter-title',
     });
 
-    const exercisesIndicator = new NodeBuilder({
+    const exercisesIndicator = new NodeBuilder<HTMLInputElement>({
       parentNode: exercisesCounter.node,
       tagName: 'progress',
       content: '0',
@@ -61,7 +61,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__score-counter-title',
     });
 
-    const scoreIndicator = new NodeBuilder({
+    const scoreIndicator = new NodeBuilder<HTMLInputElement>({
       parentNode: scoreCounter.node,
       tagName: 'progress',
       content: '0',
@@ -89,7 +89,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__time-counter-title',
     });
 
-    const timeIndicator = new NodeBuilder({
+    const timeIndicator = new NodeBuilder<HTMLInputElement>({
       parentNode: timeCounter.node,
       tagName: 'progress',
       content: '0',

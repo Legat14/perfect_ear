@@ -36,11 +36,11 @@ export interface IGameResult {
 
 export interface IUserDayStatisticCounters {
   exercisesCounter: HTMLElement,
-  exercisesIndicator: HTMLElement,
+  exercisesIndicator: HTMLInputElement,
   scoreCounter: HTMLElement,
-  scoreIndicator: HTMLElement,
+  scoreIndicator: HTMLInputElement,
   timeCounter: HTMLElement,
-  timeIndicator: HTMLElement,
+  timeIndicator: HTMLInputElement,
 }
 
 export interface IUserStatisticCounters {
@@ -54,9 +54,9 @@ export interface IUserStatisticCounters {
 }
 
 export interface IDayGoalsInputs {
-  dayGoalExercisesInput: HTMLElement,
-  dayGoalScoreInput: HTMLElement,
-  dayGoalTimeInput: HTMLElement,
+  dayGoalExercisesInput: HTMLInputElement,
+  dayGoalScoreInput: HTMLInputElement,
+  dayGoalTimeInput: HTMLInputElement,
 }
 
 export interface IDayGoals {
