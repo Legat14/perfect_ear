@@ -152,3 +152,17 @@ export interface IScaleRound extends IRound {
   answers: (keyof typeof Scales)[];
   terms: (keyof typeof Scales)[];
 }
+
+export interface IChordRound extends IRound {
+  game: IQuizGame;
+  quizId: string,
+  quizName: string,
+  quizStartDescription: string[];
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  score: number,
+  rounds: number,
+  bonus: number,
+  condition: string;
+  answers: (keyof typeof Chords)[];
+  terms: (keyof typeof Chords)[];
+}
