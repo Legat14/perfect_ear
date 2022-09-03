@@ -36,6 +36,15 @@ export const Scales = {
   эолийский: [0, 2, 3, 5, 7, 8, 10],
 };
 
+export const Chords = {
+  'мажорное трезвучие': [0, 4, 7],
+  'минорное трезвучие': [0, 3, 7],
+  'уменьшенное трезвучие': [0, 3, 6],
+  'увеличенное трезвучие': [0, 4, 8],
+  sus2: [0, 2, 7],
+  sus4: [0, 5, 7],
+};
+
 export type CategoryName = IGameCategory['categoryName'];
 export type CategoryId = IGameCategory['categoryId'];
 

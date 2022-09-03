@@ -950,6 +950,350 @@
           ]
         }
       }
+    },
+    "chords":{
+      "categoryId":"chords",
+      "categoryName":"Аккорды",
+      "games":{
+        "chord-identification":{
+          "gameId":"chord-identification",
+          "gameName":"Определение аккордов",
+          "quizes":[
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-0",
+              "quizName":"Большие и малые трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"восходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-1",
+              "quizName":"Большие и малые трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"нисходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-2",
+              "quizName":"Большие и малые трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"гармоническое",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-3",
+              "quizName":"Увеличенные и уменьшенные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"восходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ],
+              "terms":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-4",
+              "quizName":"Увеличенные и уменьшенные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"нисходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ],
+              "terms":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-5",
+              "quizName":"Увеличенные и уменьшенные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"гармоническое",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ],
+              "terms":[
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-6",
+              "quizName":"Sus2, sus4 трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"восходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "sus2",
+                "sus4"
+              ],
+              "terms":[
+                "sus2",
+                "sus4"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-7",
+              "quizName":"Sus2, sus4 трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"нисходящее",
+              "score":150,
+              "rounds":10,
+              "bonus":60000,
+              "condition":"",
+              "answers":[
+                "sus2",
+                "sus4"
+              ],
+              "terms":[
+                "sus2",
+                "sus4"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-8",
+              "quizName":"Все пройденные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"восходящее",
+              "score":150,
+              "rounds":15,
+              "bonus":120000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-9",
+              "quizName":"Все пройденные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"нисходящее",
+              "score":150,
+              "rounds":15,
+              "bonus":120000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ]
+            },
+            {
+              "game":{
+                "category":{
+                  "categoryId":"chords",
+                  "categoryName":"Аккорды"
+                },
+                "gameId":"chord-identification",
+                "gameName":"Определение аккордов"
+              },
+              "quizId":"chords-ident-10",
+              "quizName":"Все пройденные трезвучия",
+              "quizStartDescription":[
+                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+              ],
+              "direction":"гармоническое",
+              "score":150,
+              "rounds":15,
+              "bonus":120000,
+              "condition":"",
+              "answers":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ],
+              "terms":[
+                "мажорное трезвучие",
+                "минорное трезвучие",
+                "уменьшенное трезвучие",
+                "увеличенное трезвучие",
+                "sus2",
+                "sus4"
+              ]
+            }
+          ]
+        }
+      }
     }
   }
 }
