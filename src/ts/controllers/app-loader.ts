@@ -45,7 +45,7 @@ class AppLoader {
     }
 
     const resetBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
-    resetBtn.addEventListener('click', (): void => {
+    resetBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.userDayStatisticHandler.refrashCounters();
       this.userStatisticHandler.refrashCounters();
