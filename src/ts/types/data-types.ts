@@ -36,8 +36,11 @@ export interface IGameResult {
 
 export interface IUserDayStatisticCounters {
   exercisesCounter: HTMLElement,
+  exercisesIndicator: HTMLElement,
   scoreCounter: HTMLElement,
+  scoreIndicator: HTMLElement,
   timeCounter: HTMLElement,
+  timeIndicator: HTMLElement,
 }
 
 export interface IUserStatisticCounters {

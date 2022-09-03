@@ -33,7 +33,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__exercises-counter-title',
     });
 
-    const exercisesCounterIndicator = new NodeBuilder({
+    const exercisesIndicator = new NodeBuilder({
       parentNode: exercisesCounter.node,
       tagName: 'progress',
       content: '0',
@@ -61,7 +61,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__score-counter-title',
     });
 
-    const scoreCounterIndicator = new NodeBuilder({
+    const scoreIndicator = new NodeBuilder({
       parentNode: scoreCounter.node,
       tagName: 'progress',
       content: '0',
@@ -89,7 +89,7 @@ class UserDayStatisticView extends NodeBuilder {
       className: 'user-day-statistic__time-counter-title',
     });
 
-    const timeCounterIndicator = new NodeBuilder({
+    const timeIndicator = new NodeBuilder({
       parentNode: timeCounter.node,
       tagName: 'progress',
       content: '0',
@@ -106,18 +106,18 @@ class UserDayStatisticView extends NodeBuilder {
 
     this.userDayStatisticCounters = {
       exercisesCounter: exercisesCounterNumber.node,
+      exercisesIndicator: exercisesIndicator.node,
       scoreCounter: scoreCounterNumber.node,
+      scoreIndicator: scoreIndicator.node,
       timeCounter: timeCounterNumber.node,
+      timeIndicator: timeIndicator.node,
     };
 
     console.log(userDayStatisticTitle);
-    console.log(exercisesCounterIndicator);
     console.log(exercisesCounterNumber);
     console.log(exercisesCounterTitle);
-    console.log(scoreCounterIndicator);
     console.log(scoreCounterNumber);
     console.log(scoreCounterTitle);
-    console.log(timeCounterIndicator);
     console.log(timeCounterNumber);
     console.log(timeCounterTitle);
     console.log(this.userDayStatisticCounters);
