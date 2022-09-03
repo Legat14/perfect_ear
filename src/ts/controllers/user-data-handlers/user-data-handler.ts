@@ -1,36 +1,63 @@
+import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
-import { IDate, IGameResult, IUserProfileType } from '../../types/data-types';
+import {
+  IDate,
+  IDayGoals,
+  IGameResult,
+  IUserProfileType,
+} from '../../types/data-types';
 
 class UserDataHandler {
   userProfile: UserProfile;
 
+  userConfig: UserConfig;
+
   constructor() { // TODO: после добавления сервера,
     // добавить метод получения данных и получать данные
     // в зависимости от него
-    const guestUserData = this.getDataFromLocalStorage();
-    if (guestUserData) {
+    const guestUserProfile = this.getProfileDataFromLocalStorage();
+    if (guestUserProfile) {
       this.userProfile = new UserProfile({
-        dayScore: guestUserData.dayScore,
-        dayTime: guestUserData.dayTime,
-        dayExercises: guestUserData.dayExercises,
-        profileDate: guestUserData.profileDate,
-        totalScore: guestUserData.totalScore,
-        totalTime: guestUserData.totalTime,
-        totalExercises: guestUserData.totalExercises,
-        intervalGameScore: guestUserData.intervalGameScore,
-        exercisesResult: guestUserData.exercisesResult,
+        dayScore: guestUserProfile.dayScore,
+        dayTime: guestUserProfile.dayTime,
+        dayTimeHR: guestUserProfile.dayTimeHR,
+        dayExercises: guestUserProfile.dayExercises,
+        profileDate: guestUserProfile.profileDate,
+        totalScore: guestUserProfile.totalScore,
+        totalTime: guestUserProfile.totalTime,
+        totalTimeHR: guestUserProfile.totalTimeHR,
+        totalExercises: guestUserProfile.totalExercises,
+        intervalGameScore: guestUserProfile.intervalGameScore,
+        exercisesResult: guestUserProfile.exercisesResult,
       });
     } else {
       this.userProfile = new UserProfile({
         dayScore: 0,
         dayTime: 0,
+        dayTimeHR: '0 мин 0.0 сек.',
         dayExercises: 0,
         profileDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
+        totalTimeHR: '0 мин 0.0 сек.',
         totalExercises: 0,
         intervalGameScore: 0,
         exercisesResult: [],
+      });
+    }
+
+    const guestUserConfig = this.getConfigDataFromLocalStorage();
+    if (guestUserConfig) {
+      this.userConfig = new UserConfig({
+        dayExercisesGoal: guestUserConfig.dayExercisesGoal,
+        dayScoreGoal: guestUserConfig.dayScoreGoal,
+        dayTimeGoal: guestUserConfig.dayTimeGoal,
+      });
+    } else {
+      this.userConfig = new UserConfig({
+        dayExercisesGoal: 10,
+        dayScoreGoal: 25000,
+        dayTimeGoal: 30,
       });
     }
     this.addPageCloseEvent();
@@ -38,33 +65,56 @@ class UserDataHandler {
     this.setDayCheckInterval();
   }
 
-  private getDataFromLocalStorage(): IUserProfileType {
-    const guestUserDataJSON = localStorage.getItem('guestUserData');
-    let guestUserData;
-    if (guestUserDataJSON) {
-      guestUserData = JSON.parse(guestUserDataJSON);
+  private getProfileDataFromLocalStorage(): IUserProfileType {
+    const guestUserProfileJSON = localStorage.getItem('guestUserProfile');
+    let guestUserProfile;
+    if (guestUserProfileJSON) {
+      guestUserProfile = JSON.parse(guestUserProfileJSON);
     }
-    return guestUserData;
+    return guestUserProfile;
   }
 
-  private saveDataToLocalStorage(): void {
-    const guestUserData: IUserProfileType = {
+  private getConfigDataFromLocalStorage(): IDayGoals {
+    const guestUserConfigJSON = localStorage.getItem('guestUserConfig');
+    let guestUserConfig;
+    if (guestUserConfigJSON) {
+      guestUserConfig = JSON.parse(guestUserConfigJSON);
+    }
+    return guestUserConfig;
+  }
+
+  private saveProfileDataToLocalStorage(): void {
+    const guestUserProfile: IUserProfileType = {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
+      dayTimeHR: this.userProfile.getDayTimeHR(),
       dayExercises: this.userProfile.getDayExercises(),
       profileDate: this.userProfile.getProfileDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
+      totalTimeHR: this.userProfile.getTotalTimeHR(),
       totalExercises: this.userProfile.getTotalExercises(),
       intervalGameScore: this.userProfile.getIntervalGameScore(),
       exercisesResult: this.userProfile.getExercisesResult(),
     };
-    localStorage.setItem('guestUserData', JSON.stringify(guestUserData));
+    localStorage.setItem('guestUserProfile', JSON.stringify(guestUserProfile));
+  }
+
+  public saveConfigDataToLocalStorage(): void {
+    const guestUserConfig: IDayGoals = { // TODO: При появлении конфигураций
+      // других категорий, заменить тип на более общий тип Config,
+      // включающий и IDayGoals
+      dayExercisesGoal: this.userConfig.getDayExercisesGoal(),
+      dayScoreGoal: this.userConfig.getDayScoreGoal(),
+      dayTimeGoal: this.userConfig.getDayTimeGoal(),
+    };
+    localStorage.setItem('guestUserConfig', JSON.stringify(guestUserConfig));
   }
 
   private addPageCloseEvent(): void {
     window.addEventListener('beforeunload', (): void => {
-      this.saveDataToLocalStorage();
+      this.saveProfileDataToLocalStorage();
+      this.saveConfigDataToLocalStorage();
     });
   }
 
@@ -154,7 +204,7 @@ export default UserDataHandler;
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
 //     appLoader.userDayStatisticHandler.refrashCounters();
-//     appLoader.userStatisticHandler.refrashCounters();
+//     appLoader.userStatisticHandler.refreshCounters();
 //   }, 2000);
 // };
 

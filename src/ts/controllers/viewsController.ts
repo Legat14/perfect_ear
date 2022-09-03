@@ -25,6 +25,8 @@ class ViewsController extends NodeBuilder {
 
   userStats: UserStatsView;
 
+  userSettings: UserSettingsView;
+
   header: HeaderView | undefined;
 
   footer: FooterView | undefined;
@@ -39,7 +41,7 @@ class ViewsController extends NodeBuilder {
     const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView();
     this.userStats = new UserStatsView();
-    const userSettings = new UserSettingsView();
+    this.userSettings = new UserSettingsView();
     // const theory = new TheoryPageView();
 
     this.router = new Router(this.node, [
@@ -48,7 +50,7 @@ class ViewsController extends NodeBuilder {
       ['/rhythm-training', rhythmTraining.node],
       ['/fortepiano', fortepiano.node],
       ['/user-stats', this.userStats.node],
-      ['/user-settings', userSettings.node],
+      ['/user-settings', this.userSettings.node],
       // ['/theory', theory.node],
     ]);
 

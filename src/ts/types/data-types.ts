@@ -6,10 +6,12 @@ export interface IDate {
 export interface IUserProfileType {
   dayScore: number,
   dayTime: number,
+  dayTimeHR: string,
   dayExercises: number,
   profileDate: IDate,
   totalScore: number,
   totalTime: number,
+  totalTimeHR: string,
   totalExercises: number,
   intervalGameScore: number,
   exercisesResult: Array<IExerciseResult>,
@@ -34,8 +36,11 @@ export interface IGameResult {
 
 export interface IUserDayStatisticCounters {
   exercisesCounter: HTMLElement,
+  exercisesIndicator: HTMLInputElement,
   scoreCounter: HTMLElement,
+  scoreIndicator: HTMLInputElement,
   timeCounter: HTMLElement,
+  timeIndicator: HTMLInputElement,
 }
 
 export interface IUserStatisticCounters {
@@ -46,4 +51,16 @@ export interface IUserStatisticCounters {
   totalScoreCounter: HTMLElement,
   totalTimeCounter: HTMLElement,
   totalIntervalGameScoreCount: HTMLElement,
+}
+
+export interface IDayGoalsInputs {
+  dayGoalExercisesInput: HTMLInputElement,
+  dayGoalScoreInput: HTMLInputElement,
+  dayGoalTimeInput: HTMLInputElement,
+}
+
+export interface IDayGoals {
+  dayExercisesGoal: number,
+  dayScoreGoal: number,
+  dayTimeGoal: number,
 }
