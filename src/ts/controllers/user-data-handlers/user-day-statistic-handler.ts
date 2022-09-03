@@ -24,8 +24,6 @@ class UserDayStatisticHandler {
     this.exercisesIndicator = userDayStatisticCounters.exercisesIndicator;
     this.scoreIndicator = userDayStatisticCounters.scoreIndicator;
     this.timeIndicator = userDayStatisticCounters.timeIndicator;
-    this.refrashCounters();
-    this.addRefreshEvent();
   }
 
   private refreshExercisesCounter() {
@@ -40,38 +38,36 @@ class UserDayStatisticHandler {
     this.timeCounter.innerHTML = this.userProfile.getDayTimeHR();
   }
 
-  private refreshExercisesIndicator() {
-    const dayGoal = 50; // TODO: Заменить хардкод на получение целей из настроек пользователя
+  private refreshExercisesIndicator(dayGoal: number): void {
     const complete = this.userProfile.getDayExercises();
     const completePercentage = (complete / dayGoal) * 100;
     this.exercisesIndicator.setAttribute('value', completePercentage.toString());
   }
 
-  private refreshScoreIndicator() {
-    const dayGoal = 50000; // TODO: Заменить хардкод на получение целей из настроек пользователя
+  private refreshScoreIndicator(dayGoal: number): void {
     const complete = this.userProfile.getDayScore();
     const completePercentage = (complete / dayGoal) * 100;
     this.scoreIndicator.setAttribute('value', completePercentage.toString());
   }
 
-  private refreshTimeIndicator() {
-    const dayGoal = 500000; // TODO: Заменить хардкод на получение целей из настроек пользователя
+  private refreshTimeIndicator(dayGoal: number): void {
     const complete = this.userProfile.getDayTime();
-    const completePercentage = (complete / dayGoal) * 100;
+    const millisecsInMinute = 60000;
+    const completePercentage = (complete / (dayGoal * millisecsInMinute)) * 100;
     this.timeIndicator.setAttribute('value', completePercentage.toString());
   }
 
-  public refrashCounters() {
+  public refreshCounters(
+    exercisesDayGoal: number,
+    scoreDayGoal: number,
+    timeDayGoal: number,
+  ) {
     this.refreshExercisesCounter();
-    this.refreshExercisesIndicator();
+    this.refreshExercisesIndicator(exercisesDayGoal);
     this.refreshScoreCounter();
-    this.refreshScoreIndicator();
+    this.refreshScoreIndicator(scoreDayGoal);
     this.refreshTimeCounter();
-    this.refreshTimeIndicator();
-  }
-
-  addRefreshEvent() {
-    document.addEventListener('ongameend', () => this.refrashCounters());
+    this.refreshTimeIndicator(timeDayGoal);
   }
 }
 

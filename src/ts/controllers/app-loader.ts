@@ -57,20 +57,44 @@ class AppLoader {
     const resetBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
     resetBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
-      this.userDayStatisticHandler.refrashCounters();
+      this.userDayStatisticHandler.refreshCounters(
+        this.userDataHandler.userConfig.getDayExercisesGoal(),
+        this.userDataHandler.userConfig.getDayScoreGoal(),
+        this.userDataHandler.userConfig.getDayTimeGoal(),
+      );
       this.userStatisticHandler.refreshCounters();
     });
 
     const saveDayGoalBtn = this.view.viewsController.userSettings.saveDayGoalsBtn.node;
     saveDayGoalBtn.addEventListener('click', (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
-      // TODO: Добавить fefresh при возвращении на главный экран
+      // TODO: Добавить refresh при возвращении на главный экран
       this.userDataHandler.saveConfigDataToLocalStorage();
+      this.userDayStatisticHandler.refreshCounters(
+        this.userDataHandler.userConfig.getDayExercisesGoal(),
+        this.userDataHandler.userConfig.getDayScoreGoal(),
+        this.userDataHandler.userConfig.getDayTimeGoal(),
+      );
     });
+
+    this.userDayStatisticHandler.refreshCounters(
+      this.userDataHandler.userConfig.getDayExercisesGoal(),
+      this.userDataHandler.userConfig.getDayScoreGoal(),
+      this.userDataHandler.userConfig.getDayTimeGoal(),
+    );
+    this.addRefreshEvent();
   }
 
   private init() {
     this.view.viewsController.init();
+  }
+
+  private addRefreshEvent() {
+    document.addEventListener('ongameend', () => this.userDayStatisticHandler.refreshCounters(
+      this.userDataHandler.userConfig.getDayExercisesGoal(),
+      this.userDataHandler.userConfig.getDayScoreGoal(),
+      this.userDataHandler.userConfig.getDayTimeGoal(),
+    ));
   }
 }
 
