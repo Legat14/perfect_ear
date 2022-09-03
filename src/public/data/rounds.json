@@ -583,7 +583,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -597,7 +597,7 @@
               "direction":"восходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "натуральный минор",
@@ -611,7 +611,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -625,7 +625,7 @@
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "натуральный минор",
@@ -639,7 +639,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -653,7 +653,7 @@
               "direction":"восходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "лидийский",
@@ -668,7 +668,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -682,7 +682,7 @@
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "натуральный мажор",
@@ -698,7 +698,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -712,7 +712,7 @@
               "direction":"восходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "натуральный минор",
@@ -730,39 +730,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
-                  "categoryName":"Гаммы"
-                },
-                "gameId":"scale-identification",
-                "gameName":"Определение ладов"
-              },
-              "quizId":"scales-ident-4",
-              "quizName":"Минорные гаммы",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
-              "direction":"восходящее",
-              "score":150,
-              "rounds":10,
-              "bonus":60000,
-              "condition":"",
-              "answers":[
-                "натуральный минор",
-                "дорийский",
-                "гармонический минор",
-                "мелодический минор"
-              ],
-              "terms":[
-                "натуральный минор",
-                "дорийский",
-                "гармонический минор",
-                "мелодический минор"
-              ]
-            },
-            {
-              "game":{
-                "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -776,7 +744,7 @@
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "натуральный минор",
@@ -794,7 +762,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -808,7 +776,7 @@
               "direction":"восходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "фригийский",
@@ -822,7 +790,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -836,7 +804,7 @@
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "фригийский",
@@ -850,7 +818,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -864,7 +832,7 @@
               "direction":"восходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "мажорная пентатоника",
@@ -878,7 +846,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -892,7 +860,7 @@
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
-              "bonus":60000,
+              "bonus":120000,
               "condition":"",
               "answers":[
                 "мажорная пентатоника",
@@ -906,7 +874,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
@@ -944,7 +912,7 @@
             {
               "game":{
                 "category":{
-                  "categoryId":"intervals",
+                  "categoryId":"scales",
                   "categoryName":"Гаммы"
                 },
                 "gameId":"scale-identification",
