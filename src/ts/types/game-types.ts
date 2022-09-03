@@ -20,6 +20,22 @@ export enum Intervals {
   'чистая квинта',
 }
 
+export const Scales = {
+  'натуральный минор': [0, 2, 3, 5, 7, 8, 10],
+  'гармонический минор': [0, 2, 3, 5, 7, 8, 11],
+  'мелодический минор': [0, 2, 3, 5, 7, 9, 11],
+  'натуральный мажор': [0, 2, 4, 5, 7, 9, 11],
+  дорийский: [0, 2, 3, 5, 7, 9, 10],
+  лидийский: [0, 2, 4, 6, 7, 9, 11],
+  миксолидийский: [0, 2, 4, 5, 7, 9, 10],
+  фригийский: [0, 1, 3, 5, 7, 8, 10],
+  локрийский: [0, 1, 3, 5, 6, 8, 10],
+  'мажорная пентатоника': [0, 2, 4, 7, 9],
+  'минорная пентатоника': [0, 3, 5, 7, 10],
+  ионийский: [0, 2, 4, 5, 7, 9, 11],
+  эолийский: [0, 2, 3, 5, 7, 8, 10],
+};
+
 export type CategoryName = IGameCategory['categoryName'];
 export type CategoryId = IGameCategory['categoryId'];
 
@@ -112,4 +128,18 @@ export interface IIntervalRound extends IRound {
   answers: readonly string[];
   terms: readonly string[];
   intervals: Extract<Intervals, number>[];
+}
+
+export interface IScaleRound extends IRound {
+  game: IQuizGame;
+  quizId: string,
+  quizName: string,
+  quizStartDescription: string[];
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  score: number,
+  rounds: number,
+  bonus: number,
+  condition: string;
+  answers: (keyof typeof Scales)[];
+  terms: (keyof typeof Scales)[];
 }
