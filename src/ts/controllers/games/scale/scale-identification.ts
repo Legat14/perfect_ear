@@ -17,7 +17,7 @@ import {
 import AbstractGameQuiz from '../../game-cycle/abstract-game-quiz';
 import Random from '../../../helpers/generator';
 
-class ScaleIdentification extends AbstractGameQuiz {
+class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
   constructor(quiz: IScaleRound, round: number, sound: Sound) {
     super(quiz, round, sound);
     this.generateQuestion(quiz);

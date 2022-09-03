@@ -39,8 +39,8 @@ export const Scales = {
 export type CategoryName = IGameCategory['categoryName'];
 export type CategoryId = IGameCategory['categoryId'];
 
-export interface IGamesData {
-  categories: Record<CategoryId, IGameCategory>
+export interface IGamesData<QuizType extends IRound = IRound> {
+  categories: Record<CategoryId, IGameCategory<QuizType>>
 }
 
 /**
@@ -54,10 +54,10 @@ export interface IGamesData {
 export type GameName = IQuizGame['gameName'];
 export type GameId = IQuizGame['gameId'];
 
-export interface IGameCategory<T = RoundType > {
+export interface IGameCategory<QuizType extends IRound = IRound> {
   categoryId: string;
   categoryName: string;
-  games?: Record<GameId, IQuizGame<T>>
+  games?: Record<GameId, IQuizGame<QuizType>>
 }
 
 /**
@@ -69,11 +69,11 @@ export interface IGameCategory<T = RoundType > {
  *   quizes: [],
  * };
  */
-export interface IQuizGame<T = RoundType > {
-  category?: IGameCategory<T>;
+export interface IQuizGame<QuizType extends IRound = IRound> {
+  category?: IGameCategory<QuizType>;
   gameId: string;
   gameName: string;
-  quizes?: T[];
+  quizes?: QuizType[];
 }
 
 /**
@@ -92,7 +92,7 @@ export interface IQuizGame<T = RoundType > {
  *   terms: ['minor second', 'major second'],
  * };
  */
-export type RoundType = IRound & IIntervalRound;
+export type RoundType = IIntervalRound | IScaleRound;
 
 export type QuizId = IRound['quizId'];
 export interface IRound {
