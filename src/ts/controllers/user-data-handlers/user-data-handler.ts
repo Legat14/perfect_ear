@@ -100,7 +100,7 @@ class UserDataHandler {
     localStorage.setItem('guestUserProfile', JSON.stringify(guestUserProfile));
   }
 
-  private saveConfigDataToLocalStorage(): void {
+  public saveConfigDataToLocalStorage(): void {
     const guestUserConfig: IDayGoals = { // TODO: При появлении конфигураций
       // других категорий, заменить тип на более общий тип Config,
       // включающий и IDayGoals
@@ -204,7 +204,7 @@ export default UserDataHandler;
 //     console.log('Timer is stoped');
 //     gameIndicators.finishGame();
 //     appLoader.userDayStatisticHandler.refrashCounters();
-//     appLoader.userStatisticHandler.refrashCounters();
+//     appLoader.userStatisticHandler.refreshCounters();
 //   }, 2000);
 // };
 

@@ -27,7 +27,7 @@ class UserStatisticHandler {
     this.totalScoreCounter = userDayStatisticCounters.totalScoreCounter;
     this.totalTimeCounter = userDayStatisticCounters.totalTimeCounter;
     this.totalIntervalGameScoreCount = userDayStatisticCounters.totalIntervalGameScoreCount;
-    this.refrashCounters();
+    this.refreshCounters();
     this.addRefreshEvent();
   }
 
@@ -59,7 +59,7 @@ class UserStatisticHandler {
     this.totalIntervalGameScoreCount.innerHTML = this.userProfile.getIntervalGameScore().toString();
   }
 
-  public refrashCounters() {
+  public refreshCounters() {
     this.refreshDayExercisesCounter();
     this.refreshDayScoreCounter();
     this.refreshDayTimeCounter();
@@ -70,7 +70,7 @@ class UserStatisticHandler {
   }
 
   addRefreshEvent() {
-    document.addEventListener('ongameend', () => this.refrashCounters());
+    document.addEventListener('ongameend', () => this.refreshCounters());
   }
 }
 

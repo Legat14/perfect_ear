@@ -1,6 +1,7 @@
 import MainPageCreator from '../views/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
+import UserConfigHandler from './user-data-handlers/user-config-handler';
 import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
 import UserStatisticHandler from './user-data-handlers/user-statistic-handler';
@@ -9,6 +10,8 @@ class AppLoader {
   private userDataHandler: UserDataHandler;
 
   public userStatisticHandler!: UserStatisticHandler;
+
+  public userConfigHandler!: UserConfigHandler;
 
   public userDayStatisticHandler!: UserDayStatisticHandler;
 
@@ -26,6 +29,13 @@ class AppLoader {
     this.userStatisticHandler = new UserStatisticHandler(
       this.userDataHandler.userProfile,
       userStats.statisticCounters,
+    );
+
+    const { userSettings } = this.view.viewsController;
+
+    this.userConfigHandler = new UserConfigHandler(
+      this.userDataHandler.userConfig,
+      userSettings.dayGoalsInputs,
     );
 
     const { mainMenu } = this.view.viewsController;
@@ -48,7 +58,14 @@ class AppLoader {
     resetBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.userDayStatisticHandler.refrashCounters();
-      this.userStatisticHandler.refrashCounters();
+      this.userStatisticHandler.refreshCounters();
+    });
+
+    const saveDayGoalBtn = this.view.viewsController.userSettings.saveDayGoalsBtn.node;
+    saveDayGoalBtn.addEventListener('click', (): void => {
+      this.userConfigHandler.saveDayGoalInputsValues();
+      // TODO: Добавить fefresh при возвращении на главный экран
+      this.userDataHandler.saveConfigDataToLocalStorage();
     });
   }
 

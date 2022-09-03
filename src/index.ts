@@ -19,7 +19,7 @@ const stopGame = (): void => {
     console.log('Timer is stoped');
     gameIndicators.finishGame();
     appLoader.userDayStatisticHandler.refrashCounters();
-    appLoader.userStatisticHandler.refrashCounters();
+    appLoader.userStatisticHandler.refreshCounters();
   }, 2000);
 };
 

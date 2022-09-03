@@ -36,6 +36,10 @@ class UserConfig {
   public setDayScoreGoal(value: number): void {
     this.dayScoreGoal = value;
   }
+
+  public setDayTimeGoal(value: number): void {
+    this.dayTimeGoal = value;
+  }
 }
 
 export default UserConfig;
