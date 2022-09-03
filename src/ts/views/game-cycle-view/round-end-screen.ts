@@ -19,6 +19,7 @@ class GameRoundEndScreen extends NodeBuilder {
       finesScore,
       rightAnswersCountToRoundCount,
       averageTimeHR,
+      gameTimeHR,
     }: IGameResult,
     nextGame?: IRound['quizName'],
   ) {
@@ -35,6 +36,9 @@ class GameRoundEndScreen extends NodeBuilder {
                 </p>
                 <p class="indicators__indicator-title indicators__indicator-title_labeled">Среднее время ответа
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${averageTimeHR}</span>
+                </p>
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">Время выполнения задания
+                  <span class="indicators__indicator-score indicators__indicator-score_labeled">${gameTimeHR}</span>
                 </p>
                 `,
     });

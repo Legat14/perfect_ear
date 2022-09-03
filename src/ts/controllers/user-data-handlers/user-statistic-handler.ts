@@ -27,7 +27,7 @@ class UserStatisticHandler {
     this.totalScoreCounter = userDayStatisticCounters.totalScoreCounter;
     this.totalTimeCounter = userDayStatisticCounters.totalTimeCounter;
     this.totalIntervalGameScoreCount = userDayStatisticCounters.totalIntervalGameScoreCount;
-    this.refrashCounters();
+    this.refreshCounters();
     this.addRefreshEvent();
   }
 
@@ -40,37 +40,37 @@ class UserStatisticHandler {
   }
 
   private refreshDayTimeCounter() {
-    this.dayTimeCounter.innerHTML = this.userProfile.getDayTime().toString();
+    this.dayTimeCounter.innerHTML = this.userProfile.getDayTimeHR();
   }
 
   private refreshTotalExercisesCounter() {
     this.totalExercisesCounter.innerHTML = this.userProfile.getTotalExercises().toString();
   }
 
-  private refreshtoTalScoreCounter() {
+  private refreshTotalScoreCounter() {
     this.totalScoreCounter.innerHTML = this.userProfile.getTotalScore().toString();
   }
 
   private refreshTotalTimeCounter() {
-    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTime().toString();
+    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTimeHR();
   }
 
   private refreshTotalIntervalGameScoreCount() {
     this.totalIntervalGameScoreCount.innerHTML = this.userProfile.getIntervalGameScore().toString();
   }
 
-  public refrashCounters() {
+  public refreshCounters() {
     this.refreshDayExercisesCounter();
     this.refreshDayScoreCounter();
     this.refreshDayTimeCounter();
     this.refreshTotalExercisesCounter();
-    this.refreshtoTalScoreCounter();
+    this.refreshTotalScoreCounter();
     this.refreshTotalTimeCounter();
     this.refreshTotalIntervalGameScoreCount();
   }
 
   addRefreshEvent() {
-    document.addEventListener('ongameend', () => this.refrashCounters());
+    document.addEventListener('ongameend', () => this.refreshCounters());
   }
 }
 

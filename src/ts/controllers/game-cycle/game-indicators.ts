@@ -32,6 +32,7 @@
 // gameIndicators.increaseFinesCounter();
 // gameIndicators.increaseFinesCounter();
 
+import HumanReadableData from '../../helpers/human-readable-data';
 import { IGameResult } from '../../types/data-types';
 
 class GameIndicators {
@@ -67,22 +68,27 @@ class GameIndicators {
 
   private bonusTime: number;
 
-  constructor({
-    gameName,
-    scoreForRightAnswer,
-    roundsCount,
-    bonusTime,
-  }: {
-    gameName: string,
-    scoreForRightAnswer: number,
-    roundsCount: number,
-    bonusTime: number,
-  }) {
+  private conversionHelper: HumanReadableData;
+
+  constructor(
+    {
+      gameName,
+      scoreForRightAnswer,
+      roundsCount,
+      bonusTime,
+    }: {
+      gameName: string,
+      scoreForRightAnswer: number,
+      roundsCount: number,
+      bonusTime: number,
+    },
+  ) {
     this.gameName = gameName;
     this.scoreForRightAnswer = scoreForRightAnswer;
     this.roundsCount = roundsCount;
     this.bonusTime = bonusTime;
     this.startTimer();
+    this.conversionHelper = new HumanReadableData();
   }
 
   increaseRightAnswersCounter(): void {
@@ -103,19 +109,6 @@ class GameIndicators {
 
   private calculateTime(): void {
     this.gameTime = this.stopTime - this.startTime;
-  }
-
-  private getTimeHumanReadableStr(time: number): string {
-    const millisecsInSec = 1000;
-    const secsInMinute = 60;
-    const minutes = (time - (time % (millisecsInSec * secsInMinute)))
-    / (millisecsInSec * secsInMinute);
-    const timeWithoutMinutes = time - (minutes * millisecsInSec * secsInMinute);
-    const secounds = (timeWithoutMinutes - (timeWithoutMinutes % millisecsInSec)) / millisecsInSec;
-    const millisecouds = timeWithoutMinutes - (secounds * millisecsInSec);
-    const millisecsStr = (`000${millisecouds}`).slice(-3);
-    const timeString = `${minutes} мин. ${secounds}.${millisecsStr} сек.`;
-    return timeString;
   }
 
   private calculateAverageTime(): void {
@@ -155,8 +148,8 @@ class GameIndicators {
 
   private getResults(): IGameResult {
     const rightAnswersCountToRoundCount = `${this.rightAnswersCount} / ${this.roundsCount}`;
-    const gameTimeHR = this.getTimeHumanReadableStr(this.gameTime);
-    const averageTimeHR = this.getTimeHumanReadableStr(this.averageTime);
+    const gameTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.gameTime);
+    const averageTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.averageTime);
     const result = {
       gameName: this.gameName,
       gameScore: this.gameScore,
