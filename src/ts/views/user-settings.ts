@@ -6,6 +6,8 @@ class UserSettingsView extends NodeBuilder {
 
   userSettingsHeader: NodeBuilder;
 
+  resetStatsBtn: ButtonBuilder;
+
   constructor() {
     super({ parentNode: null, className: 'user-settings' });
 
@@ -24,6 +26,12 @@ class UserSettingsView extends NodeBuilder {
       tagName: 'h2',
       content: 'Настройки',
       className: 'user-settings__header',
+    });
+
+    this.resetStatsBtn = new ButtonBuilder({
+      parentNode: this.node,
+      className: 'field__reset-stats-btn',
+      content: 'Сбросить статистику',
     });
   }
 }

@@ -18,11 +18,8 @@ class AppLoader {
 
   constructor() {
     this.view = new MainPageCreator();
-
     this.guestEnterHandler = new GuestEnterHandler();
     this.userDataHandler = new UserDataHandler();
-    // расскоментировать для обнуления профиля в LocalStorage
-    // this.userDataHandler.clearUserProfileData();
 
     const { userStats } = this.view.viewsController;
 
@@ -46,6 +43,13 @@ class AppLoader {
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
     }
+
+    const resetBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
+    resetBtn.addEventListener('click', (): void => {
+      this.userDataHandler.clearUserProfileData();
+      this.userDayStatisticHandler.refrashCounters();
+      this.userStatisticHandler.refrashCounters();
+    });
   }
 
   private init() {
