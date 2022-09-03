@@ -1,6 +1,6 @@
 import Sound from '../../../controllers/sound';
 import GameRound from '../../../controllers/game-cycle/game-round';
-import ChordIdentification from '../../../controllers/games/chord/chord-identification1';
+import ChordIdentification from '../../../controllers/games/chord/chord-identification';
 import { IChordRound } from '../../../types/game-types';
 import AbstractGameView from '../abstract-game-view';
 

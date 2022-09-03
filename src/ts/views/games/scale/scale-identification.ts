@@ -4,7 +4,7 @@ import ScaleIdentification from '../../../controllers/games/scale/scale-identifi
 import { IScaleRound } from '../../../types/game-types';
 import AbstractGameView from '../abstract-game-view';
 
-class ScaleIndetificationView extends AbstractGameView<IScaleRound> {
+class ScaleIdentificationView extends AbstractGameView<IScaleRound> {
   public game!: GameRound<IScaleRound>;
 
   public onQuit!: () => void;
@@ -16,4 +16,4 @@ class ScaleIndetificationView extends AbstractGameView<IScaleRound> {
   }
 }
 
-export default ScaleIndetificationView;
+export default ScaleIdentificationView;
