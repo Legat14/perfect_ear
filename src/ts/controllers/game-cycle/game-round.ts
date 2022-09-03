@@ -1,7 +1,6 @@
 import { IGameResult } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
-import appLoader from '../app-loader';
 import Sound from '../sound';
 import AbstractGameQuiz from './abstract-game-quiz';
 import GameIndicators from './game-indicators';
@@ -100,11 +99,7 @@ class GameRound<QuizType extends IRound = IRound> {
       this.createNewQuestion(rounds - 1, question);
     };
 
-    quiz.onFinish = () => {
-      this.gameIndicators.finishGame();
-      appLoader.userDayStatisticHandler.refrashCounters();
-      appLoader.userStatisticHandler.refrashCounters();
-    }
+    quiz.onFinish = () => this.gameIndicators.finishGame();
   }
 
   public finishGameCycle(result: IGameResult) {
