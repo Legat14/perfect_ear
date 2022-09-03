@@ -28,7 +28,7 @@ class UserDayStatisticHandler {
   }
 
   private refreshTimeCounter() {
-    this.timeCounter.innerHTML = this.userProfile.getDayTime().toString();
+    this.timeCounter.innerHTML = this.userProfile.getDayTimeHR();
   }
 
   public refrashCounters() {

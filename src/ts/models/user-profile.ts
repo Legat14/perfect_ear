@@ -1,9 +1,14 @@
+import HumanReadableData from '../helpers/human-readable-data';
 import { IDate, IExerciseResult, IUserProfileType } from '../types/data-types';
 
 class UserProfile {
+  private conversionHelper: HumanReadableData;
+
   private dayScore: number;
 
   private dayTime: number;
+
+  private dayTimeHR: string;
 
   private dayExercises: number;
 
@@ -12,6 +17,8 @@ class UserProfile {
   private totalScore: number;
 
   private totalTime: number;
+
+  private totalTimeHR: string;
 
   private totalExercises: number;
 
@@ -30,12 +37,15 @@ class UserProfile {
     intervalGameScore,
     exercisesResult,
   }: IUserProfileType) {
+    this.conversionHelper = new HumanReadableData();
     this.dayScore = dayScore;
     this.dayTime = dayTime;
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(dayTime);
     this.dayExercises = dayExercises;
     this.profileDate = profileDate;
     this.totalScore = totalScore;
     this.totalTime = totalTime;
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(totalTime);
     this.totalExercises = totalExercises;
     this.intervalGameScore = intervalGameScore;
     this.exercisesResult = exercisesResult;
@@ -47,6 +57,10 @@ class UserProfile {
 
   public getDayTime(): number {
     return this.dayTime;
+  }
+
+  public getDayTimeHR(): string {
+    return this.dayTimeHR;
   }
 
   public getDayExercises(): number {
@@ -65,6 +79,10 @@ class UserProfile {
     return this.totalTime;
   }
 
+  public getTotalTimeHR(): string {
+    return this.totalTimeHR;
+  }
+
   public getTotalExercises(): number {
     return this.totalExercises;
   }
@@ -77,39 +95,41 @@ class UserProfile {
     return this.exercisesResult;
   }
 
-  public setDayScore(value: number) {
+  public setDayScore(value: number): void {
     this.dayScore = value;
   }
 
-  public setDayTime(value: number) {
+  public setDayTime(value: number): void {
     this.dayTime = value;
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(value);
   }
 
-  public setDayExercises(value: number) {
+  public setDayExercises(value: number): void {
     this.dayExercises = value;
   }
 
-  public setProfileDate(value: IDate) {
+  public setProfileDate(value: IDate): void {
     this.profileDate = value;
   }
 
-  public setTotalScore(value: number) {
+  public setTotalScore(value: number): void {
     this.totalScore = value;
   }
 
-  public setTotalTime(value: number) {
+  public setTotalTime(value: number): void {
     this.totalTime = value;
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(value);
   }
 
-  public setTotalExercises(value: number) {
+  public setTotalExercises(value: number): void {
     this.totalExercises = value;
   }
 
-  public setIntervalGameScore(value: number) {
+  public setIntervalGameScore(value: number): void {
     this.intervalGameScore = value;
   }
 
-  public clearExercisesResult() {
+  public clearExercisesResult(): void {
     this.exercisesResult = [];
   }
 
@@ -130,31 +150,33 @@ class UserProfile {
     }
   }
 
-  public increaseDayScore(value: number) {
+  public increaseDayScore(value: number): void {
     this.dayScore = this.getDayScore() + value;
   }
 
-  public increaseDayTime(value: number) {
+  public increaseDayTime(value: number): void {
     this.dayTime = this.getDayTime() + value;
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.dayTime);
   }
 
-  public increaseDayExercises(value: number) {
+  public increaseDayExercises(value: number): void {
     this.dayExercises = this.getDayExercises() + value;
   }
 
-  public increaseTotalScore(value: number) {
+  public increaseTotalScore(value: number): void {
     this.totalScore = this.getTotalScore() + value;
   }
 
-  public increaseTotalTime(value: number) {
+  public increaseTotalTime(value: number): void {
     this.totalTime = this.getTotalTime() + value;
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.totalTime);
   }
 
-  public increaseTotalExercises(value: number) {
+  public increaseTotalExercises(value: number): void {
     this.totalExercises = this.getTotalExercises() + value;
   }
 
-  public increaseIntervalGameScore(value: number) {
+  public increaseIntervalGameScore(value: number): void {
     this.intervalGameScore = this.getIntervalGameScore() + value;
   }
 }

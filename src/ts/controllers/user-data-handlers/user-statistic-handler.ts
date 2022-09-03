@@ -40,19 +40,19 @@ class UserStatisticHandler {
   }
 
   private refreshDayTimeCounter() {
-    this.dayTimeCounter.innerHTML = this.userProfile.getDayTime().toString();
+    this.dayTimeCounter.innerHTML = this.userProfile.getDayTimeHR();
   }
 
   private refreshTotalExercisesCounter() {
     this.totalExercisesCounter.innerHTML = this.userProfile.getTotalExercises().toString();
   }
 
-  private refreshtoTalScoreCounter() {
+  private refreshTotalScoreCounter() {
     this.totalScoreCounter.innerHTML = this.userProfile.getTotalScore().toString();
   }
 
   private refreshTotalTimeCounter() {
-    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTime().toString();
+    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTimeHR();
   }
 
   private refreshTotalIntervalGameScoreCount() {
@@ -64,7 +64,7 @@ class UserStatisticHandler {
     this.refreshDayScoreCounter();
     this.refreshDayTimeCounter();
     this.refreshTotalExercisesCounter();
-    this.refreshtoTalScoreCounter();
+    this.refreshTotalScoreCounter();
     this.refreshTotalTimeCounter();
     this.refreshTotalIntervalGameScoreCount();
   }

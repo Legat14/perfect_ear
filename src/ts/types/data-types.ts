@@ -6,10 +6,12 @@ export interface IDate {
 export interface IUserProfileType {
   dayScore: number,
   dayTime: number,
+  dayTimeHR: string,
   dayExercises: number,
   profileDate: IDate,
   totalScore: number,
   totalTime: number,
+  totalTimeHR: string,
   totalExercises: number,
   intervalGameScore: number,
   exercisesResult: Array<IExerciseResult>,
