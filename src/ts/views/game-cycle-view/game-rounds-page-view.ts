@@ -1,15 +1,15 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { GameName, RoundType } from '../../types/game-types';
+import { GameName, IRound } from '../../types/game-types';
 
-class GameRoundsPageView extends NodeBuilder {
-  public games: (RoundType)[];
+class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
+  public games: (QuizType)[];
 
   pageContainer!: HTMLElement;
 
-  onplay!: (game: RoundType) => void;
+  onplay!: (game: QuizType) => void;
 
-  constructor(parentNode: HTMLElement | null, games: (RoundType)[], name: GameName) {
+  constructor(parentNode: HTMLElement | null, games: (QuizType)[], name: GameName) {
     super({ parentNode, className: 'rounds-page' });
     this.games = games;
 
@@ -36,7 +36,7 @@ class GameRoundsPageView extends NodeBuilder {
     }).node.prepend(backButton);
   }
 
-  public initGameOptionsList(game: RoundType, bestScore?: number): this {
+  public initGameOptionsList(game: QuizType, bestScore?: number): this {
     const gameOption = new ButtonBuilder({
       parentNode: this.pageContainer,
       className: 'round-option',
@@ -51,7 +51,7 @@ class GameRoundsPageView extends NodeBuilder {
     return this;
   }
 
-  public play(game: RoundType): void {
+  public play(game: QuizType): void {
     this.clear();
     this.onplay(game);
   }

@@ -8,10 +8,16 @@ import RhythmTrainingView from '../views/rhythm-training-page';
 import MainMenuView from '../views/main-menu';
 import UserSettingsView from '../views/user-settings';
 import UserStatsView from '../views/user-stats';
-import IntervalComparisonView from '../views/games/interval/interval-comparison';
 import GameRoundsController from './game-cycle/game-rounds';
-import IntervalComparison from './games/interval/interval-comparison';
 import GamesLoader from './game-cycle/games-loader';
+
+import IntervalComparison from './games/interval/interval-comparison';
+import IntervalComparisonView from '../views/games/interval/interval-comparison';
+import ScaleIdentification from './games/scale/scale-identification';
+import ScaleIdentificationView from '../views/games/scale/scale-identification';
+import ChordIdentification from './games/chord/chord-identification';
+import ChordIdentificationView from '../views/games/chord/chord-identification';
+import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
 // import TheoryPageView from '../views/theory-page';
 
 class ViewsController extends NodeBuilder {
@@ -52,7 +58,8 @@ class ViewsController extends NodeBuilder {
      * @todo Вынести это куда-то.
      */
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
-    const intervalCompPage = new GameRoundsController();
+
+    const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage.load(
       gamesLoader,
       'intervals',
@@ -62,6 +69,30 @@ class ViewsController extends NodeBuilder {
       IntervalComparisonView,
     ).then(() => {
       this.router.add('/ear-training/interval-comparison', intervalCompPage.view.node);
+    });
+
+    const scaleIdentPage = new GameRoundsController<IScaleRound>();
+    scaleIdentPage.load(
+      gamesLoader,
+      'scales',
+      'scale-identification',
+      'Определение ладов',
+      ScaleIdentification,
+      ScaleIdentificationView,
+    ).then(() => {
+      this.router.add('/ear-training/scale-identification', scaleIdentPage.view.node);
+    });
+
+    const chordIdentPage = new GameRoundsController<IChordRound>();
+    chordIdentPage.load(
+      gamesLoader,
+      'chords',
+      'chord-identification',
+      'Определение аккордов',
+      ChordIdentification,
+      ChordIdentificationView,
+    ).then(() => {
+      this.router.add('/ear-training/chord-identification', chordIdentPage.view.node);
     });
   }
 

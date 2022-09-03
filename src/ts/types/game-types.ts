@@ -20,11 +20,36 @@ export enum Intervals {
   'чистая квинта',
 }
 
+export const Scales = {
+  'натуральный минор': [0, 2, 3, 5, 7, 8, 10],
+  'гармонический минор': [0, 2, 3, 5, 7, 8, 11],
+  'мелодический минор': [0, 2, 3, 5, 7, 9, 11],
+  'натуральный мажор': [0, 2, 4, 5, 7, 9, 11],
+  дорийский: [0, 2, 3, 5, 7, 9, 10],
+  лидийский: [0, 2, 4, 6, 7, 9, 11],
+  миксолидийский: [0, 2, 4, 5, 7, 9, 10],
+  фригийский: [0, 1, 3, 5, 7, 8, 10],
+  локрийский: [0, 1, 3, 5, 6, 8, 10],
+  'мажорная пентатоника': [0, 2, 4, 7, 9],
+  'минорная пентатоника': [0, 3, 5, 7, 10],
+  ионийский: [0, 2, 4, 5, 7, 9, 11],
+  эолийский: [0, 2, 3, 5, 7, 8, 10],
+};
+
+export const Chords = {
+  'мажорное трезвучие': [0, 4, 7],
+  'минорное трезвучие': [0, 3, 7],
+  'уменьшенное трезвучие': [0, 3, 6],
+  'увеличенное трезвучие': [0, 4, 8],
+  sus2: [0, 2, 7],
+  sus4: [0, 5, 7],
+};
+
 export type CategoryName = IGameCategory['categoryName'];
 export type CategoryId = IGameCategory['categoryId'];
 
-export interface IGamesData {
-  categories: Record<CategoryId, IGameCategory>
+export interface IGamesData<QuizType extends IRound = IRound> {
+  categories: Record<CategoryId, IGameCategory<QuizType>>
 }
 
 /**
@@ -38,10 +63,10 @@ export interface IGamesData {
 export type GameName = IQuizGame['gameName'];
 export type GameId = IQuizGame['gameId'];
 
-export interface IGameCategory<T = RoundType > {
+export interface IGameCategory<QuizType extends IRound = IRound> {
   categoryId: string;
   categoryName: string;
-  games?: Record<GameId, IQuizGame<T>>
+  games?: Record<GameId, IQuizGame<QuizType>>
 }
 
 /**
@@ -53,11 +78,11 @@ export interface IGameCategory<T = RoundType > {
  *   quizes: [],
  * };
  */
-export interface IQuizGame<T = RoundType > {
-  category?: IGameCategory<T>;
+export interface IQuizGame<QuizType extends IRound = IRound> {
+  category?: IGameCategory<QuizType>;
   gameId: string;
   gameName: string;
-  quizes?: T[];
+  quizes?: QuizType[];
 }
 
 /**
@@ -76,7 +101,7 @@ export interface IQuizGame<T = RoundType > {
  *   terms: ['minor second', 'major second'],
  * };
  */
-export type RoundType = IRound & IIntervalRound;
+export type RoundType = IIntervalRound | IScaleRound;
 
 export type QuizId = IRound['quizId'];
 export interface IRound {
@@ -89,8 +114,8 @@ export interface IRound {
   rounds: number,
   bonus: number,
   condition: string;
-  answers: readonly string[];
-  terms: readonly string[];
+  answers: string[];
+  terms: string[];
 }
 
 export interface IQuestion<T extends IRound> {
@@ -109,7 +134,35 @@ export interface IIntervalRound extends IRound {
   rounds: number,
   bonus: number,
   condition: string;
-  answers: readonly string[];
-  terms: readonly string[];
+  answers: string[];
+  terms: string[];
   intervals: Extract<Intervals, number>[];
+}
+
+export interface IScaleRound extends IRound {
+  game: IQuizGame;
+  quizId: string,
+  quizName: string,
+  quizStartDescription: string[];
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  score: number,
+  rounds: number,
+  bonus: number,
+  condition: string;
+  answers: (keyof typeof Scales)[];
+  terms: (keyof typeof Scales)[];
+}
+
+export interface IChordRound extends IRound {
+  game: IQuizGame;
+  quizId: string,
+  quizName: string,
+  quizStartDescription: string[];
+  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  score: number,
+  rounds: number,
+  bonus: number,
+  condition: string;
+  answers: (keyof typeof Chords)[];
+  terms: (keyof typeof Chords)[];
 }
