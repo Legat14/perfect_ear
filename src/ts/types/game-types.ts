@@ -105,8 +105,8 @@ export interface IRound {
   rounds: number,
   bonus: number,
   condition: string;
-  answers: readonly string[];
-  terms: readonly string[];
+  answers: string[];
+  terms: string[];
 }
 
 export interface IQuestion<T extends IRound> {
@@ -125,8 +125,8 @@ export interface IIntervalRound extends IRound {
   rounds: number,
   bonus: number,
   condition: string;
-  answers: readonly string[];
-  terms: readonly string[];
+  answers: string[];
+  terms: string[];
   intervals: Extract<Intervals, number>[];
 }
 
