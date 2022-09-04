@@ -1,5 +1,10 @@
 import HumanReadableData from '../helpers/human-readable-data';
-import { IDate, IExerciseResult, IUserProfileType } from '../types/data-types';
+import {
+  IAchievements,
+  IDate,
+  IExerciseResult,
+  IUserProfileType,
+} from '../types/data-types';
 
 class UserProfile {
   private conversionHelper: HumanReadableData;
@@ -30,6 +35,8 @@ class UserProfile {
 
   private exercisesResult: Array<IExerciseResult>;
 
+  private achievements: Array<IAchievements>;
+
   constructor({
     dayScore,
     dayTime,
@@ -42,6 +49,7 @@ class UserProfile {
     scaleGameScore,
     chordsGameScore,
     exercisesResult,
+    achievements,
   }: IUserProfileType) {
     this.conversionHelper = new HumanReadableData();
     this.dayScore = dayScore;
@@ -57,6 +65,7 @@ class UserProfile {
     this.scaleGameScore = scaleGameScore;
     this.chordsGameScore = chordsGameScore;
     this.exercisesResult = exercisesResult;
+    this.achievements = achievements;
   }
 
   public getDayScore(): number {
@@ -111,6 +120,10 @@ class UserProfile {
     return this.exercisesResult;
   }
 
+  public getAchievements(): Array<IAchievements> {
+    return this.achievements;
+  }
+
   public setDayScore(value: number): void {
     this.dayScore = value;
   }
@@ -157,7 +170,20 @@ class UserProfile {
     this.exercisesResult = [];
   }
 
-  public addExercisesResult(newExerciseResult: IExerciseResult) {
+  public clearAchievements(): void {
+    this.achievements = [
+      { achievement: 'First of many', complete: false },
+      { achievement: 'Student', complete: false },
+      { achievement: 'Serious', complete: false },
+      { achievement: 'Obsessed', complete: false },
+    ];
+    // this.achievements.forEach((achievement): void => {
+    //   const currentAchievement = achievement;
+    //   currentAchievement.complete = false;
+    // });
+  }
+
+  public addExercisesResult(newExerciseResult: IExerciseResult): void {
     let pastResultIndex = 0;
     const pastExerciseResult = this.exercisesResult.find((item, index) => {
       pastResultIndex = index;
@@ -171,6 +197,14 @@ class UserProfile {
       }
     } else {
       this.exercisesResult.push(newExerciseResult);
+    }
+  }
+
+  public setAchievementCompletion(achievement: string): void {
+    const currentAchievement = this
+      .achievements.find((item): boolean => item.achievement === achievement);
+    if (currentAchievement) {
+      currentAchievement.complete = true;
     }
   }
 

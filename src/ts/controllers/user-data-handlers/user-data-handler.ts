@@ -31,6 +31,7 @@ class UserDataHandler {
         scaleGameScore: guestUserProfile.scaleGameScore,
         chordsGameScore: guestUserProfile.chordsGameScore,
         exercisesResult: guestUserProfile.exercisesResult,
+        achievements: guestUserProfile.achievements,
       });
     } else {
       this.userProfile = new UserProfile({
@@ -47,6 +48,12 @@ class UserDataHandler {
         scaleGameScore: 0,
         chordsGameScore: 0,
         exercisesResult: [],
+        achievements: [
+          { achievement: 'First of many', complete: false },
+          { achievement: 'Student', complete: false },
+          { achievement: 'Serious', complete: false },
+          { achievement: 'Obsessed', complete: false },
+        ],
       });
     }
 
@@ -102,6 +109,7 @@ class UserDataHandler {
       scaleGameScore: this.userProfile.getScaleGameScore(),
       chordsGameScore: this.userProfile.getChordsGameScore(),
       exercisesResult: this.userProfile.getExercisesResult(),
+      achievements: this.userProfile.getAchievements(),
     };
     localStorage.setItem('guestUserProfile', JSON.stringify(guestUserProfile));
   }
@@ -159,6 +167,7 @@ class UserDataHandler {
     this.userProfile.setScaleGameScore(0);
     this.userProfile.setChordsGameScore(0);
     this.userProfile.clearExercisesResult();
+    this.userProfile.clearAchievements();
   }
 
   private decomposeGameResult(gameResult: IGameResult): void {

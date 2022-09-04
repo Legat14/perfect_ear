@@ -1,6 +1,7 @@
 import MainPageCreator from '../views/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
+import UserAchievementsHandler from './user-data-handlers/user-achievements-handler';
 import UserConfigHandler from './user-data-handlers/user-config-handler';
 import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
@@ -14,6 +15,8 @@ class AppLoader {
   public userConfigHandler!: UserConfigHandler;
 
   public userDayStatisticHandler!: UserDayStatisticHandler;
+
+  public userAchievementsHandler!: UserAchievementsHandler;
 
   private view: MainPageCreator;
 
@@ -44,6 +47,8 @@ class AppLoader {
       this.userDataHandler.userProfile,
       mainMenu.userDayStatistic.userDayStatisticCounters,
     );
+
+    this.userAchievementsHandler = new UserAchievementsHandler(this.userDataHandler.userProfile);
 
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
@@ -90,13 +95,13 @@ class AppLoader {
   }
 
   private addRefreshEvent() {
-    document.addEventListener('ongameend', (event) => {
+    document.addEventListener('ongameend', () => {
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
         this.userDataHandler.userConfig.getDayScoreGoal(),
         this.userDataHandler.userConfig.getDayTimeGoal(),
       );
-      console.log('End game event!!!!!!!!!!!!!', event); // TODO: Убрать
+      this.userAchievementsHandler.testAllAchievements();
     });
   }
 }

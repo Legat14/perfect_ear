@@ -17,11 +17,17 @@ export interface IUserProfileType {
   scaleGameScore: number,
   chordsGameScore: number,
   exercisesResult: Array<IExerciseResult>,
+  achievements: Array<IAchievements>,
 }
 
 export interface IExerciseResult {
   exercise: string,
   score: number,
+}
+
+export interface IAchievements {
+  achievement: string,
+  complete: boolean,
 }
 
 export interface IGameResult {
