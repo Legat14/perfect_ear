@@ -33,6 +33,8 @@ class UserSettingsView extends NodeBuilder {
 
   dayGoalsInputs: IDayGoalsInputs;
 
+  changeLangBtn: ButtonBuilder;
+
   saveDayGoalsBtn: ButtonBuilder;
 
   constructor() {
@@ -153,6 +155,12 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.statsSettings.node,
       className: 'user-settings__save-day-goals-btn',
       content: 'Сохранить',
+    });
+
+    this.changeLangBtn = new ButtonBuilder({
+      parentNode: this.node,
+      className: 'user-settings__change-btn',
+      content: 'Сменить язык',
     });
 
     this.resetStatsBtn = new ButtonBuilder({

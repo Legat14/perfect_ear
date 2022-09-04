@@ -64,8 +64,13 @@ class AppLoader {
       };
     }
 
-    const resetBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
-    resetBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
+    const changeLangBtn = this.view.viewsController.userSettings.changeLangBtn.node;
+    changeLangBtn.addEventListener('click', (): void => {
+      this.userDataHandler.toggleLang();
+    });
+
+    const resetUserDataBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
+    resetUserDataBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
@@ -110,7 +115,7 @@ class AppLoader {
       this.userAchievementsHandler.testAllAchievements();
     });
   }
-}
+} // TODO: Добавить механизм замены картинок достижений обратно на неполученные
 
 const appLoader = new AppLoader();
 

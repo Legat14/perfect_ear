@@ -1,4 +1,4 @@
-import { IDayGoals } from '../types/data-types';
+import { IDayGoals, Languages } from '../types/data-types';
 
 class UserConfig {
   private dayExercisesGoal: number;
@@ -7,14 +7,20 @@ class UserConfig {
 
   private dayTimeGoal: number;
 
-  constructor({
-    dayExercisesGoal,
-    dayScoreGoal,
-    dayTimeGoal,
-  }: IDayGoals) {
+  private language: Languages;
+
+  constructor(
+    {
+      dayExercisesGoal,
+      dayScoreGoal,
+      dayTimeGoal,
+    }: IDayGoals,
+    language: Languages,
+  ) {
     this.dayExercisesGoal = dayExercisesGoal;
     this.dayScoreGoal = dayScoreGoal;
     this.dayTimeGoal = dayTimeGoal;
+    this.language = language;
   }
 
   public getDayExercisesGoal(): number {
@@ -29,6 +35,10 @@ class UserConfig {
     return this.dayTimeGoal;
   }
 
+  public getLanguage(): Languages {
+    return this.language;
+  }
+
   public setDayExercisesGoal(value: number): void {
     this.dayExercisesGoal = value;
   }
@@ -39,6 +49,10 @@ class UserConfig {
 
   public setDayTimeGoal(value: number): void {
     this.dayTimeGoal = value;
+  }
+
+  public setLanguge(value: Languages): void {
+    this.language = value;
   }
 }
 

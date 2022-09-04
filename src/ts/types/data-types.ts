@@ -75,10 +75,20 @@ export interface IDayGoals {
   dayTimeGoal: number,
 }
 
+export interface IUserConfig {
+  dayGoals: IDayGoals,
+  language: Languages,
+}
+
 export interface IAchievementImgs {
   firstOfMany: HTMLElement,
   beginner: HTMLElement,
   student: HTMLElement,
   serious: HTMLElement,
   obsessed: HTMLElement,
+}
+
+export enum Languages {
+  RUS = 0,
+  ENG = 1,
 }
