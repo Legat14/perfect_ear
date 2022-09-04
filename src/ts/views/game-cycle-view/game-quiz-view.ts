@@ -1,3 +1,4 @@
+import { Note } from 'tone/build/esm/core/type/NoteUnits';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -107,7 +108,12 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
    * @todo Add staff view.
    */
 
-  public react(answer: boolean, terms: IRound['terms'], done: boolean): void {
+  public react(
+    answer: boolean,
+    terms: IRound['terms'],
+    done: boolean,
+    { right, given }: { right: Note[]; given: Note[] },
+  ): void {
     terms?.forEach((term, index) => {
       this.answers[index].innerHTML = term;
       this.answers[index].className += ` ${
@@ -119,16 +125,19 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
     if (done) this.nextControl.setDone();
     else this.nextControl.setNext();
-    if (answer) this.acceptAnswer();
-    else this.rejectAnswer();
+
+    if (answer) this.acceptAnswer(right);
+    else this.rejectAnswer(right, given);
   }
 
-  private acceptAnswer(): void {
+  private acceptAnswer(right: Note[]): void {
     AnswerSound.accept();
+    console.log(right);
   }
 
-  private rejectAnswer(): void {
+  private rejectAnswer(right: Note[], given: Note[]): void {
     AnswerSound.reject();
+    console.log(right, given);
   }
 }
 

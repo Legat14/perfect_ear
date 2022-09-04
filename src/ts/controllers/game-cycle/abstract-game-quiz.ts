@@ -41,7 +41,7 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
     this.view.onSkip = () => this.skip();
 
     this.view.onAnswer = (index) => this.answer(
-      index === this.question.value,
+      index,
       round === quiz.rounds - 1,
     );
     this.view.onNext = () => this.onNext();
@@ -50,11 +50,20 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   abstract generateQuestion(quiz: QuizType): IQuestion<QuizType>;
 
-  private answer(answer: boolean, done: boolean): void {
+  private answer(index: number, done: boolean): void {
+    const answer = index === this.question.value;
     this.answered = this.answered
       ? this.answered
       : (this.onAnswer(answer), true);
-    this.view.react(answer, this.question.round.terms, done);
+    this.view.react(
+      answer,
+      this.question.round.terms,
+      done,
+      {
+        right: this.question.labels[this.question.value as number],
+        given: this.question.labels[index],
+      },
+    );
   }
 
   private skip(): void {

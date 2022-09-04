@@ -56,6 +56,10 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
       round: quiz,
       value,
       sequence,
+      baseNote,
+      labels: answers.map(
+        (answer) => Tone.Frequency(baseNote).harmonize(Scales[answer]).map((note) => note.toNote()),
+      ),
     };
   }
 }
