@@ -59,16 +59,18 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       className: 'quiz-answers',
     }).node;
 
-    this.answers = question.round.answers.map((answer, index) => {
-      const button = new ButtonBuilder({
-        parentNode: answers,
-        className: 'quiz-answers__answer',
-        content: answer,
-      });
+    this.answers = question.round.answers.map(
+      (answer, index) => {
+        const button = new ButtonBuilder({
+          parentNode: answers,
+          className: 'quiz-answers__answer',
+          content: answer,
+        });
 
-      button.node.onclick = () => this.onAnswer(index);
-      return button.node;
-    });
+        button.node.onclick = () => this.onAnswer(index);
+        return button.node;
+      },
+    );
 
     const footer = new NodeBuilder({
       parentNode: this.node,
