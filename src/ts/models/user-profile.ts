@@ -24,6 +24,10 @@ class UserProfile {
 
   private intervalGameScore: number;
 
+  private scaleGameScore: number;
+
+  private chordsGameScore: number;
+
   private exercisesResult: Array<IExerciseResult>;
 
   constructor({
@@ -35,6 +39,8 @@ class UserProfile {
     totalExercises,
     profileDate,
     intervalGameScore,
+    scaleGameScore,
+    chordsGameScore,
     exercisesResult,
   }: IUserProfileType) {
     this.conversionHelper = new HumanReadableData();
@@ -48,6 +54,8 @@ class UserProfile {
     this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(totalTime);
     this.totalExercises = totalExercises;
     this.intervalGameScore = intervalGameScore;
+    this.scaleGameScore = scaleGameScore;
+    this.chordsGameScore = chordsGameScore;
     this.exercisesResult = exercisesResult;
   }
 
@@ -91,6 +99,14 @@ class UserProfile {
     return this.intervalGameScore;
   }
 
+  public getScaleGameScore(): number {
+    return this.scaleGameScore;
+  }
+
+  public getChordsGameScore(): number {
+    return this.chordsGameScore;
+  }
+
   public getExercisesResult(): Array<IExerciseResult> {
     return this.exercisesResult;
   }
@@ -127,6 +143,14 @@ class UserProfile {
 
   public setIntervalGameScore(value: number): void {
     this.intervalGameScore = value;
+  }
+
+  public setScaleGameScore(value: number): void {
+    this.scaleGameScore = value;
+  }
+
+  public setChordsGameScore(value: number): void {
+    this.chordsGameScore = value;
   }
 
   public clearExercisesResult(): void {
@@ -178,6 +202,14 @@ class UserProfile {
 
   public increaseIntervalGameScore(value: number): void {
     this.intervalGameScore = this.getIntervalGameScore() + value;
+  }
+
+  public increaseScaleGameScore(value: number): void {
+    this.scaleGameScore = this.getScaleGameScore() + value;
+  }
+
+  public increaseChordsGameScore(value: number): void {
+    this.chordsGameScore = this.getChordsGameScore() + value;
   }
 }
 

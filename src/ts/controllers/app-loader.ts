@@ -90,11 +90,14 @@ class AppLoader {
   }
 
   private addRefreshEvent() {
-    document.addEventListener('ongameend', () => this.userDayStatisticHandler.refreshCounters(
-      this.userDataHandler.userConfig.getDayExercisesGoal(),
-      this.userDataHandler.userConfig.getDayScoreGoal(),
-      this.userDataHandler.userConfig.getDayTimeGoal(),
-    ));
+    document.addEventListener('ongameend', (event) => {
+      this.userDayStatisticHandler.refreshCounters(
+        this.userDataHandler.userConfig.getDayExercisesGoal(),
+        this.userDataHandler.userConfig.getDayScoreGoal(),
+        this.userDataHandler.userConfig.getDayTimeGoal(),
+      );
+      console.log('End game event!!!!!!!!!!!!!', event); // TODO: Убрать
+    });
   }
 }
 

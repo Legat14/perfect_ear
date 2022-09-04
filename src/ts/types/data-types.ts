@@ -14,6 +14,8 @@ export interface IUserProfileType {
   totalTimeHR: string,
   totalExercises: number,
   intervalGameScore: number,
+  scaleGameScore: number,
+  chordsGameScore: number,
   exercisesResult: Array<IExerciseResult>,
 }
 
@@ -50,7 +52,9 @@ export interface IUserStatisticCounters {
   totalExercisesCounter: HTMLElement,
   totalScoreCounter: HTMLElement,
   totalTimeCounter: HTMLElement,
-  totalIntervalGameScoreCount: HTMLElement,
+  totalIntervalGameScoreCounter: HTMLElement,
+  totalScaleGameScoreCounter: HTMLElement,
+  totalChordsGameScoreCounter: HTMLElement,
 }
 
 export interface IDayGoalsInputs {
