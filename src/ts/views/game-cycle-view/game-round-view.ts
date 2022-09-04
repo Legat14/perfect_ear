@@ -18,13 +18,13 @@ class GameRoundView extends NodeBuilder {
 
   public onGameRepeat!: () => void;
 
-  constructor(parentNode: HTMLElement, terms: IRound['terms']) {
+  constructor(parentNode: HTMLElement, terms: IRound) {
     super({ parentNode });
 
     this.renderStartScreen(terms);
   }
 
-  public renderStartScreen(terms: IRound['terms']): void {
+  public renderStartScreen(terms: IRound): void {
     this.startScreen = new GameRoundStartScreen(this.node, terms);
     this.startScreen.onQuit = () => this.onGameBack();
     this.startScreen.onQuizStart = () => this.onGameStart();

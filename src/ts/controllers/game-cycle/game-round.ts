@@ -50,7 +50,7 @@ class GameRound<QuizType extends IRound = IRound> {
     });
     this.round = 0;
 
-    this.view = new GameRoundView(parentNode, quiz.terms);
+    this.view = new GameRoundView(parentNode, quiz);
 
     this.view.onGameStart = () => this.startGameCycle(quiz);
     this.view.onGameBack = () => this.quit();
