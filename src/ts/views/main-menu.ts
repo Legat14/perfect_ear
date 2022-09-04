@@ -8,11 +8,13 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
   constructor() {
     super({ parentNode: null, className: 'main-menu' });
 
+    this.userDayStatistic = new UserDayStatisticView(this.node);
+
     new ButtonBuilder({
       parentNode: this.node,
       className: 'main-menu__games-btn button',
       content:
-        '<img src="assets/img/interval.png" alt="Тренировка Слуха">Тренировка слуха',
+        '<img src="assets/img/ear.png" alt="Тренировка Слуха">Тренировка слуха',
     }).node.onclick = () => {
       window.location.hash = '#/ear-training';
     };
@@ -34,8 +36,6 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
       window.location.hash = '#/fortepiano';
     };
 
-    this.userDayStatistic = new UserDayStatisticView(this.node);
-
     new ButtonBuilder({
       parentNode: this.node,
       className: 'main-menu__theory-btn button',
@@ -47,7 +47,7 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
     new ButtonBuilder({
       parentNode: this.node,
       className: 'main-menu__user-stats-btn button',
-      content: '<img src="assets/img/user-settings.png" alt="Статистика">Статистика',
+      content: '<img src="assets/img/statistic.png" alt="Статистика">Статистика',
     }).node.onclick = () => {
       window.location.hash = '#/user-stats';
     };
