@@ -3,7 +3,6 @@ import {
   Frequency,
   Subdivision,
 } from 'tone/build/esm/core/type/Units';
-import Sound from '../../sound';
 import {
   PianoNotations as Notations,
 } from '../../../types/note-types';
@@ -17,11 +16,6 @@ import AbstractGameQuiz from '../../game-cycle/abstract-game-quiz';
 import Random from '../../../helpers/generator';
 
 class ChordIdentification extends AbstractGameQuiz<IChordRound> {
-  constructor(quiz: IChordRound, round: number, sound: Sound) {
-    super(quiz, round, sound);
-    this.generateQuestion(quiz);
-  }
-
   public generateQuestion(
     quiz: IChordRound,
   ): IQuestion<IChordRound> {
@@ -58,9 +52,9 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
       value,
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
-      labels: answers.map(
-        (answer) => Tone.Frequency(baseNote).harmonize(Chords[answer]).map((note) => note.toNote()),
-      ),
+      labels: answers.map((answer) => Tone.Frequency(baseNote)
+        .harmonize(Chords[answer])
+        .map((note) => note.toNote())),
     };
   }
 }

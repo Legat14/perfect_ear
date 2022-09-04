@@ -1,6 +1,5 @@
 import * as Tone from 'tone';
 import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
-import Sound from '../../sound';
 import { Pause, PianoNotations as Notations } from '../../../types/note-types';
 import {
   IIntervalRound, Intervals, IQuestion, SequenceDirection as Direction,
@@ -9,12 +8,6 @@ import AbstractGameQuiz from '../../game-cycle/abstract-game-quiz';
 import Random from '../../../helpers/generator';
 
 class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
-  constructor(quiz: IIntervalRound, round: number, sound: Sound) {
-    super(quiz, round, sound);
-
-    this.generateQuestion(quiz);
-  }
-
   public generateQuestion(quiz: IIntervalRound): IQuestion<IIntervalRound> {
     const { intervals, direction, answers } = {
       ...quiz,
@@ -62,9 +55,9 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
       value: randomized.indexOf(Math.max(...randomized)),
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
-      labels: randomized.map(
-        (i) => Tone.Frequency(baseNote).harmonize([0, i]).map((note) => note.toNote()),
-      ),
+      labels: randomized.map((i) => Tone.Frequency(baseNote)
+        .harmonize([0, i])
+        .map((note) => note.toNote())),
     };
   }
 }
