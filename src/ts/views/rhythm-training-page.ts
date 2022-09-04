@@ -19,17 +19,19 @@ class RhythmTrainingView extends NodeBuilder {
     });
 
     this.createSection('Упражнения на ритм', [
-      [{
+      [[{
         parentNode: null,
         className: 'ear-training__btn ear-training__game training-btn theory-btn',
         content: 'Теория',
       }],
+      '/theory/rhythm',
+      ],
     ]);
   }
 
   private createSection(
     sectionName: string,
-    sectionButtons: ConstructorParameters<typeof ButtonBuilder>[],
+    sectionButtons: [ConstructorParameters<typeof ButtonBuilder>, string][],
   ): void {
     const container = new NodeBuilder({
       parentNode: this.node,
@@ -38,7 +40,14 @@ class RhythmTrainingView extends NodeBuilder {
       content: `<h2 class="rhythm-section__section-title section-title">${sectionName}</h2>`,
     }).node;
     sectionButtons.map(
-      ([button]) => new ButtonBuilder({ ...button, parentNode: container }),
+      ([[options], url]) => {
+        const button = new ButtonBuilder({ ...options, parentNode: container });
+        button.node.onclick = () => {
+          window.location.hash = '#';
+          window.location.hash += url;
+        };
+        return button;
+      },
     );
   }
 }

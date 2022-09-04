@@ -9,16 +9,17 @@ class GameRoundStartScreen extends NodeBuilder {
 
   public onQuit!: () => void;
 
-  constructor(parentNode: HTMLElement, terms: IRound['terms']) {
+  constructor(parentNode: HTMLElement, info: IRound) {
     super({
       parentNode,
-      className: 'quiz__quiz-start-screen',
+      className: 'quiz-start-screen',
     });
 
     const header = new NodeBuilder({
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
+      content: 'Упражнение',
     }).node;
 
     const backButton = new ButtonBuilder({
@@ -28,9 +29,36 @@ class GameRoundStartScreen extends NodeBuilder {
     }).node;
     backButton.onclick = () => this.onQuit();
 
-    const termsContaner = new NodeBuilder({ parentNode: this.node, className: 'quiz-terms' }).node;
+    new NodeBuilder({ parentNode: this.node }).node.append(
+      new NodeBuilder({
+        parentNode: null,
+        tagName: 'h2',
+        className: 'quiz-start-screen__quiz-name',
+        content: info.quizName,
+      }).node,
 
-    terms.forEach((term) => {
+      new NodeBuilder({
+        parentNode: null,
+        tagName: 'h3',
+        className: 'quiz-start-screen__game-name',
+        content: info.game.gameName,
+      }).node,
+
+      new NodeBuilder({
+        parentNode: null,
+        tagName: 'p',
+        className: 'quiz-start-screen__game-description',
+        content: info.quizStartDescription.join('<br>'),
+      }).node,
+    );
+
+    const termsContaner = new NodeBuilder({
+      parentNode: this.node,
+      className: 'quiz-terms',
+      content: `<p>${info.game.category?.categoryName} в упражнении:</p>`,
+    }).node;
+
+    info.terms.forEach((term) => {
       const button = new ButtonBuilder({
         parentNode: termsContaner,
         className: 'quiz-terms__description',

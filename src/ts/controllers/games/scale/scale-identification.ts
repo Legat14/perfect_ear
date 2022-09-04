@@ -50,6 +50,8 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
       .harmonize(Scales[answers[value]])
       .map((note) => [note.toNote(), '4n']);
 
+    if (direction === Direction.Descending) sequence.reverse();
+
     return {
       round: quiz,
       value,

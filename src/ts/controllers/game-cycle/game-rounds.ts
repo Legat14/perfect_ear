@@ -5,9 +5,10 @@ import {
   GameName,
   IRound,
 } from '../../types/game-types';
-import GameRoundsPageView from '../../views/game-cycle-view/game-rounds-page-view';
+import { IExerciseResult } from '../../types/data-types';
 import Sound from '../sound';
 import GamesLoader from './games-loader';
+import GameRoundsPageView from '../../views/game-cycle-view/game-rounds-page-view';
 import { GameQuizConstructor } from './game-round';
 import AbstractGameView from '../../views/games/abstract-game-view';
 
@@ -33,6 +34,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
     gameName: GameName,
     Constructor: GameQuizConstructor<QuizType>,
     ViewConstructor: GameQuizViewConstructor<QuizType>,
+    results: IExerciseResult[],
   ) {
     return loader.loadRounds<QuizType>(categoryId, gameId).then((games) => {
       this.games = games || [];
@@ -40,7 +42,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
       this.sound = new Sound(PIANO_SOUND);
 
       this.games.forEach((game: QuizType) => {
-        const roundPage = this.view.initGameOptionsList(game);
+        const roundPage = this.view.initGameOptionsList(game, results);
 
         roundPage.onplay = (round: QuizType) => {
           const gameView = new ViewConstructor(

@@ -43,7 +43,7 @@ class EarTrainingView extends NodeBuilder {
           className: 'ear-training__btn ear-training__game training-btn',
           content: 'Сравнение интервалов',
         }],
-        '/interval-comparison'],
+        '/ear-training/interval-comparison'],
       ],
     );
 
@@ -60,7 +60,7 @@ class EarTrainingView extends NodeBuilder {
         className: 'ear-training__btn ear-training__game training-btn',
         content: 'Определение ладов',
       }],
-      '/scale-identification',
+      '/ear-training/scale-identification',
       ],
     ]);
 
@@ -77,7 +77,7 @@ class EarTrainingView extends NodeBuilder {
         className: 'ear-training__btn ear-training__game training-btn',
         content: 'Определение аккордов',
       }],
-      '/chord-identification',
+      '/ear-training/chord-identification',
       ],
     ]);
   }
@@ -96,6 +96,7 @@ class EarTrainingView extends NodeBuilder {
       ([[options], url]) => {
         const button = new ButtonBuilder({ ...options, parentNode: container });
         button.node.onclick = () => {
+          window.location.hash = '#';
           window.location.hash += url;
         };
         return button;
