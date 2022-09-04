@@ -1,6 +1,7 @@
 import MainPageCreator from '../views/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
+import UserAchievementsHandler from './user-data-handlers/user-achievements-handler';
 import UserConfigHandler from './user-data-handlers/user-config-handler';
 import UserDataHandler from './user-data-handlers/user-data-handler';
 import UserDayStatisticHandler from './user-data-handlers/user-day-statistic-handler';
@@ -14,6 +15,8 @@ class AppLoader {
   public userConfigHandler!: UserConfigHandler;
 
   public userDayStatisticHandler!: UserDayStatisticHandler;
+
+  public userAchievementsHandler!: UserAchievementsHandler;
 
   private view: MainPageCreator;
 
@@ -45,6 +48,13 @@ class AppLoader {
       mainMenu.userDayStatistic.userDayStatisticCounters,
     );
 
+    const { userAchievements } = this.view.viewsController;
+
+    this.userAchievementsHandler = new UserAchievementsHandler(
+      this.userDataHandler.userProfile,
+      userAchievements.achievementImgs,
+    );
+
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
     } else {
@@ -68,7 +78,6 @@ class AppLoader {
     const saveDayGoalBtn = this.view.viewsController.userSettings.saveDayGoalsBtn.node;
     saveDayGoalBtn.addEventListener('click', (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
-      // TODO: Добавить refresh при возвращении на главный экран
       this.userDataHandler.saveConfigDataToLocalStorage();
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
@@ -83,6 +92,7 @@ class AppLoader {
       this.userDataHandler.userConfig.getDayTimeGoal(),
     );
     this.addRefreshEvent();
+    this.userAchievementsHandler.testAllAchievements();
   }
 
   private init() {
@@ -91,13 +101,13 @@ class AppLoader {
   }
 
   private addRefreshEvent() {
-    document.addEventListener('ongameend', (event) => {
+    document.addEventListener('ongameend', () => {
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
         this.userDataHandler.userConfig.getDayScoreGoal(),
         this.userDataHandler.userConfig.getDayTimeGoal(),
       );
-      console.log('End game event!!!!!!!!!!!!!', event); // TODO: Убрать
+      this.userAchievementsHandler.testAllAchievements();
     });
   }
 }

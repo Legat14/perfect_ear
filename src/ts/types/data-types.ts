@@ -17,11 +17,17 @@ export interface IUserProfileType {
   scaleGameScore: number,
   chordsGameScore: number,
   exercisesResult: Array<IExerciseResult>,
+  achievements: Array<IAchievements>,
 }
 
 export interface IExerciseResult {
   exercise: string,
   score: number,
+}
+
+export interface IAchievements {
+  achievement: string,
+  complete: boolean,
 }
 
 export interface IGameResult {
@@ -67,4 +73,12 @@ export interface IDayGoals {
   dayExercisesGoal: number,
   dayScoreGoal: number,
   dayTimeGoal: number,
+}
+
+export interface IAchievementImgs {
+  firstOfMany: HTMLElement,
+  beginner: HTMLElement,
+  student: HTMLElement,
+  serious: HTMLElement,
+  obsessed: HTMLElement,
 }

@@ -19,6 +19,7 @@ import ChordIdentification from './games/chord/chord-identification';
 import ChordIdentificationView from '../views/games/chord/chord-identification';
 import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
 import UserProfile from '../models/user-profile';
+import UserAchievementsView from '../views/user-achievements';
 // import TheoryPageView from '../views/theory-page';
 
 class ViewsController extends NodeBuilder {
@@ -27,6 +28,8 @@ class ViewsController extends NodeBuilder {
   userStats: UserStatsView;
 
   userSettings: UserSettingsView;
+
+  userAchievements: UserAchievementsView;
 
   header: HeaderView | undefined;
 
@@ -43,6 +46,7 @@ class ViewsController extends NodeBuilder {
     const fortepiano = new FortepianoView();
     this.userStats = new UserStatsView();
     this.userSettings = new UserSettingsView();
+    this.userAchievements = new UserAchievementsView();
     // const theory = new TheoryPageView();
 
     this.router = new Router(this.node, [
@@ -51,6 +55,7 @@ class ViewsController extends NodeBuilder {
       ['/rhythm-training', rhythmTraining.node],
       ['/fortepiano', fortepiano.node],
       ['/user-stats', this.userStats.node],
+      ['/user-stats/achievements', this.userAchievements.node],
       ['/user-settings', this.userSettings.node],
       // ['/theory', theory.node],
     ]);
