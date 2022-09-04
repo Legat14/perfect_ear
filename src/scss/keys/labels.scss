@@ -1,0 +1,73 @@
+.key_C::before,
+.key_C::after {
+  content: 'C';
+}
+.key_Cs::before,
+.key_Cs::after {
+  content: 'C#';
+}
+.key_D::before,
+.key_D::after {
+  content: 'D';
+}
+.key_Ds::before,
+.key_Ds::after {
+  content: 'D#';
+}
+.key_E::before,
+.key_E::after {
+  content: 'E';
+}
+.key_F::before,
+.key_F::after {
+  content: 'F';
+}
+.key_Fs::before,
+.key_Fs::after {
+  content: 'F#';
+}
+.key_G::before,
+.key_G::after {
+  content: 'G';
+}
+.key_Gs::before,
+.key_Gs::after {
+  content: 'G#';
+}
+.key_A::before,
+.key_A::after {
+  content: 'A';
+}
+.key_As::before,
+.key_As::after {
+  content: 'A#';
+}
+.key_B::before,
+.key_B::after {
+  content: 'B';
+}
+
+.key::before,
+.key::after {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  color: white;
+  position: absolute;
+  display: none;
+}
+
+.key_basenote::after {
+  background-color: rgb(90, 90, 90);
+  display: block;
+}
+
+.key_wrong::before {
+  background-color: rgb(120, 40, 40);
+  display: block;
+}
+
+.key_correct::after {
+  background-color: rgb(40, 120, 40);
+  display: block;
+}

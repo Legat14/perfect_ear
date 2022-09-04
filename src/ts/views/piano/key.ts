@@ -9,7 +9,10 @@ class Key extends ButtonBuilder {
   constructor(parentNode: HTMLElement, note: Note) {
     super({
       parentNode,
-      className: 'key',
+      className: `key key_${note.replace(
+        /#*\d/,
+        (ending: string) => (ending[0] === '#' ? 's' : ''),
+      )}`,
       attributes: { black: note.includes('#') },
     });
     this.note = note;
