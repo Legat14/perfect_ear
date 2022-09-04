@@ -18,6 +18,7 @@ import ScaleIdentificationView from '../views/games/scale/scale-identification';
 import ChordIdentification from './games/chord/chord-identification';
 import ChordIdentificationView from '../views/games/chord/chord-identification';
 import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
+import UserProfile from '../models/user-profile';
 // import TheoryPageView from '../views/theory-page';
 
 class ViewsController extends NodeBuilder {
@@ -53,10 +54,13 @@ class ViewsController extends NodeBuilder {
       ['/user-settings', this.userSettings.node],
       // ['/theory', theory.node],
     ]);
+  }
 
-    /**
-     * @todo Вынести это куда-то.
-     */
+  public init() {
+    this.router.init('');
+  }
+
+  public renderPages({ profile }: { profile: UserProfile }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
@@ -67,6 +71,7 @@ class ViewsController extends NodeBuilder {
       'Сравнение интервалов',
       IntervalComparison,
       IntervalComparisonView,
+      profile.getExercisesResult(),
     ).then(() => {
       this.router.add('/ear-training/interval-comparison', intervalCompPage.view.node);
     });
@@ -79,6 +84,7 @@ class ViewsController extends NodeBuilder {
       'Определение ладов',
       ScaleIdentification,
       ScaleIdentificationView,
+      profile.getExercisesResult(),
     ).then(() => {
       this.router.add('/ear-training/scale-identification', scaleIdentPage.view.node);
     });
@@ -91,13 +97,10 @@ class ViewsController extends NodeBuilder {
       'Определение аккордов',
       ChordIdentification,
       ChordIdentificationView,
+      profile.getExercisesResult(),
     ).then(() => {
       this.router.add('/ear-training/chord-identification', chordIdentPage.view.node);
     });
-  }
-
-  init() {
-    this.router.init('');
   }
 }
 

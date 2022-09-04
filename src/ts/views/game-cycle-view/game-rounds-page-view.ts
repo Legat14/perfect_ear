@@ -1,5 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { IExerciseResult } from '../../types/data-types';
 import { GameName, IRound } from '../../types/game-types';
 
 class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
@@ -36,7 +37,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     }).node.prepend(backButton);
   }
 
-  public initGameOptionsList(game: QuizType, bestScore?: number): this {
+  public initGameOptionsList(game: QuizType, results: IExerciseResult[]): this {
     const gameOption = new ButtonBuilder({
       parentNode: this.pageContainer,
       className: 'round-option',
@@ -44,10 +45,22 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
                 <p class="round-option__round-title">${game.quizName}</p>
                 <p class="round-option__round-direction">${game.direction}</p>
                 <p class="round-option__round-count">${game.rounds} вопросов</p>
-                <p class="round-option__bestscore">лучший счет: ${bestScore || ''}</p>
                 `,
     });
+
+    const score = new NodeBuilder({
+      parentNode: gameOption.node,
+      tagName: 'p',
+      className: 'round-option__bestscore',
+      content: `лучший счет: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`,
+    }).node;
+
     gameOption.node.onclick = () => this.play(game);
+
+    document.addEventListener('ongameend', (() => {
+      score.textContent = `лучший счет: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`;
+    }) as EventListener);
+
     return this;
   }
 
