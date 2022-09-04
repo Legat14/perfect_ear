@@ -160,8 +160,11 @@ class UserDataHandler {
     this.userProfile.increaseTotalScore(gameResult.gameScore);
     this.userProfile.increaseTotalTime(gameResult.gameTime);
     this.userProfile.increaseTotalExercises(1);
-    console.log('Game type: ', gameResult.gameName.slice(0, gameResult.gameName.length - 3));
-    if (gameResult.gameName.slice(0, gameResult.gameName.length - 3) === 'IntervalGame') {
+    const gameTypeArr = gameResult.gameName.split('-');
+    gameTypeArr.pop();
+    const gameType = gameTypeArr.join('-');
+    console.log(gameType);
+    if (gameType === 'interval-comp') {
       this.userProfile.increaseIntervalGameScore(gameResult.gameScore);
     } // TODO: добавлять варианты для других игр
     const newExerciseResult = {
