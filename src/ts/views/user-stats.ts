@@ -37,6 +37,10 @@ class UserStatsView extends NodeBuilder {
 
   totalSubDiv4: NodeBuilder;
 
+  totalSubDiv5: NodeBuilder;
+
+  totalSubDiv6: NodeBuilder;
+
   totalExercisesHeader: NodeBuilder;
 
   totalExercisesCount: NodeBuilder;
@@ -52,6 +56,14 @@ class UserStatsView extends NodeBuilder {
   totalIntervalGameScoreHeader: NodeBuilder;
 
   totalIntervalGameScoreCount: NodeBuilder;
+
+  totalScaleGameScoreHeader: NodeBuilder;
+
+  totalScaleGameScoreCount: NodeBuilder;
+
+  totalChordsGameScoreHeader: NodeBuilder;
+
+  totalChordsGameScoreCount: NodeBuilder;
 
   statisticCounters: IUserStatisticCounters;
 
@@ -229,6 +241,46 @@ class UserStatsView extends NodeBuilder {
       content: '0',
     });
 
+    this.totalSubDiv5 = new NodeBuilder({
+      parentNode: this.userTotalDiv.node,
+      tagName: 'div',
+      className: 'user-stats__total-sub-div',
+    });
+
+    this.totalScaleGameScoreHeader = new NodeBuilder({
+      parentNode: this.totalSubDiv5.node,
+      tagName: 'p',
+      className: 'user-stats__scale-game-score-header',
+      content: 'Очков за упражнения на гаммы',
+    });
+
+    this.totalScaleGameScoreCount = new NodeBuilder({
+      parentNode: this.totalSubDiv5.node,
+      tagName: 'p',
+      className: 'user-stats__scale-game-score-count',
+      content: '0',
+    });
+
+    this.totalSubDiv6 = new NodeBuilder({
+      parentNode: this.userTotalDiv.node,
+      tagName: 'div',
+      className: 'user-stats__total-sub-div',
+    });
+
+    this.totalChordsGameScoreHeader = new NodeBuilder({
+      parentNode: this.totalSubDiv6.node,
+      tagName: 'p',
+      className: 'user-stats__chords-game-score-header',
+      content: 'Очков за упражнения на аккорды',
+    });
+
+    this.totalChordsGameScoreCount = new NodeBuilder({
+      parentNode: this.totalSubDiv6.node,
+      tagName: 'p',
+      className: 'user-stats__chords-game-score-count',
+      content: '0',
+    });
+
     this.statisticCounters = {
       dayExercisesCounter: this.dayExercisesCount.node,
       dayScoreCounter: this.dayScoreCount.node,
@@ -236,7 +288,9 @@ class UserStatsView extends NodeBuilder {
       totalExercisesCounter: this.totalExercisesCount.node,
       totalScoreCounter: this.totalScoreCount.node,
       totalTimeCounter: this.totalTimeCount.node,
-      totalIntervalGameScoreCount: this.totalIntervalGameScoreCount.node,
+      totalIntervalGameScoreCounter: this.totalIntervalGameScoreCount.node,
+      totalScaleGameScoreCounter: this.totalScaleGameScoreCount.node,
+      totalChordsGameScoreCounter: this.totalChordsGameScoreCount.node,
     };
   }
 }

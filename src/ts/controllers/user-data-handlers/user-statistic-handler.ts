@@ -16,7 +16,11 @@ class UserStatisticHandler {
 
   private totalTimeCounter: HTMLElement;
 
-  private totalIntervalGameScoreCount: HTMLElement;
+  private totalIntervalGameScoreCounter: HTMLElement;
+
+  private totalScaleGameScoreCounter: HTMLElement;
+
+  private totalChordsGameScoreCounter: HTMLElement;
 
   constructor(userProfile: UserProfile, userDayStatisticCounters: IUserStatisticCounters) {
     this.userProfile = userProfile;
@@ -26,7 +30,9 @@ class UserStatisticHandler {
     this.totalExercisesCounter = userDayStatisticCounters.totalExercisesCounter;
     this.totalScoreCounter = userDayStatisticCounters.totalScoreCounter;
     this.totalTimeCounter = userDayStatisticCounters.totalTimeCounter;
-    this.totalIntervalGameScoreCount = userDayStatisticCounters.totalIntervalGameScoreCount;
+    this.totalIntervalGameScoreCounter = userDayStatisticCounters.totalIntervalGameScoreCounter;
+    this.totalScaleGameScoreCounter = userDayStatisticCounters.totalScaleGameScoreCounter;
+    this.totalChordsGameScoreCounter = userDayStatisticCounters.totalChordsGameScoreCounter;
     this.refreshCounters();
     this.addRefreshEvent();
   }
@@ -56,7 +62,18 @@ class UserStatisticHandler {
   }
 
   private refreshTotalIntervalGameScoreCount() {
-    this.totalIntervalGameScoreCount.innerHTML = this.userProfile.getIntervalGameScore().toString();
+    this.totalIntervalGameScoreCounter.innerHTML = this.userProfile.getIntervalGameScore()
+      .toString();
+  }
+
+  private refreshTotalScaleGameScoreCount() {
+    this.totalScaleGameScoreCounter.innerHTML = this.userProfile.getScaleGameScore()
+      .toString();
+  }
+
+  private refreshTotalChordsGameScoreCount() {
+    this.totalChordsGameScoreCounter.innerHTML = this.userProfile.getChordsGameScore()
+      .toString();
   }
 
   public refreshCounters() {
@@ -67,6 +84,8 @@ class UserStatisticHandler {
     this.refreshTotalScoreCounter();
     this.refreshTotalTimeCounter();
     this.refreshTotalIntervalGameScoreCount();
+    this.refreshTotalScaleGameScoreCount();
+    this.refreshTotalChordsGameScoreCount();
   }
 
   addRefreshEvent() {

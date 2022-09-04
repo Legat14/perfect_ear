@@ -52,7 +52,9 @@ export interface IUserStatisticCounters {
   totalExercisesCounter: HTMLElement,
   totalScoreCounter: HTMLElement,
   totalTimeCounter: HTMLElement,
-  totalIntervalGameScoreCount: HTMLElement,
+  totalIntervalGameScoreCounter: HTMLElement,
+  totalScaleGameScoreCounter: HTMLElement,
+  totalChordsGameScoreCounter: HTMLElement,
 }
 
 export interface IDayGoalsInputs {
