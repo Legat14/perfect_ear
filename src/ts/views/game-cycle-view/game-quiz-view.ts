@@ -54,6 +54,9 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
     });
     this.condition = condition;
 
+    const { baseNote } = question;
+    this.piano.keys[baseNote].node.className += ' key_basenote';
+
     const answers = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-answers',
@@ -134,12 +137,19 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   private acceptAnswer(right: Note[]): void {
     AnswerSound.accept();
-    console.log(right);
+    right.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_correct';
+    });
   }
 
   private rejectAnswer(right: Note[], given: Note[]): void {
     AnswerSound.reject();
-    console.log(right, given);
+    right.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_correct';
+    });
+    given.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_wrong';
+    });
   }
 }
 

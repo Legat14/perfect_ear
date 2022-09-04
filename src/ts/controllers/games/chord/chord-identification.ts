@@ -57,7 +57,7 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
       round: quiz,
       value,
       sequence,
-      baseNote,
+      baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
       labels: answers.map(
         (answer) => Tone.Frequency(baseNote).harmonize(Chords[answer]).map((note) => note.toNote()),
       ),

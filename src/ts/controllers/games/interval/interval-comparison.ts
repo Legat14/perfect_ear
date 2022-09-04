@@ -61,7 +61,7 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
       round: { ...quiz, terms: randomized.map((i) => Intervals[i]) },
       value: randomized.indexOf(Math.max(...randomized)),
       sequence,
-      baseNote,
+      baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
       labels: randomized.map(
         (i) => Tone.Frequency(baseNote).harmonize([0, i]).map((note) => note.toNote()),
       ),
