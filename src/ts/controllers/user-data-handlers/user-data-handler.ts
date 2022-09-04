@@ -28,6 +28,8 @@ class UserDataHandler {
         totalTimeHR: guestUserProfile.totalTimeHR,
         totalExercises: guestUserProfile.totalExercises,
         intervalGameScore: guestUserProfile.intervalGameScore,
+        scaleGameScore: guestUserProfile.scaleGameScore,
+        chordsGameScore: guestUserProfile.chordsGameScore,
         exercisesResult: guestUserProfile.exercisesResult,
       });
     } else {
@@ -42,6 +44,8 @@ class UserDataHandler {
         totalTimeHR: '0 мин 0.0 сек.',
         totalExercises: 0,
         intervalGameScore: 0,
+        scaleGameScore: 0,
+        chordsGameScore: 0,
         exercisesResult: [],
       });
     }
@@ -95,6 +99,8 @@ class UserDataHandler {
       totalTimeHR: this.userProfile.getTotalTimeHR(),
       totalExercises: this.userProfile.getTotalExercises(),
       intervalGameScore: this.userProfile.getIntervalGameScore(),
+      scaleGameScore: this.userProfile.getScaleGameScore(),
+      chordsGameScore: this.userProfile.getChordsGameScore(),
       exercisesResult: this.userProfile.getExercisesResult(),
     };
     localStorage.setItem('guestUserProfile', JSON.stringify(guestUserProfile));
@@ -150,6 +156,8 @@ class UserDataHandler {
     this.userProfile.setTotalTime(0);
     this.userProfile.setTotalExercises(0);
     this.userProfile.setIntervalGameScore(0);
+    this.userProfile.setScaleGameScore(0);
+    this.userProfile.setChordsGameScore(0);
     this.userProfile.clearExercisesResult();
   }
 
@@ -161,12 +169,17 @@ class UserDataHandler {
     this.userProfile.increaseTotalTime(gameResult.gameTime);
     this.userProfile.increaseTotalExercises(1);
     const gameTypeArr = gameResult.gameName.split('-');
-    gameTypeArr.pop();
-    const gameType = gameTypeArr.join('-');
+    const gameType = gameTypeArr[0];
     console.log(gameType);
-    if (gameType === 'interval-comp') {
+    if (gameType === 'interval') {
       this.userProfile.increaseIntervalGameScore(gameResult.gameScore);
-    } // TODO: добавлять варианты для других игр
+    }
+    if (gameType === 'scales') {
+      this.userProfile.increaseScaleGameScore(gameResult.gameScore);
+    }
+    if (gameType === 'chords') {
+      this.userProfile.increaseChordsGameScore(gameResult.gameScore);
+    }
     const newExerciseResult = {
       exercise: gameResult.gameName,
       score: gameResult.gameScore,

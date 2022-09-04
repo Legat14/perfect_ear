@@ -14,6 +14,8 @@ export interface IUserProfileType {
   totalTimeHR: string,
   totalExercises: number,
   intervalGameScore: number,
+  scaleGameScore: number,
+  chordsGameScore: number,
   exercisesResult: Array<IExerciseResult>,
 }
 
