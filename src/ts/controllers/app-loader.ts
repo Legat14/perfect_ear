@@ -48,7 +48,12 @@ class AppLoader {
       mainMenu.userDayStatistic.userDayStatisticCounters,
     );
 
-    this.userAchievementsHandler = new UserAchievementsHandler(this.userDataHandler.userProfile);
+    const { userAchievements } = this.view.viewsController;
+
+    this.userAchievementsHandler = new UserAchievementsHandler(
+      this.userDataHandler.userProfile,
+      userAchievements.achievementImgs,
+    );
 
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
@@ -73,7 +78,6 @@ class AppLoader {
     const saveDayGoalBtn = this.view.viewsController.userSettings.saveDayGoalsBtn.node;
     saveDayGoalBtn.addEventListener('click', (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
-      // TODO: Добавить refresh при возвращении на главный экран
       this.userDataHandler.saveConfigDataToLocalStorage();
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
@@ -88,6 +92,7 @@ class AppLoader {
       this.userDataHandler.userConfig.getDayTimeGoal(),
     );
     this.addRefreshEvent();
+    this.userAchievementsHandler.testAllAchievements();
   }
 
   private init() {

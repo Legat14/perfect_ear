@@ -74,3 +74,11 @@ export interface IDayGoals {
   dayScoreGoal: number,
   dayTimeGoal: number,
 }
+
+export interface IAchievementImgs {
+  firstOfMany: HTMLElement,
+  beginner: HTMLElement,
+  student: HTMLElement,
+  serious: HTMLElement,
+  obsessed: HTMLElement,
+}

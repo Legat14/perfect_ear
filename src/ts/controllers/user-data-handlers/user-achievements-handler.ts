@@ -1,10 +1,22 @@
 import UserProfile from '../../models/user-profile';
+import { IAchievementImgs } from '../../types/data-types';
 
 class UserAchievementsHandler {
   userProfile: UserProfile;
 
-  constructor(userProfile: UserProfile) {
+  achievementImgs: IAchievementImgs;
+
+  constructor(userProfile: UserProfile, achievementImgs: IAchievementImgs) {
     this.userProfile = userProfile;
+    this.achievementImgs = achievementImgs;
+  }
+
+  private changeImgToReached(img: HTMLElement) {
+    const oldSrc = img.getAttribute('src');
+    if (oldSrc) {
+      const newSrc = oldSrc.replace('_unreached', '_reached');
+      img.setAttribute('src', newSrc);
+    }
   }
 
   private testFirstOfManyAchievement(): void {
@@ -16,6 +28,7 @@ class UserAchievementsHandler {
         .achievement === currentAchievementName);
       if (currentAchievement) {
         currentAchievement.complete = true;
+        this.changeImgToReached(this.achievementImgs.firstOfMany);
       }
     }
   }
@@ -29,6 +42,7 @@ class UserAchievementsHandler {
         .achievement === currentAchievementName);
       if (currentAchievement) {
         currentAchievement.complete = true;
+        this.changeImgToReached(this.achievementImgs.beginner);
       }
     }
   }
@@ -42,6 +56,7 @@ class UserAchievementsHandler {
         .achievement === currentAchievementName);
       if (currentAchievement) {
         currentAchievement.complete = true;
+        this.changeImgToReached(this.achievementImgs.student);
       }
     }
   }
@@ -55,6 +70,7 @@ class UserAchievementsHandler {
         .achievement === currentAchievementName);
       if (currentAchievement) {
         currentAchievement.complete = true;
+        this.changeImgToReached(this.achievementImgs.serious);
       }
     }
   }
@@ -68,6 +84,7 @@ class UserAchievementsHandler {
         .achievement === currentAchievementName);
       if (currentAchievement) {
         currentAchievement.complete = true;
+        this.changeImgToReached(this.achievementImgs.obsessed);
       }
     }
   }
