@@ -173,14 +173,11 @@ class UserProfile {
   public clearAchievements(): void {
     this.achievements = [
       { achievement: 'First of many', complete: false },
+      { achievement: 'Beginner', complete: false },
       { achievement: 'Student', complete: false },
       { achievement: 'Serious', complete: false },
       { achievement: 'Obsessed', complete: false },
     ];
-    // this.achievements.forEach((achievement): void => {
-    //   const currentAchievement = achievement;
-    //   currentAchievement.complete = false;
-    // });
   }
 
   public addExercisesResult(newExerciseResult: IExerciseResult): void {

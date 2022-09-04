@@ -50,6 +50,7 @@ class UserDataHandler {
         exercisesResult: [],
         achievements: [
           { achievement: 'First of many', complete: false },
+          { achievement: 'Beginner', complete: false },
           { achievement: 'Student', complete: false },
           { achievement: 'Serious', complete: false },
           { achievement: 'Obsessed', complete: false },
