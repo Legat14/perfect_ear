@@ -1,3 +1,4 @@
+import { headerLang } from '../models/translation';
 import MainPageCreator from '../views/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
@@ -23,9 +24,9 @@ class AppLoader {
   private guestEnterHandler: GuestEnterHandler;
 
   constructor() {
-    this.view = new MainPageCreator();
-    this.guestEnterHandler = new GuestEnterHandler();
     this.userDataHandler = new UserDataHandler();
+    this.view = new MainPageCreator(headerLang[this.userDataHandler.userConfig.getLanguage()]);
+    this.guestEnterHandler = new GuestEnterHandler();
 
     const { userStats } = this.view.viewsController;
 

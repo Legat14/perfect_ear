@@ -1,4 +1,5 @@
 import ViewsController from '../controllers/viewsController';
+import { IHeaderLangType } from '../models/translation';
 import FooterView from './footer';
 import HeaderView from './header';
 
@@ -11,8 +12,8 @@ class MainPageCreator {
 
   onAuth!: () => void;
 
-  constructor() {
-    this.header = new HeaderView(document.body);
+  constructor(langPack: IHeaderLangType) {
+    this.header = new HeaderView(document.body, langPack);
     this.viewsController = new ViewsController(document.body);
     this.footer = new FooterView(document.body);
   }
