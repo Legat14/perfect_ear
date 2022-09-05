@@ -23,12 +23,8 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
     const { direction, answers } = quiz;
 
     const [min, max] = [
-      direction !== Direction.Ascending
-        ? Tone.Frequency(Notations.C1).transpose(12).toNote()
-        : Tone.Frequency(Notations.C1).toNote(),
-      direction !== Direction.Descending
-        ? Tone.Frequency(Notations.C5).transpose(-12).toNote()
-        : Tone.Frequency(Notations.C5).toNote(),
+      Tone.Frequency(Notations.C1).toNote(),
+      Tone.Frequency(Notations.C5).transpose(-12).toNote(),
     ];
 
     const baseNote = Random.generateRandomNote(min, max);

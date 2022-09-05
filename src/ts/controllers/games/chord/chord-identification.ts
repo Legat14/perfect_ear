@@ -22,12 +22,8 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
     const { direction, answers } = quiz;
 
     const [min, max] = [
-      direction !== Direction.Ascending
-        ? Tone.Frequency(Notations.C1).transpose(12).toNote()
-        : Tone.Frequency(Notations.C1).toNote(),
-      direction !== Direction.Descending
-        ? Tone.Frequency(Notations.C5).transpose(-12).toNote()
-        : Tone.Frequency(Notations.C5).toNote(),
+      Tone.Frequency(Notations.C1).toNote(),
+      Tone.Frequency(Notations.C5).transpose(-9).toNote(),
     ];
 
     const baseNote = Random.generateRandomNote(min, max);
@@ -46,6 +42,8 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
       : [[Tone.Frequency(baseNote)
         .harmonize(Chords[answers[value]])
         .map((note) => note.toNote()), '2n']];
+
+    if (direction === Direction.Descending) sequence.reverse();
 
     return {
       round: quiz,
