@@ -5,6 +5,8 @@ import NodeBuilder from '../helpers/node-builder';
 class EarTrainingView extends NodeBuilder {
   category!: GameRoundsController;
 
+  sectionContainer: HTMLElement | null;
+
   constructor() {
     super({ parentNode: null, className: 'ear-training' });
 
@@ -28,8 +30,14 @@ class EarTrainingView extends NodeBuilder {
     /**
      * @todo Добавить картинки ко всем кнопкам.
      */
+    this.sectionContainer = new NodeBuilder({
+      parentNode: this.node,
+      tagName: 'div',
+      className: 'ear-main_section',
+    }).node;
+
     this.createSection(
-      'Упражнения на интервалы',
+      'Упражнения на <span>интервалы</span>',
       [
         [[{
           parentNode: null,
@@ -41,13 +49,13 @@ class EarTrainingView extends NodeBuilder {
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
-          content: 'Сравнение интервалов',
+          content: 'Сравнение <span>интервалов</span>',
         }],
         '/ear-training/interval-comparison'],
       ],
     );
 
-    this.createSection('Упражнения на гаммы', [
+    this.createSection('Упражнения на <span>гаммы</span>', [
       [[{
         parentNode: null,
         className: 'ear-training__btn ear-training__theory training-btn theory-btn',
@@ -64,7 +72,7 @@ class EarTrainingView extends NodeBuilder {
       ],
     ]);
 
-    this.createSection('Упражнения на аккорды', [
+    this.createSection('Упражнения на <span>аккорды</span>', [
       [[{
         parentNode: null,
         className: 'ear-training__btn ear-training__theory training-btn theory-btn',
@@ -87,8 +95,8 @@ class EarTrainingView extends NodeBuilder {
     sectionButtons: [ConstructorParameters<typeof ButtonBuilder>, string][],
   ): void {
     const container = new NodeBuilder({
-      parentNode: this.node,
-      tagName: 'h3',
+      parentNode: this.sectionContainer,
+      tagName: 'div',
       className: 'ear-section section',
       content: `<h2 class="ear-section__section-title section-title">${sectionName}</h2>`,
     }).node;
