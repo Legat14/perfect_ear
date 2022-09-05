@@ -13,7 +13,13 @@ class FortepianoView extends NodeBuilder {
       className: 'field__back-btn',
       content: '←',
     });
-
+    const fortepianoH2 = new NodeBuilder({
+      parentNode: this.node,
+      tagName: 'div',
+      className: 'piano__head',
+      content: '<h2 class="piano__head_h2">Фортепиано</h2>',
+    });
+    console.log(fortepianoH2);
     const piano = new Piano(this.node, new Sound(PIANO_SOUND));
     console.log(piano);
 
