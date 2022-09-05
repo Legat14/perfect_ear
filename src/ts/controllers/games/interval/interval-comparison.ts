@@ -56,7 +56,7 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
       labels: randomized.map((i) => Tone.Frequency(baseNote)
-        .harmonize([0, i])
+        .harmonize(direction === Direction.Descending ? [0, -i] : [0, i])
         .map((note) => note.toNote())),
     };
   }
