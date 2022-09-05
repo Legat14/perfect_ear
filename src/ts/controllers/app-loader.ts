@@ -96,6 +96,9 @@ class AppLoader {
   }
 
   private init() {
+    this.view.viewsController.renderGamePages({
+      profile: this.userDataHandler.userProfile,
+    });
     this.view.viewsController.init();
     this.view.viewsController.renderPages({ profile: this.userDataHandler.userProfile });
   }

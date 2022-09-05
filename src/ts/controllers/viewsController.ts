@@ -65,46 +65,39 @@ class ViewsController extends NodeBuilder {
     this.router.init('');
   }
 
-  public renderPages({ profile }: { profile: UserProfile }) {
+  public renderGamePages({ profile }: { profile: UserProfile }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
-    intervalCompPage.load(
-      gamesLoader,
-      'intervals',
-      'interval-comparison',
-      'Сравнение интервалов',
-      IntervalComparison,
-      IntervalComparisonView,
-      profile.getExercisesResult(),
-    ).then(() => {
-      this.router.add('/ear-training/interval-comparison', intervalCompPage.view.node);
-    });
+    intervalCompPage
+      .load(gamesLoader, ...intervalOptions, profile.getExercisesResult())
+      .then(() => {
+        this.router.add(
+          '/ear-training/interval-comparison',
+          intervalCompPage.view.node,
+        );
+      });
 
     const scaleIdentPage = new GameRoundsController<IScaleRound>();
-    scaleIdentPage.load(
-      gamesLoader,
-      'scales',
-      'scale-identification',
-      'Определение ладов',
-      ScaleIdentification,
-      ScaleIdentificationView,
-      profile.getExercisesResult(),
-    ).then(() => {
-      this.router.add('/ear-training/scale-identification', scaleIdentPage.view.node);
-    });
+    scaleIdentPage
+      .load(gamesLoader, ...scaleOptions, profile.getExercisesResult())
+      .then(() => {
+        this.router.add(
+          '/ear-training/scale-identification',
+          scaleIdentPage.view.node,
+        );
+      });
 
     const chordIdentPage = new GameRoundsController<IChordRound>();
-    chordIdentPage.load(
-      gamesLoader,
-      'chords',
-      'chord-identification',
-      'Определение аккордов',
-      ChordIdentification,
-      ChordIdentificationView,
-      profile.getExercisesResult(),
-    ).then(() => {
-      this.router.add('/ear-training/chord-identification', chordIdentPage.view.node);
+    chordIdentPage
+      .load(gamesLoader, ...chordOptions, profile.getExercisesResult())
+      .then(() => {
+        this.router.add(
+          '/ear-training/chord-identification',
+          chordIdentPage.view.node,
+        );
+      });
+  }
     });
   }
 }
