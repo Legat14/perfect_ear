@@ -40,14 +40,14 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
     sound: Sound,
     callback: Callback<void>,
   ) {
-    super({ parentNode: null, className: 'quiz' });
+    super({ parentNode: null, className: 'quiz fortepiano-field fortepiano-flex' });
 
     const piano = new Piano(this.node, sound);
     this.piano = piano;
 
     const condition = new NodeBuilder({
       parentNode: this.node,
-      tagName: 'h2',
+      tagName: 'p',
       className: 'quiz-question',
       content: question.round.condition,
     });
