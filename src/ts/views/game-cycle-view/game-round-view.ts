@@ -37,7 +37,7 @@ class GameRoundView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
-      content: `<div><h1 class="quiz-header__quiz-name">${quizName}</h1><h2 class="quiz-header__game-name">${gameName}</h2></div>`,
+      content: `<div class="quiz-header__column"><h2 class="quiz-header__quiz-name">${quizName}</h2><h3 class="quiz-header__game-name">${gameName}</h3></div>`,
     }).node;
 
     const backButton = new ButtonBuilder({

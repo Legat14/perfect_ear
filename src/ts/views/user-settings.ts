@@ -35,6 +35,8 @@ class UserSettingsView extends NodeBuilder {
 
   saveDayGoalsBtn: ButtonBuilder;
 
+  divForButton: HTMLElement;
+
   constructor() {
     super({ parentNode: null, className: 'user-settings' });
 
@@ -63,7 +65,7 @@ class UserSettingsView extends NodeBuilder {
 
     this.statsSettingsHeader = new NodeBuilder({
       parentNode: this.statsSettings.node,
-      tagName: 'h2',
+      tagName: 'h3',
       className: 'user-settings__stats-header',
       content: 'Дневные цели',
     });
@@ -155,8 +157,14 @@ class UserSettingsView extends NodeBuilder {
       content: 'Сохранить',
     });
 
-    this.resetStatsBtn = new ButtonBuilder({
+    this.divForButton = new NodeBuilder({
       parentNode: this.node,
+      tagName: 'div',
+      className: 'user-settings__row',
+    }).node;
+
+    this.resetStatsBtn = new ButtonBuilder({
+      parentNode: this.divForButton,
       className: 'user-settings__reset-stats-btn',
       content: 'Сбросить статистику',
     });

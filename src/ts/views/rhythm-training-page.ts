@@ -35,7 +35,7 @@ class RhythmTrainingView extends NodeBuilder {
   ): void {
     const container = new NodeBuilder({
       parentNode: this.node,
-      tagName: 'h3',
+      tagName: 'div',
       className: 'rhythm-section section',
       content: `<h2 class="rhythm-section__section-title section-title">${sectionName}</h2>`,
     }).node;
