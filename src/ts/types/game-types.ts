@@ -1,4 +1,4 @@
-import { Frequency, Subdivision } from 'tone/build/esm/core/type/Units';
+import { Frequency, Note, Subdivision } from 'tone/build/esm/core/type/Units';
 import { Pause } from './note-types';
 
 export enum SequenceDirection {
@@ -122,6 +122,8 @@ export interface IQuestion<T extends IRound> {
   round: T;
   sequence?: [Pause | Frequency | Frequency[], Subdivision][];
   value: keyof IRound['answers'];
+  baseNote: Note;
+  labels: Note[][];
 }
 
 export interface IIntervalRound extends IRound {

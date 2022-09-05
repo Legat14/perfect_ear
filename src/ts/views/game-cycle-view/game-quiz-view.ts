@@ -1,3 +1,4 @@
+import { Note } from 'tone/build/esm/core/type/NoteUnits';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -53,21 +54,26 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
     });
     this.condition = condition;
 
+    const { baseNote } = question;
+    this.piano.keys[baseNote].node.className += ' key_basenote';
+
     const answers = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-answers',
     }).node;
 
-    this.answers = question.round.answers.map((answer, index) => {
-      const button = new ButtonBuilder({
-        parentNode: answers,
-        className: 'quiz-answers__answer',
-        content: answer,
-      });
+    this.answers = question.round.answers.map(
+      (answer, index) => {
+        const button = new ButtonBuilder({
+          parentNode: answers,
+          className: 'quiz-answers__answer',
+          content: answer,
+        });
 
-      button.node.onclick = () => this.onAnswer(index);
-      return button.node;
-    });
+        button.node.onclick = () => this.onAnswer(index);
+        return button.node;
+      },
+    );
 
     const footer = new NodeBuilder({
       parentNode: this.node,
@@ -107,7 +113,12 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
    * @todo Add staff view.
    */
 
-  public react(answer: boolean, terms: IRound['terms'], done: boolean): void {
+  public react(
+    answer: boolean,
+    terms: IRound['terms'],
+    done: boolean,
+    { right, given }: { right: Note[]; given: Note[] },
+  ): void {
     terms?.forEach((term, index) => {
       this.answers[index].innerHTML = term;
       this.answers[index].className += ` ${
@@ -119,16 +130,26 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
     if (done) this.nextControl.setDone();
     else this.nextControl.setNext();
-    if (answer) this.acceptAnswer();
-    else this.rejectAnswer();
+
+    if (answer) this.acceptAnswer(right);
+    else this.rejectAnswer(right, given);
   }
 
-  private acceptAnswer(): void {
+  private acceptAnswer(right: Note[]): void {
     AnswerSound.accept();
+    right.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_correct';
+    });
   }
 
-  private rejectAnswer(): void {
+  private rejectAnswer(right: Note[], given: Note[]): void {
     AnswerSound.reject();
+    right.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_correct';
+    });
+    given.forEach((note) => {
+      this.piano.keys[note].node.className += ' key_wrong';
+    });
   }
 }
 

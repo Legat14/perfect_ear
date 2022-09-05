@@ -3,7 +3,6 @@ import {
   Frequency,
   Subdivision,
 } from 'tone/build/esm/core/type/Units';
-import Sound from '../../sound';
 import {
   Pause,
   PianoNotations as Notations,
@@ -18,23 +17,14 @@ import AbstractGameQuiz from '../../game-cycle/abstract-game-quiz';
 import Random from '../../../helpers/generator';
 
 class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
-  constructor(quiz: IScaleRound, round: number, sound: Sound) {
-    super(quiz, round, sound);
-    this.generateQuestion(quiz);
-  }
-
   public generateQuestion(
     quiz: IScaleRound,
   ): IQuestion<IScaleRound> {
     const { direction, answers } = quiz;
 
     const [min, max] = [
-      direction !== Direction.Ascending
-        ? Tone.Frequency(Notations.C1).transpose(12).toNote()
-        : Tone.Frequency(Notations.C1).toNote(),
-      direction !== Direction.Descending
-        ? Tone.Frequency(Notations.C5).transpose(-12).toNote()
-        : Tone.Frequency(Notations.C5).toNote(),
+      Tone.Frequency(Notations.C1).toNote(),
+      Tone.Frequency(Notations.C5).transpose(-12).toNote(),
     ];
 
     const baseNote = Random.generateRandomNote(min, max);
@@ -56,6 +46,10 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
       round: quiz,
       value,
       sequence,
+      baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
+      labels: answers.map((answer) => Tone.Frequency(baseNote)
+        .harmonize(Scales[answer])
+        .map((note) => note.toNote())),
     };
   }
 }

@@ -3,7 +3,6 @@ import {
   Frequency,
   Subdivision,
 } from 'tone/build/esm/core/type/Units';
-import Sound from '../../sound';
 import {
   PianoNotations as Notations,
 } from '../../../types/note-types';
@@ -17,23 +16,14 @@ import AbstractGameQuiz from '../../game-cycle/abstract-game-quiz';
 import Random from '../../../helpers/generator';
 
 class ChordIdentification extends AbstractGameQuiz<IChordRound> {
-  constructor(quiz: IChordRound, round: number, sound: Sound) {
-    super(quiz, round, sound);
-    this.generateQuestion(quiz);
-  }
-
   public generateQuestion(
     quiz: IChordRound,
   ): IQuestion<IChordRound> {
     const { direction, answers } = quiz;
 
     const [min, max] = [
-      direction !== Direction.Ascending
-        ? Tone.Frequency(Notations.C1).transpose(12).toNote()
-        : Tone.Frequency(Notations.C1).toNote(),
-      direction !== Direction.Descending
-        ? Tone.Frequency(Notations.C5).transpose(-12).toNote()
-        : Tone.Frequency(Notations.C5).toNote(),
+      Tone.Frequency(Notations.C1).toNote(),
+      Tone.Frequency(Notations.C5).transpose(-9).toNote(),
     ];
 
     const baseNote = Random.generateRandomNote(min, max);
@@ -53,10 +43,16 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
         .harmonize(Chords[answers[value]])
         .map((note) => note.toNote()), '2n']];
 
+    if (direction === Direction.Descending) sequence.reverse();
+
     return {
       round: quiz,
       value,
       sequence,
+      baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
+      labels: answers.map((answer) => Tone.Frequency(baseNote)
+        .harmonize(Chords[answer])
+        .map((note) => note.toNote())),
     };
   }
 }

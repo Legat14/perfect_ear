@@ -9,6 +9,8 @@ class Piano extends NodeBuilder {
 
   private sound: Sound;
 
+  public keys: { [key: string]: Key; };
+
   constructor(parentNode: HTMLElement, sound: Sound) {
     super({
       parentNode,
@@ -18,14 +20,17 @@ class Piano extends NodeBuilder {
 
     this.sound = sound;
 
-    this.createKeys();
+    this.keys = this.createKeys();
   }
 
-  public createKeys(): void {
-    Object.keys(PianoNotations).forEach((key) => {
-      const keyButton = new Key(this.node, key as Note);
-      keyButton.onPlayNote = (note: Note) => this.playNote(note);
-    });
+  public createKeys() {
+    return Object.fromEntries(
+      (Object.keys(PianoNotations) as Note[]).map((key: Note) => {
+        const keyButton = new Key(this.node, key);
+        keyButton.onPlayNote = (note: Note) => this.playNote(note);
+        return [key, keyButton];
+      }),
+    );
   }
 
   public playNote(note: Note): void {
