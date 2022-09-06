@@ -6,6 +6,8 @@ class Key extends ButtonBuilder {
 
   public onPlayNote!: (note: Note) => void;
 
+  public onReleaseNote!: (note: Note) => void;
+
   constructor(parentNode: HTMLElement, note: Note) {
     super({
       parentNode,
@@ -16,6 +18,7 @@ class Key extends ButtonBuilder {
       attributes: { black: note.includes('#') },
     });
     this.note = note;
+
     this.node.onmousedown = () => this.onPlayNote(this.note);
   }
 }
