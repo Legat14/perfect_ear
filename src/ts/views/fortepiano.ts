@@ -13,13 +13,14 @@ class FortepianoView extends NodeBuilder {
       className: 'field__back-btn',
       content: '←',
     });
-    const fortepianoH2 = new NodeBuilder({
+    new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
       className: 'piano__head',
       content: '<h2 class="piano__head_h2">Фортепиано</h2>',
-    });
-    console.log(fortepianoH2);
+    }).node.innerHTML
+      += '<p class="piano__descr_p">Играйте ноты, используя клавиатуру или нажимая на клавиши пианино мышью.</p>';
+
     const piano = new Piano(this.node, new Sound(PIANO_SOUND));
     console.log(piano);
 

@@ -69,6 +69,8 @@ class UserStatsView extends NodeBuilder {
 
   achievementsBtn: ButtonBuilder;
 
+  achievementNew: HTMLElement | null;
+
   constructor() {
     super({ parentNode: null, className: 'user-stats' });
 
@@ -295,8 +297,13 @@ class UserStatsView extends NodeBuilder {
       totalChordsGameScoreCounter: this.totalChordsGameScoreCount.node,
     };
 
-    this.achievementsBtn = new ButtonBuilder({
+    this.achievementNew = new NodeBuilder({
       parentNode: this.node,
+      tagName: 'div',
+      className: 'user-stats__achievements',
+    }).node;
+    this.achievementsBtn = new ButtonBuilder({
+      parentNode: this.achievementNew,
       className: 'user-stats__achievements-btn',
       content: 'Достижения',
     });
