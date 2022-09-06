@@ -67,13 +67,27 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
         const button = new ButtonBuilder({
           parentNode: answers,
           className: 'quiz-answers__answer',
-          content: answer,
+          content: `${answer} <span class="key-index">(${
+            index + 1
+          })</span>`,
         });
 
         button.node.onclick = () => this.onAnswer(index);
         return button.node;
       },
     );
+
+    document.addEventListener('keydown', (event) => {
+      if (
+        !document.body.contains(this.node)
+        || event.repeat
+      ) return;
+      const index = Number(event.key) - 1;
+      if (
+        !Number.isNaN(index)
+        && index < this.answers.length
+      ) this.onAnswer(index);
+    });
 
     const footer = new NodeBuilder({
       parentNode: this.node,
@@ -90,11 +104,19 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
     const repeatControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-answers__music-repeat',
-      content: 'повторить',
+      content:
+        'повторить <span class="key-index">(r)</span>',
     });
     this.repeatControl = repeatControl.node;
 
     this.repeatControl.onclick = () => this.onRepeat();
+    document.addEventListener('keydown', (event) => {
+      if (
+        !document.body.contains(this.node)
+        || event.repeat
+      ) return;
+      if (event.key === 'r') this.onRepeat();
+    });
 
     const nextControl = new GameQuizNextButton(footer);
     this.nextControl = nextControl;
