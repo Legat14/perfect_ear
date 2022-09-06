@@ -41,6 +41,12 @@ class Piano extends NodeBuilder {
   public releaseNote(note: Note): void {
     this.sound.releaseNote(note);
   }
+
+  destroy() {
+    this.remove();
+    this.sound.sampler.dispose();
+    console.log('Fortepiano has been destroyed.');
+  }
 }
 
 export default Piano;

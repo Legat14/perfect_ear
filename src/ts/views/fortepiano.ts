@@ -7,6 +7,8 @@ import VirtualPiano from './piano/advanced-piano';
 class FortepianoView extends NodeBuilder {
   private piano: VirtualPiano;
 
+  onDestroy!: () => void;
+
   constructor() {
     super({ parentNode: null, className: 'fortepiano-field' });
 

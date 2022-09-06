@@ -19,7 +19,7 @@ class VirtualPiano extends Piano {
     super(parentNode, sound);
 
     document.addEventListener('keydown', (event) => {
-    document.onkeydown = (event) => {
+      if (!document.body.contains(this.node)) return;
       if (event.repeat) return;
 
       if (event.code in FortepianoKeys) {
