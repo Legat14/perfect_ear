@@ -115,7 +115,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
         !document.body.contains(this.node)
         || event.repeat
       ) return;
-      if (event.key === 'r') this.onRepeat();
+      if (event.code === 'KeyR') this.onRepeat();
     });
 
     const nextControl = new GameQuizNextButton(footer);
