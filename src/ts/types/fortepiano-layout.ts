@@ -1,4 +1,6 @@
 const FortepianoKeys = {
+  Escape: 'C1',
+  Backquote: 'C#1',
   Tab: 'D1',
   Digit1: 'D#1',
   KeyQ: 'E1',
@@ -45,6 +47,7 @@ const FortepianoKeys = {
   ArrowLeft: 'A4',
   ArrowUp: 'A#4',
   ArrowRight: 'B4',
+  ArrowDown: 'C5',
 } as Record<KeyboardEvent['code'], string>;
 
 export default FortepianoKeys;
