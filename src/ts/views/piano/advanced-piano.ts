@@ -1,9 +1,41 @@
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
+import Sound from '../../controllers/sound';
+import FortepianoKeys from '../../types/fortepiano-layout';
 import { PianoNotations } from '../../types/note-types';
 import Key from './key';
 import Piano from './piano';
 
 class VirtualPiano extends Piano {
+  constructor(parentNode: HTMLElement, sound: Sound) {
+    super(parentNode, sound);
+
+
+    document.onkeydown = (event) => {
+      if (event.repeat) return;
+      if (event.code in FortepianoKeys) {
+        event.preventDefault();
+        this.handleDown(FortepianoKeys[event.code]);
+      }
+    };
+
+    document.onkeyup = (event) => {
+      if (event.code in FortepianoKeys) {
+        event.preventDefault();
+        this.handleUp(FortepianoKeys[event.code]);
+      }
+    };
+  }
+
+  private handleDown(key: string) {
+    const btnkey = this.keys[key];
+    if (btnkey.pressed) return;
+    btnkey.keyDown();
+  }
+
+  private handleUp(key: string) {
+    this.keys[key].keyUp();
+  }
+
   public createKeys() {
     return Object.fromEntries(
       (Object.keys(PianoNotations) as Note[]).map(
