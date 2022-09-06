@@ -5,6 +5,7 @@ import {
   BPM,
   Subdivision,
   Seconds,
+  Note,
 } from 'tone/build/esm/core/type/Units';
 import { Pause } from '../types/note-types';
 
@@ -89,6 +90,13 @@ class Sound implements ISound {
   /**
    * @todo Add muteNotes();
    */
+  public attackNote(note: Note) {
+    this.sampler.triggerAttack(note);
+  }
+
+  public releaseNote(note: Note) {
+    this.sampler.triggerRelease(note);
+  }
 }
 
 export default Sound;

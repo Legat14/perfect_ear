@@ -5,11 +5,9 @@ import { PianoNotations } from '../../types/note-types';
 import Key from './key';
 
 class Piano extends NodeBuilder {
-  public onPlayNote!: (note: Note) => void;
+  protected sound: Sound;
 
-  private sound: Sound;
-
-  public keys: { [key: string]: Key; };
+  public keys: { [key: string]: Key };
 
   constructor(parentNode: HTMLElement, sound: Sound) {
     super({
@@ -27,7 +25,10 @@ class Piano extends NodeBuilder {
     return Object.fromEntries(
       (Object.keys(PianoNotations) as Note[]).map((key: Note) => {
         const keyButton = new Key(this.node, key);
-        keyButton.onPlayNote = (note: Note) => this.playNote(note);
+
+        keyButton.onPlayNote = this.playNote;
+        keyButton.onReleaseNote = this.releaseNote;
+
         return [key, keyButton];
       }),
     );
@@ -35,6 +36,10 @@ class Piano extends NodeBuilder {
 
   public playNote(note: Note): void {
     this.sound.playNote([note, '4n']);
+  }
+
+  public releaseNote(note: Note): void {
+    this.sound.releaseNote(note);
   }
 }
 
