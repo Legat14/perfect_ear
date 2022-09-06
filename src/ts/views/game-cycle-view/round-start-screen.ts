@@ -50,6 +50,13 @@ class GameRoundStartScreen extends NodeBuilder {
         className: 'quiz-start-screen__game-description',
         content: info.quizStartDescription.join('<br>'),
       }).node,
+
+      new NodeBuilder({
+        parentNode: null,
+        tagName: 'p',
+        className: 'quiz-start-screen__game-description',
+        content: 'Нажимайте клавиши 1-8 — для быстрого ответа, R — для повтора мелодии, Enter — для пропуска вопроса или перехода к следующему.',
+      }).node,
     );
 
     const termsContaner = new NodeBuilder({

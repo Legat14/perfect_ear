@@ -5,9 +5,9 @@ import { PianoNotations } from '../../types/note-types';
 import Key from './key';
 
 class Piano extends NodeBuilder {
-  public onPlayNote!: (note: Note) => void;
+  protected sound: Sound;
 
-  private sound: Sound;
+  public keys: { [key: string]: Key };
 
   constructor(parentNode: HTMLElement, sound: Sound) {
     super({
@@ -18,18 +18,34 @@ class Piano extends NodeBuilder {
 
     this.sound = sound;
 
-    this.createKeys();
+    this.keys = this.createKeys();
   }
 
-  public createKeys(): void {
-    Object.keys(PianoNotations).forEach((key) => {
-      const keyButton = new Key(this.node, key as Note);
-      keyButton.onPlayNote = (note: Note) => this.playNote(note);
-    });
+  public createKeys() {
+    return Object.fromEntries(
+      (Object.keys(PianoNotations) as Note[]).map((key: Note) => {
+        const keyButton = new Key(this.node, key);
+
+        keyButton.onPlayNote = (note: Note) => this.playNote(note);
+        keyButton.onReleaseNote = (note: Note) => this.releaseNote(note);
+
+        return [key, keyButton];
+      }),
+    );
   }
 
   public playNote(note: Note): void {
     this.sound.playNote([note, '4n']);
+  }
+
+  public releaseNote(note: Note): void {
+    this.sound.releaseNote(note);
+  }
+
+  destroy() {
+    this.remove();
+    this.sound.sampler.dispose();
+    console.log('Fortepiano has been destroyed.');
   }
 }
 

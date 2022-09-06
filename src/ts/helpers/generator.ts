@@ -1,5 +1,5 @@
+import * as Tone from 'tone';
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
-import { PitchNotations as Notations } from '../types/note-types';
 
 class RandomGenerator {
   static generateRandomNumber(min: number, max: number): number {
@@ -10,12 +10,12 @@ class RandomGenerator {
   }
 
   static generateRandomNote(min: Note, max: Note): Note {
-    const randomKey = RandomGenerator.generateRandomNumber(
-      Notations[min as keyof typeof Notations],
-      Notations[max as keyof typeof Notations],
-    );
-
-    return <Note>Notations[randomKey];
+    return (Tone.Midi(
+      RandomGenerator.generateRandomNumber(
+        Tone.Frequency(min).toMidi(),
+        Tone.Frequency(max).toMidi(),
+      ),
+    ).toNote());
   }
 
   static randomizeArray<T>(array: T[]): T[] {

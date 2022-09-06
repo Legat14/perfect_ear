@@ -27,6 +27,7 @@ class GameRoundEndScreen extends NodeBuilder {
       parentNode,
       className: 'quiz__quiz-end-screen quiz-end-screen',
       content: `
+                <div class="quiz__quiz-end-screen_result">
                 <p class="indicators__indicator-title">Очки: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
                 <p class="indicators__indicator-title">Бонус за время: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
                 <p class="indicators__indicator-title">Штраф за пропуски: <span class="indicators__indicator-score">- ${finesScore}</span></p>
@@ -40,10 +41,11 @@ class GameRoundEndScreen extends NodeBuilder {
                 <p class="indicators__indicator-title indicators__indicator-title_labeled">Время выполнения задания
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${gameTimeHR}</span>
                 </p>
+                </div>
                 `,
     });
 
-    const header = new NodeBuilder({ parentNode: null, className: 'quiz-end-screen__header' }).node;
+    const header = new NodeBuilder({ tagName: 'header', parentNode: null, className: 'quiz-end-screen__header' }).node;
     this.node.prepend(header);
 
     const quitControl = new ButtonBuilder({
@@ -52,6 +54,14 @@ class GameRoundEndScreen extends NodeBuilder {
       content: '×',
     });
     quitControl.node.onclick = () => this.onQuit();
+
+    const resultGame = new NodeBuilder({
+      parentNode: header,
+      tagName: 'div',
+      className: 'quiz-end__header',
+      content: '<h2 class="quiz-end__h2">Итоги игры</h2>',
+    });
+    console.log(resultGame);
 
     const footer = new NodeBuilder({ parentNode: this.node, className: 'quiz-controls' }).node;
 

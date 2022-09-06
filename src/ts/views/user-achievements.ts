@@ -39,6 +39,8 @@ class UserAchievementsView extends NodeBuilder {
 
   achievementImgs: IAchievementImgs;
 
+  achievementRow: HTMLElement | null;
+
   constructor() {
     super({ parentNode: null, className: 'user-achievements' });
 
@@ -59,8 +61,14 @@ class UserAchievementsView extends NodeBuilder {
       className: 'user-achievements__header',
     });
 
-    this.achievement1Div = new NodeBuilder({
+    this.achievementRow = new NodeBuilder({
       parentNode: this.node,
+      tagName: 'div',
+      className: 'user-achievements__achievement-row',
+    }).node;
+
+    this.achievement1Div = new NodeBuilder({
+      parentNode: this.achievementRow,
       tagName: 'div',
       className: 'user-achievements__achievement-div',
     });
@@ -72,8 +80,8 @@ class UserAchievementsView extends NodeBuilder {
       attributes: {
         alt: 'first-of-many',
         src: './assets/img/achievements/first_of_many_unreached.png',
-        width: '100px',
-        heignt: '100px',
+        width: '120px',
+        heignt: '120px',
       },
     });
 
@@ -85,7 +93,7 @@ class UserAchievementsView extends NodeBuilder {
     });
 
     this.achievement2Div = new NodeBuilder({
-      parentNode: this.node,
+      parentNode: this.achievementRow,
       tagName: 'div',
       className: 'user-achievements__achievement-div',
     });
@@ -97,8 +105,8 @@ class UserAchievementsView extends NodeBuilder {
       attributes: {
         alt: 'beginner',
         src: './assets/img/achievements/beginner_unreached.png',
-        width: '100px',
-        heignt: '100px',
+        width: '120px',
+        heignt: '120px',
       },
     });
 
@@ -110,7 +118,7 @@ class UserAchievementsView extends NodeBuilder {
     });
 
     this.achievement3Div = new NodeBuilder({
-      parentNode: this.node,
+      parentNode: this.achievementRow,
       tagName: 'div',
       className: 'user-achievements__achievement-div',
     });
@@ -122,8 +130,8 @@ class UserAchievementsView extends NodeBuilder {
       attributes: {
         alt: 'student',
         src: './assets/img/achievements/student_unreached.png',
-        width: '100px',
-        heignt: '100px',
+        width: '120px',
+        heignt: '120px',
       },
     });
 
@@ -135,7 +143,7 @@ class UserAchievementsView extends NodeBuilder {
     });
 
     this.achievement4Div = new NodeBuilder({
-      parentNode: this.node,
+      parentNode: this.achievementRow,
       tagName: 'div',
       className: 'user-achievements__achievement-div',
     });
@@ -147,8 +155,8 @@ class UserAchievementsView extends NodeBuilder {
       attributes: {
         alt: 'serious',
         src: './assets/img/achievements/serious_unreached.png',
-        width: '100px',
-        heignt: '100px',
+        width: '120px',
+        heignt: '120px',
       },
     });
 
@@ -160,7 +168,7 @@ class UserAchievementsView extends NodeBuilder {
     });
 
     this.achievement5Div = new NodeBuilder({
-      parentNode: this.node,
+      parentNode: this.achievementRow,
       tagName: 'div',
       className: 'user-achievements__achievement-div',
     });
@@ -172,8 +180,8 @@ class UserAchievementsView extends NodeBuilder {
       attributes: {
         alt: 'obsessed',
         src: './assets/img/achievements/obsessed_unreached.png',
-        width: '100px',
-        heignt: '100px',
+        width: '120px',
+        heignt: '120px',
       },
     });
 
