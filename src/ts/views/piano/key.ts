@@ -4,8 +4,6 @@ import ButtonBuilder from '../../helpers/button-builder';
 class Key extends ButtonBuilder {
   public note: Note;
 
-  public pressed: boolean;
-
   public onPlayNote!: (note: Note) => void;
 
   public onReleaseNote!: (note: Note) => void;
@@ -19,30 +17,9 @@ class Key extends ButtonBuilder {
       )}`,
       attributes: { black: note.includes('#') },
     });
-    this.pressed = false;
-
     this.note = note;
-    this.node.onmousedown = () => this.keyDown();
 
-    this.node.onmouseout = () => this.keyUp();
-    this.node.onmouseup = () => this.keyUp();
-  }
-
-  public keyDown() {
-    this.onPlayNote(this.note);
-    this.node.className += ' key_keydown';
-
-    this.pressed = true;
-  }
-
-  public keyUp() {
-    this.onReleaseNote(this.note);
-    this.node.className = this.node.className.replace(
-      ' key_keydown',
-      '',
-    );
-
-    this.pressed = false;
+    this.node.onmousedown = () => this.onPlayNote(this.note);
   }
 }
 

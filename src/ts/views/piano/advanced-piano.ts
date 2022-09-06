@@ -3,7 +3,7 @@ import { Note } from 'tone/build/esm/core/type/NoteUnits';
 import Sound from '../../controllers/sound';
 import FortepianoKeys from '../../types/fortepiano-layout';
 import { PianoNotations } from '../../types/note-types';
-import Key from './key';
+import AdvancedKey from './advanced-key';
 import Piano from './piano';
 
 type OctaveTransposition = 0 | 12 | 24 | 36;
@@ -13,16 +13,20 @@ class VirtualPiano extends Piano {
 
   private transposition!: OctaveTransposition;
 
+  public keys!: { [key: string]: AdvancedKey };
+
   constructor(parentNode: HTMLElement, sound: Sound) {
     super(parentNode, sound);
 
+    document.addEventListener('keydown', (event) => {
     document.onkeydown = (event) => {
       if (event.repeat) return;
+
       if (event.code in FortepianoKeys) {
         event.preventDefault();
         this.handleDown(FortepianoKeys[event.code]);
       }
-    };
+    });
 
     document.onkeyup = (event) => {
       if (event.code in FortepianoKeys) {
@@ -48,9 +52,11 @@ class VirtualPiano extends Piano {
     return Object.fromEntries(
       (Object.keys(PianoNotations) as Note[]).map(
         (key: Note) => {
-          const keyButton = new Key(this.node, key);
+          const keyButton = new AdvancedKey(this.node, key);
+
           keyButton.onPlayNote = (note: Note) => this.playNote(note);
           keyButton.onReleaseNote = (note: Note) => this.releaseNote(note);
+
           return [key, keyButton];
         },
       ),

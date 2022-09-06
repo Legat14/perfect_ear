@@ -26,8 +26,8 @@ class Piano extends NodeBuilder {
       (Object.keys(PianoNotations) as Note[]).map((key: Note) => {
         const keyButton = new Key(this.node, key);
 
-        keyButton.onPlayNote = this.playNote;
-        keyButton.onReleaseNote = this.releaseNote;
+        keyButton.onPlayNote = (note: Note) => this.playNote(note);
+        keyButton.onReleaseNote = (note: Note) => this.releaseNote(note);
 
         return [key, keyButton];
       }),
