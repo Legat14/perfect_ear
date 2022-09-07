@@ -1,6 +1,8 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { IDayGoalsInputs } from '../../types/data-types';
+import LanquageSetting from '../components/language-setting';
+import VolumeSetting from '../components/volume-setting';
 
 class UserSettingsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;
@@ -33,11 +35,15 @@ class UserSettingsView extends NodeBuilder {
 
   dayGoalsInputs: IDayGoalsInputs;
 
-  changeLangBtn: ButtonBuilder;
-
   saveDayGoalsBtn: ButtonBuilder;
 
   divForButton: HTMLElement;
+
+  commonHeader: HTMLElement;
+
+  langSetting: LanquageSetting;
+
+  volumeSetting: VolumeSetting;
 
   constructor() {
     super({ parentNode: null, className: 'user-settings' });
@@ -165,14 +171,24 @@ class UserSettingsView extends NodeBuilder {
       className: 'user-settings__row',
     }).node;
 
-    this.changeLangBtn = new ButtonBuilder({
+    const commonSettings = new NodeBuilder({
       parentNode: this.node,
-      className: 'user-settings__change-btn',
-      content: 'Сменить язык',
+      tagName: 'div',
+      className: 'user-settings__stats-settings',
     });
 
+    this.commonHeader = new NodeBuilder({
+      parentNode: commonSettings.node,
+      tagName: 'h3',
+      className: 'user-settings__stats-header',
+      content: 'Общие настроки',
+    }).node;
+
+    this.langSetting = new LanquageSetting(new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node);
+    this.volumeSetting = new VolumeSetting(new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node);
+
     this.resetStatsBtn = new ButtonBuilder({
-      parentNode: this.divForButton,
+      parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
       className: 'user-settings__reset-stats-btn',
       content: 'Сбросить статистику',
     });

@@ -903,7 +903,7 @@ transition: 0.8s;
   margin-right: 40px;
   line-height: 27px;
 }
-.user-settings__save-day-goals-btn, .user-settings__reset-stats-btn {
+.user-settings__save-day-goals-btn, .user-settings__reset-stats-btn, .user-settings__change-btn {
   padding: 8px 12px;
   line-height: 1;
   margin: 10px 0px 0px;
@@ -925,7 +925,8 @@ transition: 0.8s;
   box-shadow: 0 0 20px #999;
   border-color: #00afae;
 }
-.user-settings__reset-stats-btn:hover {
+.user-settings__reset-stats-btn:hover,
+.user-settings__change-btn:hover {
   background: #f1f1f1;
   box-shadow: 0 0 20px #999;
   border-color: #f1f1f1;

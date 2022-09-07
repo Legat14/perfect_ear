@@ -65,10 +65,10 @@ class AppLoader {
       };
     }
 
-    const changeLangBtn = this.view.viewsController.userSettings.changeLangBtn.node;
-    changeLangBtn.addEventListener('click', (): void => {
-      this.userDataHandler.toggleLang();
-    });
+    // const changeLangBtn = this.view.viewsController.userSettings.changeLangBtn.node;
+    // changeLangBtn.addEventListener('click', (): void => {
+    //   this.userDataHandler.toggleLang();
+    // });
 
     const resetUserDataBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
     resetUserDataBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
