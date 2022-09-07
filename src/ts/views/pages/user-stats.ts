@@ -1,6 +1,6 @@
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
-import { IUserStatisticCounters } from '../types/data-types';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
+import { IUserStatisticCounters } from '../../types/data-types';
 
 class UserStatsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;

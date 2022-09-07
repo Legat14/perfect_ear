@@ -1,5 +1,5 @@
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
 import UserDayStatisticView from './user-day-statistic';
 
 class MainMenuView extends NodeBuilder<HTMLElement> {

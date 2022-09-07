@@ -1,5 +1,5 @@
 import { headerLang } from '../models/translation';
-import MainPageCreator from '../views/main-page-creator';
+import MainPageCreator from '../views/pages/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
 import UserAchievementsHandler from './user-data-handlers/user-achievements-handler';

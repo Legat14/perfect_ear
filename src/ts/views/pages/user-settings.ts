@@ -1,6 +1,6 @@
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
-import { IDayGoalsInputs } from '../types/data-types';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
+import { IDayGoalsInputs } from '../../types/data-types';
 
 class UserSettingsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;

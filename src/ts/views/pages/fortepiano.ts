@@ -1,8 +1,8 @@
-import { PIANO_SOUND } from '../constants/constants';
-import Sound from '../controllers/sound';
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
-import VirtualPiano from './piano/advanced-piano';
+import { PIANO_SOUND } from '../../constants/constants';
+import Sound from '../../controllers/sound';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
+import VirtualPiano from '../piano/advanced-piano';
 
 class FortepianoView extends NodeBuilder {
   private piano: VirtualPiano;

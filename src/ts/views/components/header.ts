@@ -1,5 +1,5 @@
-import NodeBuilder from '../helpers/node-builder';
-import { IHeaderLangType } from '../models/translation';
+import NodeBuilder from '../../helpers/node-builder';
+import { IHeaderLangType } from '../../models/translation';
 
 class HeaderView extends NodeBuilder {
   langPack: object;

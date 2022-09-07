@@ -1,4 +1,4 @@
-import PageNotFound from '../views/404';
+import PageNotFound from '../views/pages/404';
 
 class Router {
   private readonly root: HTMLElement | null;

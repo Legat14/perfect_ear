@@ -1,7 +1,7 @@
-import ViewsController from '../controllers/viewsController';
-import { IHeaderLangType } from '../models/translation';
-import FooterView from './footer';
-import HeaderView from './header';
+import ViewsController from '../../controllers/views-controller';
+import { IHeaderLangType } from '../../models/translation';
+import FooterView from '../components/footer';
+import HeaderView from '../components/header';
 
 class MainPageCreator {
   header: HeaderView;

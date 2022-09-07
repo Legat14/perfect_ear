@@ -1,5 +1,5 @@
-import NodeBuilder from '../helpers/node-builder';
-import { IUserDayStatisticCounters } from '../types/data-types';
+import NodeBuilder from '../../helpers/node-builder';
+import { IUserDayStatisticCounters } from '../../types/data-types';
 
 class UserDayStatisticView extends NodeBuilder {
   userDayStatisticCounters: IUserDayStatisticCounters;
