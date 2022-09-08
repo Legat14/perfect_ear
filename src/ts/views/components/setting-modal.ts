@@ -1,5 +1,8 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 
 class SettingModal extends NodeBuilder {
   public header: HTMLElement;
@@ -15,6 +18,7 @@ class SettingModal extends NodeBuilder {
   constructor(
     parentNode: HTMLElement | null,
     content: string,
+    state: keyof typeof Languages = 'RUS',
     ...settings: [HTMLInputElement, HTMLLabelElement][]
   ) {
     super({
@@ -40,7 +44,7 @@ class SettingModal extends NodeBuilder {
     this.saveBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'user-settings__save-day-goals-btn',
-      content: 'Сохранить',
+      content: LangPack[state]['2'],
     }).node;
 
     this.saveBtn.onclick = () => {
@@ -52,6 +56,10 @@ class SettingModal extends NodeBuilder {
       overlay.remove(); this.remove();
       this.onUpdate(this.setting.value);
     };
+
+    LangEmitter.add((langContent) => {
+      this.saveBtn.innerHTML = langContent['2'];
+    });
   }
 }
 

@@ -216,15 +216,6 @@ class UserDataHandler {
       }
     }, 60000);
   }
-
-  public toggleLang() {
-    const lang = this.userConfig.getLanguage();
-    if (lang === 0) {
-      this.userConfig.setLanguge(1);
-    } else {
-      this.userConfig.setLanguge(0);
-    }
-  }
 }
 
 export default UserDataHandler;

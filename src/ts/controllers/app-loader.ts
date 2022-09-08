@@ -1,4 +1,3 @@
-import { headerLang } from '../models/translation';
 import MainPageCreator from '../views/pages/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
@@ -25,7 +24,7 @@ class AppLoader {
 
   constructor() {
     this.userDataHandler = new UserDataHandler();
-    this.view = new MainPageCreator(headerLang[this.userDataHandler.userConfig.getLanguage()]);
+    this.view = new MainPageCreator();
     this.guestEnterHandler = new GuestEnterHandler();
 
     const { userStats } = this.view.viewsController;
@@ -64,11 +63,6 @@ class AppLoader {
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
     }
-
-    // const changeLangBtn = this.view.viewsController.userSettings.changeLangBtn.node;
-    // changeLangBtn.addEventListener('click', (): void => {
-    //   this.userDataHandler.toggleLang();
-    // });
 
     const resetUserDataBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
     resetUserDataBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных

@@ -1,6 +1,8 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IDayGoalsInputs } from '../../types/data-types';
+import { IDayGoalsInputs, Languages } from '../../types/data-types';
 import LanquageSetting from '../components/language-setting';
 import VolumeSetting from '../components/volume-setting';
 
@@ -45,7 +47,7 @@ class UserSettingsView extends NodeBuilder {
 
   volumeSetting: VolumeSetting;
 
-  constructor() {
+  constructor(state: keyof typeof Languages = 'RUS') {
     super({ parentNode: null, className: 'user-settings' });
 
     this.backToMainBtn = new ButtonBuilder({
@@ -62,7 +64,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'h2',
       className: 'user-settings__header',
-      content: 'Настройки',
+      content: LangPack[state]['6'],
     });
 
     this.statsSettings = new NodeBuilder({
@@ -75,7 +77,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.statsSettings.node,
       tagName: 'h3',
       className: 'user-settings__stats-header',
-      content: 'Дневные цели',
+      content: LangPack[state]['7'],
     });
 
     this.dayGoalExercisesDiv = new NodeBuilder({
@@ -88,7 +90,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalExercisesDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: 'Упражнений в день',
+      content: LangPack[state]['8'],
     });
 
     this.dayGoalExercisesInput = new NodeBuilder<HTMLInputElement>({
@@ -113,7 +115,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalScoreDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: 'Очков в день',
+      content: LangPack[state]['9'],
     });
 
     this.dayGoalScoreInput = new NodeBuilder<HTMLInputElement>({
@@ -138,7 +140,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalTimeDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: 'Минут в день',
+      content: LangPack[state]['10'],
     });
 
     this.dayGoalTimeInput = new NodeBuilder<HTMLInputElement>({
@@ -162,7 +164,7 @@ class UserSettingsView extends NodeBuilder {
     this.saveDayGoalsBtn = new ButtonBuilder({
       parentNode: this.statsSettings.node,
       className: 'user-settings__save-day-goals-btn',
-      content: 'Сохранить',
+      content: LangPack[state]['2'],
     });
 
     this.divForButton = new NodeBuilder({
@@ -181,7 +183,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: commonSettings.node,
       tagName: 'h3',
       className: 'user-settings__stats-header',
-      content: 'Общие настроки',
+      content: LangPack[state]['11'],
     }).node;
 
     this.langSetting = new LanquageSetting(new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node);
@@ -190,7 +192,18 @@ class UserSettingsView extends NodeBuilder {
     this.resetStatsBtn = new ButtonBuilder({
       parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
       className: 'user-settings__reset-stats-btn',
-      content: 'Сбросить статистику',
+      content: LangPack[state]['12'],
+    });
+
+    LangEmitter.add((content) => {
+      this.userSettingsHeader.node.innerHTML = content['6'];
+      this.statsSettingsHeader.node.innerHTML = content['7'];
+      this.dayGoalExercisesHeader.node.innerHTML = content['8'];
+      this.dayGoalScoreHeader.node.innerHTML = content['9'];
+      this.dayGoalScoreHeader.node.innerHTML = content['10'];
+      this.saveDayGoalsBtn.node.innerHTML = content['2'];
+      this.commonHeader.innerHTML = content['11'];
+      this.resetStatsBtn.node.innerHTML = content['12'];
     });
   }
 }
