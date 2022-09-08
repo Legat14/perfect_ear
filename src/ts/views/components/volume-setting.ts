@@ -5,7 +5,7 @@ import SettingModal from './setting-modal';
 class VolumeSetting extends ButtonBuilder {
   public state: number;
 
-  constructor(parentNode: HTMLElement, state = 0) {
+  constructor(parentNode: HTMLElement, state = 100) {
     super({
       parentNode,
       className: 'user-settings__change-btn',
@@ -20,14 +20,17 @@ class VolumeSetting extends ButtonBuilder {
       className: 'language-input',
       attributes: {
         type: 'range',
+        value: `${state}`,
       },
     }).node;
 
-    this.node.onclick = () => new SettingModal(
-      parentNode,
+    const settingModal = new SettingModal(
+      null,
       'Установите громкость',
       [setting, new NodeBuilder<HTMLLabelElement>({ parentNode: null }).node],
     );
+
+    this.node.onclick = () => parentNode.append(settingModal.node);
   }
 }
 

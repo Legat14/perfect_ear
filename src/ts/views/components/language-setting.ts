@@ -8,7 +8,10 @@ class LanquageSetting extends ButtonBuilder {
 
   private lang: NodeBuilder<HTMLElement>;
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
+  constructor(
+    parentNode: HTMLElement,
+    state: keyof typeof Languages = 'RUS',
+  ) {
     super({
       parentNode,
       className: 'user-settings__change-btn',
@@ -24,56 +27,66 @@ class LanquageSetting extends ButtonBuilder {
       content: 'Русский',
     });
 
-    const setting1 = new NodeBuilder<HTMLInputElement>({
-      parentNode: null,
-      tagName: 'input',
-      className: 'language-input',
-      attributes: {
-        name: 'lang',
-        type: 'radio',
-        id: Languages[0],
-        value: Languages[0],
-      },
-    }).node;
+    const [
+      setting1,
+      label1,
+      setting2,
+      label2,
+    ] = [
+      new NodeBuilder<HTMLInputElement>({
+        parentNode: null,
+        tagName: 'input',
+        className: 'language-input',
+        attributes: {
+          name: 'lang',
+          type: 'radio',
+          id: Languages[0],
+          value: Languages[0],
+        },
+      }).node,
+      new NodeBuilder<HTMLLabelElement>({
+        parentNode: null,
+        tagName: 'label',
+        className: 'language-input__label',
+        attributes: {
+          for: Languages[0],
+        },
+        content: 'русский',
+      }).node,
+      new NodeBuilder<HTMLInputElement>({
+        parentNode: null,
+        tagName: 'input',
+        className: 'language-input',
+        attributes: {
+          type: 'radio',
+          name: 'lang',
+          id: Languages[1],
+          value: Languages[1],
+        },
+      }).node,
+      new NodeBuilder<HTMLLabelElement>({
+        parentNode: null,
+        tagName: 'label',
+        className: 'language-input__label',
+        attributes: {
+          for: Languages[1],
+        },
+        content: 'english',
+      }).node];
 
-    const label1 = new NodeBuilder<HTMLLabelElement>({
-      parentNode: null,
-      tagName: 'label',
-      className: 'language-input__label',
-      attributes: {
-        for: Languages[0],
-      },
-      content: 'русский',
-    }).node;
+    [setting1.checked, setting2.checked] = [
+      state === Languages[0],
+      state === Languages[1],
+    ];
 
-    const setting2 = new NodeBuilder<HTMLInputElement>({
-      parentNode: null,
-      tagName: 'input',
-      className: 'language-input',
-      attributes: {
-        type: 'radio',
-        name: 'lang',
-        id: Languages[1],
-        value: Languages[1],
-      },
-    }).node;
-
-    const label2 = new NodeBuilder<HTMLLabelElement>({
-      parentNode: null,
-      tagName: 'label',
-      className: 'language-input__label',
-      attributes: {
-        for: Languages[1],
-      },
-      content: 'english',
-    }).node;
-
-    this.node.onclick = () => new SettingModal(
-      parentNode,
+    const settingModal = new SettingModal(
+      null,
       'Выберите язык',
       [setting1, label1],
       [setting2, label2],
     );
+
+    this.node.onclick = () => parentNode.append(settingModal.node);
   }
 }
 

@@ -13,7 +13,7 @@ class SettingModal extends NodeBuilder {
   public onUpdate!: (value: string) => void;
 
   constructor(
-    parentNode: HTMLElement,
+    parentNode: HTMLElement | null,
     content: string,
     ...settings: [HTMLInputElement, HTMLLabelElement][]
   ) {
@@ -50,8 +50,7 @@ class SettingModal extends NodeBuilder {
           [setting]: [HTMLInputElement, HTMLLabelElement],
         ) => setting.checked)[0];
       overlay.remove(); this.remove();
-      // this.onUpdate(this.setting.value);
-      console.log('Настройка:', this.setting.value);
+      this.onUpdate(this.setting.value);
     };
   }
 }
