@@ -28,6 +28,11 @@ const LangPack = {
     23: 'мин',
     24: 'сек',
     25: 'Играйте ноты, используя клавиатуру или нажимая на клавиши пианино мышью.',
+    26: 'За все время',
+    27: 'Очков за упражнения на интервалы',
+    28: 'Очков за упражнения на гаммы',
+    29: 'Очков за упражнения на аккорды',
+    30: 'Достижения',
   },
   ENG: {
     0: 'Language',
@@ -56,6 +61,11 @@ const LangPack = {
     23: 'm',
     24: 's',
     25: 'Play notes using the keyboard or by clicking on the piano keys with the mouse.',
+    26: 'All time',
+    27: 'Points for interval exercises',
+    28: 'Points for scales exercises',
+    29: 'Points for chords exercises',
+    30: 'Achievements',
   },
 } as Record<keyof typeof Languages, Record<string, string>>;
 

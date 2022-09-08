@@ -53,7 +53,7 @@ class ViewsController extends NodeBuilder {
     this.earTraining = new EarTrainingView();
     const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView(state);
-    this.userStats = new UserStatsView();
+    this.userStats = new UserStatsView(state);
     this.userSettings = new UserSettingsView(state);
     this.userAchievements = new UserAchievementsView();
     const theory = new TheoryPageView();
