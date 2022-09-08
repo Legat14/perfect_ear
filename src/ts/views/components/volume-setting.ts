@@ -9,7 +9,7 @@ class VolumeSetting extends ButtonBuilder {
     super({
       parentNode,
       className: 'user-settings__change-btn',
-      content: 'Сменить громкость',
+      content: '<img src="assets/img/ear.png" alt="Сменить громкость"> Сменить громкость',
     });
 
     this.state = state;
