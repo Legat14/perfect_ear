@@ -11,7 +11,7 @@ class MainMenuView extends NodeBuilder<HTMLElement> {
   constructor(state: keyof typeof Languages = 'RUS') {
     super({ parentNode: null, className: 'main-menu' });
 
-    this.userDayStatistic = new UserDayStatisticView(this.node);
+    this.userDayStatistic = new UserDayStatisticView(this.node, state);
 
     const earBtn = new ButtonBuilder({
       parentNode: this.node,
