@@ -186,8 +186,20 @@ class UserSettingsView extends NodeBuilder {
       content: LangPack[state]['11'],
     }).node;
 
-    this.langSetting = new LanquageSetting(new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node);
-    this.volumeSetting = new VolumeSetting(new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node);
+    this.langSetting = new LanquageSetting(
+      new NodeBuilder({
+        parentNode: commonSettings.node,
+        className: 'user-settings__setting-row',
+      }).node,
+      state,
+    );
+    this.volumeSetting = new VolumeSetting(
+      new NodeBuilder({
+        parentNode: commonSettings.node,
+        className: 'user-settings__setting-row',
+      }).node,
+      state,
+    );
 
     this.resetStatsBtn = new ButtonBuilder({
       parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
