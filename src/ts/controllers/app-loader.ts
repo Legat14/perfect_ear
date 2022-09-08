@@ -1,4 +1,4 @@
-import MainPageCreator from '../views/main-page-creator';
+import MainPageCreator from '../views/pages/main-page-creator';
 import Modal from '../views/modal/modal';
 import GuestEnterHandler from './user-data-handlers/guest-enter-handler';
 import UserAchievementsHandler from './user-data-handlers/user-achievements-handler';
@@ -23,9 +23,9 @@ class AppLoader {
   private guestEnterHandler: GuestEnterHandler;
 
   constructor() {
-    this.view = new MainPageCreator();
-    this.guestEnterHandler = new GuestEnterHandler();
     this.userDataHandler = new UserDataHandler();
+    this.view = new MainPageCreator(this.userDataHandler.userConfig.getLanguage());
+    this.guestEnterHandler = new GuestEnterHandler();
 
     const { userStats } = this.view.viewsController;
 
@@ -64,8 +64,8 @@ class AppLoader {
       };
     }
 
-    const resetBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
-    resetBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
+    const resetUserDataBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
+    resetUserDataBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.userDayStatisticHandler.refreshCounters(
         this.userDataHandler.userConfig.getDayExercisesGoal(),
@@ -113,7 +113,7 @@ class AppLoader {
       this.userAchievementsHandler.testAllAchievements();
     });
   }
-}
+} // TODO: Добавить механизм замены картинок достижений обратно на неполученные
 
 const appLoader = new AppLoader();
 

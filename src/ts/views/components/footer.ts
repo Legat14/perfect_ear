@@ -1,4 +1,4 @@
-import NodeBuilder from '../helpers/node-builder';
+import NodeBuilder from '../../helpers/node-builder';
 
 class FooterView extends NodeBuilder {
   constructor(parentNode: HTMLElement) {

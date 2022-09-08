@@ -1,6 +1,6 @@
-import GameRoundsController from '../controllers/game-cycle/game-rounds';
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
+import GameRoundsController from '../../controllers/game-cycle/game-rounds';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
 
 class EarTrainingView extends NodeBuilder {
   category!: GameRoundsController;

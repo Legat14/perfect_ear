@@ -1,6 +1,6 @@
-import ButtonBuilder from '../helpers/button-builder';
-import NodeBuilder from '../helpers/node-builder';
-import { IAchievementImgs } from '../types/data-types';
+import ButtonBuilder from '../../helpers/button-builder';
+import NodeBuilder from '../../helpers/node-builder';
+import { IAchievementImgs } from '../../types/data-types';
 
 class UserAchievementsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;

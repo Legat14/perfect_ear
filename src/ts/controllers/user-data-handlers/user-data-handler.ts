@@ -1,10 +1,13 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../emitters/lang-emitter';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import {
   IDate,
-  IDayGoals,
   IGameResult,
+  IUserConfig,
   IUserProfileType,
+  Languages,
 } from '../../types/data-types';
 
 class UserDataHandler {
@@ -60,21 +63,32 @@ class UserDataHandler {
 
     const guestUserConfig = this.getConfigDataFromLocalStorage();
     if (guestUserConfig) {
-      this.userConfig = new UserConfig({
-        dayExercisesGoal: guestUserConfig.dayExercisesGoal,
-        dayScoreGoal: guestUserConfig.dayScoreGoal,
-        dayTimeGoal: guestUserConfig.dayTimeGoal,
-      });
+      this.userConfig = new UserConfig(
+        {
+          dayExercisesGoal: guestUserConfig.dayGoals.dayExercisesGoal,
+          dayScoreGoal: guestUserConfig.dayGoals.dayScoreGoal,
+          dayTimeGoal: guestUserConfig.dayGoals.dayTimeGoal,
+        },
+        guestUserConfig.language,
+      );
     } else {
-      this.userConfig = new UserConfig({
-        dayExercisesGoal: 10,
-        dayScoreGoal: 25000,
-        dayTimeGoal: 30,
-      });
+      this.userConfig = new UserConfig(
+        {
+          dayExercisesGoal: 10,
+          dayScoreGoal: 25000,
+          dayTimeGoal: 30,
+        },
+        Languages.RUS,
+      );
     }
     this.addPageCloseEvent();
     this.addGameEndEvent();
     this.setDayCheckInterval();
+
+    LangEmitter.add((data) => {
+      const key = Object.values(LangPack).indexOf(data) as Languages;
+      this.userConfig.setLanguge(key);
+    });
   }
 
   private getProfileDataFromLocalStorage(): IUserProfileType {
@@ -86,7 +100,7 @@ class UserDataHandler {
     return guestUserProfile;
   }
 
-  private getConfigDataFromLocalStorage(): IDayGoals {
+  private getConfigDataFromLocalStorage(): IUserConfig {
     const guestUserConfigJSON = localStorage.getItem('guestUserConfig');
     let guestUserConfig;
     if (guestUserConfigJSON) {
@@ -116,12 +130,13 @@ class UserDataHandler {
   }
 
   public saveConfigDataToLocalStorage(): void {
-    const guestUserConfig: IDayGoals = { // TODO: При появлении конфигураций
-      // других категорий, заменить тип на более общий тип Config,
-      // включающий и IDayGoals
-      dayExercisesGoal: this.userConfig.getDayExercisesGoal(),
-      dayScoreGoal: this.userConfig.getDayScoreGoal(),
-      dayTimeGoal: this.userConfig.getDayTimeGoal(),
+    const guestUserConfig: IUserConfig = {
+      dayGoals: {
+        dayExercisesGoal: this.userConfig.getDayExercisesGoal(),
+        dayScoreGoal: this.userConfig.getDayScoreGoal(),
+        dayTimeGoal: this.userConfig.getDayTimeGoal(),
+      },
+      language: this.userConfig.getLanguage(),
     };
     localStorage.setItem('guestUserConfig', JSON.stringify(guestUserConfig));
   }

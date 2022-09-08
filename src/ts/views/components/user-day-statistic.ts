@@ -1,17 +1,22 @@
-import NodeBuilder from '../helpers/node-builder';
-import { IUserDayStatisticCounters } from '../types/data-types';
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
+import NodeBuilder from '../../helpers/node-builder';
+import { IUserDayStatisticCounters, Languages } from '../../types/data-types';
 
 class UserDayStatisticView extends NodeBuilder {
   userDayStatisticCounters: IUserDayStatisticCounters;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
     super({ parentNode, className: 'main-menu__user-day-statistic' });
 
     const userDayStatisticTitle = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: 'Сегодня',
+      content: LangPack[state]['19'],
       className: 'user-day-statistic__title',
+    });
+    LangEmitter.add((content) => {
+      userDayStatisticTitle.node.innerHTML = content['19'];
     });
 
     const userDayStatisticCountersDiv = new NodeBuilder({
@@ -29,8 +34,11 @@ class UserDayStatisticView extends NodeBuilder {
     const exercisesCounterTitle = new NodeBuilder({
       parentNode: exercisesCounter.node,
       tagName: 'p',
-      content: 'Упражнений',
+      content: LangPack[state]['20'],
       className: 'user-day-statistic__exercises-counter-title',
+    });
+    LangEmitter.add((content) => {
+      exercisesCounterTitle.node.innerHTML = content['20'];
     });
 
     const exercisesIndicator = new NodeBuilder<HTMLInputElement>({
@@ -57,8 +65,11 @@ class UserDayStatisticView extends NodeBuilder {
     const scoreCounterTitle = new NodeBuilder({
       parentNode: scoreCounter.node,
       tagName: 'p',
-      content: 'Очков',
+      content: LangPack[state]['21'],
       className: 'user-day-statistic__score-counter-title',
+    });
+    LangEmitter.add((content) => {
+      scoreCounterTitle.node.innerHTML = content['21'];
     });
 
     const scoreIndicator = new NodeBuilder<HTMLInputElement>({
@@ -85,8 +96,11 @@ class UserDayStatisticView extends NodeBuilder {
     const timeCounterTitle = new NodeBuilder({
       parentNode: timeCounter.node,
       tagName: 'p',
-      content: 'Времени',
+      content: LangPack[state]['22'],
       className: 'user-day-statistic__time-counter-title',
+    });
+    LangEmitter.add((content) => {
+      timeCounterTitle.node.innerHTML = content['22'];
     });
 
     const timeIndicator = new NodeBuilder<HTMLInputElement>({
