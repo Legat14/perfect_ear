@@ -1,21 +1,19 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import NodeBuilder from '../../helpers/node-builder';
-import { IHeaderLangType } from '../../models/translation';
+import { Languages } from '../../types/data-types';
 
 class HeaderView extends NodeBuilder {
-  langPack: object;
-
-  constructor(parentNode: HTMLElement, langPack: IHeaderLangType) {
+  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
     super({ parentNode, className: 'header' });
-    this.langPack = langPack;
 
     const headerH1 = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h1',
       className: 'header__h1',
-      content: `${langPack.header}`,
-    });
-
-    console.log(headerH1);
+      content: LangPack[state]['18'],
+    }).node;
+    LangEmitter.add((content) => { headerH1.innerHTML = content['18']; });
   }
 }
 
