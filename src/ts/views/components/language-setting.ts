@@ -19,7 +19,7 @@ class LanquageSetting extends ButtonBuilder {
 
     this.lang = new NodeBuilder({
       parentNode,
-      tagName: 'p',
+      tagName: 'div',
       className: 'user-settings__stats-lang',
       content: 'Русский',
     });
