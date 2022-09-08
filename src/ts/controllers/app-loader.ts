@@ -24,7 +24,7 @@ class AppLoader {
 
   constructor() {
     this.userDataHandler = new UserDataHandler();
-    this.view = new MainPageCreator();
+    this.view = new MainPageCreator(this.userDataHandler.userConfig.getLanguage());
     this.guestEnterHandler = new GuestEnterHandler();
 
     const { userStats } = this.view.viewsController;

@@ -27,6 +27,7 @@ import accords from '../views/theory/accords/accords.html';
 import lad from '../views/theory/lad/lad.html';
 import rhythm from '../views/theory/rhythm/rhythm.html';
 import TheorySection from '../views/components/theory-section';
+import { Languages } from '../types/data-types';
 
 class ViewsController extends NodeBuilder {
   mainMenu: MainMenuView;
@@ -45,15 +46,15 @@ class ViewsController extends NodeBuilder {
 
   earTraining: EarTrainingView;
 
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement, state: keyof typeof Languages) {
     super({ parentNode, className: 'field' });
 
-    this.mainMenu = new MainMenuView();
+    this.mainMenu = new MainMenuView(state);
     this.earTraining = new EarTrainingView();
     const rhythmTraining = new RhythmTrainingView();
-    const fortepiano = new FortepianoView();
+    const fortepiano = new FortepianoView(state);
     this.userStats = new UserStatsView();
-    this.userSettings = new UserSettingsView();
+    this.userSettings = new UserSettingsView(state);
     this.userAchievements = new UserAchievementsView();
     const theory = new TheoryPageView();
 

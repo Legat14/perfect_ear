@@ -1,4 +1,5 @@
 import ViewsController from '../../controllers/views-controller';
+import { Languages } from '../../types/data-types';
 import FooterView from '../components/footer';
 import HeaderView from '../components/header';
 
@@ -11,9 +12,15 @@ class MainPageCreator {
 
   onAuth!: () => void;
 
-  constructor() {
-    this.header = new HeaderView(document.body);
-    this.viewsController = new ViewsController(document.body);
+  constructor(state: Languages) {
+    this.header = new HeaderView(
+      document.body,
+      Languages[state] as keyof typeof Languages,
+    );
+    this.viewsController = new ViewsController(
+      document.body,
+      Languages[state] as keyof typeof Languages,
+    );
     this.footer = new FooterView(document.body);
   }
 }
