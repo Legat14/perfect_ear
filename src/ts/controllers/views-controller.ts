@@ -50,7 +50,7 @@ class ViewsController extends NodeBuilder {
     super({ parentNode, className: 'field' });
 
     this.mainMenu = new MainMenuView(state);
-    this.earTraining = new EarTrainingView();
+    this.earTraining = new EarTrainingView(state);
     const rhythmTraining = new RhythmTrainingView();
     const fortepiano = new FortepianoView(state);
     this.userStats = new UserStatsView(state);
