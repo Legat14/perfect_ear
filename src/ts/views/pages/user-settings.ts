@@ -212,7 +212,7 @@ class UserSettingsView extends NodeBuilder {
       this.statsSettingsHeader.node.innerHTML = content['7'];
       this.dayGoalExercisesHeader.node.innerHTML = content['8'];
       this.dayGoalScoreHeader.node.innerHTML = content['9'];
-      this.dayGoalScoreHeader.node.innerHTML = content['10'];
+      this.dayGoalTimeHeader.node.innerHTML = content['10'];
       this.saveDayGoalsBtn.node.innerHTML = content['2'];
       this.commonHeader.innerHTML = content['11'];
       this.resetStatsBtn.node.innerHTML = content['12'];
