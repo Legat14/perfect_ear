@@ -51,12 +51,12 @@ class ViewsController extends NodeBuilder {
 
     this.mainMenu = new MainMenuView(state);
     this.earTraining = new EarTrainingView(state);
-    const rhythmTraining = new RhythmTrainingView();
+    const rhythmTraining = new RhythmTrainingView(state);
     const fortepiano = new FortepianoView(state);
     this.userStats = new UserStatsView(state);
     this.userSettings = new UserSettingsView(state);
-    this.userAchievements = new UserAchievementsView();
-    const theory = new TheoryPageView();
+    this.userAchievements = new UserAchievementsView(state);
+    const theory = new TheoryPageView(state);
 
     this.router = new Router(this.node, [
       ['', this.mainMenu.node],

@@ -1,11 +1,14 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 
 /**
  * @todo RhythmTrainingView
  */
 class RhythmTrainingView extends NodeBuilder {
-  constructor() {
+  constructor(state: keyof typeof Languages) {
     super({ parentNode: null, className: 'rhythm-training' });
 
     const backToMainBtn = new ButtonBuilder({
@@ -18,37 +21,53 @@ class RhythmTrainingView extends NodeBuilder {
       window.location.hash = '#';
     });
 
-    this.createSection('Упражнения на ритм', [
+    const [
+      rhythmSection,
+      rhythmThBtn,
+    ] = this.createSection(LangPack[state]['37'], [
       [[{
         parentNode: null,
         className: 'ear-training__btn ear-training__game training-btn theory-btn',
-        content: 'Теория',
+        content: LangPack[state]['16'],
       }],
       '/theory/rhythm',
       ],
     ]);
+
+    LangEmitter.add((content) => {
+      rhythmSection.innerHTML = content['37'];
+      rhythmThBtn.innerHTML = content['16'];
+    });
   }
 
   private createSection(
     sectionName: string,
     sectionButtons: [ConstructorParameters<typeof ButtonBuilder>, string][],
-  ): void {
+  ): HTMLElement[] {
     const container = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
       className: 'rhythm-section section',
-      content: `<h2 class="rhythm-section__section-title section-title">${sectionName}</h2>`,
     }).node;
-    sectionButtons.map(
-      ([[options], url]) => {
-        const button = new ButtonBuilder({ ...options, parentNode: container });
-        button.node.onclick = () => {
-          window.location.hash = '#';
-          window.location.hash += url;
-        };
-        return button;
-      },
-    );
+    const containerH2 = new NodeBuilder({
+      parentNode: container,
+      tagName: 'h2',
+      className: 'rhythm-section__section-title section-title',
+      content: sectionName,
+    }).node;
+    return [
+      containerH2,
+      ...sectionButtons.map(
+        ([[options], url]) => {
+          const button = new ButtonBuilder({ ...options, parentNode: container });
+          button.node.onclick = () => {
+            window.location.hash = '#';
+            window.location.hash += url;
+          };
+          return button.node;
+        },
+      ),
+    ];
   }
 }
 

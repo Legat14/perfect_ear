@@ -1,6 +1,8 @@
+import LangPack from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IAchievementImgs } from '../../types/data-types';
+import { IAchievementImgs, Languages } from '../../types/data-types';
 
 class UserAchievementsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;
@@ -41,8 +43,9 @@ class UserAchievementsView extends NodeBuilder {
 
   achievementRow: HTMLElement | null;
 
-  constructor() {
+  constructor(state: keyof typeof Languages) {
     super({ parentNode: null, className: 'user-achievements' });
+    console.log(state);
 
     this.backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
@@ -57,7 +60,7 @@ class UserAchievementsView extends NodeBuilder {
     this.userAchievementsHeader = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: 'Достижения',
+      content: LangPack[state]['30'],
       className: 'user-achievements__header',
     });
 
@@ -89,7 +92,7 @@ class UserAchievementsView extends NodeBuilder {
       parentNode: this.achievement1Div.node,
       tagName: 'p',
       className: 'user-achievements__achievement-header',
-      content: 'Первый из многих',
+      content: LangPack[state]['43'],
     });
 
     this.achievement2Div = new NodeBuilder({
@@ -114,7 +117,7 @@ class UserAchievementsView extends NodeBuilder {
       parentNode: this.achievement2Div.node,
       tagName: 'p',
       className: 'user-achievements__achievement-header',
-      content: 'Новичок',
+      content: LangPack[state]['44'],
     });
 
     this.achievement3Div = new NodeBuilder({
@@ -139,7 +142,7 @@ class UserAchievementsView extends NodeBuilder {
       parentNode: this.achievement3Div.node,
       tagName: 'p',
       className: 'user-achievements__achievement-header',
-      content: 'Студент',
+      content: LangPack[state]['45'],
     });
 
     this.achievement4Div = new NodeBuilder({
@@ -164,7 +167,7 @@ class UserAchievementsView extends NodeBuilder {
       parentNode: this.achievement4Div.node,
       tagName: 'p',
       className: 'user-achievements__achievement-header',
-      content: 'Продвинутый',
+      content: LangPack[state]['46'],
     });
 
     this.achievement5Div = new NodeBuilder({
@@ -189,7 +192,7 @@ class UserAchievementsView extends NodeBuilder {
       parentNode: this.achievement5Div.node,
       tagName: 'p',
       className: 'user-achievements__achievement-header',
-      content: 'Одержимый',
+      content: LangPack[state]['47'],
     });
 
     this.achievementImgs = {
@@ -199,6 +202,15 @@ class UserAchievementsView extends NodeBuilder {
       serious: this.achievement1Img.node,
       obsessed: this.achievement1Img.node,
     };
+
+    LangEmitter.add((content) => {
+      this.userAchievementsHeader.node.innerHTML = content['30'];
+      this.achievement1Header.node.innerHTML = content['43'];
+      this.achievement2Header.node.innerHTML = content['44'];
+      this.achievement3Header.node.innerHTML = content['45'];
+      this.achievement4Header.node.innerHTML = content['46'];
+      this.achievement5Header.node.innerHTML = content['47'];
+    });
   }
 }
 
