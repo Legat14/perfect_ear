@@ -9,6 +9,7 @@ import {
   IUserProfileType,
   Languages,
 } from '../../types/data-types';
+import { achievementsArr } from '../../constants/constants';
 
 class UserDataHandler {
   userProfile: UserProfile;
@@ -20,21 +21,77 @@ class UserDataHandler {
     // в зависимости от него
     const guestUserProfile = this.getProfileDataFromLocalStorage();
     if (guestUserProfile) {
+      let dayScore = 0;
+      if (guestUserProfile.dayScore) {
+        dayScore = guestUserProfile.dayScore;
+      }
+      let dayTime = 0;
+      if (guestUserProfile.dayTime) {
+        dayTime = guestUserProfile.dayTime;
+      }
+      let dayTimeHR = '0 мин 0.0 сек.';
+      if (guestUserProfile.dayTimeHR) {
+        dayTimeHR = guestUserProfile.dayTimeHR;
+      }
+      let dayExercises = 0;
+      if (guestUserProfile.dayExercises) {
+        dayExercises = guestUserProfile.dayExercises;
+      }
+      let profileDate = this.getCurrentDate();
+      if (guestUserProfile.profileDate) {
+        profileDate = guestUserProfile.profileDate;
+      }
+      let totalScore = 0;
+      if (guestUserProfile.totalScore) {
+        totalScore = guestUserProfile.totalScore;
+      }
+      let totalTime = 0;
+      if (guestUserProfile.totalTime) {
+        totalTime = guestUserProfile.totalTime;
+      }
+      let totalTimeHR = '0 мин 0.0 сек.';
+      if (guestUserProfile.totalTimeHR) {
+        totalTimeHR = guestUserProfile.totalTimeHR;
+      }
+      let totalExercises = 0;
+      if (guestUserProfile.totalExercises) {
+        totalExercises = guestUserProfile.totalExercises;
+      }
+      let intervalGameScore = 0;
+      if (guestUserProfile.intervalGameScore) {
+        intervalGameScore = guestUserProfile.intervalGameScore;
+      }
+      let scaleGameScore = 0;
+      if (guestUserProfile.scaleGameScore) {
+        scaleGameScore = guestUserProfile.scaleGameScore;
+      }
+      let chordsGameScore = 0;
+      if (guestUserProfile.chordsGameScore) {
+        chordsGameScore = guestUserProfile.chordsGameScore;
+      }
+      let exercisesResult: [] | IUserProfileType['exercisesResult'] = [];
+      if (guestUserProfile.exercisesResult) {
+        exercisesResult = guestUserProfile.exercisesResult;
+      }
+      let achievements = [...achievementsArr];
+      if (guestUserProfile.achievements) {
+        achievements = guestUserProfile.achievements;
+      }
       this.userProfile = new UserProfile({
-        dayScore: guestUserProfile.dayScore,
-        dayTime: guestUserProfile.dayTime,
-        dayTimeHR: guestUserProfile.dayTimeHR,
-        dayExercises: guestUserProfile.dayExercises,
-        profileDate: guestUserProfile.profileDate,
-        totalScore: guestUserProfile.totalScore,
-        totalTime: guestUserProfile.totalTime,
-        totalTimeHR: guestUserProfile.totalTimeHR,
-        totalExercises: guestUserProfile.totalExercises,
-        intervalGameScore: guestUserProfile.intervalGameScore,
-        scaleGameScore: guestUserProfile.scaleGameScore,
-        chordsGameScore: guestUserProfile.chordsGameScore,
-        exercisesResult: guestUserProfile.exercisesResult,
-        achievements: guestUserProfile.achievements,
+        dayScore,
+        dayTime,
+        dayTimeHR,
+        dayExercises,
+        profileDate,
+        totalScore,
+        totalTime,
+        totalTimeHR,
+        totalExercises,
+        intervalGameScore,
+        scaleGameScore,
+        chordsGameScore,
+        exercisesResult,
+        achievements,
       });
     } else {
       this.userProfile = new UserProfile({
@@ -51,25 +108,35 @@ class UserDataHandler {
         scaleGameScore: 0,
         chordsGameScore: 0,
         exercisesResult: [],
-        achievements: [
-          { achievement: 'First of many', complete: false },
-          { achievement: 'Beginner', complete: false },
-          { achievement: 'Student', complete: false },
-          { achievement: 'Serious', complete: false },
-          { achievement: 'Obsessed', complete: false },
-        ],
+        achievements: [...achievementsArr],
       });
     }
 
     const guestUserConfig = this.getConfigDataFromLocalStorage();
     if (guestUserConfig) {
+      let dayExercisesGoal = 10;
+      if (guestUserConfig.dayGoals.dayExercisesGoal) {
+        dayExercisesGoal = guestUserConfig.dayGoals.dayExercisesGoal;
+      }
+      let dayScoreGoal = 25000;
+      if (guestUserConfig.dayGoals.dayScoreGoal) {
+        dayScoreGoal = guestUserConfig.dayGoals.dayScoreGoal;
+      }
+      let dayTimeGoal = 30;
+      if (guestUserConfig.dayGoals.dayTimeGoal) {
+        dayTimeGoal = guestUserConfig.dayGoals.dayTimeGoal;
+      }
+      let language = Languages.RUS;
+      if (guestUserConfig.language) {
+        language = guestUserConfig.language;
+      }
       this.userConfig = new UserConfig(
         {
-          dayExercisesGoal: guestUserConfig.dayGoals.dayExercisesGoal,
-          dayScoreGoal: guestUserConfig.dayGoals.dayScoreGoal,
-          dayTimeGoal: guestUserConfig.dayGoals.dayTimeGoal,
+          dayExercisesGoal,
+          dayScoreGoal,
+          dayTimeGoal,
         },
-        guestUserConfig.language,
+        language,
       );
     } else {
       this.userConfig = new UserConfig(
@@ -226,35 +293,3 @@ class UserDataHandler {
 }
 
 export default UserDataHandler;
-
-// Для проверки скопировать приведенный ниже код в index.ts
-
-// import GameIndicators from './ts/controllers/game-cycle/game-indicators';
-// import appLoader from './ts/controllers/app-loader';
-
-// const gameIndicators = new GameIndicators({
-//   gameName: 'IntervalGame-01',
-//   scoreForRightAnswer: 300,
-//   roundsCount: 10,
-//   bonusTime: 10000,
-// });
-
-// const stopGame = (): void => {
-//   console.log('Timer is set');
-//   setTimeout((): void => {
-//     console.log('Timer is stoped');
-//     gameIndicators.finishGame();
-//     appLoader.userDayStatisticHandler.refrashCounters();
-//     appLoader.userStatisticHandler.refreshCounters();
-//   }, 2000);
-// };
-
-// stopGame();
-
-// gameIndicators.increaseRightAnswersCounter();
-// gameIndicators.increaseRightAnswersCounter();
-// gameIndicators.increaseRightAnswersCounter();
-// gameIndicators.increaseRightAnswersCounter();
-// gameIndicators.increaseRightAnswersCounter();
-// gameIndicators.increaseFinesCounter();
-// gameIndicators.increaseFinesCounter();
