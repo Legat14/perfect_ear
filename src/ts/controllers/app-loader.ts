@@ -58,7 +58,7 @@ class AppLoader {
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
     } else {
-      new Modal(document.body).onAuth = () => {
+      new Modal(document.body, this.userDataHandler.userConfig.getLanguage()).onAuth = () => {
         this.init();
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
