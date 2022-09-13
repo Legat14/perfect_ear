@@ -1,5 +1,5 @@
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -108,7 +108,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: footer,
       className: 'quiz-answers__music-repeat',
       content:
-        `${LangPack[state][70]} <span class="key-index">(r)</span>`,
+        `${Translation.gameMusicRepeatBtn[state]} <span class="key-index">(r)</span>`,
     });
     this.repeatControl = repeatControl.node;
 

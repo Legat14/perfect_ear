@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { IGameResult, Languages } from '../../types/data-types';
@@ -30,17 +30,17 @@ class GameRoundEndScreen extends NodeBuilder {
       className: 'quiz__quiz-end-screen quiz-end-screen',
       content: `
                 <div class="quiz__quiz-end-screen_result">
-                <p class="indicators__indicator-title">${LangPack[state]['50']}: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
-                <p class="indicators__indicator-title">${LangPack[state]['51']}: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
-                <p class="indicators__indicator-title">${LangPack[state]['52']}: <span class="indicators__indicator-score">- ${finesScore}</span></p>
-                <p class="indicators__indicator-title">${LangPack[state]['53']}: <span class="indicators__indicator-score">${gameScore}</span></p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['54']}:
+                <p class="indicators__indicator-title">${Translation.gameEndScreenPoints[state]}: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
+                <p class="indicators__indicator-title">${Translation.gameEndScreenTimeBonus[state]}: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
+                <p class="indicators__indicator-title">${Translation.gameEndScreenSkips[state]}: <span class="indicators__indicator-score">- ${finesScore}</span></p>
+                <p class="indicators__indicator-title">${Translation.gameEndScreenTotal[state]}: <span class="indicators__indicator-score">${gameScore}</span></p>
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${Translation.gameEndScreenCorrectAnswers[state]}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${rightAnswersCountToRoundCount}</span>
                 </p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['55']}:
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${Translation.gameEndScreenAvgAnswerTime[state]}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${averageTimeHR}</span>
                 </p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['56']}:
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${Translation.gameEndScreenCompletionTime[state]}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${gameTimeHR}</span>
                 </p>
                 </div>
@@ -61,7 +61,7 @@ class GameRoundEndScreen extends NodeBuilder {
       parentNode: header,
       tagName: 'div',
       className: 'quiz-end__header',
-      content: `<h2 class="quiz-end__h2">${LangPack[state][61]}</h2>`,
+      content: `<h2 class="quiz-end__h2">${Translation.gameEndScreenResultsHeader[state]}</h2>`,
     });
     console.log(resultGame);
 
@@ -70,14 +70,14 @@ class GameRoundEndScreen extends NodeBuilder {
     const repeatControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__repeat',
-      content: LangPack[state][62],
+      content: Translation.gameEndScreenRetryBtn[state],
     });
     repeatControl.node.onclick = () => this.onRepeat();
 
     const continueControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__continue continue',
-      content: `${nextGame ? `<span>${LangPack[state][63]}</span><span continue__game-title>${nextGame}</span>` : LangPack[state][64]}`,
+      content: `${nextGame ? `<span>${Translation.gameEndScreenContinueBtn[state]}</span><span continue__game-title>${nextGame}</span>` : Translation.gameEndScreenMenuBtn[state]}`,
     });
     continueControl.node.onclick = nextGame ? () => this.onContinue() : () => this.onQuit();
   }

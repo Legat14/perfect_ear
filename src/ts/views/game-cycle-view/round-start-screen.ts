@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -25,7 +25,7 @@ class GameRoundStartScreen extends NodeBuilder {
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
-      content: LangPack[state]['58'],
+      content: Translation.gameStartScreenHeader[state],
     }).node;
 
     const backButton = new ButtonBuilder({
@@ -61,14 +61,14 @@ class GameRoundStartScreen extends NodeBuilder {
         parentNode: null,
         tagName: 'p',
         className: 'quiz-start-screen__game-description',
-        content: LangPack[state]['57'],
+        content: Translation.gameStartScreenDescr[state],
       }).node,
     );
 
     const termsContaner = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-terms',
-      content: `<p>${info.game.category?.categoryName} ${LangPack[state]['59']}:</p>`,
+      content: `<p>${info.game.category?.categoryName} ${Translation.gameStartScreenTermsHeader[state]}:</p>`,
     }).node;
 
     info.terms.forEach((term) => {
@@ -84,7 +84,7 @@ class GameRoundStartScreen extends NodeBuilder {
     const startControl = new ButtonBuilder({
       parentNode: this.node,
       className: 'quiz-start-screen__start-btn',
-      content: LangPack[state][60],
+      content: Translation.gameStartScreenStartBtn[state],
     });
     startControl.node.onclick = () => this.onQuizStart();
   }

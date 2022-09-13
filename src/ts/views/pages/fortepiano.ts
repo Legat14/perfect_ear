@@ -1,5 +1,5 @@
 import { PIANO_SOUND } from '../../constants/constants';
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
@@ -31,19 +31,19 @@ class FortepianoView extends NodeBuilder {
       parentNode: header,
       tagName: 'h2',
       className: 'piano__head_h2',
-      content: LangPack[state]['15'],
+      content: Translation.fortepianoPageHeader[state],
     }).node;
 
     const descr = new NodeBuilder({
       parentNode: header,
       tagName: 'p',
       className: 'piano__descr_p',
-      content: LangPack[state]['25'],
+      content: Translation.fortepianoPageDescr[state],
     }).node;
 
-    LangEmitter.add((content) => {
-      h2.innerHTML = content['15'];
-      descr.innerHTML = content['25'];
+    LangEmitter.add((lang) => {
+      h2.innerHTML = Translation.fortepianoPageHeader[lang];
+      descr.innerHTML = Translation.fortepianoPageDescr[lang];
     });
 
     this.piano = new VirtualPiano(this.node, new Sound(PIANO_SOUND));

@@ -1,6 +1,6 @@
 import Emitter from '../../helpers/emitter';
-import LangPack from '../../constants/translation';
+import { Languages } from '../../types/data-types';
 
-const LangEmitter = new Emitter<typeof LangPack[keyof typeof LangPack]>();
+const LangEmitter = new Emitter<keyof typeof Languages>();
 
 export default LangEmitter;

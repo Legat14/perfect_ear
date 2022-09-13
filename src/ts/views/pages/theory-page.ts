@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -34,53 +34,53 @@ class TheoryPageView extends NodeBuilder {
       chordsBtn,
       rhythmBtn,
     ] = this.createSection(
-      LangPack[state]['16'],
+      Translation.theoryPageHeader[state],
       [
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
-          content: LangPack[state]['38'],
+          content: Translation.theoryPageIntervalsSection[state],
         }],
         '/theory/intervals',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
-          content: LangPack[state]['39'],
+          content: Translation.theoryPageScalesSection[state],
         }],
         '/theory/scales',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
-          content: LangPack[state]['40'],
+          content: Translation.theoryPageModesSection[state],
         }],
         '/theory/modes',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
-          content: LangPack[state]['41'],
+          content: Translation.theoryPageChordsSection[state],
         }],
         '/theory/chords',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
-          content: LangPack[state]['42'],
+          content: Translation.theoryPageRhythmSection[state],
         }],
         '/theory/rhythm',
         ],
       ],
     );
 
-    LangEmitter.add((content) => {
-      sectionName.innerHTML = content['16'];
-      intervalsBtn.innerHTML = content['38'];
-      scalesBtn.innerHTML = content['39'];
-      modesBtn.innerHTML = content['40'];
-      chordsBtn.innerHTML = content['41'];
-      rhythmBtn.innerHTML = content['42'];
+    LangEmitter.add((lang) => {
+      sectionName.innerHTML = Translation.theoryPageHeader[lang];
+      intervalsBtn.innerHTML = Translation.theoryPageIntervalsSection[lang];
+      scalesBtn.innerHTML = Translation.theoryPageScalesSection[lang];
+      modesBtn.innerHTML = Translation.theoryPageModesSection[lang];
+      chordsBtn.innerHTML = Translation.theoryPageChordsSection[lang];
+      rhythmBtn.innerHTML = Translation.theoryPageRhythmSection[lang];
     });
   }
 

@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -24,19 +24,19 @@ class RhythmTrainingView extends NodeBuilder {
     const [
       rhythmSection,
       rhythmThBtn,
-    ] = this.createSection(LangPack[state]['37'], [
+    ] = this.createSection(Translation.rhythmTrainingPageHeader[state], [
       [[{
         parentNode: null,
         className: 'ear-training__btn ear-training__game training-btn theory-btn',
-        content: LangPack[state]['16'],
+        content: Translation.mainMenuTheory[state],
       }],
       '/theory/rhythm',
       ],
     ]);
 
-    LangEmitter.add((content) => {
-      rhythmSection.innerHTML = content['37'];
-      rhythmThBtn.innerHTML = content['16'];
+    LangEmitter.add((lang) => {
+      rhythmSection.innerHTML = Translation.rhythmTrainingPageHeader[lang];
+      rhythmThBtn.innerHTML = Translation.mainMenuTheory[lang];
     });
   }
 

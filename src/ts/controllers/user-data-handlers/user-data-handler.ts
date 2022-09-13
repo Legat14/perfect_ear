@@ -1,4 +1,3 @@
-import LangPack from '../../constants/translation';
 import LangEmitter from '../emitters/lang-emitter';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
@@ -86,7 +85,7 @@ class UserDataHandler {
     this.setDayCheckInterval();
 
     LangEmitter.add((data) => {
-      const key = Object.values(LangPack).indexOf(data) as Languages;
+      const key = Languages[data];
       this.userConfig.setLanguge(key);
     });
   }

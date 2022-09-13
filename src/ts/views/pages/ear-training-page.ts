@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import GameRoundsController from '../../controllers/game-cycle/game-rounds';
 import ButtonBuilder from '../../helpers/button-builder';
@@ -31,7 +31,7 @@ class EarTrainingView extends NodeBuilder {
 
     const h2 = new NodeBuilder({
       parentNode: header.node,
-      content: `<h2 class="ear-header__h2">${LangPack[state]['13']}</h2>`,
+      content: `<h2 class="ear-header__h2">${Translation.earTrainingPageHeader[state]}</h2>`,
     });
 
     /**
@@ -48,19 +48,19 @@ class EarTrainingView extends NodeBuilder {
       intervalsThBtn,
       intervalsCompBtn,
     ] = this.createSection(
-      LangPack[state][31],
+      Translation.earTrainingPageIntervalHeader[state],
       [
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-          content: LangPack[state][16],
+          content: Translation.mainMenuTheory[state],
         }],
         '/theory/intervals',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
-          content: LangPack[state]['34'],
+          content: Translation.intervalComparisonBtn[state],
         }],
         '/ear-training/interval-comparison'],
       ],
@@ -71,19 +71,19 @@ class EarTrainingView extends NodeBuilder {
       scalesThBtn,
       scalesIdentBtn,
     ] = this.createSection(
-      LangPack[state][32],
+      Translation.earTrainingPageScaleHeader[state],
       [
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-          content: LangPack[state][16],
+          content: Translation.mainMenuTheory[state],
         }],
         '/theory/scales',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
-          content: LangPack[state]['35'],
+          content: Translation.scaleIdentificationBtn[state],
         }],
         '/ear-training/scale-identification',
         ],
@@ -95,36 +95,36 @@ class EarTrainingView extends NodeBuilder {
       chordThBtn,
       chordIdentBtn,
     ] = this.createSection(
-      LangPack[state][33],
+      Translation.earTrainingPageChordHeader[state],
       [
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-          content: LangPack[state][16],
+          content: Translation.mainMenuTheory[state],
         }],
         '/theory/chords',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
-          content: LangPack[state]['36'],
+          content: Translation.chordIdentificationBtn[state],
         }],
         '/ear-training/chord-identification',
         ],
       ],
     );
 
-    LangEmitter.add((content) => {
-      h2.node.innerHTML = `<h2 class="ear-header__h2">${content['13']}</h2>`;
-      intervalSection.innerHTML = content['31'];
-      intervalsThBtn.innerHTML = content['16'];
-      intervalsCompBtn.innerHTML = content['34'];
-      scalesSection.innerHTML = content['32'];
-      scalesThBtn.innerHTML = content['16'];
-      scalesIdentBtn.innerHTML = content['35'];
-      chordSection.innerHTML = content['33'];
-      chordThBtn.innerHTML = content['16'];
-      chordIdentBtn.innerHTML = content['36'];
+    LangEmitter.add((lang) => {
+      h2.node.innerHTML = `<h2 class="ear-header__h2">${Translation.earTrainingPageHeader[lang]}</h2>`;
+      intervalSection.innerHTML = Translation.earTrainingPageIntervalHeader[lang];
+      intervalsThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      intervalsCompBtn.innerHTML = Translation.intervalComparisonBtn[lang];
+      scalesSection.innerHTML = Translation.earTrainingPageScaleHeader[lang];
+      scalesThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      scalesIdentBtn.innerHTML = Translation.scaleIdentificationBtn[lang];
+      chordSection.innerHTML = Translation.earTrainingPageChordHeader[lang];
+      chordThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      chordIdentBtn.innerHTML = Translation.chordIdentificationBtn[lang];
     });
   }
 
