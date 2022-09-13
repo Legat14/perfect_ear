@@ -74,12 +74,13 @@ class ViewsController extends NodeBuilder {
     this.router.init('');
   }
 
-  public renderGamePages({ profile }: { profile: UserProfile }) {
+  public renderGamePages({ profile }: { profile: UserProfile }, language: Languages) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
+    const state = Languages[language] as keyof typeof Languages;
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage
-      .load(gamesLoader, ...intervalOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...intervalOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/interval-comparison',
@@ -89,7 +90,7 @@ class ViewsController extends NodeBuilder {
 
     const scaleIdentPage = new GameRoundsController<IScaleRound>();
     scaleIdentPage
-      .load(gamesLoader, ...scaleOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...scaleOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/scale-identification',
@@ -99,7 +100,7 @@ class ViewsController extends NodeBuilder {
 
     const chordIdentPage = new GameRoundsController<IChordRound>();
     chordIdentPage
-      .load(gamesLoader, ...chordOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...chordOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/chord-identification',

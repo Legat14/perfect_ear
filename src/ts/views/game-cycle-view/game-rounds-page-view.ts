@@ -1,6 +1,7 @@
+import LangPack from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IExerciseResult } from '../../types/data-types';
+import { IExerciseResult, Languages } from '../../types/data-types';
 import { GameName, IRound } from '../../types/game-types';
 
 class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
@@ -10,7 +11,11 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   onplay!: (game: QuizType) => void;
 
-  constructor(parentNode: HTMLElement | null, games: (QuizType)[], name: GameName) {
+  constructor(
+    parentNode: HTMLElement | null,
+    games: (QuizType)[],
+    name: GameName,
+  ) {
     super({ parentNode, className: 'rounds-page' });
     this.games = games;
 
@@ -37,14 +42,18 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     }).node.prepend(backButton);
   }
 
-  public initGameOptionsList(game: QuizType, results: IExerciseResult[]): this {
+  public initGameOptionsList(
+    game: QuizType,
+    results: IExerciseResult[],
+    state: keyof typeof Languages,
+  ): this {
     const gameOption = new ButtonBuilder({
       parentNode: this.pageContainer,
       className: 'round-option',
       content: `
                 <p class="round-option__round-title">${game.quizName}</p>
                 <p class="round-option__round-direction">${game.direction}</p>
-                <p class="round-option__round-count">${game.rounds} вопросов</p>
+                <p class="round-option__round-count">${game.rounds} ${LangPack[state][65]}</p>
                 `,
     });
 
@@ -52,7 +61,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: gameOption.node,
       tagName: 'p',
       className: 'round-option__bestscore',
-      content: `лучший счет: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`,
+      content: `${LangPack[state][66]}: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`,
     }).node;
 
     gameOption.node.onclick = () => this.play(game);

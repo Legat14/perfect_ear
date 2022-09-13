@@ -3,6 +3,7 @@ import GameQuizView from '../../views/game-cycle-view/game-quiz-view';
 import { IQuestion, IRound } from '../../types/game-types';
 import { Pause } from '../../types/note-types';
 import Sound from '../sound';
+import { Languages } from '../../types/data-types';
 
 abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
   public quiz: QuizType;
@@ -23,7 +24,12 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private answered: boolean;
 
-  constructor(quiz: QuizType, round: number, sound: Sound) {
+  constructor(
+    quiz: QuizType,
+    round: number,
+    sound: Sound,
+    state: keyof typeof Languages,
+  ) {
     this.quiz = quiz;
     this.question = this.generateQuestion(quiz);
     this.answered = false;
@@ -34,6 +40,7 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
       this.question,
       round,
       sound,
+      state,
       () => this.playSequence(this.question.sequence),
     );
 

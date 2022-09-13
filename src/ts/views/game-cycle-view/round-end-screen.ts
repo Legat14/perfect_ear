@@ -1,6 +1,7 @@
+import LangPack from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IGameResult } from '../../types/data-types';
+import { IGameResult, Languages } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 
 class GameRoundEndScreen extends NodeBuilder {
@@ -21,6 +22,7 @@ class GameRoundEndScreen extends NodeBuilder {
       averageTimeHR,
       gameTimeHR,
     }: IGameResult,
+    state: keyof typeof Languages,
     nextGame?: IRound['quizName'],
   ) {
     super({
@@ -28,17 +30,17 @@ class GameRoundEndScreen extends NodeBuilder {
       className: 'quiz__quiz-end-screen quiz-end-screen',
       content: `
                 <div class="quiz__quiz-end-screen_result">
-                <p class="indicators__indicator-title">Очки: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
-                <p class="indicators__indicator-title">Бонус за время: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
-                <p class="indicators__indicator-title">Штраф за пропуски: <span class="indicators__indicator-score">- ${finesScore}</span></p>
-                <p class="indicators__indicator-title">Итого: <span class="indicators__indicator-score">${gameScore}</span></p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">Верных ответов
+                <p class="indicators__indicator-title">${LangPack[state]['50']}: <span class="indicators__indicator-score">${rightAnswersScore}</span></p>
+                <p class="indicators__indicator-title">${LangPack[state]['51']}: <span class="indicators__indicator-score">${timeBonusScore}</span></p>
+                <p class="indicators__indicator-title">${LangPack[state]['52']}: <span class="indicators__indicator-score">- ${finesScore}</span></p>
+                <p class="indicators__indicator-title">${LangPack[state]['53']}: <span class="indicators__indicator-score">${gameScore}</span></p>
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['54']}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${rightAnswersCountToRoundCount}</span>
                 </p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">Среднее время ответа
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['55']}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${averageTimeHR}</span>
                 </p>
-                <p class="indicators__indicator-title indicators__indicator-title_labeled">Время выполнения задания
+                <p class="indicators__indicator-title indicators__indicator-title_labeled">${LangPack[state]['56']}:
                   <span class="indicators__indicator-score indicators__indicator-score_labeled">${gameTimeHR}</span>
                 </p>
                 </div>
@@ -59,7 +61,7 @@ class GameRoundEndScreen extends NodeBuilder {
       parentNode: header,
       tagName: 'div',
       className: 'quiz-end__header',
-      content: '<h2 class="quiz-end__h2">Итоги игры</h2>',
+      content: `<h2 class="quiz-end__h2">${LangPack[state][61]}</h2>`,
     });
     console.log(resultGame);
 
@@ -68,14 +70,14 @@ class GameRoundEndScreen extends NodeBuilder {
     const repeatControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__repeat',
-      content: 'повторить',
+      content: LangPack[state][62],
     });
     repeatControl.node.onclick = () => this.onRepeat();
 
     const continueControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__continue continue',
-      content: `${nextGame ? `<span>продолжить</span><span continue__game-title>${nextGame}</span>` : 'меню'}`,
+      content: `${nextGame ? `<span>${LangPack[state][63]}</span><span continue__game-title>${nextGame}</span>` : LangPack[state][64]}`,
     });
     continueControl.node.onclick = nextGame ? () => this.onContinue() : () => this.onQuit();
   }
