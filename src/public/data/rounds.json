@@ -53,8 +53,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -104,8 +110,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -155,8 +167,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -206,8 +224,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая терция",
@@ -257,8 +281,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая терция",
@@ -308,8 +338,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая терция",
@@ -359,8 +395,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "большая секунда",
@@ -410,8 +452,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "чистая кварта",
@@ -461,8 +509,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "чистая кварта",
@@ -512,8 +566,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "чистая кварта",
@@ -563,8 +623,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "чистая кварта",
@@ -614,8 +680,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "тритон",
@@ -665,8 +737,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "чистая кварта",
@@ -718,8 +796,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -779,8 +863,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -840,8 +930,14 @@
                 "ENG":"Which interval is larger?"
               },
               "answers":[
-                "первый",
-                "второй"
+                {
+                  "RUS":"первый",
+                  "ENG":"first"
+                },
+                {
+                  "RUS":"второй",
+                  "ENG":"second"
+                }
               ],
               "terms":[
                 "малая секунда",
@@ -917,8 +1013,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный минор",
-                "натуральный мажор"
+                {
+                  "RUS":"натуральный минор",
+                  "ENG":"Natural Minor"
+                },
+                {
+                  "RUS":"натуральный мажор",
+                  "ENG":"Natural Major"
+                }
               ],
               "terms":[
                 "натуральный минор",
@@ -962,8 +1064,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный минор",
-                "натуральный мажор"
+                {
+                  "RUS":"натуральный минор",
+                  "ENG":"Natural Minor"
+                },
+                {
+                  "RUS":"натуральный мажор",
+                  "ENG":"Natural Major"
+                }
               ],
               "terms":[
                 "натуральный минор",
@@ -1007,9 +1115,18 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный мажор",
-                "лидийский",
-                "миксолидийский"
+                {
+                  "RUS":"натуральный мажор",
+                  "ENG":"natural major"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"lydian"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"mixolydian"
+                }
               ],
               "terms":[
                 "натуральный мажор",
@@ -1054,9 +1171,18 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный мажор",
-                "лидийский",
-                "миксолидийский"
+                {
+                  "RUS":"натуральный мажор",
+                  "ENG":"natural major"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"lydian"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"mixolydian"
+                }
               ],
               "terms":[
                 "натуральный мажор",
@@ -1101,10 +1227,22 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный минор",
-                "дорийский",
-                "гармонический минор",
-                "мелодический минор"
+                {
+                  "RUS":"натуральный минор",
+                  "ENG":"natural minor"
+                },
+                {
+                  "RUS":"дорийский",
+                  "ENG":"dorian"
+                },
+                {
+                  "RUS":"гармонический минор",
+                  "ENG":"harmonic minor"
+                },
+                {
+                  "RUS":"мелодический минор",
+                  "ENG":"melodic minor"
+                }
               ],
               "terms":[
                 "натуральный минор",
@@ -1150,10 +1288,22 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "натуральный минор",
-                "дорийский",
-                "гармонический минор",
-                "мелодический минор"
+                {
+                  "RUS":"натуральный минор",
+                  "ENG":"natural minor"
+                },
+                {
+                  "RUS":"дорийский",
+                  "ENG":"dorian"
+                },
+                {
+                  "RUS":"гармонический минор",
+                  "ENG":"harmonic minor"
+                },
+                {
+                  "RUS":"мелодический минор",
+                  "ENG":"melodic minor"
+                }
               ],
               "terms":[
                 "натуральный минор",
@@ -1199,8 +1349,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "фригийский",
-                "локрийский"
+                {
+                  "RUS":"фригийский",
+                  "ENG":"phrygian"
+                },
+                {
+                  "RUS":"локрийский",
+                  "ENG":"locrian"
+                }
               ],
               "terms":[
                 "фригийский",
@@ -1244,8 +1400,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "фригийский",
-                "локрийский"
+                {
+                  "RUS":"фригийский",
+                  "ENG":"phrygian"
+                },
+                {
+                  "RUS":"локрийский",
+                  "ENG":"locrian"
+                }
               ],
               "terms":[
                 "фригийский",
@@ -1289,8 +1451,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "мажорная пентатоника",
-                "минорная пентатоника"
+                {
+                  "RUS":"мажорная пентатоника",
+                  "ENG":"pentatonic major"
+                },
+                {
+                  "RUS":"минорная пентатоника",
+                  "ENG":"pentatonic minor"
+                }
               ],
               "terms":[
                 "мажорная пентатоника",
@@ -1334,8 +1502,14 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "мажорная пентатоника",
-                "минорная пентатоника"
+                {
+                  "RUS":"мажорная пентатоника",
+                  "ENG":"pentatonic major"
+                },
+                {
+                  "RUS":"минорная пентатоника",
+                  "ENG":"pentatonic minor"
+                }
               ],
               "terms":[
                 "мажорная пентатоника",
@@ -1379,13 +1553,34 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "ионийский",
-                "дорийский",
-                "фригийский",
-                "лидийский",
-                "миксолидийский",
-                "эолийский",
-                "локрийский"
+                {
+                  "RUS":"ионийский",
+                  "ENG":"ionian"
+                },
+                {
+                  "RUS":"дорийский",
+                  "ENG":"dorian"
+                },
+                {
+                  "RUS":"фригийский",
+                  "ENG":"phrygian"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"lydian"
+                },
+                {
+                  "RUS":"миксолидийский",
+                  "ENG":"mixolydian"
+                },
+                {
+                  "RUS":"эолийский",
+                  "ENG":"aeolian"
+                },
+                {
+                  "RUS":"локрийский",
+                  "ENG":"locrian"
+                }
               ],
               "terms":[
                 "ионийский",
@@ -1434,13 +1629,34 @@
                 "ENG":"Identify which scale was played"
               },
               "answers":[
-                "ионийский",
-                "дорийский",
-                "фригийский",
-                "лидийский",
-                "миксолидийский",
-                "эолийский",
-                "локрийский"
+                {
+                  "RUS":"ионийский",
+                  "ENG":"ionian"
+                },
+                {
+                  "RUS":"дорийский",
+                  "ENG":"dorian"
+                },
+                {
+                  "RUS":"фригийский",
+                  "ENG":"phrygian"
+                },
+                {
+                  "RUS":"лидийский",
+                  "ENG":"lydian"
+                },
+                {
+                  "RUS":"миксолидийский",
+                  "ENG":"mixolydian"
+                },
+                {
+                  "RUS":"эолийский",
+                  "ENG":"aeolian"
+                },
+                {
+                  "RUS":"локрийский",
+                  "ENG":"locrian"
+                }
               ],
               "terms":[
                 "ионийский",
@@ -1507,8 +1723,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",
@@ -1552,8 +1774,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",
@@ -1597,8 +1825,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",
@@ -1642,8 +1876,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие"
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                }
               ],
               "terms":[
                 "уменьшенное трезвучие",
@@ -1687,8 +1927,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие"
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                }
               ],
               "terms":[
                 "уменьшенное трезвучие",
@@ -1732,8 +1978,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие"
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                }
               ],
               "terms":[
                 "уменьшенное трезвучие",
@@ -1777,8 +2029,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "sus2",
-                "sus4"
+                {
+                  "RUS":"sus2",
+                  "ENG":"sus2"
+                },
+                {
+                  "RUS":"sus4",
+                  "ENG":"sus4"
+                }
               ],
               "terms":[
                 "sus2",
@@ -1822,8 +2080,14 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "sus2",
-                "sus4"
+                {
+                  "RUS":"sus2",
+                  "ENG":"sus2"
+                },
+                {
+                  "RUS":"sus4",
+                  "ENG":"sus4"
+                }
               ],
               "terms":[
                 "sus2",
@@ -1867,12 +2131,30 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие",
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие",
-                "sus2",
-                "sus4"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                },
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                },
+                {
+                  "RUS":"sus2",
+                  "ENG":"sus2"
+                },
+                {
+                  "RUS":"sus4",
+                  "ENG":"sus4"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",
@@ -1920,12 +2202,30 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие",
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие",
-                "sus2",
-                "sus4"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                },
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                },
+                {
+                  "RUS":"sus2",
+                  "ENG":"sus2"
+                },
+                {
+                  "RUS":"sus4",
+                  "ENG":"sus4"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",
@@ -1973,12 +2273,30 @@
                 "ENG":"Identify which chord was played"
               },
               "answers":[
-                "мажорное трезвучие",
-                "минорное трезвучие",
-                "уменьшенное трезвучие",
-                "увеличенное трезвучие",
-                "sus2",
-                "sus4"
+                {
+                  "RUS":"мажорное трезвучие",
+                  "ENG":"major triad"
+                },
+                {
+                  "RUS":"минорное трезвучие",
+                  "ENG":"minor triad"
+                },
+                {
+                  "RUS":"уменьшенное трезвучие",
+                  "ENG":"dim"
+                },
+                {
+                  "RUS":"увеличенное трезвучие",
+                  "ENG":"aug"
+                },
+                {
+                  "RUS":"sus2",
+                  "ENG":"sus2"
+                },
+                {
+                  "RUS":"sus4",
+                  "ENG":"sus4"
+                }
               ],
               "terms":[
                 "мажорное трезвучие",

@@ -70,7 +70,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
         const button = new ButtonBuilder({
           parentNode: answers,
           className: 'quiz-answers__answer',
-          content: `${answer} <span class="key-index">(${
+          content: `${answer[state]} <span class="key-index">(${
             index + 1
           })</span>`,
         });
