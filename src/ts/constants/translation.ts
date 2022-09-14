@@ -309,6 +309,10 @@ const Translation = {
     ENG: 'repeat',
     RUS: 'повторить',
   },
+  backToMenuBtn: {
+    RUS: 'Перейти в главное меню',
+    ENG: 'Back to menu',
+  },
 } as Record<string, Record<keyof typeof Languages, string>>;
 
 export default Translation;

@@ -58,16 +58,20 @@ class ViewsController extends NodeBuilder {
     this.userAchievements = new UserAchievementsView(state);
     const theory = new TheoryPageView(state);
 
-    this.router = new Router(this.node, [
-      ['', this.mainMenu.node],
-      ['/ear-training', this.earTraining.node],
-      ['/rhythm-training', rhythmTraining.node],
-      ['/fortepiano', fortepiano.node],
-      ['/user-stats', this.userStats.node],
-      ['/user-stats/achievements', this.userAchievements.node],
-      ['/user-settings', this.userSettings.node],
-      ['/theory', theory.node],
-    ]);
+    this.router = new Router(
+      this.node,
+      [
+        ['', this.mainMenu.node],
+        ['/ear-training', this.earTraining.node],
+        ['/rhythm-training', rhythmTraining.node],
+        ['/fortepiano', fortepiano.node],
+        ['/user-stats', this.userStats.node],
+        ['/user-stats/achievements', this.userAchievements.node],
+        ['/user-settings', this.userSettings.node],
+        ['/theory', theory.node],
+      ],
+      state,
+    );
   }
 
   public init() {
