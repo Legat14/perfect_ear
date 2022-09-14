@@ -2,32 +2,56 @@
   "categories":{
     "intervals":{
       "categoryId":"intervals",
-      "categoryName":"Интервалы",
+      "categoryName":{
+        "RUS":"Интервалы",
+        "ENG":"Intervals"
+      },
       "games":{
         "interval-comparison":{
           "gameId":"interval-comparison",
-          "gameName":"Сравнение интервалов",
+          "gameName":{
+            "RUS":"Сравнение интервалов",
+            "ENG":"Interval Comparison"
+          },
           "quizes":[
             {
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-0",
-              "quizName":"Большие и малые секунды",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые секунды",
+                "ENG":"Major and minor seconds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -45,22 +69,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-1",
-              "quizName":"Большие и малые секунды",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые секунды",
+                "ENG":"Major and minor seconds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -78,22 +120,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-2",
-              "quizName":"Большие и малые секунды",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые секунды",
+                "ENG":"Major and minor seconds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -111,22 +171,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-3",
-              "quizName":"Большие и малые терции",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые терции",
+                "ENG":"Major and minor thirds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -144,22 +222,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-4",
-              "quizName":"Большие и малые терции",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые терции",
+                "ENG":"Major and minor thirds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -177,22 +273,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-5",
-              "quizName":"Большие и малые терции",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большие и малые терции",
+                "ENG":"Major and minor thirds"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -210,22 +324,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-6",
-              "quizName":"Большая секунда и малая терция",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Большая секунда и малая терция",
+                "ENG":"Major second and minor third"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -243,22 +375,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-7",
-              "quizName":"Чистые кварта и квинта",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Чистые кварта и квинта",
+                "ENG":"Perfect fifth and fourth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -276,22 +426,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-8",
-              "quizName":"Чистые кварта и квинта",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Чистые кварта и квинта",
+                "ENG":"Perfect fifth and fourth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -309,22 +477,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-9",
-              "quizName":"Чистые кварта и квинта",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Чистые кварта и квинта",
+                "ENG":"Perfect fifth and fourth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -342,22 +528,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-10",
-              "quizName":"Кварта и тритон",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Кварта и тритон",
+                "ENG":"Fourth and tritone"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -375,22 +579,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-11",
-              "quizName":"Квинта и тритон",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Квинта и тритон",
+                "ENG":"Fifth and tritone"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -408,22 +630,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-12",
-              "quizName":"Кварта, квинта и тритон",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Кварта, квинта и тритон",
+                "ENG":"Fourth, tritone and fifth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"мелодическое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -443,22 +683,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-13",
-              "quizName":"Все пройденные интервалы",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Все пройденные интервалы",
+                "ENG":"All intervals up to fifth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":15,
               "bonus":60000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -486,22 +744,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-14",
-              "quizName":"Все пройденные интервалы",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Все пройденные интервалы",
+                "ENG":"All intervals up to fifth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":15,
               "bonus":90000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -529,22 +805,40 @@
               "game":{
                 "category":{
                   "categoryId":"intervals",
-                  "categoryName":"Интервалы"
+                  "categoryName":{
+                    "RUS":"Интервалы",
+                    "ENG":"Intervals"
+                  }
                 },
                 "gameId":"interval-comparison",
-                "gameName":"Сравнение интервалов"
+                "gameName":{
+                  "RUS":"Сравнение интервалов",
+                  "ENG":"Interval Comparison"
+                }
               },
               "quizId":"interval-comp-15",
-              "quizName":"Все пройденные интервалы",
-              "quizStartDescription":[
-                "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
-                "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
-              ],
+              "quizName":{
+                "RUS":"Все пройденные интервалы",
+                "ENG":"All intervals up to fifth"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении мы сыграем два интервала. Вы должны определить, какой интервал из двух был шире и выбрать соответствующую опцию.",
+                  "Интервал шире, если он состоит состоит из большего количества полутонов. Например, Большая терция (4 полутона) шире Малой терции (три полутона)"
+                ],
+                "ENG":[
+                  "In this exercise the program will play two intervals in a row. You must use your ears to determine which interval is larger and select appropriate option",
+                  "Interval is considered larger when there is more distance between first and second tones. For example Major third is larger than Minor third."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":15,
               "bonus":90000,
-              "condition":"Выберите больший интервал",
+              "condition":{
+                "RUS":"Выберите больший интервал",
+                "ENG":"Which interval is larger?"
+              },
               "answers":[
                 "первый",
                 "второй"
@@ -574,31 +868,54 @@
     },
     "scales":{
       "categoryId":"scales",
-      "categoryName":"Гаммы",
+      "categoryName":{
+        "RUS":"Гаммы",
+        "ENG":"Scales"
+      },
       "games":{
         "scale-identification":{
           "gameId":"scale-identification",
-          "gameName":"Определение ладов",
+          "gameName":{
+            "RUS":"Определение ладов",
+            "ENG":"Scale Identification"
+          },
           "quizes":[
             {
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-0",
-              "quizName":"Натуральный минор и мажор",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Натуральный минор и мажор",
+                "ENG":"Natural minor and major"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный минор",
                 "натуральный мажор"
@@ -612,21 +929,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-1",
-              "quizName":"Натуральный минор и мажор",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Натуральный минор и мажор",
+                "ENG":"Natural minor and major"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный минор",
                 "натуральный мажор"
@@ -640,21 +974,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-2",
-              "quizName":"Мажор, Лидийский и Миксолидийский",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Мажор, Лидийский и Миксолидийский",
+                "ENG":"Major, Lydian, Mixolydian"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный мажор",
                 "лидийский",
@@ -670,21 +1021,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-3",
-              "quizName":"Мажор, Лидийский и Миксолидийский",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Мажор, Лидийский и Миксолидийский",
+                "ENG":"Major, Lydian, Mixolydian"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный мажор",
                 "лидийский",
@@ -700,21 +1068,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-4",
-              "quizName":"Минорные гаммы",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Минорные гаммы",
+                "ENG":"Minor scales"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный минор",
                 "дорийский",
@@ -732,21 +1117,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-5",
-              "quizName":"Минорные гаммы",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Минорные гаммы",
+                "ENG":"Minor scales"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "натуральный минор",
                 "дорийский",
@@ -764,21 +1166,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-6",
-              "quizName":"Фригийский, Локрийский",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Фригийский, Локрийский",
+                "ENG":"Phrygian, Locrian"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "фригийский",
                 "локрийский"
@@ -792,21 +1211,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-7",
-              "quizName":"Фригийский, Локрийский",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Фригийский, Локрийский",
+                "ENG":"Phrygian, Locrian"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "фригийский",
                 "локрийский"
@@ -820,21 +1256,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-8",
-              "quizName":"Пентатоника",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Пентатоника",
+                "ENG":"Pentatonic"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "мажорная пентатоника",
                 "минорная пентатоника"
@@ -848,21 +1301,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-9",
-              "quizName":"Пентатоника",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Пентатоника",
+                "ENG":"Pentatonic"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":120000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "мажорная пентатоника",
                 "минорная пентатоника"
@@ -876,21 +1346,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-10",
-              "quizName":"7 ладов",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"7 ладов",
+                "ENG":"7 modes"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":15,
               "bonus":180000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "ионийский",
                 "дорийский",
@@ -914,21 +1401,38 @@
               "game":{
                 "category":{
                   "categoryId":"scales",
-                  "categoryName":"Гаммы"
+                  "categoryName":{
+                    "RUS":"Гаммы",
+                    "ENG":"Scales"
+                  }
                 },
                 "gameId":"scale-identification",
-                "gameName":"Определение ладов"
+                "gameName":{
+                  "RUS":"Определение ладов",
+                  "ENG":"Scale Identification"
+                }
               },
               "quizId":"scales-ident-11",
-              "quizName":"7 ладов",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"7 ладов",
+                "ENG":"7 modes"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранную гамму на слух и выбрать ее из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a scale the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":15,
               "bonus":180000,
-              "condition":"Выберите сыгранную гамму",
+              "condition":{
+                "RUS":"Выберите сыгранную гамму",
+                "ENG":"Identify which scale was played"
+              },
               "answers":[
                 "ионийский",
                 "дорийский",
@@ -954,31 +1458,54 @@
     },
     "chords":{
       "categoryId":"chords",
-      "categoryName":"Аккорды",
+      "categoryName":{
+        "RUS":"Аккорды",
+        "ENG":"Chords"
+      },
       "games":{
         "chord-identification":{
           "gameId":"chord-identification",
-          "gameName":"Определение аккордов",
+          "gameName":{
+            "RUS":"Определение аккордов",
+            "ENG":"Chord Identification"
+          },
           "quizes":[
             {
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-0",
-              "quizName":"Большие и малые трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Большие и малые трезвучия",
+                "ENG":"Minor and Major triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие"
@@ -992,21 +1519,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-1",
-              "quizName":"Большие и малые трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Большие и малые трезвучия",
+                "ENG":"Minor and Major triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие"
@@ -1020,21 +1564,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-2",
-              "quizName":"Большие и малые трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Большие и малые трезвучия",
+                "ENG":"Minor and Major triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие"
@@ -1048,21 +1609,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-3",
-              "quizName":"Увеличенные и уменьшенные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Увеличенные и уменьшенные трезвучия",
+                "ENG":"Augmented and diminished triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "уменьшенное трезвучие",
                 "увеличенное трезвучие"
@@ -1076,21 +1654,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-4",
-              "quizName":"Увеличенные и уменьшенные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Увеличенные и уменьшенные трезвучия",
+                "ENG":"Augmented and diminished triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "уменьшенное трезвучие",
                 "увеличенное трезвучие"
@@ -1104,21 +1699,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-5",
-              "quizName":"Увеличенные и уменьшенные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Увеличенные и уменьшенные трезвучия",
+                "ENG":"Augmented and diminished triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "уменьшенное трезвучие",
                 "увеличенное трезвучие"
@@ -1132,21 +1744,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-6",
-              "quizName":"Sus2, sus4 трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Sus2, sus4 трезвучия",
+                "ENG":"Sus2, sus4 triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "sus2",
                 "sus4"
@@ -1160,21 +1789,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-7",
-              "quizName":"Sus2, sus4 трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Sus2, sus4 трезвучия",
+                "ENG":"Sus2, sus4 triads"
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":10,
               "bonus":60000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "sus2",
                 "sus4"
@@ -1188,21 +1834,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-8",
-              "quizName":"Все пройденные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Все пройденные трезвучия",
+                "ENG":"Triads asc."
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"восходящее",
               "score":150,
               "rounds":15,
               "bonus":120000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие",
@@ -1224,21 +1887,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-9",
-              "quizName":"Все пройденные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Все пройденные трезвучия",
+                "ENG":"Triads desc."
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"нисходящее",
               "score":150,
               "rounds":15,
               "bonus":120000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие",
@@ -1260,21 +1940,38 @@
               "game":{
                 "category":{
                   "categoryId":"chords",
-                  "categoryName":"Аккорды"
+                  "categoryName":{
+                    "RUS":"Аккорды",
+                    "ENG":"Chords"
+                  }
                 },
                 "gameId":"chord-identification",
-                "gameName":"Определение аккордов"
+                "gameName":{
+                  "RUS":"Определение аккордов",
+                  "ENG":"Chord Identification"
+                }
               },
               "quizId":"chords-ident-10",
-              "quizName":"Все пройденные трезвучия",
-              "quizStartDescription":[
-                "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
-              ],
+              "quizName":{
+                "RUS":"Все пройденные трезвучия",
+                "ENG":"Triads harm."
+              },
+              "quizStartDescription":{
+                "RUS":[
+                  "В этом упражнении Вам будет необходимо определить сыгранный аккорд на слух и выбрать его из предложенных вариантов ответа."
+                ],
+                "ENG":[
+                  "In this exercise you need to identify a chord the app plays and select it from multiple choices. Remember: only one option is correct."
+                ]
+              },
               "direction":"гармоническое",
               "score":150,
               "rounds":15,
               "bonus":120000,
-              "condition":"Выберите сыгранный аккорд",
+              "condition":{
+                "RUS":"Выберите сыгранный аккорд",
+                "ENG":"Identify which chord was played"
+              },
               "answers":[
                 "мажорное трезвучие",
                 "минорное трезвучие",

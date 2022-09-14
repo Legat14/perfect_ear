@@ -1,4 +1,5 @@
 import { Frequency, Note, Subdivision } from 'tone/build/esm/core/type/Units';
+import { Languages } from './data-types';
 import { Pause } from './note-types';
 
 export enum SequenceDirection {
@@ -65,7 +66,7 @@ export type GameId = IQuizGame['gameId'];
 
 export interface IGameCategory<QuizType extends IRound = IRound> {
   categoryId: string;
-  categoryName: string;
+  categoryName: Record<keyof typeof Languages, string>;
   games?: Record<GameId, IQuizGame<QuizType>>
 }
 
@@ -81,7 +82,7 @@ export interface IGameCategory<QuizType extends IRound = IRound> {
 export interface IQuizGame<QuizType extends IRound = IRound> {
   category?: IGameCategory<QuizType>;
   gameId: string;
-  gameName: string;
+  gameName: Record<keyof typeof Languages, string>;
   quizes?: QuizType[];
 }
 
@@ -107,13 +108,13 @@ export type QuizId = IRound['quizId'];
 export interface IRound {
   game: IQuizGame;
   quizId: string,
-  quizName: string,
-  quizStartDescription: string[];
+  quizName: Record<keyof typeof Languages, string>,
+  quizStartDescription: Record<keyof typeof Languages, string[]>;
   direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
-  condition: string;
+  condition: Record<keyof typeof Languages, string>;
   answers: string[];
   terms: string[];
 }
@@ -129,13 +130,13 @@ export interface IQuestion<T extends IRound> {
 export interface IIntervalRound extends IRound {
   game: IQuizGame;
   quizId: string,
-  quizName: string,
-  quizStartDescription: string[];
+  quizName: Record<keyof typeof Languages, string>,
+  quizStartDescription: Record<keyof typeof Languages, string[]>;
   direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
-  condition: string;
+  condition: Record<keyof typeof Languages, string>;
   answers: string[];
   terms: string[];
   intervals: Extract<Intervals, number>[];
@@ -144,13 +145,13 @@ export interface IIntervalRound extends IRound {
 export interface IScaleRound extends IRound {
   game: IQuizGame;
   quizId: string,
-  quizName: string,
-  quizStartDescription: string[];
+  quizName: Record<keyof typeof Languages, string>,
+  quizStartDescription: Record<keyof typeof Languages, string[]>;
   direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
-  condition: string;
+  condition: Record<keyof typeof Languages, string>;
   answers: (keyof typeof Scales)[];
   terms: (keyof typeof Scales)[];
 }
@@ -158,13 +159,13 @@ export interface IScaleRound extends IRound {
 export interface IChordRound extends IRound {
   game: IQuizGame;
   quizId: string,
-  quizName: string,
-  quizStartDescription: string[];
+  quizName: Record<keyof typeof Languages, string>,
+  quizStartDescription: Record<keyof typeof Languages, string[]>;
   direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
   score: number,
   rounds: number,
   bonus: number,
-  condition: string;
+  condition: Record<keyof typeof Languages, string>;
   answers: (keyof typeof Chords)[];
   terms: (keyof typeof Chords)[];
 }

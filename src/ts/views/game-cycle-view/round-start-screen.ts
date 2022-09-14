@@ -40,21 +40,21 @@ class GameRoundStartScreen extends NodeBuilder {
         parentNode: null,
         tagName: 'h2',
         className: 'quiz-start-screen__quiz-name',
-        content: info.quizName,
+        content: info.quizName[state],
       }).node,
 
       new NodeBuilder({
         parentNode: null,
         tagName: 'h3',
         className: 'quiz-start-screen__game-name',
-        content: info.game.gameName,
+        content: info.game.gameName[state],
       }).node,
 
       new NodeBuilder({
         parentNode: null,
         tagName: 'p',
         className: 'quiz-start-screen__game-description',
-        content: info.quizStartDescription.join('<br>'),
+        content: info.quizStartDescription[state].join('<br>'),
       }).node,
 
       new NodeBuilder({
@@ -68,7 +68,7 @@ class GameRoundStartScreen extends NodeBuilder {
     const termsContaner = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-terms',
-      content: `<p>${info.game.category?.categoryName} ${Translation.gameStartScreenTermsHeader[state]}:</p>`,
+      content: `<p>${info.game.category?.categoryName[state]} ${Translation.gameStartScreenTermsHeader[state]}:</p>`,
     }).node;
 
     info.terms.forEach((term) => {

@@ -18,9 +18,11 @@ class GameRoundView extends NodeBuilder {
 
   public onGameRepeat!: () => void;
 
+  public state: keyof typeof Languages;
+
   constructor(parentNode: HTMLElement, terms: IRound, state: keyof typeof Languages) {
     super({ parentNode });
-
+    this.state = state;
     this.renderStartScreen(terms, state);
   }
 
@@ -37,7 +39,9 @@ class GameRoundView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
-      content: `<div class="quiz-header__column"><h2 class="quiz-header__quiz-name">${quizName}</h2><h3 class="quiz-header__game-name">${gameName}</h3></div>`,
+      content: `<div class="quiz-header__column">
+                <h2 class="quiz-header__quiz-name">${quizName[this.state]}</h2>
+                <h3 class="quiz-header__game-name">${gameName[this.state]}</h3></div>`,
     }).node;
 
     const backButton = new ButtonBuilder({

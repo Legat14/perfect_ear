@@ -4,7 +4,10 @@ import IntervalComparisonView from './interval-comparison';
 const intervalOptions = [
   'intervals',
   'interval-comparison',
-  'Сравнение интервалов',
+  {
+    RUS: 'Сравнение интервалов',
+    ENG: 'Interval Comparison',
+  },
   IntervalComparison,
   IntervalComparisonView,
 ] as const;

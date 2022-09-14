@@ -40,7 +40,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
   ) {
     return loader.loadRounds<QuizType>(categoryId, gameId).then((games) => {
       this.games = games || [];
-      this.view = new GameRoundsPageView<QuizType>(null, this.games, gameName);
+      this.view = new GameRoundsPageView<QuizType>(null, this.games, gameName[state]);
       this.sound = new Sound(PIANO_SOUND);
 
       this.games.forEach((game: QuizType) => {

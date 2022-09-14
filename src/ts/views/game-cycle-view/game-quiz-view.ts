@@ -53,7 +53,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: this.node,
       tagName: 'p',
       className: 'quiz-question',
-      content: question.round.condition,
+      content: question.round.condition[state],
     });
     this.condition = condition;
 

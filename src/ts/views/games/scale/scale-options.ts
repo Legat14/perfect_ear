@@ -4,7 +4,10 @@ import ScaleIdentificationView from './scale-identification';
 const scaleOptions = [
   'scales',
   'scale-identification',
-  'Определение ладов',
+  {
+    RUS: 'Определение ладов',
+    ENG: 'Scale Identification',
+  },
   ScaleIdentification,
   ScaleIdentificationView,
 ] as const;

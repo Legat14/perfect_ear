@@ -14,7 +14,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
   constructor(
     parentNode: HTMLElement | null,
     games: (QuizType)[],
-    name: GameName,
+    name: GameName[keyof typeof Languages],
   ) {
     super({ parentNode, className: 'rounds-page' });
     this.games = games;
@@ -51,7 +51,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: this.pageContainer,
       className: 'round-option',
       content: `
-                <p class="round-option__round-title">${game.quizName}</p>
+                <p class="round-option__round-title">${game.quizName[state]}</p>
                 <p class="round-option__round-direction">${game.direction}</p>
                 <p class="round-option__round-count">${game.rounds} ${Translation.roundsPageTasksCount[state]}</p>
                 `,
@@ -67,7 +67,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     gameOption.node.onclick = () => this.play(game);
 
     document.addEventListener('ongameend', (() => {
-      score.textContent = `лучший счет: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`;
+      score.textContent = `${Translation.roundsPageHighScoreCount[state]}: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`;
     }) as EventListener);
 
     return this;

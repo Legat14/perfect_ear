@@ -4,7 +4,10 @@ import ChordIdentificationView from './chord-identification';
 const chordOptions = [
   'chords',
   'chord-identification',
-  'Определение аккордов',
+  {
+    RUS: 'Определение аккордов',
+    ENG: 'Chord Identification',
+  },
   ChordIdentification,
   ChordIdentificationView,
 ] as const;
