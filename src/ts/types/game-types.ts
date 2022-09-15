@@ -110,7 +110,10 @@ export interface IRound {
   quizId: string,
   quizName: Record<keyof typeof Languages, string>,
   quizStartDescription: Record<keyof typeof Languages, string[]>;
-  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  direction: Record<
+  keyof typeof Languages,
+  Extract<SequenceDirection[keyof SequenceDirection], string>
+  >;
   score: number,
   rounds: number,
   bonus: number,
@@ -132,7 +135,10 @@ export interface IIntervalRound extends IRound {
   quizId: string,
   quizName: Record<keyof typeof Languages, string>,
   quizStartDescription: Record<keyof typeof Languages, string[]>;
-  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  direction: Record<
+  keyof typeof Languages,
+  Extract<SequenceDirection[keyof SequenceDirection], string>
+  >;
   score: number,
   rounds: number,
   bonus: number,
@@ -147,7 +153,10 @@ export interface IScaleRound extends IRound {
   quizId: string,
   quizName: Record<keyof typeof Languages, string>,
   quizStartDescription: Record<keyof typeof Languages, string[]>;
-  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  direction: Record<
+  keyof typeof Languages,
+  Extract<SequenceDirection[keyof SequenceDirection], string>
+  >;
   score: number,
   rounds: number,
   bonus: number,
@@ -161,7 +170,10 @@ export interface IChordRound extends IRound {
   quizId: string,
   quizName: Record<keyof typeof Languages, string>,
   quizStartDescription: Record<keyof typeof Languages, string[]>;
-  direction: Extract<SequenceDirection[keyof SequenceDirection], string>,
+  direction: Record<
+  keyof typeof Languages,
+  Extract<SequenceDirection[keyof SequenceDirection], string>
+  >;
   score: number,
   rounds: number,
   bonus: number,

@@ -11,7 +11,7 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
   public generateQuestion(quiz: IIntervalRound): IQuestion<IIntervalRound> {
     const { intervals, direction, answers } = {
       ...quiz,
-      direction: quiz.direction.replace(
+      direction: quiz.direction.RUS.replace(
         Direction.Melodic,
         [Direction.Ascending, Direction.Descending][Random.generateRandomNumber(0, 1)],
       ),

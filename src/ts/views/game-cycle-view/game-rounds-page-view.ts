@@ -52,7 +52,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
       className: 'round-option',
       content: `
                 <p class="round-option__round-title">${game.quizName[state]}</p>
-                <p class="round-option__round-direction">${game.direction}</p>
+                <p class="round-option__round-direction">${game.direction[state]}</p>
                 <p class="round-option__round-count">${game.rounds} ${Translation.roundsPageTasksCount[state]}</p>
                 `,
     });

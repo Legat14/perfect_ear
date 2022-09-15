@@ -20,7 +20,7 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
   public generateQuestion(
     quiz: IScaleRound,
   ): IQuestion<IScaleRound> {
-    const { direction, answers } = quiz;
+    const { direction, answers } = { ...quiz, direction: quiz.direction.RUS };
 
     const [min, max] = [
       Tone.Frequency(Notations.C1).toNote(),

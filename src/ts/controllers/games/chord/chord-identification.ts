@@ -19,7 +19,7 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
   public generateQuestion(
     quiz: IChordRound,
   ): IQuestion<IChordRound> {
-    const { direction, answers } = quiz;
+    const { direction, answers } = { ...quiz, direction: quiz.direction.RUS };
 
     const [min, max] = [
       Tone.Frequency(Notations.C1).toNote(),
