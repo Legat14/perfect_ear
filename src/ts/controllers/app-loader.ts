@@ -96,7 +96,6 @@ class AppLoader {
   }
 
   private init() {
-    this.view.viewsController.renderTheoryPages();
     this.view.viewsController.renderGamePages(
       { profile: this.userDataHandler.userProfile },
       this.userDataHandler.userConfig.getLanguage(),

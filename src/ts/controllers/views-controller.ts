@@ -21,12 +21,11 @@ import scaleOptions from '../views/games/scale/scale-options';
 import intervalOptions from '../views/games/interval/interval-options';
 import chordOptions from '../views/games/chord/chord-options';
 
-import interval from '../views/theory/interval/interval.html';
-import gamma from '../views/theory/gamma/gamma.html';
-import accords from '../views/theory/accords/accords.html';
-import lad from '../views/theory/lad/lad.html';
-import rhythm from '../views/theory/rhythm/rhythm.html';
+import {
+  interval, gamma, lad, accords, rhythm,
+} from '../types/theory-pages';
 import TheorySection from '../views/components/theory-section';
+
 import { Languages } from '../types/data-types';
 
 class ViewsController extends NodeBuilder {
@@ -72,6 +71,8 @@ class ViewsController extends NodeBuilder {
       ],
       state,
     );
+
+    this.renderTheoryPages(state);
   }
 
   public init() {
@@ -113,14 +114,14 @@ class ViewsController extends NodeBuilder {
       });
   }
 
-  public renderTheoryPages() {
+  private renderTheoryPages(state: keyof typeof Languages) {
     (
       [
-        ['/theory/intervals', new TheorySection(interval).node],
-        ['/theory/scales', new TheorySection(gamma).node],
-        ['/theory/modes', new TheorySection(lad).node],
-        ['/theory/chords', new TheorySection(accords).node],
-        ['/theory/rhythm', new TheorySection(rhythm).node],
+        ['/theory/intervals', new TheorySection(interval, state).node],
+        ['/theory/scales', new TheorySection(gamma, state).node],
+        ['/theory/modes', new TheorySection(lad, state).node],
+        ['/theory/chords', new TheorySection(accords, state).node],
+        ['/theory/rhythm', new TheorySection(rhythm, state).node],
       ] as [string, HTMLElement][]
     ).forEach(([url, node]) => {
       this.router.add(url, node);
