@@ -58,7 +58,7 @@ class AppLoader {
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
     } else {
-      new Modal(document.body).onAuth = () => {
+      new Modal(document.body, this.userDataHandler.userConfig.getLanguage()).onAuth = () => {
         this.init();
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
@@ -96,10 +96,10 @@ class AppLoader {
   }
 
   private init() {
-    this.view.viewsController.renderTheoryPages();
-    this.view.viewsController.renderGamePages({
-      profile: this.userDataHandler.userProfile,
-    });
+    this.view.viewsController.renderGamePages(
+      { profile: this.userDataHandler.userProfile },
+      this.userDataHandler.userConfig.getLanguage(),
+    );
     this.view.viewsController.init();
   }
 

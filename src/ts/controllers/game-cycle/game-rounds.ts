@@ -5,7 +5,7 @@ import {
   GameName,
   IRound,
 } from '../../types/game-types';
-import { IExerciseResult } from '../../types/data-types';
+import { IExerciseResult, Languages } from '../../types/data-types';
 import Sound from '../sound';
 import GamesLoader from './games-loader';
 import GameRoundsPageView from '../../views/game-cycle-view/game-rounds-page-view';
@@ -17,7 +17,8 @@ export type GameQuizViewConstructor<QuizType extends IRound = IRound> =
     parentNode: HTMLElement | null,
     quiz: QuizType,
     sound: Sound,
-    Constructor: GameQuizConstructor<QuizType>
+    Constructor: GameQuizConstructor<QuizType>,
+    state: keyof typeof Languages,
   ) => AbstractGameView<QuizType>;
 
 class GameRoundsController<QuizType extends IRound = IRound> {
@@ -35,14 +36,15 @@ class GameRoundsController<QuizType extends IRound = IRound> {
     Constructor: GameQuizConstructor<QuizType>,
     ViewConstructor: GameQuizViewConstructor<QuizType>,
     results: IExerciseResult[],
+    state: keyof typeof Languages,
   ) {
     return loader.loadRounds<QuizType>(categoryId, gameId).then((games) => {
       this.games = games || [];
-      this.view = new GameRoundsPageView<QuizType>(null, this.games, gameName);
+      this.view = new GameRoundsPageView<QuizType>(null, this.games, gameName[state]);
       this.sound = new Sound(PIANO_SOUND);
 
       this.games.forEach((game: QuizType) => {
-        const roundPage = this.view.initGameOptionsList(game, results);
+        const roundPage = this.view.initGameOptionsList(game, results, state);
 
         roundPage.onplay = (round: QuizType) => {
           const gameView = new ViewConstructor(
@@ -50,6 +52,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
             round,
             this.sound,
             Constructor,
+            state,
           );
           gameView.onRepeat = (quiz) => gameView.init().startGameCycle(quiz);
           gameView.onQuit = () => this.view.stop();

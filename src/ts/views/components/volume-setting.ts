@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -13,7 +13,7 @@ class VolumeSetting extends ButtonBuilder {
       parentNode,
       className: 'user-settings__change-btn',
       content: (
-        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${LangPack[state]['5']}`),
+        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[state]}`),
     });
 
     this.state = state;
@@ -30,17 +30,17 @@ class VolumeSetting extends ButtonBuilder {
 
     const settingModal = new SettingModal(
       null,
-      LangPack[state]['4'],
+      Translation.volumeSettingModalTitle[state],
       state,
       [setting, new NodeBuilder<HTMLLabelElement>({ parentNode: null }).node],
     );
 
     this.node.onclick = () => parentNode.append(settingModal.node);
 
-    LangEmitter.add((content) => {
-      settingModal.header.innerHTML = content['4'];
+    LangEmitter.add((lang) => {
+      settingModal.header.innerHTML = Translation.volumeSettingModalTitle[lang];
       this.node.innerHTML = (
-        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${content['5']}`);
+        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[lang]}`);
     });
   }
 }

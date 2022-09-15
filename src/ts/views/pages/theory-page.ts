@@ -1,10 +1,13 @@
+import Translation from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 
 class TheoryPageView extends NodeBuilder {
   private sectionContainer: HTMLElement;
 
-  constructor() {
+  constructor(state: keyof typeof Languages) {
     super({ parentNode: null, className: 'theory-list' });
 
     const backToMainBtn = new ButtonBuilder({
@@ -23,64 +26,91 @@ class TheoryPageView extends NodeBuilder {
       className: 'theory-main_section',
     }).node;
 
-    this.createSection('Теория', [
-      [[{
-        parentNode: null,
-        className: 'theory__theory-btn theory-btn button',
-        content: 'Введение в интервалы',
-      }],
-      '/theory/intervals',
+    const [
+      sectionName,
+      intervalsBtn,
+      scalesBtn,
+      modesBtn,
+      chordsBtn,
+      rhythmBtn,
+    ] = this.createSection(
+      Translation.theoryPageHeader[state],
+      [
+        [[{
+          parentNode: null,
+          className: 'theory__theory-btn theory-btn button',
+          content: Translation.theoryPageIntervalsSection[state],
+        }],
+        '/theory/intervals',
+        ],
+        [[{
+          parentNode: null,
+          className: 'theory__theory-btn theory-btn button',
+          content: Translation.theoryPageScalesSection[state],
+        }],
+        '/theory/scales',
+        ],
+        [[{
+          parentNode: null,
+          className: 'theory__theory-btn theory-btn button',
+          content: Translation.theoryPageModesSection[state],
+        }],
+        '/theory/modes',
+        ],
+        [[{
+          parentNode: null,
+          className: 'theory__theory-btn theory-btn button',
+          content: Translation.theoryPageChordsSection[state],
+        }],
+        '/theory/chords',
+        ],
+        [[{
+          parentNode: null,
+          className: 'theory__theory-btn theory-btn button',
+          content: Translation.theoryPageRhythmSection[state],
+        }],
+        '/theory/rhythm',
+        ],
       ],
-      [[{
-        parentNode: null,
-        className: 'theory__theory-btn theory-btn button',
-        content: 'Введение в гаммы',
-      }],
-      '/theory/scales',
-      ],
-      [[{
-        parentNode: null,
-        className: 'theory__theory-btn theory-btn button',
-        content: 'Лады',
-      }],
-      '/theory/modes',
-      ],
-      [[{
-        parentNode: null,
-        className: 'theory__theory-btn theory-btn button',
-        content: 'Аккорды',
-      }],
-      '/theory/chords',
-      ],
-      [[{
-        parentNode: null,
-        className: 'theory__theory-btn theory-btn button',
-        content: 'Ритм',
-      }],
-      '/theory/rhythm',
-      ],
-    ]);
+    );
+
+    LangEmitter.add((lang) => {
+      sectionName.innerHTML = Translation.theoryPageHeader[lang];
+      intervalsBtn.innerHTML = Translation.theoryPageIntervalsSection[lang];
+      scalesBtn.innerHTML = Translation.theoryPageScalesSection[lang];
+      modesBtn.innerHTML = Translation.theoryPageModesSection[lang];
+      chordsBtn.innerHTML = Translation.theoryPageChordsSection[lang];
+      rhythmBtn.innerHTML = Translation.theoryPageRhythmSection[lang];
+    });
   }
 
   private createSection(
     sectionName: string,
     sectionButtons: [ConstructorParameters<typeof ButtonBuilder>, string][],
-  ): void {
+  ): HTMLElement[] {
     const container = new NodeBuilder({
       parentNode: this.sectionContainer,
       tagName: 'div',
       className: 'theory-section section',
-      content: `<h2 class="theory-section__section-title section-title">${sectionName}</h2>`,
     }).node;
-    sectionButtons.map(
-      ([[options], url]) => {
-        const button = new ButtonBuilder({ ...options, parentNode: container });
-        button.node.onclick = () => {
-          window.location.hash = `#${url}`;
-        };
-        return button;
-      },
-    );
+    const containerH2 = new NodeBuilder({
+      parentNode: container,
+      tagName: 'h2',
+      className: 'theory-section__section-title section-title',
+      content: sectionName,
+    }).node;
+    return [
+      containerH2,
+      ...sectionButtons.map(
+        ([[options], url]) => {
+          const button = new ButtonBuilder({ ...options, parentNode: container });
+          button.node.onclick = () => {
+            window.location.hash = `#${url}`;
+          };
+          return button.node;
+        },
+      ),
+    ];
   }
 }
 

@@ -1,4 +1,4 @@
-import { IGameResult } from '../../types/data-types';
+import { IGameResult, Languages } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 import GameRoundView from '../../views/game-cycle-view/game-round-view';
 import Sound from '../sound';
@@ -6,12 +6,15 @@ import AbstractGameQuiz from './abstract-game-quiz';
 import GameIndicators from './game-indicators';
 
 export type GameQuizConstructor<QuizType extends IRound = IRound> =
-  new (quiz: QuizType, round: number, sound: Sound) => AbstractGameQuiz<QuizType>;
+  new (
+    quiz: QuizType,
+    round: number,
+    sound: Sound,
+    state: keyof typeof Languages,
+  ) => AbstractGameQuiz<QuizType>;
 
 class GameRound<QuizType extends IRound = IRound> {
   private readonly rounds: number;
-
-  private readonly terms: readonly string[];
 
   private readonly sound: Sound;
 
@@ -29,16 +32,20 @@ class GameRound<QuizType extends IRound = IRound> {
 
   public onRepeat!: () => void;
 
+  private state: keyof typeof Languages;
+
   constructor(
     parentNode: HTMLElement,
     quiz: QuizType,
     GameQuizConstructor: GameQuizConstructor<QuizType>,
     sound: Sound,
+    state: keyof typeof Languages,
   ) {
     this.rounds = quiz.rounds;
-    this.terms = quiz.terms;
 
     this.sound = sound;
+
+    this.state = state;
 
     this.GameQuizConstructor = GameQuizConstructor;
 
@@ -50,7 +57,7 @@ class GameRound<QuizType extends IRound = IRound> {
     });
     this.round = 0;
 
-    this.view = new GameRoundView(parentNode, quiz);
+    this.view = new GameRoundView(parentNode, quiz, state);
 
     this.view.onGameStart = () => this.startGameCycle(quiz);
     this.view.onGameBack = () => this.quit();
@@ -79,7 +86,7 @@ class GameRound<QuizType extends IRound = IRound> {
   }
 
   public createNewQuestion(rounds: number, question: QuizType) {
-    const quiz = new this.GameQuizConstructor(question, this.round, this.sound);
+    const quiz = new this.GameQuizConstructor(question, this.round, this.sound, this.state);
 
     this.view.renderQuiz(quiz.view.node);
 
@@ -103,7 +110,7 @@ class GameRound<QuizType extends IRound = IRound> {
   }
 
   public finishGameCycle(result: IGameResult) {
-    this.view.renderEndScreen(result);
+    this.view.renderEndScreen(result, this.state);
   }
 }
 

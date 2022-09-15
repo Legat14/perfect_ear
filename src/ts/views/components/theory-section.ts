@@ -1,19 +1,34 @@
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 
 class TheorySection extends NodeBuilder {
-  constructor(content: string) {
-    super({ parentNode: null, content: `<div class="theory__theory-container">${content}</div>` });
+  constructor(
+    content: Record<keyof typeof Languages, string>,
+    state: keyof typeof Languages,
+  ) {
+    super({ parentNode: null });
 
     const backBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'field__back-btn',
       content: '←',
     }).node;
-    this.node.prepend(backBtn);
+
+    const contentNode = new NodeBuilder({
+      parentNode: this.node,
+      className: 'theory__theory-container',
+      content: content[state],
+    }).node;
+
     backBtn.onclick = () => {
       window.location.hash = window.location.hash.split('/').slice(0, -1).join('/');
     };
+
+    LangEmitter.add((language) => {
+      contentNode.innerHTML = content[language];
+    });
   }
 }
 

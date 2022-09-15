@@ -1,4 +1,6 @@
+import Translation from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
+import { Languages } from '../../types/data-types';
 
 class GameQuizNextButton extends ButtonBuilder {
   public onSkip!: () => void;
@@ -9,14 +11,18 @@ class GameQuizNextButton extends ButtonBuilder {
 
   private state!: 'default' | 'next' | 'done';
 
-  constructor(parentNode: HTMLElement) {
+  private language: keyof typeof Languages;
+
+  constructor(parentNode: HTMLElement, language: keyof typeof Languages) {
     super({ parentNode });
+
+    this.language = language;
     this.setDefault();
   }
 
   public setDefault(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_skip';
-    this.node.innerHTML = 'пропустить <span class="key-index">(↵)</span>';
+    this.node.innerHTML = `${Translation.gameSkipBtn[this.language]} <span class="key-index">(↵)</span>`;
     this.node.onclick = () => this.onSkip();
 
     this.state = 'default';
@@ -33,7 +39,7 @@ class GameQuizNextButton extends ButtonBuilder {
 
   public setNext(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_next';
-    this.node.innerHTML = 'далее <span class="key-index">(↵)</span>';
+    this.node.innerHTML = `${Translation.gameNextBtn[this.language]} <span class="key-index">(↵)</span>`;
     this.node.onclick = () => this.onNext();
 
     this.state = 'next';
@@ -50,7 +56,7 @@ class GameQuizNextButton extends ButtonBuilder {
 
   public setDone(): void {
     this.node.className = 'quiz-controls__button quiz-controls__button_next';
-    this.node.innerHTML = 'готово <span class="key-index">(↵)</span>';
+    this.node.innerHTML = `${Translation.gameDoneBtn[this.language]} <span class="key-index">(↵)</span>`;
     this.node.onclick = () => this.onDone();
 
     this.state = 'done';

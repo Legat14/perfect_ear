@@ -1,4 +1,4 @@
-import LangPack from '../../constants/translation';
+import Translation from '../../constants/translation';
 import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
@@ -64,7 +64,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'h2',
       className: 'user-settings__header',
-      content: LangPack[state]['6'],
+      content: Translation.userSettingsHeader[state],
     });
 
     this.statsSettings = new NodeBuilder({
@@ -77,7 +77,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.statsSettings.node,
       tagName: 'h3',
       className: 'user-settings__stats-header',
-      content: LangPack[state]['7'],
+      content: Translation.userSettingsDailyGoals[state],
     });
 
     this.dayGoalExercisesDiv = new NodeBuilder({
@@ -90,7 +90,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalExercisesDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: LangPack[state]['8'],
+      content: Translation.dailyExercisesGoals[state],
     });
 
     this.dayGoalExercisesInput = new NodeBuilder<HTMLInputElement>({
@@ -115,7 +115,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalScoreDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: LangPack[state]['9'],
+      content: Translation.dailyPointsGoals[state],
     });
 
     this.dayGoalScoreInput = new NodeBuilder<HTMLInputElement>({
@@ -140,7 +140,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: this.dayGoalTimeDiv.node,
       tagName: 'p',
       className: 'user-settings__stat-header',
-      content: LangPack[state]['10'],
+      content: Translation.dailyMinutesGoals[state],
     });
 
     this.dayGoalTimeInput = new NodeBuilder<HTMLInputElement>({
@@ -164,7 +164,7 @@ class UserSettingsView extends NodeBuilder {
     this.saveDayGoalsBtn = new ButtonBuilder({
       parentNode: this.statsSettings.node,
       className: 'user-settings__save-day-goals-btn',
-      content: LangPack[state]['2'],
+      content: Translation.settingsSaveBtn[state],
     });
 
     this.divForButton = new NodeBuilder({
@@ -183,7 +183,7 @@ class UserSettingsView extends NodeBuilder {
       parentNode: commonSettings.node,
       tagName: 'h3',
       className: 'user-settings__stats-header',
-      content: LangPack[state]['11'],
+      content: Translation.commonSettingsHeader[state],
     }).node;
 
     this.langSetting = new LanquageSetting(
@@ -204,18 +204,18 @@ class UserSettingsView extends NodeBuilder {
     this.resetStatsBtn = new ButtonBuilder({
       parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
       className: 'user-settings__reset-stats-btn',
-      content: LangPack[state]['12'],
+      content: Translation.resetStatsBtn[state],
     });
 
-    LangEmitter.add((content) => {
-      this.userSettingsHeader.node.innerHTML = content['6'];
-      this.statsSettingsHeader.node.innerHTML = content['7'];
-      this.dayGoalExercisesHeader.node.innerHTML = content['8'];
-      this.dayGoalScoreHeader.node.innerHTML = content['9'];
-      this.dayGoalScoreHeader.node.innerHTML = content['10'];
-      this.saveDayGoalsBtn.node.innerHTML = content['2'];
-      this.commonHeader.innerHTML = content['11'];
-      this.resetStatsBtn.node.innerHTML = content['12'];
+    LangEmitter.add((lang) => {
+      this.userSettingsHeader.node.innerHTML = Translation.userSettingsHeader[lang];
+      this.statsSettingsHeader.node.innerHTML = Translation.userSettingsDailyGoals[lang];
+      this.dayGoalExercisesHeader.node.innerHTML = Translation.dailyExercisesGoals[lang];
+      this.dayGoalScoreHeader.node.innerHTML = Translation.dailyPointsGoals[lang];
+      this.dayGoalTimeHeader.node.innerHTML = Translation.dailyMinutesGoals[lang];
+      this.saveDayGoalsBtn.node.innerHTML = Translation.settingsSaveBtn[lang];
+      this.commonHeader.innerHTML = Translation.commonSettingsHeader[lang];
+      this.resetStatsBtn.node.innerHTML = Translation.resetStatsBtn[lang];
     });
   }
 }

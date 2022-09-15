@@ -19,7 +19,7 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
   public generateQuestion(
     quiz: IChordRound,
   ): IQuestion<IChordRound> {
-    const { direction, answers } = quiz;
+    const { direction, answers } = { ...quiz, direction: quiz.direction.RUS };
 
     const [min, max] = [
       Tone.Frequency(Notations.C1).toNote(),
@@ -37,10 +37,10 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
       Subdivision,
     ][] = direction !== Direction.Harmonic
       ? Tone.Frequency(baseNote)
-        .harmonize(Chords[answers[value]])
+        .harmonize(Chords[answers[value].RUS])
         .map((note) => [note.toNote(), '4n'])
       : [[Tone.Frequency(baseNote)
-        .harmonize(Chords[answers[value]])
+        .harmonize(Chords[answers[value].RUS])
         .map((note) => note.toNote()), '2n']];
 
     if (direction === Direction.Descending) sequence.reverse();
@@ -51,7 +51,7 @@ class ChordIdentification extends AbstractGameQuiz<IChordRound> {
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
       labels: answers.map((answer) => Tone.Frequency(baseNote)
-        .harmonize(Chords[answer])
+        .harmonize(Chords[answer.RUS])
         .map((note) => note.toNote())),
     };
   }

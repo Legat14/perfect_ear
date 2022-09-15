@@ -20,7 +20,7 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
   public generateQuestion(
     quiz: IScaleRound,
   ): IQuestion<IScaleRound> {
-    const { direction, answers } = quiz;
+    const { direction, answers } = { ...quiz, direction: quiz.direction.RUS };
 
     const [min, max] = [
       Tone.Frequency(Notations.C1).toNote(),
@@ -37,7 +37,7 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
       Pause | Frequency | Frequency[],
       Subdivision,
     ][] = Tone.Frequency(baseNote)
-      .harmonize(Scales[answers[value]])
+      .harmonize(Scales[answers[value].RUS])
       .map((note) => [note.toNote(), '4n']);
 
     if (direction === Direction.Descending) sequence.reverse();
@@ -48,7 +48,7 @@ class ScaleIdentification extends AbstractGameQuiz<IScaleRound> {
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
       labels: answers.map((answer) => Tone.Frequency(baseNote)
-        .harmonize(Scales[answer])
+        .harmonize(Scales[answer.RUS])
         .map((note) => note.toNote())),
     };
   }

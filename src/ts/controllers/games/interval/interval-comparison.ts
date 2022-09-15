@@ -11,7 +11,7 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
   public generateQuestion(quiz: IIntervalRound): IQuestion<IIntervalRound> {
     const { intervals, direction, answers } = {
       ...quiz,
-      direction: quiz.direction.replace(
+      direction: quiz.direction.RUS.replace(
         Direction.Melodic,
         [Direction.Ascending, Direction.Descending][Random.generateRandomNumber(0, 1)],
       ),
@@ -51,7 +51,13 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
     );
 
     return {
-      round: { ...quiz, terms: randomized.map((i) => Intervals[i]) },
+      round: {
+        ...quiz,
+        terms: {
+          RUS: randomized.map((i) => Intervals[i]),
+          ENG: randomized.map((i) => quiz.terms.ENG[quiz.terms.RUS.indexOf(Intervals[i])]),
+        },
+      },
       value: randomized.indexOf(Math.max(...randomized)),
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),
