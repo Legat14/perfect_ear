@@ -166,7 +166,7 @@ const Translation = {
     RUS: 'Определение аккордов',
   },
   rhythmTrainingPageHeader: {
-    ENG: 'Rhythm exercises',
+    ENG: 'Rhythm Exercises',
     RUS: 'Упражнения на ритм',
   },
   theoryPageHeader: {
