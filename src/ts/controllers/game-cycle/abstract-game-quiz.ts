@@ -24,12 +24,15 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private answered: boolean;
 
+  private state: keyof typeof Languages;
+
   constructor(
     quiz: QuizType,
     round: number,
     sound: Sound,
     state: keyof typeof Languages,
   ) {
+    this.state = state;
     this.quiz = quiz;
     this.question = this.generateQuestion(quiz);
     this.answered = false;
@@ -59,12 +62,13 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private answer(index: number, done: boolean): void {
     const answer = index === this.question.value;
+    const terms = this.question.round.terms[this.state];
     this.answered = this.answered
       ? this.answered
       : (this.onAnswer(answer), true);
     this.view.react(
       answer,
-      this.question.round.terms,
+      terms,
       done,
       {
         right: this.question.labels[this.question.value as number],

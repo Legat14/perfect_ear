@@ -5,7 +5,7 @@ import { Languages } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 
 class GameRoundStartScreen extends NodeBuilder {
-  public getInfo!: (term: IRound['terms'][number]) => void;
+  public getInfo!: (term: IRound['terms'][keyof typeof Languages][number]) => void;
 
   public onQuizStart!: () => void;
 
@@ -71,7 +71,7 @@ class GameRoundStartScreen extends NodeBuilder {
       content: `<p>${info.game.category?.categoryName[state]} ${Translation.gameStartScreenTermsHeader[state]}:</p>`,
     }).node;
 
-    info.terms.forEach((term) => {
+    info.terms[state].forEach((term) => {
       const button = new ButtonBuilder({
         parentNode: termsContaner,
         className: 'quiz-terms__description',

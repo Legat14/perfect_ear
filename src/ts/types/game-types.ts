@@ -116,7 +116,7 @@ export interface IRound {
   bonus: number,
   condition: Record<keyof typeof Languages, string>;
   answers: Record<keyof typeof Languages, string>[];
-  terms: string[];
+  terms: Record<keyof typeof Languages, string[]>;
 }
 
 export interface IQuestion<T extends IRound> {
@@ -138,7 +138,7 @@ export interface IIntervalRound extends IRound {
   bonus: number,
   condition: Record<keyof typeof Languages, string>;
   answers: Record<keyof typeof Languages, string>[];
-  terms: string[];
+  terms: Record<keyof typeof Languages, string[]>;
   intervals: Extract<Intervals, number>[];
 }
 
@@ -153,7 +153,7 @@ export interface IScaleRound extends IRound {
   bonus: number,
   condition: Record<keyof typeof Languages, string>;
   answers: { RUS: keyof typeof Scales; ENG: string }[];
-  terms: (keyof typeof Scales)[];
+  terms: { RUS: (keyof typeof Scales)[]; ENG: string[] };
 }
 
 export interface IChordRound extends IRound {
@@ -167,5 +167,5 @@ export interface IChordRound extends IRound {
   bonus: number,
   condition: Record<keyof typeof Languages, string>;
   answers: { RUS: keyof typeof Chords; ENG: string }[];
-  terms: (keyof typeof Chords)[];
+  terms: { RUS: (keyof typeof Chords)[]; ENG: string[] };
 }

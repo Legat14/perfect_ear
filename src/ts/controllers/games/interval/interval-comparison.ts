@@ -51,7 +51,13 @@ class IntervalComparison extends AbstractGameQuiz<IIntervalRound> {
     );
 
     return {
-      round: { ...quiz, terms: randomized.map((i) => Intervals[i]) },
+      round: {
+        ...quiz,
+        terms: {
+          RUS: randomized.map((i) => Intervals[i]),
+          ENG: randomized.map((i) => quiz.terms.ENG[quiz.terms.RUS.indexOf(Intervals[i])]),
+        },
+      },
       value: randomized.indexOf(Math.max(...randomized)),
       sequence,
       baseNote: Tone.Frequency(baseNote).transpose(0).toNote(),

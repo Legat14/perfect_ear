@@ -16,8 +16,6 @@ export type GameQuizConstructor<QuizType extends IRound = IRound> =
 class GameRound<QuizType extends IRound = IRound> {
   private readonly rounds: number;
 
-  private readonly terms: readonly string[];
-
   private readonly sound: Sound;
 
   private readonly GameQuizConstructor: GameQuizConstructor<QuizType>;
@@ -44,7 +42,6 @@ class GameRound<QuizType extends IRound = IRound> {
     state: keyof typeof Languages,
   ) {
     this.rounds = quiz.rounds;
-    this.terms = quiz.terms;
 
     this.sound = sound;
 

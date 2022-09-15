@@ -140,7 +140,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   public react(
     answer: boolean,
-    terms: IRound['terms'],
+    terms: IRound['terms'][keyof typeof Languages],
     done: boolean,
     { right, given }: { right: Note[]; given: Note[] },
   ): void {
