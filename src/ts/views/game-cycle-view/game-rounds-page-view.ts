@@ -1,4 +1,5 @@
 import Translation from '../../constants/translation';
+import LangEmitter from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { IExerciseResult, Languages } from '../../types/data-types';
@@ -9,12 +10,15 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   pageContainer!: HTMLElement;
 
+  roundPage: NodeBuilder<HTMLElement>;
+
   onplay!: (game: QuizType) => void;
 
   constructor(
     parentNode: HTMLElement | null,
     games: (QuizType)[],
-    name: GameName[keyof typeof Languages],
+    name: GameName,
+    state: keyof typeof Languages,
   ) {
     super({ parentNode, className: 'rounds-page' });
     this.games = games;
@@ -24,22 +28,32 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
       className: 'rounds-page__container',
     }).node;
 
-    const backButton = new ButtonBuilder({
+    const header = new NodeBuilder({
       parentNode: this.pageContainer,
+      tagName: 'header',
+      className: 'rounds-page-header',
+    }).node;
+
+    const backButton = new ButtonBuilder({
+      parentNode: header,
       className: 'field__back-btn',
       content: '←',
     }).node;
+
+    const gameName = new NodeBuilder({
+      parentNode: header,
+      content: `<h2 class="ear-header__h2">${name[state]}</h2>`,
+    });
 
     backButton.onclick = (): void => {
       window.location.hash = window.location.hash.split('/').slice(0, -1).join('/');
     };
 
-    new NodeBuilder({
-      parentNode: this.pageContainer,
-      tagName: 'header',
-      className: 'rounds-page-header',
-      content: `<div><h2 class="ear-header__h2">${name}</h2></div>`,
-    }).node.prepend(backButton);
+    LangEmitter.add((language) => {
+      gameName.node.innerHTML = `<h2 class="ear-header__h2">${name[language]}</h2>`;
+    });
+
+    this.roundPage = new NodeBuilder({ parentNode: this.pageContainer });
   }
 
   public initGameOptionsList(
@@ -48,7 +62,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     state: keyof typeof Languages,
   ): this {
     const gameOption = new ButtonBuilder({
-      parentNode: this.pageContainer,
+      parentNode: this.roundPage.node,
       className: 'round-option',
       content: `
                 <p class="round-option__round-title">${game.quizName[state]}</p>
