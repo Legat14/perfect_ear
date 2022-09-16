@@ -8,7 +8,6 @@
 
 * [TypeScrypt](https://www.typescriptlang.org/)
 * [Webpack](https://webpack.js.org/)
-* [Webpack](https://webpack.js.org/)
 * [SASS](https://sass-lang.com/)
 * [Tone.js](https://tonejs.github.io/)
 
@@ -35,7 +34,6 @@ Deploy: https://perfect-ear.netlify.app/
 ### Technology stack:
 
 * [TypeScrypt](https://www.typescriptlang.org/)
-* [Webpack](https://webpack.js.org/)
 * [Webpack](https://webpack.js.org/)
 * [SASS](https://sass-lang.com/)
 * [Tone.js](https://tonejs.github.io/)
