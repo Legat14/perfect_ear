@@ -47,6 +47,10 @@ class UserSettingsView extends NodeBuilder {
 
   volumeSetting: VolumeSetting;
 
+  onReset!: () => void;
+
+  onSave!: () => void;
+
   constructor(state: keyof typeof Languages = 'RUS') {
     super({ parentNode: null, className: 'user-settings' });
 
@@ -167,6 +171,8 @@ class UserSettingsView extends NodeBuilder {
       content: Translation.settingsSaveBtn[state],
     });
 
+    this.saveDayGoalsBtn.node.addEventListener('click', () => this.onSave());
+
     this.divForButton = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
@@ -206,6 +212,8 @@ class UserSettingsView extends NodeBuilder {
       className: 'user-settings__reset-stats-btn',
       content: Translation.resetStatsBtn[state],
     });
+
+    this.resetStatsBtn.node.addEventListener('click', () => this.onReset());
 
     LangEmitter.add((lang) => {
       this.userSettingsHeader.node.innerHTML = Translation.userSettingsHeader[lang];

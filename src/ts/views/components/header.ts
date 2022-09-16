@@ -4,7 +4,7 @@ import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
 
 class HeaderView extends NodeBuilder {
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
+  constructor(parentNode: HTMLElement, state: keyof typeof Languages) {
     super({ parentNode, className: 'header' });
 
     const headerH1 = new NodeBuilder({

@@ -13,6 +13,7 @@ import GamesLoader from './game-cycle/games-loader';
 
 import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
 
+import UserConfig from '../models/user-config';
 import UserProfile from '../models/user-profile';
 import UserAchievementsView from '../views/pages/user-achievements';
 import TheoryPageView from '../views/pages/theory-page';
@@ -79,9 +80,9 @@ class ViewsController extends NodeBuilder {
     this.router.init('');
   }
 
-  public renderGamePages({ profile }: { profile: UserProfile }, language: Languages) {
+  public renderGamePages({ profile, config }: { profile: UserProfile, config: UserConfig }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
-    const state = Languages[language] as keyof typeof Languages;
+    const state = Languages[config.getLanguage()] as keyof typeof Languages;
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage
