@@ -6,11 +6,11 @@
 
 ### Стек технологий:
 
-* (TypeScrypt)[https://www.typescriptlang.org/]
-* (Webpack)[https://webpack.js.org/]
-* (Webpack)[https://webpack.js.org/]
-* (SASS)[https://sass-lang.com/]
-* (Tone.js)[https://tonejs.github.io/]
+* [TypeScrypt](https://www.typescriptlang.org/)
+* [Webpack](https://webpack.js.org/)
+* [Webpack](https://webpack.js.org/)
+* [SASS](https://sass-lang.com/)
+* [Tone.js](https://tonejs.github.io/)
 
 ### Инструкция по использованию src-файлов:
 
@@ -34,11 +34,11 @@ Deploy: https://perfect-ear.netlify.app/
 
 ### Technology stack:
 
-* (TypeScrypt)[https://www.typescriptlang.org/]
-* (Webpack)[https://webpack.js.org/]
-* (Webpack)[https://webpack.js.org/]
-* (SASS)[https://sass-lang.com/]
-* (Tone.js)[https://tonejs.github.io/]
+* [TypeScrypt](https://www.typescriptlang.org/)
+* [Webpack](https://webpack.js.org/)
+* [Webpack](https://webpack.js.org/)
+* [SASS](https://sass-lang.com/)
+* [Tone.js](https://tonejs.github.io/)
 
 ### Src-files run instruction:
 
