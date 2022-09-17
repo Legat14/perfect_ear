@@ -71,6 +71,7 @@ class GameRound<QuizType extends IRound = IRound> {
      * @todo Back to games list.
      * window.location.hash = window.location.hash.split('/').slice(0, -1).join('/');
      */
+    this.sound.stopSequence();
     this.view.remove();
     this.onQuit();
   }
@@ -110,6 +111,7 @@ class GameRound<QuizType extends IRound = IRound> {
   }
 
   public finishGameCycle(result: IGameResult) {
+    this.sound.stopSequence();
     this.view.renderEndScreen(result, this.state);
   }
 }
