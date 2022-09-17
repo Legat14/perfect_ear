@@ -6,6 +6,7 @@ import {
   Subdivision,
   Seconds,
   Note,
+  TimeObject,
 } from 'tone/build/esm/core/type/Units';
 import { Pause } from '../types/note-types';
 
@@ -25,6 +26,8 @@ interface ISound {
 
 class Sound implements ISound {
   public sampler: Tone.Sampler;
+
+  private part!: Tone.Part<[Seconds, [Frequency | Frequency[], Subdivision | TimeObject]]>;
 
   constructor({
     voice,
@@ -77,32 +80,66 @@ class Sound implements ISound {
     this.sampler.triggerAttackRelease(...note);
   }
 
-  public playSequence(notes: [Pause | Frequency | Frequency[], Subdivision][]): Promise<number> {
-    Tone.Transport.bpm.value = this.tactDuration;
+  /**
+   * @example
+   * this.playSequence([
+   *   ['C2', '4n'],
+   *   ['C3', '8n'],
+   *   ['C3', '16n'],
+   *   ['D2', '16n'],
+   *   ['E2', '4n'],
+   *   ['D2', '8n'],
+   *   ['A1', '8n'],
+   * ])
+   */
+  public playSequence(
+    notes: [Pause | Frequency | Frequency[], Subdivision | TimeObject][],
+  ): Promise<void> {
     /**
      * @todo Add preloader
      */
-    return Tone.loaded()
-      .then(() => notes.reduce(
+
+    if (this.part) this.stopSequence();
+
+    return Tone.loaded().then(() => {
+      this.sampler.toDestination();
+
+      this.part = new Tone.Part<
+      [Seconds, [Pause | Frequency | Frequency[], Subdivision | TimeObject]]
+      >(
         (
-          time: Seconds,
-          [freq, sub]: [Pause | Frequency | Frequency[], Subdivision],
-        ) => {
-          /**
-           * this.sampler.triggerAttack(freq === 'pause' ? sub : freq, time);
-           * this.sampler.triggerRelease(freq === 'pause'
-           *   ? sub : freq, time + Tone.Time(sub).toSeconds());
-           */
-          this.sampler.triggerAttackRelease(freq === 'pause' ? sub : freq, sub, time);
-          return time + Tone.Time(sub).toSeconds();
+          time,
+          [freq, sub]: [
+            Pause | Frequency | Frequency[],
+            Subdivision | TimeObject,
+          ],
+        ): void => {
+          if (freq !== 'pause') this.sampler.triggerAttackRelease(freq, sub);
         },
-        Tone.now(),
-      ) - Tone.now());
+        notes.reduce<{
+          res: [
+            Seconds,
+            [Pause | Frequency | Frequency[], Subdivision | TimeObject],
+          ][];
+          time: Seconds;
+        }>(
+          (acc, [freq, sub]) => ({
+            res: [[acc.time, [freq, sub]], ...acc.res],
+            time: acc.time + Tone.Time(sub).toSeconds(),
+          }),
+          { res: [], time: 0 },
+        ).res,
+      );
+      this.part.start(0);
+      Tone.Transport.start();
+    });
   }
 
-  /**
-   * @todo Add muteNotes();
-   */
+  public stopSequence() {
+    if (this.part) this.part.stop();
+    Tone.Transport.stop();
+  }
+
   public attackNote(note: Note) {
     this.sampler.triggerAttack(note);
   }
