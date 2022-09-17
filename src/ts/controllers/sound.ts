@@ -10,24 +10,20 @@ import {
 import { Pause } from '../types/note-types';
 
 interface ISound {
-  voice?: Partial<Tone.SamplerOptions>;
-  volume?: Decibels;
+  voice: Partial<Tone.SamplerOptions>;
+  volume: Decibels;
   tactDuration: BPM;
 
-  setVoice: (voice: Partial<Tone.SamplerOptions>) => void;
-  setVolume: (volume: Decibels) => void;
-  setTactDuration: (tactDuration: BPM) => void;
+  setVoice?: (voice: Partial<Tone.SamplerOptions>) => void;
+  setVolume?: (volume: Decibels) => void;
+  setTactDuration?: (tactDuration: BPM) => void;
 
   playNote: (note: [Frequency, Subdivision]) => void;
-  playSequence?: (notes: [Pause | Frequency | Frequency[], Subdivision][]) => void;
+  playSequence: (notes: [Pause | Frequency | Frequency[], Subdivision][]) => void;
   muteNotes?: () => void;
 }
 
 class Sound implements ISound {
-  public tactDuration: BPM;
-
-  public voice: Partial<Tone.SamplerOptions>;
-
   public sampler: Tone.Sampler;
 
   constructor({
@@ -39,25 +35,42 @@ class Sound implements ISound {
     volume: Decibels;
     tactDuration: BPM;
   }) {
-    this.tactDuration = tactDuration;
-    this.voice = voice;
-
     const sampler = new Tone.Sampler(voice).toDestination();
-    sampler.volume.value = volume;
 
     this.sampler = sampler;
+    this.volume = volume;
+    this.tactDuration = tactDuration;
   }
 
-  public setVoice(voice: Partial<Tone.SamplerOptions>): void {
-    this.sampler = new Tone.Sampler(voice);
+  public set voice(voice: Partial<Tone.SamplerOptions>) {
+    this.sampler = new Tone.Sampler(voice).toDestination();
   }
 
-  public setVolume(volume: Decibels): void {
+  public get volume(): Decibels {
+    return this.sampler.volume.value;
+  }
+
+  public set volume(volume: Decibels) {
     this.sampler.volume.value = volume;
   }
 
-  public setTactDuration(tactDuration: BPM): void {
-    this.tactDuration = tactDuration;
+  public get tactDuration(): BPM {
+    return Tone.Transport.bpm.value;
+  }
+
+  public set tactDuration(tactDuration: BPM) {
+    Tone.Transport.bpm.value = tactDuration;
+  }
+
+  public mute(): void {
+    const volume = new Tone.Volume(0).toDestination();
+    this.sampler.disconnect().connect(volume);
+
+    volume.mute = true;
+  }
+
+  public unmute(): Tone.Sampler {
+    return this.sampler.disconnect().toDestination();
   }
 
   public playNote(note: [Frequency, Subdivision]): void {
