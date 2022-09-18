@@ -31,7 +31,7 @@ const Translation = {
   },
   setTempoBtn: {
     ENG: 'Change tempo',
-    RUS: 'Установите темп',
+    RUS: 'Установить темп',
   },
   tempoSettingModalTitle: {
     ENG: 'Set tempo',
