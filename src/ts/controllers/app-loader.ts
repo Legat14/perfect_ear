@@ -24,8 +24,11 @@ class AppLoader {
 
   constructor() {
     this.userDataHandler = new UserDataHandler();
-    this.view = new MainPageCreator(this.userDataHandler.userConfig.getLanguage());
     this.guestEnterHandler = new GuestEnterHandler();
+
+    this.view = new MainPageCreator(
+      this.userDataHandler.userConfig,
+    );
 
     const { userStats } = this.view.viewsController;
 
@@ -58,62 +61,56 @@ class AppLoader {
     if (this.guestEnterHandler.perfectEarGuestUser) {
       this.init();
     } else {
-      new Modal(document.body, this.userDataHandler.userConfig.getLanguage()).onAuth = () => {
+      new Modal(
+        document.body,
+        this.userDataHandler.userConfig,
+      ).onAuth = () => {
         this.init();
         this.guestEnterHandler.saveGuestUserEnterToSessionStorage();
       };
     }
 
-    const resetUserDataBtn = this.view.viewsController.userSettings.resetStatsBtn.node;
-    resetUserDataBtn.addEventListener('click', (): void => { // TODO: Добавить всплывающее предупреждение о потере данных
+    userSettings.onReset = (): void => {
+      // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
-      this.userDayStatisticHandler.refreshCounters(
-        this.userDataHandler.userConfig.getDayExercisesGoal(),
-        this.userDataHandler.userConfig.getDayScoreGoal(),
-        this.userDataHandler.userConfig.getDayTimeGoal(),
-      );
+      this.refreshCounters();
       this.userStatisticHandler.refreshCounters();
-    });
+    };
 
-    const saveDayGoalBtn = this.view.viewsController.userSettings.saveDayGoalsBtn.node;
-    saveDayGoalBtn.addEventListener('click', (): void => {
+    userSettings.onSave = (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
       this.userDataHandler.saveConfigDataToLocalStorage();
-      this.userDayStatisticHandler.refreshCounters(
-        this.userDataHandler.userConfig.getDayExercisesGoal(),
-        this.userDataHandler.userConfig.getDayScoreGoal(),
-        this.userDataHandler.userConfig.getDayTimeGoal(),
-      );
-    });
+      this.refreshCounters();
+    };
 
-    this.userDayStatisticHandler.refreshCounters(
-      this.userDataHandler.userConfig.getDayExercisesGoal(),
-      this.userDataHandler.userConfig.getDayScoreGoal(),
-      this.userDataHandler.userConfig.getDayTimeGoal(),
-    );
+    this.refreshCounters();
     this.addRefreshEvent();
     this.userAchievementsHandler.testAllAchievements();
   }
 
   private init() {
-    this.view.viewsController.renderGamePages(
-      { profile: this.userDataHandler.userProfile },
-      this.userDataHandler.userConfig.getLanguage(),
-    );
+    this.view.viewsController.renderGamePages({
+      profile: this.userDataHandler.userProfile,
+      config: this.userDataHandler.userConfig,
+    });
     this.view.viewsController.init();
+  }
+
+  private refreshCounters() {
+    this.userDayStatisticHandler.refreshCounters(
+      this.userDataHandler.userConfig.getDayExercisesGoal(),
+      this.userDataHandler.userConfig.getDayScoreGoal(),
+      this.userDataHandler.userConfig.getDayTimeGoal(),
+    );
   }
 
   private addRefreshEvent() {
     document.addEventListener('ongameend', () => {
-      this.userDayStatisticHandler.refreshCounters(
-        this.userDataHandler.userConfig.getDayExercisesGoal(),
-        this.userDataHandler.userConfig.getDayScoreGoal(),
-        this.userDataHandler.userConfig.getDayTimeGoal(),
-      );
+      this.refreshCounters();
       this.userAchievementsHandler.testAllAchievements();
     });
   }
-} // TODO: Добавить механизм замены картинок достижений обратно на неполученные
+}
 
 const appLoader = new AppLoader();
 

@@ -11,15 +11,22 @@ import GamesLoader from './games-loader';
 import GameRoundsPageView from '../../views/game-cycle-view/game-rounds-page-view';
 import { GameQuizConstructor } from './game-round';
 import AbstractGameView from '../../views/games/abstract-game-view';
+import {
+  LangEmitter,
+  TempoEmitter,
+  VolumeEmitter,
+} from '../emitters/lang-emitter';
 
-export type GameQuizViewConstructor<QuizType extends IRound = IRound> =
-  new (
-    parentNode: HTMLElement | null,
-    quiz: QuizType,
-    sound: Sound,
-    Constructor: GameQuizConstructor<QuizType>,
-    state: keyof typeof Languages,
-  ) => AbstractGameView<QuizType>;
+export type GameQuizViewConstructor<QuizType extends IRound = IRound> = new (
+  parentNode: HTMLElement | null,
+  quiz: QuizType,
+  sound: Sound,
+  Constructor: GameQuizConstructor<QuizType>,
+  state: {
+    language: keyof typeof Languages;
+    volume: number;
+  }
+) => AbstractGameView<QuizType>;
 
 class GameRoundsController<QuizType extends IRound = IRound> {
   public games!: QuizType[];
@@ -27,6 +34,12 @@ class GameRoundsController<QuizType extends IRound = IRound> {
   public view!: GameRoundsPageView<QuizType>;
 
   public sound!: Sound;
+
+  public state!: {
+    language: keyof typeof Languages;
+    volume: number;
+    tempo: number;
+  };
 
   public load(
     loader: GamesLoader,
@@ -36,28 +49,75 @@ class GameRoundsController<QuizType extends IRound = IRound> {
     Constructor: GameQuizConstructor<QuizType>,
     ViewConstructor: GameQuizViewConstructor<QuizType>,
     results: IExerciseResult[],
-    state: keyof typeof Languages,
+    state: {
+      language: keyof typeof Languages;
+      volume: number;
+      tempo: number;
+    },
   ) {
     return loader.loadRounds<QuizType>(categoryId, gameId).then((games) => {
       this.games = games || [];
-      this.view = new GameRoundsPageView<QuizType>(null, this.games, gameName[state]);
-      this.sound = new Sound(PIANO_SOUND);
-
-      this.games.forEach((game: QuizType) => {
-        const roundPage = this.view.initGameOptionsList(game, results, state);
-
-        roundPage.onplay = (round: QuizType) => {
-          const gameView = new ViewConstructor(
-            this.view.node,
-            round,
-            this.sound,
-            Constructor,
-            state,
-          );
-          gameView.onRepeat = (quiz) => gameView.init().startGameCycle(quiz);
-          gameView.onQuit = () => this.view.stop();
-        };
+      this.view = new GameRoundsPageView<QuizType>(
+        null,
+        this.games,
+        gameName,
+        state.language,
+      );
+      this.sound = new Sound({
+        ...PIANO_SOUND,
+        volume: state.volume,
+        tactDuration: state.tempo,
       });
+      this.state = state;
+
+      this.initGames(Constructor, ViewConstructor, results, state);
+
+      LangEmitter.add((language) => {
+        this.view.roundPage.clear();
+        this.state = { ...this.state, language };
+        this.initGames(Constructor, ViewConstructor, results, this.state);
+      });
+
+      VolumeEmitter.add((volume) => {
+        this.sound.volume = volume;
+
+        this.view.roundPage.clear();
+        this.state = { ...this.state, volume };
+        this.initGames(Constructor, ViewConstructor, results, this.state);
+      });
+
+      TempoEmitter.add((tempo) => {
+        this.sound.tactDuration = tempo;
+      });
+    });
+  }
+
+  private initGames(
+    Constructor: GameQuizConstructor<QuizType>,
+    ViewConstructor: GameQuizViewConstructor<QuizType>,
+    results: IExerciseResult[],
+    state: {
+      language: keyof typeof Languages;
+      volume: number;
+    },
+  ) {
+    this.games.forEach((game: QuizType) => {
+      const roundPage = this.view.initGameOptionsList(
+        game,
+        results,
+        state.language,
+      );
+      roundPage.onplay = (round: QuizType) => {
+        const gameView = new ViewConstructor(
+          this.view.node,
+          round,
+          this.sound,
+          Constructor,
+          state,
+        );
+        gameView.onRepeat = (quiz) => gameView.init().startGameCycle(quiz);
+        gameView.onQuit = () => this.view.stop();
+      };
     });
   }
 }

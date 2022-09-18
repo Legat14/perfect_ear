@@ -9,7 +9,10 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
 
   public sound: Sound;
 
-  public state: keyof typeof Languages;
+  public state: {
+    language: keyof typeof Languages;
+    volume: number,
+  };
 
   public quiz: T;
 
@@ -24,7 +27,10 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
     quiz: T,
     sound: Sound,
     Constructor: GameQuizConstructor<T>,
-    state: keyof typeof Languages,
+    state: {
+      language: keyof typeof Languages;
+      volume: number,
+    },
   ) {
     super({ parentNode, className: 'game-field' });
 

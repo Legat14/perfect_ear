@@ -1,4 +1,4 @@
-import LangEmitter from '../emitters/lang-emitter';
+import { LangEmitter, TempoEmitter, VolumeEmitter } from '../emitters/lang-emitter';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import {
@@ -129,6 +129,14 @@ class UserDataHandler {
       if (guestUserConfig.language) {
         language = guestUserConfig.language;
       }
+      let volume = 0;
+      if (guestUserConfig.volume) {
+        volume = guestUserConfig.volume;
+      }
+      let tempo = 80;
+      if (guestUserConfig.tempo) {
+        tempo = guestUserConfig.tempo;
+      }
       this.userConfig = new UserConfig(
         {
           dayExercisesGoal,
@@ -136,6 +144,8 @@ class UserDataHandler {
           dayTimeGoal,
         },
         language,
+        volume,
+        tempo,
       );
     } else {
       this.userConfig = new UserConfig(
@@ -145,6 +155,8 @@ class UserDataHandler {
           dayTimeGoal: 30,
         },
         Languages.RUS,
+        0,
+        80,
       );
     }
     this.addPageCloseEvent();
@@ -154,6 +166,16 @@ class UserDataHandler {
     LangEmitter.add((data) => {
       const key = Languages[data];
       this.userConfig.setLanguge(key);
+    });
+
+    VolumeEmitter.add((data) => {
+      const key = data;
+      this.userConfig.setVolume(key);
+    });
+
+    TempoEmitter.add((data) => {
+      const key = data;
+      this.userConfig.setTempo(key);
     });
   }
 
@@ -203,6 +225,8 @@ class UserDataHandler {
         dayTimeGoal: this.userConfig.getDayTimeGoal(),
       },
       language: this.userConfig.getLanguage(),
+      volume: this.userConfig.getVolume(),
+      tempo: this.userConfig.getTempo(),
     };
     localStorage.setItem('guestUserConfig', JSON.stringify(guestUserConfig));
   }

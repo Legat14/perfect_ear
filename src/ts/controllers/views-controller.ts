@@ -13,6 +13,7 @@ import GamesLoader from './game-cycle/games-loader';
 
 import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
 
+import UserConfig from '../models/user-config';
 import UserProfile from '../models/user-profile';
 import UserAchievementsView from '../views/pages/user-achievements';
 import TheoryPageView from '../views/pages/theory-page';
@@ -45,15 +46,17 @@ class ViewsController extends NodeBuilder {
 
   earTraining: EarTrainingView;
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages) {
+  constructor(parentNode: HTMLElement, config: UserConfig) {
     super({ parentNode, className: 'field' });
+
+    const state = Languages[config.getLanguage()] as keyof typeof Languages;
 
     this.mainMenu = new MainMenuView(state);
     this.earTraining = new EarTrainingView(state);
     const rhythmTraining = new RhythmTrainingView(state);
-    const fortepiano = new FortepianoView(state);
+    const fortepiano = new FortepianoView(config);
     this.userStats = new UserStatsView(state);
-    this.userSettings = new UserSettingsView(state);
+    this.userSettings = new UserSettingsView(config);
     this.userAchievements = new UserAchievementsView(state);
     const theory = new TheoryPageView(state);
 
@@ -79,9 +82,13 @@ class ViewsController extends NodeBuilder {
     this.router.init('');
   }
 
-  public renderGamePages({ profile }: { profile: UserProfile }, language: Languages) {
+  public renderGamePages({ profile, config }: { profile: UserProfile, config: UserConfig }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
-    const state = Languages[language] as keyof typeof Languages;
+    const state = {
+      language: Languages[config.getLanguage()] as keyof typeof Languages,
+      volume: config.getVolume(),
+      tempo: config.getTempo(),
+    };
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage
