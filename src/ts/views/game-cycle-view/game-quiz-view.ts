@@ -164,14 +164,14 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
   }
 
   private acceptAnswer(right: Note[]): void {
-    AnswerSound.accept();
+    new AnswerSound(this.state.volume).accept();
     right.forEach((note) => {
       this.piano.keys[note].node.className += ' key_correct';
     });
   }
 
   private rejectAnswer(right: Note[], given: Note[]): void {
-    AnswerSound.reject();
+    new AnswerSound(this.state.volume).reject();
     right.forEach((note) => {
       this.piano.keys[note].node.className += ' key_correct';
     });
