@@ -22,7 +22,7 @@ class MainPageCreator {
     );
     this.viewsController = new ViewsController(
       document.body,
-      language,
+      config,
     );
     this.footer = new FooterView(document.body);
   }

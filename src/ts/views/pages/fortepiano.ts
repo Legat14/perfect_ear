@@ -1,9 +1,10 @@
 import { PIANO_SOUND } from '../../constants/constants';
 import Translation from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import UserConfig from '../../models/user-config';
 import { Languages } from '../../types/data-types';
 import VirtualPiano from '../piano/advanced-piano';
 
@@ -12,9 +13,10 @@ class FortepianoView extends NodeBuilder {
 
   onDestroy!: () => void;
 
-  constructor(state: keyof typeof Languages = 'RUS') {
+  constructor(config: UserConfig) {
     super({ parentNode: null, className: 'fortepiano-field' });
 
+    const language = Languages[config.getLanguage()] as keyof typeof Languages;
     const backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'field__back-btn',
@@ -31,14 +33,14 @@ class FortepianoView extends NodeBuilder {
       parentNode: header,
       tagName: 'h2',
       className: 'piano__head_h2',
-      content: Translation.fortepianoPageHeader[state],
+      content: Translation.fortepianoPageHeader[language],
     }).node;
 
     const descr = new NodeBuilder({
       parentNode: header,
       tagName: 'p',
       className: 'piano__descr_p',
-      content: Translation.fortepianoPageDescr[state],
+      content: Translation.fortepianoPageDescr[language],
     }).node;
 
     LangEmitter.add((lang) => {

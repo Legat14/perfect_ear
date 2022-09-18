@@ -1,6 +1,14 @@
 import Emitter from '../../helpers/emitter';
 import { Languages } from '../../types/data-types';
 
-const LangEmitter = new Emitter<keyof typeof Languages>();
+const [
+  LangEmitter,
+  VolumeEmitter,
+  TempoEmitter,
+] = [
+  new Emitter<keyof typeof Languages>(),
+  new Emitter<number>(),
+  new Emitter<number>(),
+];
 
-export default LangEmitter;
+export { LangEmitter, VolumeEmitter, TempoEmitter };

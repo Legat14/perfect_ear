@@ -46,15 +46,17 @@ class ViewsController extends NodeBuilder {
 
   earTraining: EarTrainingView;
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages) {
+  constructor(parentNode: HTMLElement, config: UserConfig) {
     super({ parentNode, className: 'field' });
+
+    const state = Languages[config.getLanguage()] as keyof typeof Languages;
 
     this.mainMenu = new MainMenuView(state);
     this.earTraining = new EarTrainingView(state);
     const rhythmTraining = new RhythmTrainingView(state);
-    const fortepiano = new FortepianoView(state);
+    const fortepiano = new FortepianoView(config);
     this.userStats = new UserStatsView(state);
-    this.userSettings = new UserSettingsView(state);
+    this.userSettings = new UserSettingsView(config);
     this.userAchievements = new UserAchievementsView(state);
     const theory = new TheoryPageView(state);
 

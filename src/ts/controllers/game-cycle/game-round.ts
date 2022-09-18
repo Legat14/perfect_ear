@@ -10,7 +10,10 @@ export type GameQuizConstructor<QuizType extends IRound = IRound> =
     quiz: QuizType,
     round: number,
     sound: Sound,
-    state: keyof typeof Languages,
+    state: {
+      language: keyof typeof Languages;
+      volume: number,
+    },
   ) => AbstractGameQuiz<QuizType>;
 
 class GameRound<QuizType extends IRound = IRound> {
@@ -32,14 +35,14 @@ class GameRound<QuizType extends IRound = IRound> {
 
   public onRepeat!: () => void;
 
-  private state: keyof typeof Languages;
+  private state: { language: keyof typeof Languages; volume: number; };
 
   constructor(
     parentNode: HTMLElement,
     quiz: QuizType,
     GameQuizConstructor: GameQuizConstructor<QuizType>,
     sound: Sound,
-    state: keyof typeof Languages,
+    state: { language: keyof typeof Languages; volume: number; },
   ) {
     this.rounds = quiz.rounds;
 
@@ -57,7 +60,7 @@ class GameRound<QuizType extends IRound = IRound> {
     });
     this.round = 0;
 
-    this.view = new GameRoundView(parentNode, quiz, state);
+    this.view = new GameRoundView(parentNode, quiz, state.language);
 
     this.view.onGameStart = () => this.startGameCycle(quiz);
     this.view.onGameBack = () => this.quit();
@@ -87,7 +90,12 @@ class GameRound<QuizType extends IRound = IRound> {
   }
 
   public createNewQuestion(rounds: number, question: QuizType) {
-    const quiz = new this.GameQuizConstructor(question, this.round, this.sound, this.state);
+    const quiz = new this.GameQuizConstructor(
+      question,
+      this.round,
+      this.sound,
+      this.state,
+    );
 
     this.view.renderQuiz(quiz.view.node);
 
@@ -112,7 +120,7 @@ class GameRound<QuizType extends IRound = IRound> {
 
   public finishGameCycle(result: IGameResult) {
     this.sound.stopSequence();
-    this.view.renderEndScreen(result, this.state);
+    this.view.renderEndScreen(result, this.state.language);
   }
 }
 
