@@ -9,6 +9,7 @@ class UserConfig {
 
   private language: Languages;
 
+  private volume: number;
   constructor(
     {
       dayExercisesGoal,
@@ -16,11 +17,13 @@ class UserConfig {
       dayTimeGoal,
     }: IDayGoals,
     language: Languages,
+    volume: number,
   ) {
     this.dayExercisesGoal = dayExercisesGoal;
     this.dayScoreGoal = dayScoreGoal;
     this.dayTimeGoal = dayTimeGoal;
     this.language = language;
+    this.volume = volume;
   }
 
   public getDayExercisesGoal(): number {
@@ -39,6 +42,9 @@ class UserConfig {
     return this.language;
   }
 
+  public getVolume(): number {
+    return this.volume;
+  }
   public setDayExercisesGoal(value: number): void {
     this.dayExercisesGoal = value;
   }
@@ -53,6 +59,10 @@ class UserConfig {
 
   public setLanguge(value: Languages): void {
     this.language = value;
+  }
+
+  public setVolume(value: number): void {
+    this.volume = value;
   }
 }
 

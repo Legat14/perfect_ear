@@ -1,19 +1,22 @@
 import Translation from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
 
 class VolumeSetting extends ButtonBuilder {
-  public state: keyof typeof Languages;
+  public state: { language: keyof typeof Languages, volume: number };
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
+  constructor(
+    parentNode: HTMLElement,
+    state: { language: keyof typeof Languages, volume: number },
+  ) {
     super({
       parentNode,
       className: 'user-settings__change-btn',
       content: (
-        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[state]}`),
+        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[state.language]}`),
     });
 
     this.state = state;
@@ -24,18 +27,23 @@ class VolumeSetting extends ButtonBuilder {
       className: 'language-input',
       attributes: {
         type: 'range',
-        value: `${100}`,
+        step: '1',
+        value: `${state.volume * 2 + 100}`,
       },
     }).node;
 
     const settingModal = new SettingModal(
       null,
-      Translation.volumeSettingModalTitle[state],
-      state,
+      Translation.volumeSettingModalTitle[state.language],
+      state.language,
       [setting, new NodeBuilder<HTMLLabelElement>({ parentNode: null }).node],
     );
 
     this.node.onclick = () => parentNode.append(settingModal.node);
+
+    settingModal.onUpdate = (
+      value: string,
+    ) => VolumeEmitter.emit((Number(value) - 100) / 2);
 
     LangEmitter.add((lang) => {
       settingModal.header.innerHTML = Translation.volumeSettingModalTitle[lang];

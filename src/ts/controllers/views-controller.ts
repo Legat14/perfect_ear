@@ -84,7 +84,10 @@ class ViewsController extends NodeBuilder {
 
   public renderGamePages({ profile, config }: { profile: UserProfile, config: UserConfig }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
-    const state = Languages[config.getLanguage()] as keyof typeof Languages;
+    const state = {
+      language: Languages[config.getLanguage()] as keyof typeof Languages,
+      volume: config.getVolume(),
+    };
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage

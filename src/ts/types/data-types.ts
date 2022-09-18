@@ -76,6 +76,7 @@ export interface IDayGoals {
 }
 
 export interface IUserConfig {
+  volume: number;
   dayGoals: IDayGoals,
   language: Languages,
 }

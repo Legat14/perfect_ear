@@ -17,6 +17,8 @@ class FortepianoView extends NodeBuilder {
     super({ parentNode: null, className: 'fortepiano-field' });
 
     const language = Languages[config.getLanguage()] as keyof typeof Languages;
+    const volume = config.getVolume();
+
     const backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'field__back-btn',
@@ -48,7 +50,13 @@ class FortepianoView extends NodeBuilder {
       descr.innerHTML = Translation.fortepianoPageDescr[lang];
     });
 
-    this.piano = new VirtualPiano(this.node, new Sound(PIANO_SOUND));
+    this.piano = new VirtualPiano(this.node, new Sound(
+      { ...PIANO_SOUND, volume },
+    ));
+
+    VolumeEmitter.add((newVolume) => {
+      this.piano.setVolume(newVolume);
+    });
 
     backToMainBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#';
