@@ -52,12 +52,15 @@ class GameRound<QuizType extends IRound = IRound> {
 
     this.GameQuizConstructor = GameQuizConstructor;
 
-    this.gameIndicators = new GameIndicators({
-      gameName: quiz.quizId,
-      scoreForRightAnswer: quiz.score,
-      roundsCount: quiz.rounds,
-      bonusTime: quiz.bonus,
-    });
+    this.gameIndicators = new GameIndicators(
+      {
+        gameName: quiz.quizId,
+        scoreForRightAnswer: quiz.score,
+        roundsCount: quiz.rounds,
+        bonusTime: quiz.bonus,
+      },
+      state,
+    );
     this.round = 0;
 
     this.view = new GameRoundView(parentNode, quiz, state.language);

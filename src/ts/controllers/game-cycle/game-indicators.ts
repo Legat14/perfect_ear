@@ -33,12 +33,9 @@
 // gameIndicators.increaseFinesCounter();
 
 import HumanReadableData from '../../helpers/human-readable-data';
-import UserConfig from '../../models/user-config';
-import { IGameResult } from '../../types/data-types';
+import { IGameResult, Languages } from '../../types/data-types';
 
 class GameIndicators {
-  public userConfig: UserConfig;
-
   private gameName: string;
 
   private gameScore = 0;
@@ -73,8 +70,9 @@ class GameIndicators {
 
   private conversionHelper: HumanReadableData;
 
+  private state: { language: keyof typeof Languages; volume: number; };
+
   constructor(
-    userConfig: UserConfig,
     {
       gameName,
       scoreForRightAnswer,
@@ -86,14 +84,15 @@ class GameIndicators {
       roundsCount: number,
       bonusTime: number,
     },
+    state: { language: keyof typeof Languages; volume: number; },
   ) {
-    this.userConfig = userConfig;
     this.gameName = gameName;
     this.scoreForRightAnswer = scoreForRightAnswer;
     this.roundsCount = roundsCount;
     this.bonusTime = bonusTime;
     this.startTimer();
     this.conversionHelper = new HumanReadableData();
+    this.state = state;
   }
 
   increaseRightAnswersCounter(): void {
@@ -154,9 +153,9 @@ class GameIndicators {
   private getResults(): IGameResult {
     const rightAnswersCountToRoundCount = `${this.rightAnswersCount} / ${this.roundsCount}`;
     const gameTimeHR = this.conversionHelper
-      .getTimeHumanReadableStr(this.gameTime, this.userConfig.getLanguage());
+      .getTimeHumanReadableStr(this.gameTime, this.state.language);
     const averageTimeHR = this.conversionHelper
-      .getTimeHumanReadableStr(this.averageTime, this.userConfig.getLanguage());
+      .getTimeHumanReadableStr(this.averageTime, this.state.language);
     const result = {
       gameName: this.gameName,
       gameScore: this.gameScore,

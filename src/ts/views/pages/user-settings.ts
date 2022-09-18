@@ -3,7 +3,7 @@ import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import UserConfig from '../../models/user-config';
-import { IDayGoalsInputs, Languages } from '../../types/data-types';
+import { IDayGoalsInputs } from '../../types/data-types';
 import LanquageSetting from '../components/language-setting';
 import TempoSetting from '../components/tempo-setting';
 import VolumeSetting from '../components/volume-setting';
@@ -58,7 +58,7 @@ class UserSettingsView extends NodeBuilder {
   constructor(config: UserConfig) {
     super({ parentNode: null, className: 'user-settings' });
 
-    const language = Languages[config.getLanguage()] as keyof typeof Languages;
+    const language = config.getLanguage();
     const [volume, tempo] = [config.getVolume(), config.getTempo()];
 
     this.backToMainBtn = new ButtonBuilder({

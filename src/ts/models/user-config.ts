@@ -44,6 +44,7 @@ class UserConfig {
   }
 
   public getLanguage(): keyof typeof Languages {
+    console.log(this.language);
     return this.language;
   }
 

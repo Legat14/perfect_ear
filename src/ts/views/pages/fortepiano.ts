@@ -5,7 +5,6 @@ import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import UserConfig from '../../models/user-config';
-import { Languages } from '../../types/data-types';
 import VirtualPiano from '../piano/advanced-piano';
 
 class FortepianoView extends NodeBuilder {
@@ -16,7 +15,7 @@ class FortepianoView extends NodeBuilder {
   constructor(config: UserConfig) {
     super({ parentNode: null, className: 'fortepiano-field' });
 
-    const language = Languages[config.getLanguage()] as keyof typeof Languages;
+    const language = config.getLanguage();
     const volume = config.getVolume();
 
     const backToMainBtn = new ButtonBuilder({
