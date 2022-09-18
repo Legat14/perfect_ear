@@ -125,9 +125,9 @@ class UserDataHandler {
       if (guestUserConfig.dayGoals.dayTimeGoal) {
         dayTimeGoal = guestUserConfig.dayGoals.dayTimeGoal;
       }
-      let language = Languages.RUS;
+      let language = Languages[0] as keyof typeof Languages;
       if (guestUserConfig.language) {
-        language = guestUserConfig.language;
+        language = guestUserConfig.language as keyof typeof Languages;
       }
       let volume = 0;
       if (guestUserConfig.volume) {
@@ -154,7 +154,7 @@ class UserDataHandler {
           dayScoreGoal: 25000,
           dayTimeGoal: 30,
         },
-        Languages.RUS,
+        Languages[0] as keyof typeof Languages,
         0,
         80,
       );
@@ -164,7 +164,7 @@ class UserDataHandler {
     this.setDayCheckInterval();
 
     LangEmitter.add((data) => {
-      const key = Languages[data];
+      const key = data;
       this.userConfig.setLanguge(key);
     });
 

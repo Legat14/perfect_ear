@@ -54,12 +54,13 @@ class UserProfile {
     this.conversionHelper = new HumanReadableData();
     this.dayScore = dayScore;
     this.dayTime = dayTime;
-    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(dayTime);
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(dayTime, 'RUS');
+    // TODO: Убрать строки с человекочитабельным временем из профиля
     this.dayExercises = dayExercises;
     this.profileDate = profileDate;
     this.totalScore = totalScore;
     this.totalTime = totalTime;
-    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(totalTime);
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(totalTime, 'RUS');
     this.totalExercises = totalExercises;
     this.intervalGameScore = intervalGameScore;
     this.scaleGameScore = scaleGameScore;
@@ -130,7 +131,7 @@ class UserProfile {
 
   public setDayTime(value: number): void {
     this.dayTime = value;
-    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(value);
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(value, 'RUS');
   }
 
   public setDayExercises(value: number): void {
@@ -147,7 +148,7 @@ class UserProfile {
 
   public setTotalTime(value: number): void {
     this.totalTime = value;
-    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(value);
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(value, 'RUS');
   }
 
   public setTotalExercises(value: number): void {
@@ -211,7 +212,7 @@ class UserProfile {
 
   public increaseDayTime(value: number): void {
     this.dayTime = this.getDayTime() + value;
-    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.dayTime);
+    this.dayTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.dayTime, 'RUS');
   }
 
   public increaseDayExercises(value: number): void {
@@ -224,7 +225,7 @@ class UserProfile {
 
   public increaseTotalTime(value: number): void {
     this.totalTime = this.getTotalTime() + value;
-    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.totalTime);
+    this.totalTimeHR = this.conversionHelper.getTimeHumanReadableStr(this.totalTime, 'RUS');
   }
 
   public increaseTotalExercises(value: number): void {

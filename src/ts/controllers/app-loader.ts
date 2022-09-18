@@ -48,6 +48,7 @@ class AppLoader {
 
     this.userDayStatisticHandler = new UserDayStatisticHandler(
       this.userDataHandler.userProfile,
+      this.userDataHandler.userConfig,
       mainMenu.userDayStatistic.userDayStatisticCounters,
     );
 

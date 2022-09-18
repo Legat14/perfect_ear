@@ -1,8 +1,12 @@
+import HumanReadableData from '../../helpers/human-readable-data';
+import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import { IUserDayStatisticCounters } from '../../types/data-types';
 
 class UserDayStatisticHandler {
   private userProfile: UserProfile;
+
+  private userConfig: UserConfig;
 
   private exercisesCounter: HTMLElement;
 
@@ -16,14 +20,22 @@ class UserDayStatisticHandler {
 
   private timeIndicator: HTMLElement;
 
-  constructor(userProfile: UserProfile, userDayStatisticCounters: IUserDayStatisticCounters) {
+  private humanReadableData: HumanReadableData;
+
+  constructor(
+    userProfile: UserProfile,
+    userConfig: UserConfig,
+    userDayStatisticCounters: IUserDayStatisticCounters,
+  ) {
     this.userProfile = userProfile;
+    this.userConfig = userConfig;
     this.exercisesCounter = userDayStatisticCounters.exercisesCounter;
     this.scoreCounter = userDayStatisticCounters.scoreCounter;
     this.timeCounter = userDayStatisticCounters.timeCounter;
     this.exercisesIndicator = userDayStatisticCounters.exercisesIndicator;
     this.scoreIndicator = userDayStatisticCounters.scoreIndicator;
     this.timeIndicator = userDayStatisticCounters.timeIndicator;
+    this.humanReadableData = new HumanReadableData();
   }
 
   private refreshExercisesCounter() {
@@ -35,7 +47,10 @@ class UserDayStatisticHandler {
   }
 
   private refreshTimeCounter() {
-    this.timeCounter.innerHTML = this.userProfile.getDayTimeHR();
+    this.timeCounter.innerHTML = this.humanReadableData.getTimeHumanReadableStr(
+      this.userProfile.getDayTime(),
+      this.userConfig.getLanguage(),
+    );
   }
 
   private refreshExercisesIndicator(dayGoal: number): void {

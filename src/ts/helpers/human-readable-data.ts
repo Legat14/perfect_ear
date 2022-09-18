@@ -1,5 +1,8 @@
+import { Languages } from '../types/data-types';
+import Translation from '../constants/translation';
+
 class HumanReadableData {
-  public getTimeHumanReadableStr(time: number): string {
+  public getTimeHumanReadableStr(time: number, state: keyof typeof Languages): string {
     const millisecsInSec = 1000;
     const secsInMinute = 60;
     const minutes = (time - (time % (millisecsInSec * secsInMinute)))
@@ -8,7 +11,7 @@ class HumanReadableData {
     const secounds = (timeWithoutMinutes - (timeWithoutMinutes % millisecsInSec)) / millisecsInSec;
     const millisecouds = timeWithoutMinutes - (secounds * millisecsInSec);
     const millisecsStr = (`000${millisecouds}`).slice(-3);
-    const timeString = `${minutes} мин. ${secounds}.${millisecsStr} сек.`;
+    const timeString = `${minutes} ${Translation.timeMin[state]} ${secounds}.${millisecsStr} ${Translation.timeSec[state]}`;
     return timeString;
   }
 }

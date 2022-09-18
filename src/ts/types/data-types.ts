@@ -79,7 +79,7 @@ export interface IUserConfig {
   tempo: number;
   volume: number;
   dayGoals: IDayGoals,
-  language: Languages,
+  language: keyof typeof Languages,
 }
 
 export interface IAchievementImgs {
