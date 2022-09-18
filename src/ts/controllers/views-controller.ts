@@ -87,6 +87,7 @@ class ViewsController extends NodeBuilder {
     const state = {
       language: Languages[config.getLanguage()] as keyof typeof Languages,
       volume: config.getVolume(),
+      tempo: config.getTempo(),
     };
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();

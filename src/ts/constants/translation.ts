@@ -29,6 +29,14 @@ const Translation = {
     ENG: 'Set volume',
     RUS: 'Установите громкость',
   },
+  setTempoBtn: {
+    ENG: 'Change tempo',
+    RUS: 'Установите темп',
+  },
+  tempoSettingModalTitle: {
+    ENG: 'Set tempo',
+    RUS: 'Установите темп',
+  },
   userSettingsHeader: {
     ENG: 'Settings',
     RUS: 'Настройки',

@@ -5,6 +5,7 @@ import NodeBuilder from '../../helpers/node-builder';
 import UserConfig from '../../models/user-config';
 import { IDayGoalsInputs, Languages } from '../../types/data-types';
 import LanquageSetting from '../components/language-setting';
+import TempoSetting from '../components/tempo-setting';
 import VolumeSetting from '../components/volume-setting';
 
 class UserSettingsView extends NodeBuilder {
@@ -48,6 +49,8 @@ class UserSettingsView extends NodeBuilder {
 
   volumeSetting: VolumeSetting;
 
+  tempoSetting: TempoSetting;
+
   onReset!: () => void;
 
   onSave!: () => void;
@@ -56,6 +59,8 @@ class UserSettingsView extends NodeBuilder {
     super({ parentNode: null, className: 'user-settings' });
 
     const language = Languages[config.getLanguage()] as keyof typeof Languages;
+    const [volume, tempo] = [config.getVolume(), config.getTempo()];
+
     this.backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'field__back-btn',
@@ -207,6 +212,13 @@ class UserSettingsView extends NodeBuilder {
         className: 'user-settings__setting-row',
       }).node,
       { language, volume },
+    );
+    this.tempoSetting = new TempoSetting(
+      new NodeBuilder({
+        parentNode: commonSettings.node,
+        className: 'user-settings__setting-row',
+      }).node,
+      { language, tempo },
     );
 
     this.resetStatsBtn = new ButtonBuilder({

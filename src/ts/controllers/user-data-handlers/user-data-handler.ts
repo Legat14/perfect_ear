@@ -133,6 +133,10 @@ class UserDataHandler {
       if (guestUserConfig.volume) {
         volume = guestUserConfig.volume;
       }
+      let tempo = 80;
+      if (guestUserConfig.tempo) {
+        tempo = guestUserConfig.tempo;
+      }
       this.userConfig = new UserConfig(
         {
           dayExercisesGoal,
@@ -141,6 +145,7 @@ class UserDataHandler {
         },
         language,
         volume,
+        tempo,
       );
     } else {
       this.userConfig = new UserConfig(
@@ -151,6 +156,7 @@ class UserDataHandler {
         },
         Languages.RUS,
         0,
+        80,
       );
     }
     this.addPageCloseEvent();
@@ -165,6 +171,11 @@ class UserDataHandler {
     VolumeEmitter.add((data) => {
       const key = data;
       this.userConfig.setVolume(key);
+    });
+
+    TempoEmitter.add((data) => {
+      const key = data;
+      this.userConfig.setTempo(key);
     });
   }
 
@@ -215,6 +226,7 @@ class UserDataHandler {
       },
       language: this.userConfig.getLanguage(),
       volume: this.userConfig.getVolume(),
+      tempo: this.userConfig.getTempo(),
     };
     localStorage.setItem('guestUserConfig', JSON.stringify(guestUserConfig));
   }

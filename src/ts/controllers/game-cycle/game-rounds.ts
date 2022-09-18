@@ -13,6 +13,7 @@ import { GameQuizConstructor } from './game-round';
 import AbstractGameView from '../../views/games/abstract-game-view';
 import {
   LangEmitter,
+  TempoEmitter,
   VolumeEmitter,
 } from '../emitters/lang-emitter';
 
@@ -37,6 +38,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
   public state!: {
     language: keyof typeof Languages;
     volume: number;
+    tempo: number;
   };
 
   public load(
@@ -50,6 +52,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
     state: {
       language: keyof typeof Languages;
       volume: number;
+      tempo: number;
     },
   ) {
     return loader.loadRounds<QuizType>(categoryId, gameId).then((games) => {
@@ -63,6 +66,7 @@ class GameRoundsController<QuizType extends IRound = IRound> {
       this.sound = new Sound({
         ...PIANO_SOUND,
         volume: state.volume,
+        tactDuration: state.tempo,
       });
       this.state = state;
 
@@ -80,8 +84,10 @@ class GameRoundsController<QuizType extends IRound = IRound> {
         this.view.roundPage.clear();
         this.state = { ...this.state, volume };
         this.initGames(Constructor, ViewConstructor, results, this.state);
-        this.initGames(Constructor, ViewConstructor, results, language);
+      });
 
+      TempoEmitter.add((tempo) => {
+        this.sound.tactDuration = tempo;
       });
     });
   }
