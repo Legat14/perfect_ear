@@ -1,4 +1,5 @@
 import ViewsController from '../../controllers/views-controller';
+import UserConfig from '../../models/user-config';
 import { Languages } from '../../types/data-types';
 import FooterView from '../components/footer';
 import HeaderView from '../components/header';
@@ -12,14 +13,16 @@ class MainPageCreator {
 
   onAuth!: () => void;
 
-  constructor(state: Languages) {
+  constructor(config: UserConfig) {
+    const language = Languages[config.getLanguage()] as keyof typeof Languages;
+
     this.header = new HeaderView(
       document.body,
-      Languages[state] as keyof typeof Languages,
+      language,
     );
     this.viewsController = new ViewsController(
       document.body,
-      Languages[state] as keyof typeof Languages,
+      config,
     );
     this.footer = new FooterView(document.body);
   }

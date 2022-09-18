@@ -1,6 +1,9 @@
+import Translation from '../../constants/translation';
+import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IUserStatisticCounters } from '../../types/data-types';
+import TextNodeBuilder from '../../helpers/text-node-builder';
+import { IUserStatisticCounters, Languages } from '../../types/data-types';
 
 class UserStatsView extends NodeBuilder {
   backToMainBtn: ButtonBuilder;
@@ -8,6 +11,10 @@ class UserStatsView extends NodeBuilder {
   userStatsHeader: NodeBuilder;
 
   todayDiv: NodeBuilder;
+
+  todayDivHeader: TextNodeBuilder;
+
+  userTotalDivHeader: TextNodeBuilder;
 
   todaySubDiv1: NodeBuilder;
 
@@ -71,7 +78,7 @@ class UserStatsView extends NodeBuilder {
 
   achievementNew: HTMLElement | null;
 
-  constructor() {
+  constructor(state: keyof typeof Languages) {
     super({ parentNode: null, className: 'user-stats' });
 
     this.backToMainBtn = new ButtonBuilder({
@@ -87,15 +94,19 @@ class UserStatsView extends NodeBuilder {
     this.userStatsHeader = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: 'Статистика',
+      content: Translation.userStatsPageHeader[state],
       className: 'user-stats__header',
     });
 
     this.todayDiv = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
-      content: 'Сегодня',
       className: 'user-stats__today-div',
+    });
+
+    this.todayDivHeader = new TextNodeBuilder({
+      parentNode: this.todayDiv.node,
+      content: Translation.userDayStatisticTitle[state],
     });
 
     this.todaySubDiv1 = new NodeBuilder({
@@ -108,7 +119,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.todaySubDiv1.node,
       tagName: 'p',
       className: 'user-stats__day-exercises-header',
-      content: 'Упражнений',
+      content: Translation.exercisesCounterTitle[state],
     });
 
     this.dayExercisesCount = new NodeBuilder({
@@ -128,7 +139,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.todaySubDiv2.node,
       tagName: 'p',
       className: 'user-stats__day-score-header',
-      content: 'Очков',
+      content: Translation.scoreCounterTitle[state],
     });
 
     this.dayScoreCount = new NodeBuilder({
@@ -148,7 +159,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.todaySubDiv3.node,
       tagName: 'p',
       className: 'user-stats__day-time-header',
-      content: 'Времени',
+      content: Translation.timeCounterTitle[state],
     });
 
     this.dayTimeCount = new NodeBuilder({
@@ -161,8 +172,12 @@ class UserStatsView extends NodeBuilder {
     this.userTotalDiv = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
-      content: 'За все время',
       className: 'user-stats__all-time-div',
+    });
+
+    this.userTotalDivHeader = new TextNodeBuilder({
+      parentNode: this.userTotalDiv.node,
+      content: Translation.userTotalTime[state],
     });
 
     this.totalSubDiv1 = new NodeBuilder({
@@ -175,7 +190,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv1.node,
       tagName: 'p',
       className: 'user-stats__total-exercises-header',
-      content: 'Упражнений',
+      content: Translation.exercisesCounterTitle[state],
     });
 
     this.totalExercisesCount = new NodeBuilder({
@@ -195,7 +210,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv2.node,
       tagName: 'p',
       className: 'user-stats__total-score-header',
-      content: 'Очков',
+      content: Translation.scoreCounterTitle[state],
     });
 
     this.totalScoreCount = new NodeBuilder({
@@ -215,7 +230,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv3.node,
       tagName: 'p',
       className: 'user-stats__total-time-header',
-      content: 'Времени',
+      content: Translation.timeCounterTitle[state],
     });
 
     this.totalTimeCount = new NodeBuilder({
@@ -235,7 +250,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv4.node,
       tagName: 'p',
       className: 'user-stats__interval-game-score-header',
-      content: 'Очков за упражнения на интервалы',
+      content: Translation.totalIntervalGameScore[state],
     });
 
     this.totalIntervalGameScoreCount = new NodeBuilder({
@@ -255,7 +270,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv5.node,
       tagName: 'p',
       className: 'user-stats__scale-game-score-header',
-      content: 'Очков за упражнения на гаммы',
+      content: Translation.totalScaleGameScore[state],
     });
 
     this.totalScaleGameScoreCount = new NodeBuilder({
@@ -275,7 +290,7 @@ class UserStatsView extends NodeBuilder {
       parentNode: this.totalSubDiv6.node,
       tagName: 'p',
       className: 'user-stats__chords-game-score-header',
-      content: 'Очков за упражнения на аккорды',
+      content: Translation.totalChordsGameScore[state],
     });
 
     this.totalChordsGameScoreCount = new NodeBuilder({
@@ -305,11 +320,27 @@ class UserStatsView extends NodeBuilder {
     this.achievementsBtn = new ButtonBuilder({
       parentNode: this.achievementNew,
       className: 'user-stats__achievements-btn',
-      content: 'Достижения',
+      content: Translation.userStatsAchievements[state],
     });
 
     this.achievementsBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#/user-stats/achievements';
+    });
+
+    LangEmitter.add((lang) => {
+      this.userStatsHeader.node.innerHTML = Translation.userStatsPageHeader[lang];
+      this.todayDivHeader.node.nodeValue = Translation.userDayStatisticTitle[lang];
+      this.dayExercisesHeader.node.innerHTML = Translation.exercisesCounterTitle[lang];
+      this.dayScoreHeader.node.innerHTML = Translation.scoreCounterTitle[lang];
+      this.dayTimeHeader.node.innerHTML = Translation.timeCounterTitle[lang];
+      this.userTotalDivHeader.node.nodeValue = Translation.userTotalTime[lang];
+      this.totalExercisesHeader.node.innerHTML = Translation.exercisesCounterTitle[lang];
+      this.totalScoreHeader.node.innerHTML = Translation.scoreCounterTitle[lang];
+      this.totalTimeHeader.node.innerHTML = Translation.timeCounterTitle[lang];
+      this.totalIntervalGameScoreHeader.node.innerHTML = Translation.totalIntervalGameScore[lang];
+      this.totalScaleGameScoreHeader.node.innerHTML = Translation.totalScaleGameScore[lang];
+      this.totalChordsGameScoreHeader.node.innerHTML = Translation.totalChordsGameScore[lang];
+      this.achievementsBtn.node.innerHTML = Translation.userStatsAchievements[lang];
     });
   }
 }

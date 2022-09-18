@@ -1,4 +1,5 @@
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
+import { Decibels } from 'tone/build/esm/core/type/Units';
 import Sound from '../../controllers/sound';
 import NodeBuilder from '../../helpers/node-builder';
 import { PianoNotations } from '../../types/note-types';
@@ -40,6 +41,10 @@ class Piano extends NodeBuilder {
 
   public releaseNote(note: Note): void {
     this.sound.releaseNote(note);
+  }
+
+  public setVolume(volume: Decibels): void {
+    this.sound.volume = volume;
   }
 
   destroy() {

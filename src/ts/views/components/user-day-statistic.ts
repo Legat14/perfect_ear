@@ -1,5 +1,5 @@
-import LangPack from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import Translation from '../../constants/translation';
+import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import NodeBuilder from '../../helpers/node-builder';
 import { IUserDayStatisticCounters, Languages } from '../../types/data-types';
 
@@ -12,11 +12,11 @@ class UserDayStatisticView extends NodeBuilder {
     const userDayStatisticTitle = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h2',
-      content: LangPack[state]['19'],
+      content: Translation.userDayStatisticTitle[state],
       className: 'user-day-statistic__title',
     });
-    LangEmitter.add((content) => {
-      userDayStatisticTitle.node.innerHTML = content['19'];
+    LangEmitter.add((lang) => {
+      userDayStatisticTitle.node.innerHTML = Translation.userDayStatisticTitle[lang];
     });
 
     const userDayStatisticCountersDiv = new NodeBuilder({
@@ -34,11 +34,11 @@ class UserDayStatisticView extends NodeBuilder {
     const exercisesCounterTitle = new NodeBuilder({
       parentNode: exercisesCounter.node,
       tagName: 'p',
-      content: LangPack[state]['20'],
+      content: Translation.exercisesCounterTitle[state],
       className: 'user-day-statistic__exercises-counter-title',
     });
-    LangEmitter.add((content) => {
-      exercisesCounterTitle.node.innerHTML = content['20'];
+    LangEmitter.add((lang) => {
+      exercisesCounterTitle.node.innerHTML = Translation.exercisesCounterTitle[lang];
     });
 
     const exercisesIndicator = new NodeBuilder<HTMLInputElement>({
@@ -65,11 +65,11 @@ class UserDayStatisticView extends NodeBuilder {
     const scoreCounterTitle = new NodeBuilder({
       parentNode: scoreCounter.node,
       tagName: 'p',
-      content: LangPack[state]['21'],
+      content: Translation.scoreCounterTitle[state],
       className: 'user-day-statistic__score-counter-title',
     });
-    LangEmitter.add((content) => {
-      scoreCounterTitle.node.innerHTML = content['21'];
+    LangEmitter.add((lang) => {
+      scoreCounterTitle.node.innerHTML = Translation.scoreCounterTitle[lang];
     });
 
     const scoreIndicator = new NodeBuilder<HTMLInputElement>({
@@ -96,11 +96,11 @@ class UserDayStatisticView extends NodeBuilder {
     const timeCounterTitle = new NodeBuilder({
       parentNode: timeCounter.node,
       tagName: 'p',
-      content: LangPack[state]['22'],
+      content: Translation.timeCounterTitle[state],
       className: 'user-day-statistic__time-counter-title',
     });
-    LangEmitter.add((content) => {
-      timeCounterTitle.node.innerHTML = content['22'];
+    LangEmitter.add((lang) => {
+      timeCounterTitle.node.innerHTML = Translation.timeCounterTitle[lang];
     });
 
     const timeIndicator = new NodeBuilder<HTMLInputElement>({
@@ -126,15 +126,6 @@ class UserDayStatisticView extends NodeBuilder {
       timeCounter: timeCounterNumber.node,
       timeIndicator: timeIndicator.node,
     };
-
-    console.log(userDayStatisticTitle);
-    console.log(exercisesCounterNumber);
-    console.log(exercisesCounterTitle);
-    console.log(scoreCounterNumber);
-    console.log(scoreCounterTitle);
-    console.log(timeCounterNumber);
-    console.log(timeCounterTitle);
-    console.log(this.userDayStatisticCounters);
   }
 }
 

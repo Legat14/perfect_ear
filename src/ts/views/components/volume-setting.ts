@@ -1,19 +1,22 @@
-import LangPack from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import Translation from '../../constants/translation';
+import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
 
 class VolumeSetting extends ButtonBuilder {
-  public state: keyof typeof Languages;
+  public state: { language: keyof typeof Languages, volume: number };
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages = 'RUS') {
+  constructor(
+    parentNode: HTMLElement,
+    state: { language: keyof typeof Languages, volume: number },
+  ) {
     super({
       parentNode,
       className: 'user-settings__change-btn',
       content: (
-        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${LangPack[state]['5']}`),
+        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[state.language]}`),
     });
 
     this.state = state;
@@ -24,23 +27,28 @@ class VolumeSetting extends ButtonBuilder {
       className: 'language-input',
       attributes: {
         type: 'range',
-        value: `${100}`,
+        step: '1',
+        value: `${state.volume * 2 + 100}`,
       },
     }).node;
 
     const settingModal = new SettingModal(
       null,
-      LangPack[state]['4'],
-      state,
+      Translation.volumeSettingModalTitle[state.language],
+      state.language,
       [setting, new NodeBuilder<HTMLLabelElement>({ parentNode: null }).node],
     );
 
     this.node.onclick = () => parentNode.append(settingModal.node);
 
-    LangEmitter.add((content) => {
-      settingModal.header.innerHTML = content['4'];
+    settingModal.onUpdate = (
+      value: string,
+    ) => VolumeEmitter.emit((Number(value) - 100) / 2);
+
+    LangEmitter.add((lang) => {
+      settingModal.header.innerHTML = Translation.volumeSettingModalTitle[lang];
       this.node.innerHTML = (
-        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${content['5']}`);
+        `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[lang]}`);
     });
   }
 }

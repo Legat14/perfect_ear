@@ -1,5 +1,5 @@
-import LangPack from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import Translation from '../../constants/translation';
+import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -44,7 +44,7 @@ class SettingModal extends NodeBuilder {
     this.saveBtn = new ButtonBuilder({
       parentNode: this.node,
       className: 'user-settings__save-day-goals-btn',
-      content: LangPack[state]['2'],
+      content: Translation.settingsSaveBtn[state],
     }).node;
 
     this.saveBtn.onclick = () => {
@@ -57,8 +57,8 @@ class SettingModal extends NodeBuilder {
       this.onUpdate(this.setting.value);
     };
 
-    LangEmitter.add((langContent) => {
-      this.saveBtn.innerHTML = langContent['2'];
+    LangEmitter.add((lang) => {
+      this.saveBtn.innerHTML = Translation.settingsSaveBtn[lang];
     });
   }
 }

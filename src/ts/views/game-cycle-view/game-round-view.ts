@@ -1,6 +1,6 @@
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
-import { IGameResult } from '../../types/data-types';
+import { IGameResult, Languages } from '../../types/data-types';
 import { IQuizGame, IRound } from '../../types/game-types';
 import GameRoundEndScreen from './round-end-screen';
 import GameRoundStartScreen from './round-start-screen';
@@ -18,14 +18,16 @@ class GameRoundView extends NodeBuilder {
 
   public onGameRepeat!: () => void;
 
-  constructor(parentNode: HTMLElement, terms: IRound) {
-    super({ parentNode });
+  public state: keyof typeof Languages;
 
-    this.renderStartScreen(terms);
+  constructor(parentNode: HTMLElement, terms: IRound, state: keyof typeof Languages) {
+    super({ parentNode });
+    this.state = state;
+    this.renderStartScreen(terms, state);
   }
 
-  public renderStartScreen(terms: IRound): void {
-    this.startScreen = new GameRoundStartScreen(this.node, terms);
+  public renderStartScreen(terms: IRound, state: keyof typeof Languages): void {
+    this.startScreen = new GameRoundStartScreen(this.node, terms, state);
     this.startScreen.onQuit = () => this.onGameBack();
     this.startScreen.onQuizStart = () => this.onGameStart();
   }
@@ -37,7 +39,9 @@ class GameRoundView extends NodeBuilder {
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
-      content: `<div class="quiz-header__column"><h2 class="quiz-header__quiz-name">${quizName}</h2><h3 class="quiz-header__game-name">${gameName}</h3></div>`,
+      content: `<div class="quiz-header__column">
+                <h2 class="quiz-header__quiz-name">${quizName[this.state]}</h2>
+                <h3 class="quiz-header__game-name">${gameName[this.state]}</h3></div>`,
     }).node;
 
     const backButton = new ButtonBuilder({
@@ -57,10 +61,10 @@ class GameRoundView extends NodeBuilder {
     this.gameNode.append(quiz);
   }
 
-  public renderEndScreen(result: IGameResult, nextGameName?: IRound['quizName']): void {
+  public renderEndScreen(result: IGameResult, state: keyof typeof Languages, nextGameName?: IRound['quizName']): void {
     this.clear();
 
-    this.endScreen = new GameRoundEndScreen(this.node, result, nextGameName);
+    this.endScreen = new GameRoundEndScreen(this.node, result, state, nextGameName);
     this.endScreen.onRepeat = () => this.onGameRepeat();
     this.endScreen.onQuit = () => this.onGameBack();
     /**

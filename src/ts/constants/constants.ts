@@ -37,3 +37,11 @@ export const PIANO_SOUND = {
 };
 
 export const GUITAR_SOUND = {};
+
+export const achievementsArr = [
+  { achievement: 'First of many', complete: false },
+  { achievement: 'Beginner', complete: false },
+  { achievement: 'Student', complete: false },
+  { achievement: 'Serious', complete: false },
+  { achievement: 'Obsessed', complete: false },
+];

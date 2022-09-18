@@ -1247,6 +1247,11 @@ h3 {
   display: flex;
   flex-direction: column;
 }
+.user-settings__setting-row:nth-child(4) {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
 .user-settings__stats-settings .user-settings__setting-row:nth-child(2) .user-settings__change-btn {
   grid-area: a;
   width: 140px
@@ -1336,6 +1341,21 @@ h3 {
 .user-settings__setting-row:nth-child(3) .modal-settings .setting-wrapper input {
   width: 100%;
 }
+.user-settings__setting-row:nth-child(4) .user-settings__change-btn {
+  width: 260px;
+}
+.user-settings__setting-row:nth-child(4) .user-settings__stats-settings {
+  margin: 20px 0px 0px;
+}
+.user-settings__setting-row:nth-child(4) .modal-settings .setting-wrapper {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.user-settings__setting-row:nth-child(4) .modal-settings .setting-wrapper input {
+  width: 100%;
+}
 @media (max-width: 1200px) {
   body {
     padding: 0px 20px;
@@ -1347,5 +1367,242 @@ h3 {
     width: 80%;
     overflow-x: scroll;
     display: -webkit-box;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .piano__head_h2 {
+    margin-top: 40px;
+  }
+  .round-option__round-title , .round-option__round-direction, .round-option__round-count, .round-option__bestscore {
+    font-size: 10px;
+    line-height: 12px;
+  } 
+  h1 {
+    padding: 10px 0px;
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    box-sizing: border-box;
+    max-width: 768px;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  .modal {
+    width: 90%;
+    max-width: 400px;
+    height: 20vh;
+  }
+  .modal h2 {
+    margin-bottom: 30px;
+  }
+  .header {
+    height: 7.5vh;
+  }
+  .footer {
+    height: 7.5vh;
+  }
+  .footer__p {
+    font-size: 14px;
+  }
+  .footer img {
+    margin: 10px auto 0;
+  }
+  .field {
+    min-height: 85vh;
+  }
+  .main-menu {
+    grid-template-areas:
+        "a a"
+        "b c"
+        "d e"
+        "f g";
+  }
+  .quiz-start-screen__game-description {
+    margin: 15px auto;
+  }
+  .quiz-answers {
+    grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d";
+  }
+  .main-menu button {
+    width: auto;
+  }
+  .user-day-statistic__time-counter-number {
+    width: auto;
+  }
+  .user-day-statistic__exercises-counter, .user-day-statistic__score-counter, .user-day-statistic__time-counter {
+    width: auto;
+  }
+  .user-day-statistic__exercises-counter-title, .user-day-statistic__score-counter-title, .user-day-statistic__time-counter-title {
+    width: 110px;
+  }
+  .user-day-statistic__counters {
+    padding-left: 0px;
+  }
+  .user-day-statistic__exercises-counter-title, .user-day-statistic__score-counter-title, .user-day-statistic__time-counter-title, .user-day-statistic__exercises-counter-number, .user-day-statistic__score-counter-number, .user-day-statistic__time-counter-number {
+    font-size: 12px;
+  }
+  .ear-main_section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ear-section {
+    width: 100%;
+    max-width: 400px;
+  }
+  .ear-header__h2 {
+    font-size: 1.5rem;
+  }
+  .theory__theory-container {
+    margin: 0px 0px 0px 50px;
+    padding: 15px;
+  }
+  .table td {
+    font-size: 12px;
+    padding: 2px 5px;
+  }
+  .theory-section__section-title, .rhythm-section__section-title, .ear-header__h2, .quiz-end__h2, .user-stats__header, .user-achievements__header {
+    font-size: 1.25rem;
+    margin-right: 20px;
+    line-height: 40px;
+  }
+  .theory-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+  }
+  .user-settings__stat-header {
+    width: 140px;
+    margin-right: 10px;
+  }
+  .user-settings__stats-header {
+    margin: 10px 0px 20px;
+  }
+  .user-settings__stats-settings {
+    width: 80vw;
+  }
+  .round-option {
+    width: 30%;
+    margin: 0px 1% 10px;
+  }
+  .quiz-start-screen__game-description {
+    width: 90%;
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .quiz-terms {
+    grid-template-areas:
+      "a"
+      "b"
+      "c";
+  }
+  .rounds-page .quiz-header {
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+  .page404 img {
+    height: auto;
+    width: 300px;
+  }
+  .rounds-page .piano {
+    margin: 0 auto;
+  } 
+  .quiz-header__quiz-name {
+    margin: 0px 10px 10px 10px;
+    font-size: 16px;
+  }
+  .quiz-header__game-name {
+    margin: 0px;
+  }
+  .quiz__quiz-end-screen_result {
+    width: 100%;
+    padding: 10px 20px 0px;
+  }
+  .user-stats__today-div, .user-stats__all-time-div {
+    width: 100%;
+    padding: 10px 20px 20px;
+  }
+  .user-stats__today-sub-div p:first-child, .user-stats__total-sub-div p:first-child, .user-stats__today-sub-div p:nth-child(2), .user-stats__total-sub-div p:nth-child(2) {
+    width: 120px;
+  }
+  .user-achievements__achievement-row {
+    align-items: center;
+    flex-direction: column;
+  }
+  .user-achievements__header {
+    margin-right: 30px;
+  }
+  .user-stats__header, .user-achievements__achievement-div {
+    margin-bottom: 20px;
+  }
+  .theory__theory-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+  }
+  .theory_ris img {
+    width: 100%;
+  }
+  .table {
+    overflow-x: scroll;
+    display: block;
+  }
+  .tabs > label {
+    width: 45%;
+    margin: 5px;
+    font-size: 11px;
+    padding: 10px 5px;
+  }
+  .theory__theory-container p, .theory__theory-container li {
+    text-align: justify;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .main-menu {
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d"
+      "e"
+      "f"
+      "g";
+  }
+  .round-option {
+    width: 48%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .round-option {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 375px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  .modal h2 {
+    font-size: 1.5rem;
+  }
+  .tabs > label {
+    width: 42%;
+    margin: 3px;
+    font-size: 10px;
+    padding: 5px 3px;
+  }
+  .ear-training__btn {
+    margin: 0px 5px 5px;
+    font-size: 0.6rem;
+  }
+  .theory-section__section-title {
+    font-size: 1rem;
   }
 }

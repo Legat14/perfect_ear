@@ -1,8 +1,10 @@
 import { Note } from 'tone/build/esm/core/type/NoteUnits';
+import Translation from '../../constants/translation';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Callback } from '../../types/common';
+import { Languages } from '../../types/data-types';
 import { IQuestion, IRound } from '../../types/game-types';
 import Piano from '../piano/piano';
 import AnswerSound from './game-answer-sound';
@@ -35,13 +37,17 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   public answers: HTMLElement[];
 
+  private state: { language: keyof typeof Languages; volume: number; };
+
   constructor(
     question: IQuestion<QuizType>,
     round: number,
     sound: Sound,
+    state: { language: keyof typeof Languages, volume: number },
     callback: Callback<void>,
   ) {
     super({ parentNode: null, className: 'quiz fortepiano-field fortepiano-flex' });
+    this.state = state;
 
     const piano = new Piano(this.node, sound);
     this.piano = piano;
@@ -50,7 +56,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: this.node,
       tagName: 'p',
       className: 'quiz-question',
-      content: question.round.condition,
+      content: question.round.condition[state.language],
     });
     this.condition = condition;
 
@@ -67,7 +73,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
         const button = new ButtonBuilder({
           parentNode: answers,
           className: 'quiz-answers__answer',
-          content: `${answer} <span class="key-index">(${
+          content: `${answer[state.language]} <span class="key-index">(${
             index + 1
           })</span>`,
         });
@@ -105,7 +111,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       parentNode: footer,
       className: 'quiz-answers__music-repeat',
       content:
-        'повторить <span class="key-index">(r)</span>',
+        `${Translation.gameMusicRepeatBtn[state.language]} <span class="key-index">(r)</span>`,
     });
     this.repeatControl = repeatControl.node;
 
@@ -118,7 +124,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
       if (event.code === 'KeyR') this.onRepeat();
     });
 
-    const nextControl = new GameQuizNextButton(footer);
+    const nextControl = new GameQuizNextButton(footer, state.language);
     this.nextControl = nextControl;
 
     this.nextControl.onSkip = () => this.onSkip();
@@ -137,7 +143,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   public react(
     answer: boolean,
-    terms: IRound['terms'],
+    terms: IRound['terms'][keyof typeof Languages],
     done: boolean,
     { right, given }: { right: Note[]; given: Note[] },
   ): void {
@@ -158,14 +164,14 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
   }
 
   private acceptAnswer(right: Note[]): void {
-    AnswerSound.accept();
+    new AnswerSound(this.state.volume).accept();
     right.forEach((note) => {
       this.piano.keys[note].node.className += ' key_correct';
     });
   }
 
   private rejectAnswer(right: Note[], given: Note[]): void {
-    AnswerSound.reject();
+    new AnswerSound(this.state.volume).reject();
     right.forEach((note) => {
       this.piano.keys[note].node.className += ' key_correct';
     });

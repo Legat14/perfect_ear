@@ -3,6 +3,7 @@ import GameQuizView from '../../views/game-cycle-view/game-quiz-view';
 import { IQuestion, IRound } from '../../types/game-types';
 import { Pause } from '../../types/note-types';
 import Sound from '../sound';
+import { Languages } from '../../types/data-types';
 
 abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
   public quiz: QuizType;
@@ -23,7 +24,15 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private answered: boolean;
 
-  constructor(quiz: QuizType, round: number, sound: Sound) {
+  private state: { language: keyof typeof Languages; volume: number; };
+
+  constructor(
+    quiz: QuizType,
+    round: number,
+    sound: Sound,
+    state: { language: keyof typeof Languages; volume: number },
+  ) {
+    this.state = state;
     this.quiz = quiz;
     this.question = this.generateQuestion(quiz);
     this.answered = false;
@@ -34,6 +43,7 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
       this.question,
       round,
       sound,
+      state,
       () => this.playSequence(this.question.sequence),
     );
 
@@ -52,12 +62,13 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private answer(index: number, done: boolean): void {
     const answer = index === this.question.value;
+    const terms = this.question.round.terms[this.state.language];
     this.answered = this.answered
       ? this.answered
       : (this.onAnswer(answer), true);
     this.view.react(
       answer,
-      this.question.round.terms,
+      terms,
       done,
       {
         right: this.question.labels[this.question.value as number],

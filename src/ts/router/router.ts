@@ -1,3 +1,4 @@
+import { Languages } from '../types/data-types';
 import PageNotFound from '../views/pages/404';
 
 class Router {
@@ -7,10 +8,14 @@ class Router {
 
   private readonly notFound: HTMLElement;
 
-  constructor(root: HTMLElement, entries: Iterable<readonly [string, HTMLElement]>) {
+  constructor(
+    root: HTMLElement,
+    entries: Iterable<readonly [string, HTMLElement]>,
+    language: keyof typeof Languages,
+  ) {
     this.root = root;
     this.routes = new Map(entries);
-    this.notFound = new PageNotFound().node;
+    this.notFound = new PageNotFound(language).node;
   }
 
   add(path: string, page: HTMLElement): void {

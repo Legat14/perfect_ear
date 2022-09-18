@@ -13,6 +13,7 @@ import GamesLoader from './game-cycle/games-loader';
 
 import { IChordRound, IIntervalRound, IScaleRound } from '../types/game-types';
 
+import UserConfig from '../models/user-config';
 import UserProfile from '../models/user-profile';
 import UserAchievementsView from '../views/pages/user-achievements';
 import TheoryPageView from '../views/pages/theory-page';
@@ -21,12 +22,11 @@ import scaleOptions from '../views/games/scale/scale-options';
 import intervalOptions from '../views/games/interval/interval-options';
 import chordOptions from '../views/games/chord/chord-options';
 
-import interval from '../views/theory/interval/interval.html';
-import gamma from '../views/theory/gamma/gamma.html';
-import accords from '../views/theory/accords/accords.html';
-import lad from '../views/theory/lad/lad.html';
-import rhythm from '../views/theory/rhythm/rhythm.html';
+import {
+  interval, gamma, lad, accords, rhythm,
+} from '../types/theory-pages';
 import TheorySection from '../views/components/theory-section';
+
 import { Languages } from '../types/data-types';
 
 class ViewsController extends NodeBuilder {
@@ -46,40 +46,53 @@ class ViewsController extends NodeBuilder {
 
   earTraining: EarTrainingView;
 
-  constructor(parentNode: HTMLElement, state: keyof typeof Languages) {
+  constructor(parentNode: HTMLElement, config: UserConfig) {
     super({ parentNode, className: 'field' });
 
-    this.mainMenu = new MainMenuView(state);
-    this.earTraining = new EarTrainingView();
-    const rhythmTraining = new RhythmTrainingView();
-    const fortepiano = new FortepianoView(state);
-    this.userStats = new UserStatsView();
-    this.userSettings = new UserSettingsView(state);
-    this.userAchievements = new UserAchievementsView();
-    const theory = new TheoryPageView();
+    const state = Languages[config.getLanguage()] as keyof typeof Languages;
 
-    this.router = new Router(this.node, [
-      ['', this.mainMenu.node],
-      ['/ear-training', this.earTraining.node],
-      ['/rhythm-training', rhythmTraining.node],
-      ['/fortepiano', fortepiano.node],
-      ['/user-stats', this.userStats.node],
-      ['/user-stats/achievements', this.userAchievements.node],
-      ['/user-settings', this.userSettings.node],
-      ['/theory', theory.node],
-    ]);
+    this.mainMenu = new MainMenuView(state);
+    this.earTraining = new EarTrainingView(state);
+    const rhythmTraining = new RhythmTrainingView(state);
+    const fortepiano = new FortepianoView(config);
+    this.userStats = new UserStatsView(state);
+    this.userSettings = new UserSettingsView(config);
+    this.userAchievements = new UserAchievementsView(state);
+    const theory = new TheoryPageView(state);
+
+    this.router = new Router(
+      this.node,
+      [
+        ['', this.mainMenu.node],
+        ['/ear-training', this.earTraining.node],
+        ['/rhythm-training', rhythmTraining.node],
+        ['/fortepiano', fortepiano.node],
+        ['/user-stats', this.userStats.node],
+        ['/user-stats/achievements', this.userAchievements.node],
+        ['/user-settings', this.userSettings.node],
+        ['/theory', theory.node],
+      ],
+      state,
+    );
+
+    this.renderTheoryPages(state);
   }
 
   public init() {
     this.router.init('');
   }
 
-  public renderGamePages({ profile }: { profile: UserProfile }) {
+  public renderGamePages({ profile, config }: { profile: UserProfile, config: UserConfig }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
+    const state = {
+      language: Languages[config.getLanguage()] as keyof typeof Languages,
+      volume: config.getVolume(),
+      tempo: config.getTempo(),
+    };
 
     const intervalCompPage = new GameRoundsController<IIntervalRound>();
     intervalCompPage
-      .load(gamesLoader, ...intervalOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...intervalOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/interval-comparison',
@@ -89,7 +102,7 @@ class ViewsController extends NodeBuilder {
 
     const scaleIdentPage = new GameRoundsController<IScaleRound>();
     scaleIdentPage
-      .load(gamesLoader, ...scaleOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...scaleOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/scale-identification',
@@ -99,7 +112,7 @@ class ViewsController extends NodeBuilder {
 
     const chordIdentPage = new GameRoundsController<IChordRound>();
     chordIdentPage
-      .load(gamesLoader, ...chordOptions, profile.getExercisesResult())
+      .load(gamesLoader, ...chordOptions, profile.getExercisesResult(), state)
       .then(() => {
         this.router.add(
           '/ear-training/chord-identification',
@@ -108,14 +121,14 @@ class ViewsController extends NodeBuilder {
       });
   }
 
-  public renderTheoryPages() {
+  private renderTheoryPages(state: keyof typeof Languages) {
     (
       [
-        ['/theory/intervals', new TheorySection(interval).node],
-        ['/theory/scales', new TheorySection(gamma).node],
-        ['/theory/modes', new TheorySection(lad).node],
-        ['/theory/chords', new TheorySection(accords).node],
-        ['/theory/rhythm', new TheorySection(rhythm).node],
+        ['/theory/intervals', new TheorySection(interval, state).node],
+        ['/theory/scales', new TheorySection(gamma, state).node],
+        ['/theory/modes', new TheorySection(lad, state).node],
+        ['/theory/chords', new TheorySection(accords, state).node],
+        ['/theory/rhythm', new TheorySection(rhythm, state).node],
       ] as [string, HTMLElement][]
     ).forEach(([url, node]) => {
       this.router.add(url, node);

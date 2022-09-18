@@ -1,15 +1,21 @@
+import Translation from '../../constants/translation';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 import { IRound } from '../../types/game-types';
 
 class GameRoundStartScreen extends NodeBuilder {
-  public getInfo!: (term: IRound['terms'][number]) => void;
+  public getInfo!: (term: IRound['terms'][keyof typeof Languages][number]) => void;
 
   public onQuizStart!: () => void;
 
   public onQuit!: () => void;
 
-  constructor(parentNode: HTMLElement, info: IRound) {
+  constructor(
+    parentNode: HTMLElement,
+    info: IRound,
+    state: keyof typeof Languages,
+  ) {
     super({
       parentNode,
       className: 'quiz-start-screen',
@@ -19,7 +25,7 @@ class GameRoundStartScreen extends NodeBuilder {
       parentNode: this.node,
       tagName: 'header',
       className: 'quiz-header',
-      content: 'Упражнение',
+      content: Translation.gameStartScreenHeader[state],
     }).node;
 
     const backButton = new ButtonBuilder({
@@ -34,38 +40,38 @@ class GameRoundStartScreen extends NodeBuilder {
         parentNode: null,
         tagName: 'h2',
         className: 'quiz-start-screen__quiz-name',
-        content: info.quizName,
+        content: info.quizName[state],
       }).node,
 
       new NodeBuilder({
         parentNode: null,
         tagName: 'h3',
         className: 'quiz-start-screen__game-name',
-        content: info.game.gameName,
+        content: info.game.gameName[state],
       }).node,
 
       new NodeBuilder({
         parentNode: null,
         tagName: 'p',
         className: 'quiz-start-screen__game-description',
-        content: info.quizStartDescription.join('<br>'),
+        content: info.quizStartDescription[state].join('<br>'),
       }).node,
 
       new NodeBuilder({
         parentNode: null,
         tagName: 'p',
         className: 'quiz-start-screen__game-description',
-        content: 'Нажимайте клавиши 1-8 — для быстрого ответа, R — для повтора мелодии, Enter — для пропуска вопроса или перехода к следующему.',
+        content: Translation.gameStartScreenDescr[state],
       }).node,
     );
 
     const termsContaner = new NodeBuilder({
       parentNode: this.node,
       className: 'quiz-terms',
-      content: `<p>${info.game.category?.categoryName} в упражнении:</p>`,
+      content: `<p>${info.game.category?.categoryName[state]} ${Translation.gameStartScreenTermsHeader[state]}:</p>`,
     }).node;
 
-    info.terms.forEach((term) => {
+    info.terms[state].forEach((term) => {
       const button = new ButtonBuilder({
         parentNode: termsContaner,
         className: 'quiz-terms__description',
@@ -78,7 +84,7 @@ class GameRoundStartScreen extends NodeBuilder {
     const startControl = new ButtonBuilder({
       parentNode: this.node,
       className: 'quiz-start-screen__start-btn',
-      content: 'начать упражнение',
+      content: Translation.gameStartScreenStartBtn[state],
     });
     startControl.node.onclick = () => this.onQuizStart();
   }

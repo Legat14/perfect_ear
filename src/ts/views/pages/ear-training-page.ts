@@ -1,17 +1,26 @@
+import Translation from '../../constants/translation';
+import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import GameRoundsController from '../../controllers/game-cycle/game-rounds';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import { Languages } from '../../types/data-types';
 
 class EarTrainingView extends NodeBuilder {
   category!: GameRoundsController;
 
   sectionContainer: HTMLElement | null;
 
-  constructor() {
+  constructor(state: keyof typeof Languages) {
     super({ parentNode: null, className: 'ear-training' });
 
-    const backButton = new ButtonBuilder({
+    const header = new NodeBuilder({
       parentNode: this.node,
+      tagName: 'header',
+      className: 'ear-header',
+    });
+
+    const backButton = new ButtonBuilder({
+      parentNode: header.node,
       className: 'field__back-btn',
       content: '←',
     }).node;
@@ -20,12 +29,10 @@ class EarTrainingView extends NodeBuilder {
       window.location.hash = '#';
     };
 
-    new NodeBuilder({
-      parentNode: this.node,
-      tagName: 'header',
-      className: 'ear-header',
-      content: '<div><h2 class="ear-header__h2">Тренировка слуха</h2></div>',
-    }).node.prepend(backButton);
+    const h2 = new NodeBuilder({
+      parentNode: header.node,
+      content: `<h2 class="ear-header__h2">${Translation.earTrainingPageHeader[state]}</h2>`,
+    });
 
     /**
      * @todo Добавить картинки ко всем кнопкам.
@@ -36,80 +43,119 @@ class EarTrainingView extends NodeBuilder {
       className: 'ear-main_section',
     }).node;
 
-    this.createSection(
-      'Упражнения на <span>интервалы</span>',
+    const [
+      intervalSection,
+      intervalsThBtn,
+      intervalsCompBtn,
+    ] = this.createSection(
+      Translation.earTrainingPageIntervalHeader[state],
       [
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-          content: 'Теория',
+          content: Translation.mainMenuTheory[state],
         }],
         '/theory/intervals',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
-          content: 'Сравнение <span>интервалов</span>',
+          content: Translation.intervalComparisonBtn[state],
         }],
         '/ear-training/interval-comparison'],
       ],
     );
 
-    this.createSection('Упражнения на <span>гаммы</span>', [
-      [[{
-        parentNode: null,
-        className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-        content: 'Теория',
-      }],
-      '/theory/scales',
+    const [
+      scalesSection,
+      scalesThBtn,
+      scalesIdentBtn,
+    ] = this.createSection(
+      Translation.earTrainingPageScaleHeader[state],
+      [
+        [[{
+          parentNode: null,
+          className: 'ear-training__btn ear-training__theory training-btn theory-btn',
+          content: Translation.mainMenuTheory[state],
+        }],
+        '/theory/scales',
+        ],
+        [[{
+          parentNode: null,
+          className: 'ear-training__btn ear-training__game training-btn',
+          content: Translation.scaleIdentificationBtn[state],
+        }],
+        '/ear-training/scale-identification',
+        ],
       ],
-      [[{
-        parentNode: null,
-        className: 'ear-training__btn ear-training__game training-btn',
-        content: 'Определение ладов',
-      }],
-      '/ear-training/scale-identification',
-      ],
-    ]);
+    );
 
-    this.createSection('Упражнения на <span>аккорды</span>', [
-      [[{
-        parentNode: null,
-        className: 'ear-training__btn ear-training__theory training-btn theory-btn',
-        content: 'Теория',
-      }],
-      '/theory/chords',
+    const [
+      chordSection,
+      chordThBtn,
+      chordIdentBtn,
+    ] = this.createSection(
+      Translation.earTrainingPageChordHeader[state],
+      [
+        [[{
+          parentNode: null,
+          className: 'ear-training__btn ear-training__theory training-btn theory-btn',
+          content: Translation.mainMenuTheory[state],
+        }],
+        '/theory/chords',
+        ],
+        [[{
+          parentNode: null,
+          className: 'ear-training__btn ear-training__game training-btn',
+          content: Translation.chordIdentificationBtn[state],
+        }],
+        '/ear-training/chord-identification',
+        ],
       ],
-      [[{
-        parentNode: null,
-        className: 'ear-training__btn ear-training__game training-btn',
-        content: 'Определение аккордов',
-      }],
-      '/ear-training/chord-identification',
-      ],
-    ]);
+    );
+
+    LangEmitter.add((lang) => {
+      h2.node.innerHTML = `<h2 class="ear-header__h2">${Translation.earTrainingPageHeader[lang]}</h2>`;
+      intervalSection.innerHTML = Translation.earTrainingPageIntervalHeader[lang];
+      intervalsThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      intervalsCompBtn.innerHTML = Translation.intervalComparisonBtn[lang];
+      scalesSection.innerHTML = Translation.earTrainingPageScaleHeader[lang];
+      scalesThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      scalesIdentBtn.innerHTML = Translation.scaleIdentificationBtn[lang];
+      chordSection.innerHTML = Translation.earTrainingPageChordHeader[lang];
+      chordThBtn.innerHTML = Translation.mainMenuTheory[lang];
+      chordIdentBtn.innerHTML = Translation.chordIdentificationBtn[lang];
+    });
   }
 
   private createSection(
     sectionName: string,
     sectionButtons: [ConstructorParameters<typeof ButtonBuilder>, string][],
-  ): void {
+  ): HTMLElement[] {
     const container = new NodeBuilder({
       parentNode: this.sectionContainer,
       tagName: 'div',
       className: 'ear-section section',
-      content: `<h2 class="ear-section__section-title section-title">${sectionName}</h2>`,
     }).node;
-    sectionButtons.map(
-      ([[options], url]) => {
-        const button = new ButtonBuilder({ ...options, parentNode: container });
-        button.node.onclick = () => {
-          window.location.hash = '#';
-          window.location.hash += url;
-        };
-        return button;
-      },
-    );
+    const containerH2 = new NodeBuilder({
+      parentNode: container,
+      tagName: 'h2',
+      className: 'ear-section__section-title section-title',
+      content: sectionName,
+    }).node;
+    return [
+      containerH2,
+      ...sectionButtons.map(
+        ([[options], url]) => {
+          const button = new ButtonBuilder({ ...options, parentNode: container });
+          button.node.onclick = () => {
+            window.location.hash = '#';
+            window.location.hash += url;
+          };
+          return button.node;
+        },
+      ),
+    ];
   }
 }
 

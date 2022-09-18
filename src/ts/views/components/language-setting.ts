@@ -1,5 +1,5 @@
-import LangPack from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import Translation from '../../constants/translation';
+import { LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -17,7 +17,7 @@ class LanquageSetting extends ButtonBuilder {
     super({
       parentNode,
       className: 'user-settings__change-btn',
-      content: LangPack[state]['0'],
+      content: Translation.changeLangBtn[state],
     });
 
     this.state = state;
@@ -26,7 +26,7 @@ class LanquageSetting extends ButtonBuilder {
       parentNode,
       tagName: 'div',
       className: 'user-settings__stats-lang',
-      content: LangPack[state]['1'],
+      content: Translation.langOptions[state],
     });
 
     const [
@@ -83,7 +83,7 @@ class LanquageSetting extends ButtonBuilder {
 
     const settingModal = new SettingModal(
       null,
-      LangPack[state]['3'],
+      Translation.langSettingModalTitle[state],
       state,
       [setting1, label1],
       [setting2, label2],
@@ -93,12 +93,12 @@ class LanquageSetting extends ButtonBuilder {
 
     settingModal.onUpdate = (
       value: string,
-    ) => LangEmitter.emit(LangPack[value as keyof typeof Languages]);
+    ) => LangEmitter.emit(value as keyof typeof Languages);
 
-    LangEmitter.add((content) => {
-      this.node.innerHTML = content['0'];
-      this.lang.node.innerHTML = content['1'];
-      settingModal.header.innerHTML = content['3'];
+    LangEmitter.add((lang) => {
+      this.node.innerHTML = Translation.changeLangBtn[lang];
+      this.lang.node.innerHTML = Translation.langOptions[lang];
+      settingModal.header.innerHTML = Translation.langSettingModalTitle[lang];
     });
   }
 }

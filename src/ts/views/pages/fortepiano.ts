@@ -1,9 +1,10 @@
 import { PIANO_SOUND } from '../../constants/constants';
-import LangPack from '../../constants/translation';
-import LangEmitter from '../../controllers/emitters/lang-emitter';
+import Translation from '../../constants/translation';
+import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import UserConfig from '../../models/user-config';
 import { Languages } from '../../types/data-types';
 import VirtualPiano from '../piano/advanced-piano';
 
@@ -12,8 +13,11 @@ class FortepianoView extends NodeBuilder {
 
   onDestroy!: () => void;
 
-  constructor(state: keyof typeof Languages = 'RUS') {
+  constructor(config: UserConfig) {
     super({ parentNode: null, className: 'fortepiano-field' });
+
+    const language = Languages[config.getLanguage()] as keyof typeof Languages;
+    const volume = config.getVolume();
 
     const backToMainBtn = new ButtonBuilder({
       parentNode: this.node,
@@ -31,22 +35,28 @@ class FortepianoView extends NodeBuilder {
       parentNode: header,
       tagName: 'h2',
       className: 'piano__head_h2',
-      content: LangPack[state]['15'],
+      content: Translation.fortepianoPageHeader[language],
     }).node;
 
     const descr = new NodeBuilder({
       parentNode: header,
       tagName: 'p',
       className: 'piano__descr_p',
-      content: LangPack[state]['25'],
+      content: Translation.fortepianoPageDescr[language],
     }).node;
 
-    LangEmitter.add((content) => {
-      h2.innerHTML = content['15'];
-      descr.innerHTML = content['25'];
+    LangEmitter.add((lang) => {
+      h2.innerHTML = Translation.fortepianoPageHeader[lang];
+      descr.innerHTML = Translation.fortepianoPageDescr[lang];
     });
 
-    this.piano = new VirtualPiano(this.node, new Sound(PIANO_SOUND));
+    this.piano = new VirtualPiano(this.node, new Sound(
+      { ...PIANO_SOUND, volume },
+    ));
+
+    VolumeEmitter.add((newVolume) => {
+      this.piano.setVolume(newVolume);
+    });
 
     backToMainBtn.node.addEventListener('click', (): void => {
       window.location.hash = '#';
