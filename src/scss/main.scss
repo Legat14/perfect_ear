@@ -919,7 +919,8 @@ transition: 0.8s;
   width: auto;
   transition: 0.8s;
 }
-.user-settings__reset-stats-btn {
+.user-settings__reset-stats-btn,
+.user-settings__reset-settings-btn {
   padding: 8px 12px;
   line-height: 1;
   margin: 0px;
@@ -942,6 +943,7 @@ transition: 0.8s;
   border-color: #00afae;
 }
 .user-settings__reset-stats-btn:hover,
+.user-settings__reset-settings-btn:hover,
 .user-settings__change-btn:hover {
   background: #f1f1f1;
   box-shadow: 0 0 20px #999;

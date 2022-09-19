@@ -71,7 +71,11 @@ class AppLoader {
       };
     }
 
-    userSettings.onReset = (): void => {
+    userSettings.onSettingsReset = (): void => {
+      this.userDataHandler.resetUserConfig();
+    }; // TODO: Сделать обновление инпутов при сбросе настроек
+
+    userSettings.onStatsReset = (): void => {
       // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.refreshCounters();

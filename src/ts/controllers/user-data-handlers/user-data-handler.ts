@@ -15,6 +15,18 @@ class UserDataHandler {
 
   userConfig: UserConfig;
 
+  defaultDayExersisesGoal = 10;
+
+  defaultDayScoreGoal = 25000;
+
+  defaultDayTimeGoal = 20;
+
+  defaultLanguage = Languages[0] as keyof typeof Languages;
+
+  defaultVolume = 0;
+
+  defaultTempo = 80;
+
   constructor() { // TODO: после добавления сервера,
     // добавить метод получения данных и получать данные
     // в зависимости от него
@@ -150,13 +162,13 @@ class UserDataHandler {
     } else {
       this.userConfig = new UserConfig(
         {
-          dayExercisesGoal: 10,
-          dayScoreGoal: 25000,
-          dayTimeGoal: 30,
+          dayExercisesGoal: this.defaultDayExersisesGoal,
+          dayScoreGoal: this.defaultDayScoreGoal,
+          dayTimeGoal: this.defaultDayTimeGoal,
         },
-        Languages[0] as keyof typeof Languages,
-        0,
-        80,
+        this.defaultLanguage,
+        this.defaultVolume,
+        this.defaultTempo,
       );
     }
     this.addPageCloseEvent();
@@ -274,6 +286,15 @@ class UserDataHandler {
     this.userProfile.setChordsGameScore(0);
     this.userProfile.clearExercisesResult();
     this.userProfile.clearAchievements();
+  }
+
+  public resetUserConfig(): void {
+    this.userConfig.setDayExercisesGoal(this.defaultDayExersisesGoal);
+    this.userConfig.setDayScoreGoal(this.defaultDayScoreGoal);
+    this.userConfig.setDayTimeGoal(this.defaultDayTimeGoal);
+    this.userConfig.setLanguge(this.defaultLanguage);
+    this.userConfig.setVolume(this.defaultVolume);
+    this.userConfig.setTempo(this.defaultTempo);
   }
 
   private decomposeGameResult(gameResult: IGameResult): void {

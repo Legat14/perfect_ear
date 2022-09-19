@@ -13,6 +13,8 @@ class UserSettingsView extends NodeBuilder {
 
   userSettingsHeader: NodeBuilder;
 
+  resetSettingsBtn: ButtonBuilder;
+
   resetStatsBtn: ButtonBuilder;
 
   statsSettingsHeader: NodeBuilder;
@@ -51,7 +53,9 @@ class UserSettingsView extends NodeBuilder {
 
   tempoSetting: TempoSetting;
 
-  onReset!: () => void;
+  onStatsReset!: () => void;
+
+  onSettingsReset!: () => void;
 
   onSave!: () => void;
 
@@ -221,13 +225,21 @@ class UserSettingsView extends NodeBuilder {
       { language, tempo },
     );
 
+    this.resetSettingsBtn = new ButtonBuilder({
+      parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
+      className: 'user-settings__reset-settings-btn',
+      content: Translation.resetSettingsBtn[language],
+    });
+
+    this.resetSettingsBtn.node.addEventListener('click', () => this.onSettingsReset());
+
     this.resetStatsBtn = new ButtonBuilder({
       parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
       className: 'user-settings__reset-stats-btn',
       content: Translation.resetStatsBtn[language],
     });
 
-    this.resetStatsBtn.node.addEventListener('click', () => this.onReset());
+    this.resetStatsBtn.node.addEventListener('click', () => this.onStatsReset());
 
     LangEmitter.add((lang) => {
       this.userSettingsHeader.node.innerHTML = Translation.userSettingsHeader[lang];

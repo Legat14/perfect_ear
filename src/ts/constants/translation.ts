@@ -61,6 +61,10 @@ const Translation = {
     ENG: 'Common settings',
     RUS: 'Общие настроки',
   },
+  resetSettingsBtn: {
+    ENG: 'Reset settings',
+    RUS: 'Сбросить настройки',
+  },
   resetStatsBtn: {
     ENG: 'Reset all stats',
     RUS: 'Сбросить статистику',

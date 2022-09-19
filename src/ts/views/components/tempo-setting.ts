@@ -16,7 +16,7 @@ class TempoSetting extends ButtonBuilder {
       parentNode,
       className: 'user-settings__change-btn',
       content: (
-        `<img src="assets/img/rhythm.png" alt="Установить ритм"> ${Translation.setTempoBtn[state.language]}`),
+        `<img src="assets/img/rhythm.png" alt="Установить темп"> ${Translation.setTempoBtn[state.language]}`),
     });
 
     this.state = state;
