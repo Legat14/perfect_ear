@@ -97,7 +97,7 @@ class GameRound<QuizType extends IRound = IRound> {
       this.state,
     );
 
-    this.view.renderQuiz(quiz.view.node);
+    quiz.loaded = () => this.view.renderQuiz(quiz.view.node);
 
     quiz.onSkip = () => {
       this.gameIndicators.increaseFinesCounter();

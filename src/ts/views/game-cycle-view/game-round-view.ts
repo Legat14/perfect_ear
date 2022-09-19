@@ -2,6 +2,7 @@ import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { IGameResult, Languages } from '../../types/data-types';
 import { IQuizGame, IRound } from '../../types/game-types';
+import Preloader from '../components/preloader';
 import GameRoundEndScreen from './round-end-screen';
 import GameRoundStartScreen from './round-start-screen';
 
@@ -20,10 +21,13 @@ class GameRoundView extends NodeBuilder {
 
   public state: keyof typeof Languages;
 
+  public preloader: Preloader;
+
   constructor(parentNode: HTMLElement, terms: IRound, state: keyof typeof Languages) {
     super({ parentNode });
     this.state = state;
     this.renderStartScreen(terms, state);
+    this.preloader = new Preloader(null);
   }
 
   public renderStartScreen(terms: IRound, state: keyof typeof Languages): void {
@@ -54,6 +58,7 @@ class GameRoundView extends NodeBuilder {
     header.prepend(backButton);
 
     this.gameNode = new NodeBuilder({ parentNode: this.node, className: 'game' });
+    this.gameNode.append(this.preloader.node);
   }
 
   public renderQuiz(quiz: HTMLElement): void {
