@@ -29,6 +29,8 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
   public onStart!: () => void;
 
+  public loaded!: () => void;
+
   public questionIndicator: NodeBuilder<HTMLElement>;
 
   public repeatControl: HTMLButtonElement;
@@ -44,7 +46,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
     round: number,
     sound: Sound,
     state: { language: keyof typeof Languages, volume: number },
-    callback: Callback<void>,
+    callback: Callback<void, Promise<void>>,
   ) {
     super({ parentNode: null, className: 'quiz fortepiano-field fortepiano-flex' });
     this.state = state;
@@ -133,7 +135,7 @@ class GameQuizView<QuizType extends IRound = IRound> extends NodeBuilder {
 
     this.value = question.value;
 
-    callback();
+    callback().then(() => this.loaded());
   }
 
   /**
