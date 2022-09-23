@@ -131,7 +131,7 @@ class UserDataHandler {
       }
       let volume = 0;
       if (guestUserConfig.volume) {
-        volume = guestUserConfig.volume;
+        volume = Number.parseFloat(guestUserConfig.volume);
       }
       let tempo = 80;
       if (guestUserConfig.tempo) {
@@ -225,7 +225,7 @@ class UserDataHandler {
         dayTimeGoal: this.userConfig.getDayTimeGoal(),
       },
       language: this.userConfig.getLanguage(),
-      volume: this.userConfig.getVolume(),
+      volume: `${this.userConfig.getVolume()}`,
       tempo: this.userConfig.getTempo(),
     };
     localStorage.setItem('guestUserConfig', JSON.stringify(guestUserConfig));
