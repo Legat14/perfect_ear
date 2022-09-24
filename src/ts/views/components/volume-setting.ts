@@ -4,6 +4,7 @@ import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
+import VolumeConverter from '../../helpers/volume-converter';
 
 class VolumeSetting extends ButtonBuilder {
   public state: { language: keyof typeof Languages, volume: number };
@@ -28,7 +29,7 @@ class VolumeSetting extends ButtonBuilder {
       attributes: {
         type: 'range',
         step: '1',
-        value: `${state.volume * 2 + 100}`,
+        value: `${VolumeConverter.fromDecibels(state.volume)}`,
       },
     }).node;
 
@@ -43,7 +44,7 @@ class VolumeSetting extends ButtonBuilder {
 
     settingModal.onUpdate = (
       value: string,
-    ) => VolumeEmitter.emit((Number(value) - 100) / 2);
+    ) => VolumeEmitter.emit(VolumeConverter.toDecibels(value));
 
     LangEmitter.add((lang) => {
       settingModal.header.innerHTML = Translation.volumeSettingModalTitle[lang];
