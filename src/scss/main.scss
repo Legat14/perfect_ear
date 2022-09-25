@@ -1365,7 +1365,9 @@ h3 {
 .preloader {
   display: flex;
   justify-content: center;
-};
+  margin-top: 10vh;
+}
+
 @media (max-width: 1400px) {
   .theory-main_section .theory-section {
     display: grid;
