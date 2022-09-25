@@ -82,7 +82,7 @@ class Sound implements ISound {
 
   /**
    * @example
-   * this.playSequence([
+   * Sound.playSequence([
    *   ['C2', '4n'],
    *   ['C3', '8n'],
    *   ['C3', '16n'],
@@ -95,10 +95,6 @@ class Sound implements ISound {
   public playSequence(
     notes: [Pause | Frequency | Frequency[], Subdivision | TimeObject][],
   ): Promise<void> {
-    /**
-     * @todo Add preloader
-     */
-
     if (this.part) this.stopSequence();
 
     return Tone.loaded().then(() => {
