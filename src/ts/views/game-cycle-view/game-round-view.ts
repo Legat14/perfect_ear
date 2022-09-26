@@ -79,9 +79,6 @@ class GameRoundView extends NodeBuilder {
     this.endScreen.onRepeat = () => this.onGameRepeat();
     this.endScreen.onQuit = () => this.onGameBack();
     this.endScreen.onContinue = () => this.onGameContinue();
-    /**
-     * @todo Continue to next game;
-     */
   }
 }
 

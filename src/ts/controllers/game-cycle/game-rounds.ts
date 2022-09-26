@@ -16,6 +16,7 @@ import {
   TempoEmitter,
   VolumeEmitter,
 } from '../emitters/lang-emitter';
+import Iterator from '../../helpers/iterator';
 
 export type GameQuizViewConstructor<QuizType extends IRound = IRound> = new (
   parentNode: HTMLElement | null,
@@ -102,21 +103,38 @@ class GameRoundsController<QuizType extends IRound = IRound> {
       volume: number;
     },
   ) {
-    this.games.forEach((game: QuizType) => {
+    this.games.forEach((game: QuizType, i, games) => {
       const roundPage = this.view.initGameOptionsList(
         game,
         results,
         state.language,
+        games[i + 1],
       );
-      roundPage.onplay = (round: QuizType) => {
+
+      roundPage.onplay = (round: QuizType, nextRound?: QuizType) => {
         const gameView = new ViewConstructor(
           this.view.node,
           round,
           this.sound,
           Constructor,
           state,
+          nextRound,
         );
+
         gameView.onRepeat = (quiz) => gameView.init().startGameCycle(quiz);
+
+        gameView.onContinue = (quiz) => {
+          if (quiz) {
+            const gamesIterator = Iterator.createArrayIterator()<QuizType>(
+              games,
+              games.indexOf(quiz) + 1,
+            );
+            gameView.quiz = quiz;
+            gameView.nextGame = gamesIterator.next().value;
+            gameView.init().startGameCycle(quiz);
+          }
+        };
+
         gameView.onQuit = () => this.view.stop();
       };
     });
