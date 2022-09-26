@@ -77,7 +77,7 @@ class GameRoundEndScreen extends NodeBuilder {
     const continueControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__continue continue',
-      content: `${nextGame ? `<span>${Translation.gameEndScreenContinueBtn[state]}</span><span continue__game-title>${nextGame}</span>` : Translation.gameEndScreenMenuBtn[state]}`,
+      content: `${nextGame ? `<span>${Translation.gameEndScreenContinueBtn[state]}</span><br><span continue__game-title>${nextGame[state]}</span>` : Translation.gameEndScreenMenuBtn[state]}`,
     });
     continueControl.node.onclick = nextGame ? () => this.onContinue() : () => this.onQuit();
   }
