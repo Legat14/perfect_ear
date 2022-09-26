@@ -19,6 +19,8 @@ class GameRoundView extends NodeBuilder {
 
   public onGameRepeat!: () => void;
 
+  public onGameContinue!: () => void;
+
   public state: keyof typeof Languages;
 
   public preloader: Preloader;
@@ -66,12 +68,17 @@ class GameRoundView extends NodeBuilder {
     this.gameNode.append(quiz);
   }
 
-  public renderEndScreen(result: IGameResult, state: keyof typeof Languages, nextGameName?: IRound['quizName']): void {
+  public renderEndScreen(
+    result: IGameResult,
+    state: keyof typeof Languages,
+    nextGameName?: IRound['quizName'],
+  ): void {
     this.clear();
 
     this.endScreen = new GameRoundEndScreen(this.node, result, state, nextGameName);
     this.endScreen.onRepeat = () => this.onGameRepeat();
     this.endScreen.onQuit = () => this.onGameBack();
+    this.endScreen.onContinue = () => this.onGameContinue();
     /**
      * @todo Continue to next game;
      */

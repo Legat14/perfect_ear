@@ -8,11 +8,11 @@ import { GameName, IRound } from '../../types/game-types';
 class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
   public games: (QuizType)[];
 
-  pageContainer!: HTMLElement;
+  public pageContainer!: HTMLElement;
 
-  roundPage: NodeBuilder<HTMLElement>;
+  public roundPage: NodeBuilder<HTMLElement>;
 
-  onplay!: (game: QuizType) => void;
+  public onplay!: (game: QuizType, nextGame?: QuizType) => void;
 
   constructor(
     parentNode: HTMLElement | null,
@@ -60,6 +60,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     game: QuizType,
     results: IExerciseResult[],
     state: keyof typeof Languages,
+    nextGame?: QuizType,
   ): this {
     const gameOption = new ButtonBuilder({
       parentNode: this.roundPage.node,
@@ -78,7 +79,7 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
       content: `${Translation.roundsPageHighScoreCount[state]}: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`,
     }).node;
 
-    gameOption.node.onclick = () => this.play(game);
+    gameOption.node.onclick = () => this.play(game, nextGame);
 
     document.addEventListener('ongameend', (() => {
       score.textContent = `${Translation.roundsPageHighScoreCount[state]}: ${results.find((ex) => ex.exercise === game.quizId)?.score || '0'}`;
@@ -87,9 +88,9 @@ class GameRoundsPageView<QuizType extends IRound = IRound> extends NodeBuilder {
     return this;
   }
 
-  public play(game: QuizType): void {
+  public play(game: QuizType, nextGame?: QuizType): void {
     this.clear();
-    this.onplay(game);
+    this.onplay(game, nextGame);
   }
 
   public stop(): void {

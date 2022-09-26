@@ -25,7 +25,8 @@ export type GameQuizViewConstructor<QuizType extends IRound = IRound> = new (
   state: {
     language: keyof typeof Languages;
     volume: number;
-  }
+  },
+  nextGame?: QuizType
 ) => AbstractGameView<QuizType>;
 
 class GameRoundsController<QuizType extends IRound = IRound> {
