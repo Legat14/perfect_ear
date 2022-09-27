@@ -51,19 +51,19 @@ class GameRoundEndScreen extends NodeBuilder {
     this.node.prepend(header);
 
     const quitControl = new ButtonBuilder({
-      parentNode: header,
+      parentNode: null,
       className: 'field__back-btn field__back-btn_x',
       content: '×',
     });
     quitControl.node.onclick = () => this.onQuit();
 
     const resultGame = new NodeBuilder({
-      parentNode: header,
+      parentNode: null,
       tagName: 'div',
       className: 'quiz-end__header',
       content: `<h2 class="quiz-end__h2">${Translation.gameEndScreenResultsHeader[state]}</h2>`,
     });
-    console.log(resultGame);
+    header.append(quitControl.node, resultGame.node);
 
     const footer = new NodeBuilder({ parentNode: this.node, className: 'quiz-controls' }).node;
 
