@@ -5,10 +5,17 @@ const [
   LangEmitter,
   VolumeEmitter,
   TempoEmitter,
+  DayGoalsEmitter,
 ] = [
   new Emitter<keyof typeof Languages>(),
   new Emitter<number>(),
   new Emitter<number>(),
+  new Emitter<number>(),
 ];
 
-export { LangEmitter, VolumeEmitter, TempoEmitter };
+export {
+  LangEmitter,
+  VolumeEmitter,
+  TempoEmitter,
+  DayGoalsEmitter,
+};
