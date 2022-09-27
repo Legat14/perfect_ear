@@ -1,12 +1,12 @@
 import NodeBuilder from '../../helpers/node-builder';
 
 class Preloader extends NodeBuilder {
-  constructor(parentNode: HTMLElement) {
+  constructor(parentNode: HTMLElement | null) {
     super({
       parentNode,
       tagName: 'div',
       className: 'preloader',
-      content: '<img src="../public/assets/img/preloader.gif" alt="Preloader">',
+      content: '<img src="../assets/img/preloader.gif" alt="Preloader">',
     });
   }
 }

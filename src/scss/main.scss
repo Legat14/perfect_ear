@@ -1018,7 +1018,7 @@ transition: 0.8s;
   font-weight: 600;
   font-size: 12px;
   box-sizing: border-box;
-  width: 130px;
+  // width: 130px;
   transition: 0.8s;
 }
 .quiz-controls {
@@ -1361,6 +1361,13 @@ h3 {
   display: flex;
   flex-direction: column;
 }
+
+.preloader {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
 @media (max-width: 1400px) {
   .theory-main_section .theory-section {
     display: grid;

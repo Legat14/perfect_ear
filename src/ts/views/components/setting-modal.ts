@@ -26,9 +26,6 @@ class SettingModal extends NodeBuilder {
       className: 'modal-settings user-settings__stats-settings',
     });
 
-    const overlay = new NodeBuilder({ parentNode: null, className: 'overlay' });
-    document.body.prepend(overlay.node);
-
     this.header = new NodeBuilder({
       parentNode: this.node,
       tagName: 'h3',
@@ -53,8 +50,9 @@ class SettingModal extends NodeBuilder {
         : settings.filter((
           [setting]: [HTMLInputElement, HTMLLabelElement],
         ) => setting.checked)[0];
-      overlay.remove(); this.remove();
+
       this.onUpdate(this.setting.value);
+      this.remove();
     };
 
     LangEmitter.add((lang) => {

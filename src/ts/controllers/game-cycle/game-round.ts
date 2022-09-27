@@ -29,11 +29,15 @@ class GameRound<QuizType extends IRound = IRound> {
 
   private round: number;
 
+  public nextGame?: QuizType;
+
   public onQuit!: () => void;
 
   public onFinish!: () => void;
 
   public onRepeat!: () => void;
+
+  public onContinue!: (nextGame?: QuizType) => void;
 
   private state: { language: keyof typeof Languages; volume: number; };
 
@@ -43,6 +47,7 @@ class GameRound<QuizType extends IRound = IRound> {
     GameQuizConstructor: GameQuizConstructor<QuizType>,
     sound: Sound,
     state: { language: keyof typeof Languages; volume: number; },
+    nextGame?: QuizType,
   ) {
     this.rounds = quiz.rounds;
 
@@ -65,8 +70,9 @@ class GameRound<QuizType extends IRound = IRound> {
     this.view.onGameStart = () => this.startGameCycle(quiz);
     this.view.onGameBack = () => this.quit();
     this.view.onGameRepeat = () => this.repeat();
+    this.view.onGameContinue = () => this.continue(nextGame);
 
-    document.addEventListener('ongameend', (({ detail }: CustomEvent) => this.finishGameCycle(detail)) as EventListener);
+    document.addEventListener('ongameend', (({ detail }: CustomEvent) => this.finishGameCycle(detail, nextGame)) as EventListener);
   }
 
   private quit() {
@@ -77,6 +83,11 @@ class GameRound<QuizType extends IRound = IRound> {
     this.sound.stopSequence();
     this.view.remove();
     this.onQuit();
+  }
+
+  private continue(nextGame?: QuizType) {
+    this.view.remove();
+    this.onContinue(nextGame);
   }
 
   private repeat() {
@@ -97,7 +108,7 @@ class GameRound<QuizType extends IRound = IRound> {
       this.state,
     );
 
-    this.view.renderQuiz(quiz.view.node);
+    quiz.loaded = () => this.view.renderQuiz(quiz.view.node);
 
     quiz.onSkip = () => {
       this.gameIndicators.increaseFinesCounter();
@@ -118,9 +129,9 @@ class GameRound<QuizType extends IRound = IRound> {
     quiz.onFinish = () => this.gameIndicators.finishGame();
   }
 
-  public finishGameCycle(result: IGameResult) {
+  public finishGameCycle(result: IGameResult, nextGame?: QuizType) {
     this.sound.stopSequence();
-    this.view.renderEndScreen(result, this.state.language);
+    this.view.renderEndScreen(result, this.state.language, nextGame?.quizName);
   }
 }
 
