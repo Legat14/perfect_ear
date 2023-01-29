@@ -1,7 +1,6 @@
 @import "./general/reset";
-
 @import "./general/font";
-
+@import "./general/vars";
 @import "./keys/labels";
 
 html {
@@ -33,7 +32,7 @@ body {
 }
 
 h1 {
-  color: #00afae;
+  color: $highlite-color-common;
   font-size: 48px;
   letter-spacing: 2px;
   text-align: center;
@@ -154,10 +153,10 @@ button {
 }
 
 a {
-  color: #00afae;
-}  
+  color: $highlite-color-common;
+}
 a:-webkit-any-link {
-  color: #00afae;
+  color: $highlite-color-common;
 }
 
 footer p {
@@ -236,10 +235,10 @@ footer p {
   transition: 0.8s;
 }
 .field__back-btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .fortepiano-field {
   display: block;
@@ -276,7 +275,7 @@ footer p {
   text-align: center;
 }
 .user-day-statistic__title {
-  color: #00afae;
+  color: $highlite-color-common;
   margin-bottom: 30px;
 }
 .user-day-statistic__exercises-counter, .user-day-statistic__score-counter, .user-day-statistic__time-counter {
@@ -305,17 +304,17 @@ footer p {
   transition: 0.8s;
 }
 .main-menu button:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 
 .guest:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 
 .closemodal {
@@ -342,7 +341,7 @@ progress::-webkit-progress-bar {
   background: #f1f1f1;
 }
 progress::-webkit-progress-value {
-  background: #00afae;
+  background: $highlite-color-common;
 }
 .modal {
   width: 500px;
@@ -406,10 +405,10 @@ progress::-webkit-progress-value {
   transition: 0.8s;
 }
 .page404__back-to-main-btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .page404 img {
   height: 220px;
@@ -487,10 +486,10 @@ progress::-webkit-progress-value {
   transition: 0.8s;
 }
 .ear-training__btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .ear-section__section-title {
   grid-area: a;
@@ -523,14 +522,14 @@ progress::-webkit-progress-value {
   height: 100px;
 }
 .round-option:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .round-option__round-title {
   margin-bottom: 7px;
-  color: #00afae;
+  color: $highlite-color-common;
   transition: 0.8s;
 }
 .round-option:hover .round-option__round-title {
@@ -547,7 +546,7 @@ progress::-webkit-progress-value {
   color: #e0e0e0;
 }
 .ear-section__section-title span {
-  color: #00afae;
+  color: $highlite-color-common;
 }
 .quiz-start-screen {
   text-align: center;
@@ -581,7 +580,7 @@ progress::-webkit-progress-value {
   margin-left: 0px;
   font-size: 16px;
   font-weight: 300;
-  color: #00afae;
+  color: $highlite-color-common;
   text-transform: uppercase;
 }
 .quiz-terms {
@@ -633,7 +632,7 @@ progress::-webkit-progress-value {
   color: #fff;
   letter-spacing: 1px;
   box-shadow: 0 0 10px #f1f1f1;
-  background: #00afae;
+  background: $highlite-color-common;
   border: 3px solid #f1f1f1;
   border-radius: 10px;
   font-weight: 600;
@@ -663,7 +662,7 @@ progress::-webkit-progress-value {
   margin-left: 0px;
   font-size: 16px;
   font-weight: 300;
-  color: #00afae;
+  color: $highlite-color-common;
   text-transform: uppercase;
 }
 .quiz-header__column {
@@ -708,10 +707,10 @@ progress::-webkit-progress-value {
       "c d";
 }
 .quiz-answers__answer:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .quiz-answers__music-repeat {
   padding: 10px 5px 9px;
@@ -792,7 +791,7 @@ progress::-webkit-progress-value {
 }
 .user-stats__today-div {
   display: flex;
-  color: #00afae;
+  color: $highlite-color-common;
   flex-direction: column;
   align-items: center;
   width: 450px;
@@ -821,7 +820,7 @@ progress::-webkit-progress-value {
   margin-bottom: 20px;
 }
 .user-stats__all-time-div {
-  color: #00afae;
+  color: $highlite-color-common;
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -888,7 +887,7 @@ box-sizing: border-box;
 transition: 0.8s;
 }
 .user-settings__stats-header {
-  color: #00afae;
+  color: $highlite-color-common;
   margin-bottom: 30px;
   letter-spacing: 1px;
   font-size: 20px;
@@ -937,10 +936,10 @@ transition: 0.8s;
   transition: 0.8s;
 }
 .user-settings__save-day-goals-btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .user-settings__reset-stats-btn:hover,
 .user-settings__reset-settings-btn:hover,
@@ -952,7 +951,10 @@ transition: 0.8s;
 .user-settings__row {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  gap: 15px;
+}
+.user-settings__div-for-btns {
+  width: 260px;
 }
 .user-settings__stat-input {
   width: 70px;
@@ -1116,10 +1118,10 @@ transition: 0.8s;
   transition: 0.8s;
 }
 .theory__theory-btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .theory__theory-container {
   border: 1px solid #f1f1f1;
@@ -1225,10 +1227,10 @@ h3 {
   transition: 0.8s;
 }
 .tabs>label:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
 }
 .tabs>input[type="radio"]:checked+label {
   background-color: #fff;
@@ -1304,10 +1306,17 @@ h3 {
   filter: invert(1);
 }
 .user-settings__change-btn:hover {
-  background: #00afae;
+  background: $highlite-color-common;
   color: #fff;
   box-shadow: 0 0 20px #999;
-  border-color: #00afae;
+  border-color: $highlite-color-common;
+}
+.user-settings__reset-stats-btn:hover,
+.user-settings__reset-settings-btn:hover {
+  background: $highlite-color-attention;
+  color: #fff;
+  box-shadow: 0 0 20px #999;
+  border-color: $highlite-color-attention;
 }
 .settings-container {
   display: flex;
@@ -1337,6 +1346,9 @@ h3 {
 }
 .user-settings__setting-row:nth-child(3) .modal-settings .setting-wrapper input {
   width: 100%;
+}
+.user-settings__setting-row:nth-child(4) .user-settings__change-btn {
+  width: 260px;
 }
 .user-settings__setting-row:nth-child(4) {
   margin-bottom: 20px;

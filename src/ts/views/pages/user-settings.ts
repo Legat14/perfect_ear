@@ -222,7 +222,7 @@ class UserSettingsView extends NodeBuilder {
     this.divForButtons = new NodeBuilder({
       parentNode: commonSettings.node,
       tagName: 'div',
-      className: 'user-settings__row',
+      className: 'user-settings__row user-settings__div-for-btns',
     });
 
     this.resetStatsBtn = new ButtonBuilder({

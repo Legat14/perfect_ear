@@ -66,7 +66,7 @@ const Translation = {
     RUS: 'Сбросить настройки',
   },
   resetStatsBtn: {
-    ENG: 'Reset all stats',
+    ENG: 'Reset stats',
     RUS: 'Сбросить статистику',
   },
   mainMenuEarTraining: {
