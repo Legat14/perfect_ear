@@ -1,7 +1,8 @@
 import Translation from '../../constants/translation';
-import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
+import { SettingsEmitter, LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import UserConfig from '../../models/user-config';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
 
@@ -21,6 +22,8 @@ class VolumeSetting extends ButtonBuilder {
 
     this.state = state;
 
+    const calculateValue = (volume: number): string => (volume * 2 + 100).toString();
+
     const setting = new NodeBuilder<HTMLInputElement>({
       parentNode: null,
       tagName: 'input',
@@ -28,7 +31,7 @@ class VolumeSetting extends ButtonBuilder {
       attributes: {
         type: 'range',
         step: '1',
-        value: `${state.volume * 2 + 100}`,
+        value: calculateValue(state.volume),
       },
     }).node;
 
@@ -49,6 +52,11 @@ class VolumeSetting extends ButtonBuilder {
       settingModal.header.innerHTML = Translation.volumeSettingModalTitle[lang];
       this.node.innerHTML = (
         `<img src="assets/img/ear.png" alt="Сменить громкость"> ${Translation.changeVolumeBtn[lang]}`);
+    });
+
+    SettingsEmitter.add((userConfig: UserConfig) => {
+      setting.value = calculateValue(userConfig.getVolume());
+      settingModal.onUpdate(setting.value);
     });
   }
 }

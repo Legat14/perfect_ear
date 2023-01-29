@@ -1,10 +1,10 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import UserConfig from '../../models/user-config';
 import { IDayGoalsInputs } from '../../types/data-types';
-import LanquageSetting from '../components/language-setting';
+import LanguageSetting from '../components/language-setting';
 import TempoSetting from '../components/tempo-setting';
 import VolumeSetting from '../components/volume-setting';
 
@@ -43,11 +43,11 @@ class UserSettingsView extends NodeBuilder {
 
   saveDayGoalsBtn: ButtonBuilder;
 
-  divForButton: HTMLElement;
+  divForButtons: NodeBuilder;
 
   commonHeader: HTMLElement;
 
-  langSetting: LanquageSetting;
+  langSetting: LanguageSetting;
 
   volumeSetting: VolumeSetting;
 
@@ -184,12 +184,6 @@ class UserSettingsView extends NodeBuilder {
 
     this.saveDayGoalsBtn.node.addEventListener('click', () => this.onSave());
 
-    this.divForButton = new NodeBuilder({
-      parentNode: this.node,
-      tagName: 'div',
-      className: 'user-settings__row',
-    }).node;
-
     const commonSettings = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
@@ -203,7 +197,7 @@ class UserSettingsView extends NodeBuilder {
       content: Translation.commonSettingsHeader[language],
     }).node;
 
-    this.langSetting = new LanquageSetting(
+    this.langSetting = new LanguageSetting(
       new NodeBuilder({
         parentNode: commonSettings.node,
         className: 'user-settings__setting-row',
@@ -225,21 +219,27 @@ class UserSettingsView extends NodeBuilder {
       { language, tempo },
     );
 
-    this.resetSettingsBtn = new ButtonBuilder({
-      parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
-      className: 'user-settings__reset-settings-btn',
-      content: Translation.resetSettingsBtn[language],
+    this.divForButtons = new NodeBuilder({
+      parentNode: commonSettings.node,
+      tagName: 'div',
+      className: 'user-settings__row',
     });
 
-    this.resetSettingsBtn.node.addEventListener('click', () => this.onSettingsReset());
-
     this.resetStatsBtn = new ButtonBuilder({
-      parentNode: new NodeBuilder({ parentNode: commonSettings.node, className: 'user-settings__setting-row' }).node,
+      parentNode: this.divForButtons.node,
       className: 'user-settings__reset-stats-btn',
       content: Translation.resetStatsBtn[language],
     });
 
     this.resetStatsBtn.node.addEventListener('click', () => this.onStatsReset());
+
+    this.resetSettingsBtn = new ButtonBuilder({
+      parentNode: this.divForButtons.node,
+      className: 'user-settings__reset-settings-btn',
+      content: Translation.resetSettingsBtn[language],
+    });
+
+    this.resetSettingsBtn.node.addEventListener('click', () => this.onSettingsReset());
 
     LangEmitter.add((lang) => {
       this.userSettingsHeader.node.innerHTML = Translation.userSettingsHeader[lang];
@@ -250,6 +250,13 @@ class UserSettingsView extends NodeBuilder {
       this.saveDayGoalsBtn.node.innerHTML = Translation.settingsSaveBtn[lang];
       this.commonHeader.innerHTML = Translation.commonSettingsHeader[lang];
       this.resetStatsBtn.node.innerHTML = Translation.resetStatsBtn[lang];
+      this.resetSettingsBtn.node.innerHTML = Translation.resetSettingsBtn[lang];
+    });
+
+    SettingsEmitter.add((userConfig: UserConfig) => {
+      this.dayGoalExercisesInput.node.value = userConfig.getDayExercisesGoal().toString();
+      this.dayGoalScoreInput.node.value = userConfig.getDayScoreGoal().toString();
+      this.dayGoalTimeInput.node.value = userConfig.getDayTimeGoal().toString();
     });
   }
 }

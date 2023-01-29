@@ -1,12 +1,20 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/lang-emitter';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
 
-class LanquageSetting extends ButtonBuilder {
+class LanguageSetting extends ButtonBuilder {
   public state: keyof typeof Languages;
+
+  private setting1: HTMLInputElement;
+
+  private label1: HTMLLabelElement;
+
+  private setting2: HTMLInputElement;
+
+  private label2: HTMLLabelElement;
 
   private lang: NodeBuilder<HTMLElement>;
 
@@ -29,11 +37,11 @@ class LanquageSetting extends ButtonBuilder {
       content: Translation.langOptions[state],
     });
 
-    const [
-      setting1,
-      label1,
-      setting2,
-      label2,
+    [
+      this.setting1,
+      this.label1,
+      this.setting2,
+      this.label2,
     ] = [
       new NodeBuilder<HTMLInputElement>({
         parentNode: null,
@@ -76,17 +84,21 @@ class LanquageSetting extends ButtonBuilder {
         content: 'english',
       }).node];
 
-    [setting1.checked, setting2.checked] = [
-      state === Languages[0],
-      state === Languages[1],
-    ];
+    const updateLangView = (langState: keyof typeof Languages) => {
+      [this.setting1.checked, this.setting2.checked] = [
+        langState === Languages[0],
+        langState === Languages[1],
+      ];
+    };
+
+    updateLangView(this.state);
 
     const settingModal = new SettingModal(
       null,
       Translation.langSettingModalTitle[state],
       state,
-      [setting1, label1],
-      [setting2, label2],
+      [this.setting1, this.label1],
+      [this.setting2, this.label2],
     );
 
     this.node.onclick = () => parentNode.append(settingModal.node);
@@ -100,7 +112,12 @@ class LanquageSetting extends ButtonBuilder {
       this.lang.node.innerHTML = Translation.langOptions[lang];
       settingModal.header.innerHTML = Translation.langSettingModalTitle[lang];
     });
+
+    SettingsEmitter.add(() => {
+      updateLangView(this.state);
+      LangEmitter.emit(this.state);
+    });
   }
 }
 
-export default LanquageSetting;
+export default LanguageSetting;

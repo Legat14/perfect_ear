@@ -1,4 +1,9 @@
-import { LangEmitter, TempoEmitter, VolumeEmitter } from '../emitters/lang-emitter';
+import {
+  SettingsEmitter,
+  LangEmitter,
+  TempoEmitter,
+  VolumeEmitter,
+} from '../emitters/lang-emitter';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import {
@@ -23,7 +28,7 @@ class UserDataHandler {
 
   defaultLanguage = Languages[0] as keyof typeof Languages;
 
-  defaultVolume = 0;
+  defaultVolume = -10;
 
   defaultTempo = 80;
 
@@ -295,6 +300,7 @@ class UserDataHandler {
     this.userConfig.setLanguge(this.defaultLanguage);
     this.userConfig.setVolume(this.defaultVolume);
     this.userConfig.setTempo(this.defaultTempo);
+    SettingsEmitter.emit(this.userConfig);
   }
 
   private decomposeGameResult(gameResult: IGameResult): void {
