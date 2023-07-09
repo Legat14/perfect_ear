@@ -1,6 +1,9 @@
 {
     "parser": "@typescript-eslint/parser",
-    "plugins": ["import", "@typescript-eslint"],
+    "plugins": [
+        "import",
+        "@typescript-eslint"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -19,10 +22,13 @@
     },
     "rules": {
         "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/indent": "warn",
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
         "no-alert": "off"
     },
-    "ignorePatterns": ["webpack.config.js"]
+    "ignorePatterns": [
+        "webpack.config.js"
+    ]
 }

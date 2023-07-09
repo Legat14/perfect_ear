@@ -3,7 +3,7 @@ import {
   LangEmitter,
   TempoEmitter,
   VolumeEmitter,
-} from '../emitters/lang-emitter';
+} from '../emitters/emitters';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import {

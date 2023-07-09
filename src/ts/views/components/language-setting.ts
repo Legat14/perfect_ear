@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -43,46 +43,46 @@ class LanguageSetting extends ButtonBuilder {
       this.setting2,
       this.label2,
     ] = [
-      new NodeBuilder<HTMLInputElement>({
-        parentNode: null,
-        tagName: 'input',
-        className: 'language-input',
-        attributes: {
-          name: 'lang',
-          type: 'radio',
-          id: Languages[0],
-          value: Languages[0],
-        },
-      }).node,
-      new NodeBuilder<HTMLLabelElement>({
-        parentNode: null,
-        tagName: 'label',
-        className: 'language-input__label',
-        attributes: {
-          for: Languages[0],
-        },
-        content: 'русский',
-      }).node,
-      new NodeBuilder<HTMLInputElement>({
-        parentNode: null,
-        tagName: 'input',
-        className: 'language-input',
-        attributes: {
-          type: 'radio',
-          name: 'lang',
-          id: Languages[1],
-          value: Languages[1],
-        },
-      }).node,
-      new NodeBuilder<HTMLLabelElement>({
-        parentNode: null,
-        tagName: 'label',
-        className: 'language-input__label',
-        attributes: {
-          for: Languages[1],
-        },
-        content: 'english',
-      }).node];
+        new NodeBuilder<HTMLInputElement>({
+          parentNode: null,
+          tagName: 'input',
+          className: 'language-input',
+          attributes: {
+            name: 'lang',
+            type: 'radio',
+            id: Languages[0],
+            value: Languages[0],
+          },
+        }).node,
+        new NodeBuilder<HTMLLabelElement>({
+          parentNode: null,
+          tagName: 'label',
+          className: 'language-input__label',
+          attributes: {
+            for: Languages[0],
+          },
+          content: 'русский',
+        }).node,
+        new NodeBuilder<HTMLInputElement>({
+          parentNode: null,
+          tagName: 'input',
+          className: 'language-input',
+          attributes: {
+            type: 'radio',
+            name: 'lang',
+            id: Languages[1],
+            value: Languages[1],
+          },
+        }).node,
+        new NodeBuilder<HTMLLabelElement>({
+          parentNode: null,
+          tagName: 'label',
+          className: 'language-input__label',
+          attributes: {
+            for: Languages[1],
+          },
+          content: 'english',
+        }).node];
 
     const updateLangView = (langState: keyof typeof Languages) => {
       [this.setting1.checked, this.setting2.checked] = [

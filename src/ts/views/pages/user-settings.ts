@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { SettingsEmitter, LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import UserConfig from '../../models/user-config';

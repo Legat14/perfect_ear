@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import TextNodeBuilder from '../../helpers/text-node-builder';

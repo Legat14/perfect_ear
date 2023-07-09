@@ -1,6 +1,6 @@
 import { PIANO_SOUND } from '../../constants/constants';
 import Translation from '../../constants/translation';
-import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter, VolumeEmitter } from '../../controllers/emitters/emitters';
 import Sound from '../../controllers/sound';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';

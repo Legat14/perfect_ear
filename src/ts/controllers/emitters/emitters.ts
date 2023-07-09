@@ -8,11 +8,11 @@ const [
   TempoEmitter,
   SettingsEmitter,
 ] = [
-  new Emitter<keyof typeof Languages>(),
-  new Emitter<number>(),
-  new Emitter<number>(),
-  new Emitter<UserConfig>(),
-];
+    new Emitter<keyof typeof Languages>(),
+    new Emitter<number>(),
+    new Emitter<number>(),
+    new Emitter<UserConfig>(),
+  ];
 
 export {
   LangEmitter,
@@ -20,5 +20,3 @@ export {
   TempoEmitter,
   SettingsEmitter,
 };
-
-// TODO: Rename this file to emitters

@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -30,7 +30,7 @@ class RhythmTrainingView extends NodeBuilder {
         className: 'ear-training__btn ear-training__game training-btn theory-btn',
         content: Translation.mainMenuTheory[state],
       }],
-      '/theory/rhythm',
+        '/theory/rhythm',
       ],
     ]);
 
