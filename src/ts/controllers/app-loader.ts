@@ -32,10 +32,11 @@ class AppLoader {
 
     const { userStats } = this.view.viewsController;
 
-    this.userStatisticHandler = new UserStatisticHandler(
-      this.userDataHandler.userProfile,
-      userStats.statisticCounters,
-    );
+    this.userStatisticHandler = new UserStatisticHandler({
+      userProfile: this.userDataHandler.userProfile,
+      userConfig: this.userDataHandler.userConfig,
+      userDayStatisticCounters: userStats.statisticCounters,
+    });
 
     const { userSettings } = this.view.viewsController;
 
@@ -48,6 +49,7 @@ class AppLoader {
 
     this.userDayStatisticHandler = new UserDayStatisticHandler(
       this.userDataHandler.userProfile,
+      this.userDataHandler.userConfig,
       mainMenu.userDayStatistic.userDayStatisticCounters,
     );
 
@@ -70,21 +72,26 @@ class AppLoader {
       };
     }
 
-    userSettings.onReset = (): void => {
+    userSettings.onSettingsReset = (): void => {
+      this.userDataHandler.resetUserConfig();
+    }; // TODO: Сделать обновление инпутов при сбросе настроек
+
+    userSettings.onStatsReset = (): void => {
       // TODO: Добавить всплывающее предупреждение о потере данных
       this.userDataHandler.clearUserProfileData();
       this.refreshCounters();
       this.userStatisticHandler.refreshCounters();
     };
 
-    userSettings.onSave = (): void => {
+    userSettings.onSaveDayGoals = (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
       this.userDataHandler.saveConfigDataToLocalStorage();
       this.refreshCounters();
     };
 
     this.refreshCounters();
-    this.addRefreshEvent();
+    this.addRefreshEventOnGameEnd();
+    this.addRefreshEventOnSettingsChange();
     this.userAchievementsHandler.testAllAchievements();
   }
 
@@ -104,10 +111,17 @@ class AppLoader {
     );
   }
 
-  private addRefreshEvent() {
+  private addRefreshEventOnGameEnd() {
     document.addEventListener('ongameend', () => {
       this.refreshCounters();
       this.userAchievementsHandler.testAllAchievements();
+    });
+  }
+
+  private addRefreshEventOnSettingsChange() {
+    document.addEventListener('onchangesettings', () => {
+      this.userStatisticHandler.refreshCounters();
+      this.refreshCounters();
     });
   }
 }

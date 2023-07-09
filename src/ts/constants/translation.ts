@@ -61,8 +61,12 @@ const Translation = {
     ENG: 'Common settings',
     RUS: 'Общие настроки',
   },
+  resetSettingsBtn: {
+    ENG: 'Reset settings',
+    RUS: 'Сбросить настройки',
+  },
   resetStatsBtn: {
-    ENG: 'Reset all stats',
+    ENG: 'Reset stats',
     RUS: 'Сбросить статистику',
   },
   mainMenuEarTraining: {

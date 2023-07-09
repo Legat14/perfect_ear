@@ -1,4 +1,4 @@
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';

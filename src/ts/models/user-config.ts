@@ -7,7 +7,7 @@ class UserConfig {
 
   private dayTimeGoal: number;
 
-  private language: Languages;
+  private language: keyof typeof Languages;
 
   private volume: number;
 
@@ -19,7 +19,7 @@ class UserConfig {
       dayScoreGoal,
       dayTimeGoal,
     }: IDayGoals,
-    language: Languages,
+    language: keyof typeof Languages,
     volume: number,
     tempo: number,
   ) {
@@ -43,7 +43,8 @@ class UserConfig {
     return this.dayTimeGoal;
   }
 
-  public getLanguage(): Languages {
+  public getLanguage(): keyof typeof Languages {
+    console.log(this.language);
     return this.language;
   }
 
@@ -67,7 +68,7 @@ class UserConfig {
     this.dayTimeGoal = value;
   }
 
-  public setLanguge(value: Languages): void {
+  public setLanguge(value: keyof typeof Languages): void {
     this.language = value;
   }
 

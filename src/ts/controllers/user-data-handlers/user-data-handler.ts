@@ -1,4 +1,9 @@
-import { LangEmitter, TempoEmitter, VolumeEmitter } from '../emitters/lang-emitter';
+import {
+  SettingsEmitter,
+  LangEmitter,
+  TempoEmitter,
+  VolumeEmitter,
+} from '../emitters/emitters';
 import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import {
@@ -15,6 +20,18 @@ class UserDataHandler {
 
   userConfig: UserConfig;
 
+  defaultDayExersisesGoal = 10;
+
+  defaultDayScoreGoal = 25000;
+
+  defaultDayTimeGoal = 20;
+
+  defaultLanguage = Languages[0] as keyof typeof Languages;
+
+  defaultVolume = -10;
+
+  defaultTempo = 80;
+
   constructor() { // TODO: после добавления сервера,
     // добавить метод получения данных и получать данные
     // в зависимости от него
@@ -27,10 +44,6 @@ class UserDataHandler {
       let dayTime = 0;
       if (guestUserProfile.dayTime) {
         dayTime = guestUserProfile.dayTime;
-      }
-      let dayTimeHR = '0 мин 0.0 сек.';
-      if (guestUserProfile.dayTimeHR) {
-        dayTimeHR = guestUserProfile.dayTimeHR;
       }
       let dayExercises = 0;
       if (guestUserProfile.dayExercises) {
@@ -47,10 +60,6 @@ class UserDataHandler {
       let totalTime = 0;
       if (guestUserProfile.totalTime) {
         totalTime = guestUserProfile.totalTime;
-      }
-      let totalTimeHR = '0 мин 0.0 сек.';
-      if (guestUserProfile.totalTimeHR) {
-        totalTimeHR = guestUserProfile.totalTimeHR;
       }
       let totalExercises = 0;
       if (guestUserProfile.totalExercises) {
@@ -79,12 +88,10 @@ class UserDataHandler {
       this.userProfile = new UserProfile({
         dayScore,
         dayTime,
-        dayTimeHR,
         dayExercises,
         profileDate,
         totalScore,
         totalTime,
-        totalTimeHR,
         totalExercises,
         intervalGameScore,
         scaleGameScore,
@@ -96,12 +103,10 @@ class UserDataHandler {
       this.userProfile = new UserProfile({
         dayScore: 0,
         dayTime: 0,
-        dayTimeHR: '0 мин 0.0 сек.',
         dayExercises: 0,
         profileDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
-        totalTimeHR: '0 мин 0.0 сек.',
         totalExercises: 0,
         intervalGameScore: 0,
         scaleGameScore: 0,
@@ -125,9 +130,9 @@ class UserDataHandler {
       if (guestUserConfig.dayGoals.dayTimeGoal) {
         dayTimeGoal = guestUserConfig.dayGoals.dayTimeGoal;
       }
-      let language = Languages.RUS;
+      let language = Languages[0] as keyof typeof Languages;
       if (guestUserConfig.language) {
-        language = guestUserConfig.language;
+        language = guestUserConfig.language as keyof typeof Languages;
       }
       let volume = 0;
       if (guestUserConfig.volume) {
@@ -150,13 +155,13 @@ class UserDataHandler {
     } else {
       this.userConfig = new UserConfig(
         {
-          dayExercisesGoal: 10,
-          dayScoreGoal: 25000,
-          dayTimeGoal: 30,
+          dayExercisesGoal: this.defaultDayExersisesGoal,
+          dayScoreGoal: this.defaultDayScoreGoal,
+          dayTimeGoal: this.defaultDayTimeGoal,
         },
-        Languages.RUS,
-        0,
-        80,
+        this.defaultLanguage,
+        this.defaultVolume,
+        this.defaultTempo,
       );
     }
     this.addPageCloseEvent();
@@ -164,7 +169,7 @@ class UserDataHandler {
     this.setDayCheckInterval();
 
     LangEmitter.add((data) => {
-      const key = Languages[data];
+      const key = data;
       this.userConfig.setLanguge(key);
     });
 
@@ -201,12 +206,10 @@ class UserDataHandler {
     const guestUserProfile: IUserProfileType = {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
-      dayTimeHR: this.userProfile.getDayTimeHR(),
       dayExercises: this.userProfile.getDayExercises(),
       profileDate: this.userProfile.getProfileDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
-      totalTimeHR: this.userProfile.getTotalTimeHR(),
       totalExercises: this.userProfile.getTotalExercises(),
       intervalGameScore: this.userProfile.getIntervalGameScore(),
       scaleGameScore: this.userProfile.getScaleGameScore(),
@@ -274,6 +277,16 @@ class UserDataHandler {
     this.userProfile.setChordsGameScore(0);
     this.userProfile.clearExercisesResult();
     this.userProfile.clearAchievements();
+  }
+
+  public resetUserConfig(): void {
+    this.userConfig.setDayExercisesGoal(this.defaultDayExersisesGoal);
+    this.userConfig.setDayScoreGoal(this.defaultDayScoreGoal);
+    this.userConfig.setDayTimeGoal(this.defaultDayTimeGoal);
+    this.userConfig.setLanguge(this.defaultLanguage);
+    this.userConfig.setVolume(this.defaultVolume);
+    this.userConfig.setTempo(this.defaultTempo);
+    SettingsEmitter.emit(this.userConfig);
   }
 
   private decomposeGameResult(gameResult: IGameResult): void {

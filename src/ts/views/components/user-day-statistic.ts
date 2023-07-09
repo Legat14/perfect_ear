@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter } from '../../controllers/emitters/emitters';
 import NodeBuilder from '../../helpers/node-builder';
 import { IUserDayStatisticCounters, Languages } from '../../types/data-types';
 

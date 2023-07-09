@@ -49,7 +49,7 @@ class ViewsController extends NodeBuilder {
   constructor(parentNode: HTMLElement, config: UserConfig) {
     super({ parentNode, className: 'field' });
 
-    const state = Languages[config.getLanguage()] as keyof typeof Languages;
+    const state = config.getLanguage();
 
     this.mainMenu = new MainMenuView(state);
     this.earTraining = new EarTrainingView(state);
@@ -85,7 +85,7 @@ class ViewsController extends NodeBuilder {
   public renderGamePages({ profile, config }: { profile: UserProfile, config: UserConfig }) {
     const gamesLoader = new GamesLoader('../../../data/rounds.json');
     const state = {
-      language: Languages[config.getLanguage()] as keyof typeof Languages,
+      language: config.getLanguage(),
       volume: config.getVolume(),
       tempo: config.getTempo(),
     };

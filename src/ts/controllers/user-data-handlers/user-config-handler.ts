@@ -2,7 +2,7 @@ import UserConfig from '../../models/user-config';
 import { IDayGoalsInputs } from '../../types/data-types';
 
 class UserConfigHandler {
-  private userConfig: UserConfig;
+  public userConfig: UserConfig;
 
   private dayGoalExercisesInput: HTMLInputElement;
 

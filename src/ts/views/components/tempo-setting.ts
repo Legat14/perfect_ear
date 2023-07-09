@@ -1,7 +1,8 @@
 import Translation from '../../constants/translation';
-import { LangEmitter, TempoEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter, SettingsEmitter, TempoEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
+import UserConfig from '../../models/user-config';
 import { Languages } from '../../types/data-types';
 import SettingModal from './setting-modal';
 
@@ -16,7 +17,7 @@ class TempoSetting extends ButtonBuilder {
       parentNode,
       className: 'user-settings__change-btn',
       content: (
-        `<img src="assets/img/rhythm.png" alt="Установить ритм"> ${Translation.setTempoBtn[state.language]}`),
+        `<img src="assets/img/rhythm.png" alt="Установить темп"> ${Translation.setTempoBtn[state.language]}`),
     });
 
     this.state = state;
@@ -61,6 +62,12 @@ class TempoSetting extends ButtonBuilder {
       settingModal.header.innerHTML = Translation.tempoSettingModalTitle[lang];
       this.node.innerHTML = (
         `<img src="assets/img/rhythm.png" alt="Установить ритм"> ${Translation.setTempoBtn[lang]}`);
+    });
+
+    SettingsEmitter.add((userConfig: UserConfig) => {
+      setting.value = userConfig.getTempo().toString();
+      label.innerHTML = `${setting.value} BPM`;
+      settingModal.onUpdate(setting.value);
     });
   }
 }

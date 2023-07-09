@@ -15,7 +15,7 @@ import {
   LangEmitter,
   TempoEmitter,
   VolumeEmitter,
-} from '../emitters/lang-emitter';
+} from '../emitters/emitters';
 import Iterator from '../../helpers/iterator';
 
 export type GameQuizViewConstructor<QuizType extends IRound = IRound> = new (

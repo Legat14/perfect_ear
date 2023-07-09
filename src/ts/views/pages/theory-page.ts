@@ -1,5 +1,5 @@
 import Translation from '../../constants/translation';
-import { LangEmitter } from '../../controllers/emitters/lang-emitter';
+import { LangEmitter } from '../../controllers/emitters/emitters';
 import ButtonBuilder from '../../helpers/button-builder';
 import NodeBuilder from '../../helpers/node-builder';
 import { Languages } from '../../types/data-types';
@@ -41,35 +41,35 @@ class TheoryPageView extends NodeBuilder {
           className: 'theory__theory-btn theory-btn button',
           content: Translation.theoryPageIntervalsSection[state],
         }],
-        '/theory/intervals',
+          '/theory/intervals',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
           content: Translation.theoryPageScalesSection[state],
         }],
-        '/theory/scales',
+          '/theory/scales',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
           content: Translation.theoryPageModesSection[state],
         }],
-        '/theory/modes',
+          '/theory/modes',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
           content: Translation.theoryPageChordsSection[state],
         }],
-        '/theory/chords',
+          '/theory/chords',
         ],
         [[{
           parentNode: null,
           className: 'theory__theory-btn theory-btn button',
           content: Translation.theoryPageRhythmSection[state],
         }],
-        '/theory/rhythm',
+          '/theory/rhythm',
         ],
       ],
     );
