@@ -51,19 +51,19 @@ class GameRoundEndScreen extends NodeBuilder {
     this.node.prepend(header);
 
     const quitControl = new ButtonBuilder({
-      parentNode: header,
+      parentNode: null,
       className: 'field__back-btn field__back-btn_x',
       content: '×',
     });
     quitControl.node.onclick = () => this.onQuit();
 
     const resultGame = new NodeBuilder({
-      parentNode: header,
+      parentNode: null,
       tagName: 'div',
       className: 'quiz-end__header',
       content: `<h2 class="quiz-end__h2">${Translation.gameEndScreenResultsHeader[state]}</h2>`,
     });
-    console.log(resultGame);
+    header.append(quitControl.node, resultGame.node);
 
     const footer = new NodeBuilder({ parentNode: this.node, className: 'quiz-controls' }).node;
 
@@ -77,7 +77,7 @@ class GameRoundEndScreen extends NodeBuilder {
     const continueControl = new ButtonBuilder({
       parentNode: footer,
       className: 'quiz-end-screen__continue continue',
-      content: `${nextGame ? `<span>${Translation.gameEndScreenContinueBtn[state]}</span><span continue__game-title>${nextGame}</span>` : Translation.gameEndScreenMenuBtn[state]}`,
+      content: `${nextGame ? `<span>${Translation.gameEndScreenContinueBtn[state]}</span><br><span continue__game-title>${nextGame[state]}</span>` : Translation.gameEndScreenMenuBtn[state]}`,
     });
     continueControl.node.onclick = nextGame ? () => this.onContinue() : () => this.onQuit();
   }

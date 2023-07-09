@@ -20,7 +20,11 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
 
   public onRepeat!: (quiz: T) => void;
 
+  public onContinue!: (quiz?: T) => void;
+
   public Constructor: GameQuizConstructor<T>;
+
+  public nextGame?: T;
 
   constructor(
     parentNode: HTMLElement | null,
@@ -31,6 +35,7 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
       language: keyof typeof Languages;
       volume: number,
     },
+    nextGame?: T,
   ) {
     super({ parentNode, className: 'game-field' });
 
@@ -38,6 +43,7 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
     this.sound = sound;
     this.state = state;
     this.Constructor = Constructor;
+    if (nextGame) this.nextGame = nextGame;
 
     this.init();
   }
@@ -49,6 +55,7 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
       this.Constructor,
       this.sound,
       this.state,
+      this.nextGame,
     );
 
     /**
@@ -57,6 +64,7 @@ class AbstractGameView<T extends IRound = IRound> extends NodeBuilder {
      */
     this.game.onQuit = () => this.onQuit();
     this.game.onRepeat = () => this.onRepeat(this.quiz);
+    this.game.onContinue = () => this.onContinue(this.nextGame);
 
     return this.game;
   }

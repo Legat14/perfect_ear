@@ -75,7 +75,7 @@ export interface IDayGoals {
 
 export interface IUserConfig {
   tempo: number;
-  volume: number;
+  volume: string;
   dayGoals: IDayGoals,
   language: keyof typeof Languages,
 }

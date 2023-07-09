@@ -22,6 +22,8 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   public onFinish!: () => void;
 
+  public loaded!: () => void;
+
   private answered: boolean;
 
   private state: { language: keyof typeof Languages; volume: number; };
@@ -47,6 +49,7 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
       () => this.playSequence(this.question.sequence),
     );
 
+    this.view.loaded = () => this.loaded();
     this.view.onRepeat = () => this.playSequence(this.question.sequence);
     this.view.onSkip = () => this.skip();
 
@@ -83,9 +86,8 @@ abstract class AbstractGameQuiz<QuizType extends IRound = IRound> {
 
   private playSequence(
     sequence?: [Pause | Frequency | Frequency[], Subdivision][],
-  ): void {
-    if (!sequence) return;
-    this.sound.playSequence(sequence);
+  ): Promise<void> {
+    return sequence ? this.sound.playSequence(sequence) : new Promise(() => { });
   }
 }
 
