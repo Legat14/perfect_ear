@@ -82,14 +82,15 @@ class AppLoader {
       this.userStatisticHandler.refreshCounters();
     };
 
-    userSettings.onSave = (): void => {
+    userSettings.onSaveDayGoals = (): void => {
       this.userConfigHandler.saveDayGoalInputsValues();
       this.userDataHandler.saveConfigDataToLocalStorage();
       this.refreshCounters();
     };
 
     this.refreshCounters();
-    this.addRefreshEvent();
+    this.addRefreshEventOnGameEnd();
+    this.addRefreshEventOnSettingsChange();
     this.userAchievementsHandler.testAllAchievements();
   }
 
@@ -109,10 +110,16 @@ class AppLoader {
     );
   }
 
-  private addRefreshEvent() {
+  private addRefreshEventOnGameEnd() {
     document.addEventListener('ongameend', () => {
       this.refreshCounters();
       this.userAchievementsHandler.testAllAchievements();
+    });
+  }
+
+  private addRefreshEventOnSettingsChange() {
+    document.addEventListener('onchangesettings', () => {
+      this.refreshCounters();
     });
   }
 }

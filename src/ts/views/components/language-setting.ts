@@ -105,7 +105,10 @@ class LanguageSetting extends ButtonBuilder {
 
     settingModal.onUpdate = (
       value: string,
-    ) => LangEmitter.emit(value as keyof typeof Languages);
+    ) => {
+      LangEmitter.emit(value as keyof typeof Languages);
+      document.dispatchEvent(new CustomEvent('onchangesettings'));
+    };
 
     LangEmitter.add((lang) => {
       this.node.innerHTML = Translation.changeLangBtn[lang];

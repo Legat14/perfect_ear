@@ -57,7 +57,7 @@ class UserSettingsView extends NodeBuilder {
 
   onSettingsReset!: () => void;
 
-  onSave!: () => void;
+  onSaveDayGoals!: () => void;
 
   constructor(config: UserConfig) {
     super({ parentNode: null, className: 'user-settings' });
@@ -182,7 +182,7 @@ class UserSettingsView extends NodeBuilder {
       content: Translation.settingsSaveBtn[language],
     });
 
-    this.saveDayGoalsBtn.node.addEventListener('click', () => this.onSave());
+    this.saveDayGoalsBtn.node.addEventListener('click', () => this.onSaveDayGoals());
 
     const commonSettings = new NodeBuilder({
       parentNode: this.node,

@@ -47,8 +47,6 @@ class UserDayStatisticHandler {
   }
 
   private refreshTimeCounter() {
-    console.log('!!!!!!DayTime: ', this.userProfile.getDayTime());
-    console.log('!!!!!!LangFromFile: ', this.userConfig.getLanguage());
     this.timeCounter.innerHTML = this.humanReadableData.getTimeHumanReadableStr(
       this.userProfile.getDayTime(),
       this.userConfig.getLanguage(),
