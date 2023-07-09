@@ -120,6 +120,7 @@ class AppLoader {
 
   private addRefreshEventOnSettingsChange() {
     document.addEventListener('onchangesettings', () => {
+      this.userStatisticHandler.refreshCounters();
       this.refreshCounters();
     });
   }
