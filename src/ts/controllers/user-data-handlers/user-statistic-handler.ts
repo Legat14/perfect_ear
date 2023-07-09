@@ -1,8 +1,11 @@
+import UserConfig from '../../models/user-config';
 import UserProfile from '../../models/user-profile';
 import { IUserStatisticCounters } from '../../types/data-types';
 
 class UserStatisticHandler {
   private userProfile: UserProfile;
+
+  public userConfig: UserConfig;
 
   private dayExercisesCounter: HTMLElement;
 
@@ -22,7 +25,13 @@ class UserStatisticHandler {
 
   private totalChordsGameScoreCounter: HTMLElement;
 
-  constructor(userProfile: UserProfile, userDayStatisticCounters: IUserStatisticCounters) {
+  constructor({ userProfile, userConfig, userDayStatisticCounters }:
+    {
+      userProfile: UserProfile,
+      userConfig: UserConfig,
+      userDayStatisticCounters: IUserStatisticCounters
+    }) {
+    this.userConfig = userConfig;
     this.userProfile = userProfile;
     this.dayExercisesCounter = userDayStatisticCounters.dayExercisesCounter;
     this.dayScoreCounter = userDayStatisticCounters.dayScoreCounter;
@@ -46,7 +55,8 @@ class UserStatisticHandler {
   }
 
   private refreshDayTimeCounter() {
-    this.dayTimeCounter.innerHTML = this.userProfile.getDayTimeHR();
+    const lang = this.userConfig.getLanguage();
+    this.dayTimeCounter.innerHTML = this.userProfile.getDayTimeHR(lang);
   }
 
   private refreshTotalExercisesCounter() {
@@ -58,7 +68,8 @@ class UserStatisticHandler {
   }
 
   private refreshTotalTimeCounter() {
-    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTimeHR();
+    const lang = this.userConfig.getLanguage();
+    this.totalTimeCounter.innerHTML = this.userProfile.getTotalTimeHR(lang);
   }
 
   private refreshTotalIntervalGameScoreCount() {

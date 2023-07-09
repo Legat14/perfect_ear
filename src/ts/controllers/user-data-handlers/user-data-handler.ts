@@ -45,10 +45,6 @@ class UserDataHandler {
       if (guestUserProfile.dayTime) {
         dayTime = guestUserProfile.dayTime;
       }
-      let dayTimeHR = '0 мин 0.0 сек.';
-      if (guestUserProfile.dayTimeHR) {
-        dayTimeHR = guestUserProfile.dayTimeHR;
-      }
       let dayExercises = 0;
       if (guestUserProfile.dayExercises) {
         dayExercises = guestUserProfile.dayExercises;
@@ -64,10 +60,6 @@ class UserDataHandler {
       let totalTime = 0;
       if (guestUserProfile.totalTime) {
         totalTime = guestUserProfile.totalTime;
-      }
-      let totalTimeHR = '0 мин 0.0 сек.';
-      if (guestUserProfile.totalTimeHR) {
-        totalTimeHR = guestUserProfile.totalTimeHR;
       }
       let totalExercises = 0;
       if (guestUserProfile.totalExercises) {
@@ -96,12 +88,10 @@ class UserDataHandler {
       this.userProfile = new UserProfile({
         dayScore,
         dayTime,
-        dayTimeHR,
         dayExercises,
         profileDate,
         totalScore,
         totalTime,
-        totalTimeHR,
         totalExercises,
         intervalGameScore,
         scaleGameScore,
@@ -113,12 +103,10 @@ class UserDataHandler {
       this.userProfile = new UserProfile({
         dayScore: 0,
         dayTime: 0,
-        dayTimeHR: '0 мин 0.0 сек.',
         dayExercises: 0,
         profileDate: this.getCurrentDate(),
         totalScore: 0,
         totalTime: 0,
-        totalTimeHR: '0 мин 0.0 сек.',
         totalExercises: 0,
         intervalGameScore: 0,
         scaleGameScore: 0,
@@ -218,12 +206,10 @@ class UserDataHandler {
     const guestUserProfile: IUserProfileType = {
       dayScore: this.userProfile.getDayScore(),
       dayTime: this.userProfile.getDayTime(),
-      dayTimeHR: this.userProfile.getDayTimeHR(),
       dayExercises: this.userProfile.getDayExercises(),
       profileDate: this.userProfile.getProfileDate(),
       totalScore: this.userProfile.getTotalScore(),
       totalTime: this.userProfile.getTotalTime(),
-      totalTimeHR: this.userProfile.getTotalTimeHR(),
       totalExercises: this.userProfile.getTotalExercises(),
       intervalGameScore: this.userProfile.getIntervalGameScore(),
       scaleGameScore: this.userProfile.getScaleGameScore(),

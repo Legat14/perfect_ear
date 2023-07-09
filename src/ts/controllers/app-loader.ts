@@ -32,10 +32,11 @@ class AppLoader {
 
     const { userStats } = this.view.viewsController;
 
-    this.userStatisticHandler = new UserStatisticHandler(
-      this.userDataHandler.userProfile,
-      userStats.statisticCounters,
-    );
+    this.userStatisticHandler = new UserStatisticHandler({
+      userProfile: this.userDataHandler.userProfile,
+      userConfig: this.userDataHandler.userConfig,
+      userDayStatisticCounters: userStats.statisticCounters,
+    });
 
     const { userSettings } = this.view.viewsController;
 

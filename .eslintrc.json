@@ -22,7 +22,7 @@
     },
     "rules": {
         "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/indent": "warn",
+        "@typescript-eslint/indent": 0,
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
