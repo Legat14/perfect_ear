@@ -173,9 +173,13 @@ const Translation = {
     ENG: 'Chord identification',
     RUS: 'Определение аккордов',
   },
+  rhythmGameBtn: {
+    ENG: 'Rhythm game',
+    RUS: 'Ритмическая игра',
+  },
   rhythmTrainingPageHeader: {
-    ENG: 'Rhythm Exercises',
-    RUS: 'Упражнения на ритм',
+    ENG: '<span>Rhythm</span> Exercises',
+    RUS: 'Упражнения на <span>ритм</span>',
   },
   theoryPageHeader: {
     ENG: 'Theory',

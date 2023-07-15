@@ -24,15 +24,27 @@ class RhythmTrainingView extends NodeBuilder {
     const [
       rhythmSection,
       rhythmThBtn,
-    ] = this.createSection(Translation.rhythmTrainingPageHeader[state], [
-      [[{
-        parentNode: null,
-        className: 'ear-training__btn ear-training__game training-btn theory-btn',
-        content: Translation.mainMenuTheory[state],
-      }],
-      '/theory/rhythm',
+      rhythmCompBtn,
+    ] = this.createSection(
+      Translation.rhythmTrainingPageHeader[state],
+      [
+        [[{
+          parentNode: null,
+          className: 'rhythm-training__btn rhythm-training__theory training-btn theory-btn',
+          content: Translation.mainMenuTheory[state],
+        }],
+          '/theory/rhythm',
+        ],
+        [[{
+          parentNode: null,
+          className: 'rhythm-training__btn rhythm-training__game training-btn',
+          content: Translation.rhythmGameBtn[state],
+        }],
+          '/rhythm-training/rythm-game'],
       ],
-    ]);
+    );
+
+    console.log(rhythmCompBtn);
 
     LangEmitter.add((lang) => {
       rhythmSection.innerHTML = Translation.rhythmTrainingPageHeader[lang];

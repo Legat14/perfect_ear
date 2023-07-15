@@ -34,9 +34,6 @@ class EarTrainingView extends NodeBuilder {
       content: `<h2 class="ear-header__h2">${Translation.earTrainingPageHeader[state]}</h2>`,
     });
 
-    /**
-     * @todo Добавить картинки ко всем кнопкам.
-     */
     this.sectionContainer = new NodeBuilder({
       parentNode: this.node,
       tagName: 'div',
@@ -55,14 +52,14 @@ class EarTrainingView extends NodeBuilder {
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
           content: Translation.mainMenuTheory[state],
         }],
-        '/theory/intervals',
+          '/theory/intervals',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
           content: Translation.intervalComparisonBtn[state],
         }],
-        '/ear-training/interval-comparison'],
+          '/ear-training/interval-comparison'],
       ],
     );
 
@@ -78,14 +75,14 @@ class EarTrainingView extends NodeBuilder {
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
           content: Translation.mainMenuTheory[state],
         }],
-        '/theory/scales',
+          '/theory/scales',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
           content: Translation.scaleIdentificationBtn[state],
         }],
-        '/ear-training/scale-identification',
+          '/ear-training/scale-identification',
         ],
       ],
     );
@@ -102,14 +99,14 @@ class EarTrainingView extends NodeBuilder {
           className: 'ear-training__btn ear-training__theory training-btn theory-btn',
           content: Translation.mainMenuTheory[state],
         }],
-        '/theory/chords',
+          '/theory/chords',
         ],
         [[{
           parentNode: null,
           className: 'ear-training__btn ear-training__game training-btn',
           content: Translation.chordIdentificationBtn[state],
         }],
-        '/ear-training/chord-identification',
+          '/ear-training/chord-identification',
         ],
       ],
     );
